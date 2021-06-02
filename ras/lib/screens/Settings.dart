@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ssh/ssh.dart';
 import 'package:ras/widgets/AppBar.dart';
 
 class Settings extends StatefulWidget {
@@ -9,6 +10,12 @@ class Settings extends StatefulWidget {
 class _SettingsState extends State<Settings> {
   bool isLoggedIn = false;
   bool obscurePassword = true;
+  var client = new SSHClient(
+    host: "192.168.0.176",
+    port: 22,
+    username: "lg",
+    passwordOrKey: "lq",
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -65,7 +72,10 @@ class _SettingsState extends State<Settings> {
                       primary: Colors.blue,
                       side: BorderSide(color: Colors.blue, width: 1),
                     ),
-                    onPressed: () {},
+                    onPressed: () async {
+                      await client.connect();
+                      await client.execute('export DISPLAY=:0; xrandr -o normal');
+                    },
                     child: Text('CONNECT'),
                   ),
                 ),
@@ -81,37 +91,39 @@ class _SettingsState extends State<Settings> {
                     style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
                   ),
                 ),
-                !isLoggedIn ? ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    primary: Colors.white,
-                  ),
-                  onPressed: () {
-                    setState(() {
-                      // TODO: Implement signin with google
-                      isLoggedIn = true;
-                    });
-                  },
-                  child: Padding(
-                    padding: EdgeInsets.all(10),
-                    child: Wrap(
-                      crossAxisAlignment: WrapCrossAlignment.center,
-                      children: [
-                        Image.asset(
-                          'assets/google_icon.png',
-                          scale: 45,
+                !isLoggedIn
+                    ? ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          primary: Colors.white,
                         ),
-                        SizedBox(width: 12),
-                        Text(
-                          'Sign in with Google',
-                          style: TextStyle(
-                              color: Colors.black54,
-                              fontWeight: FontWeight.w700,
-                              fontSize: 20),
+                        onPressed: () {
+                          setState(() {
+                            // TODO: Implement signin with google
+                            isLoggedIn = true;
+                          });
+                        },
+                        child: Padding(
+                          padding: EdgeInsets.all(10),
+                          child: Wrap(
+                            crossAxisAlignment: WrapCrossAlignment.center,
+                            children: [
+                              Image.asset(
+                                'assets/google_icon.png',
+                                scale: 45,
+                              ),
+                              SizedBox(width: 12),
+                              Text(
+                                'Sign in with Google',
+                                style: TextStyle(
+                                    color: Colors.black54,
+                                    fontWeight: FontWeight.w700,
+                                    fontSize: 20),
+                              ),
+                            ],
+                          ),
                         ),
-                      ],
-                    ),
-                  ),
-                ) : SizedBox(),
+                      )
+                    : SizedBox(),
                 isLoggedIn
                     ? Padding(
                         padding: const EdgeInsets.symmetric(vertical: 0.0),
