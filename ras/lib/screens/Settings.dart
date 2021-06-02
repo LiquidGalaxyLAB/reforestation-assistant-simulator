@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ssh/ssh.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:ras/widgets/AppBar.dart';
 
 class Settings extends StatefulWidget {
@@ -10,15 +11,72 @@ class Settings extends StatefulWidget {
 class _SettingsState extends State<Settings> {
   bool isLoggedIn = false;
   bool obscurePassword = true;
-  var client = new SSHClient(
-    host: "192.168.0.176",
-    port: 22,
-    username: "lg",
-    passwordOrKey: "lq",
-  );
+  TextEditingController ipAddress = TextEditingController();
+  TextEditingController password = TextEditingController();
+
+  connect() async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    await preferences.setString('master_ip', ipAddress.text);
+    await preferences.setString('master_password', password.text);
+
+    SSHClient client = SSHClient(
+      host: ipAddress.text,
+      port: 22,
+      username: "lg",
+      passwordOrKey: password.text,
+    );
+
+    try {
+      await client.connect();
+      showAlertDialog('Connected!', '${ipAddress.text} Host is reachable');
+      await client.disconnect();
+    } catch (e) {
+      showAlertDialog('Oops!',
+          '${ipAddress.text} Host is not reachable. Check if the information given is correct and if the host can be reached');
+    }
+  }
+
+  showAlertDialog(String title, String msg) {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text('$title'),
+            content: Text('$msg'),
+            actions: <Widget>[
+              OutlinedButton(
+                child: Text("CLOSE"),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                style: OutlinedButton.styleFrom(
+                  primary: Colors.blue,
+                  side: BorderSide(color: Colors.blue, width: 1),
+                ),
+              ),
+            ],
+          );
+        });
+  }
+
+  init() async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    ipAddress.text = preferences.getString('master_ip') ?? '';
+    password.text = preferences.getString('master_password') ?? '';
+  }
+
+  @override
+  void dispose() {
+    // Clean up the controller when the widget is disposed.
+    ipAddress.dispose();
+    password.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
+    init();
+
     return Scaffold(
         appBar: PreferredSize(
           preferredSize: const Size.fromHeight(50),
@@ -41,6 +99,7 @@ class _SettingsState extends State<Settings> {
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 20.0),
                   child: TextField(
+                    controller: ipAddress,
                     keyboardType: TextInputType.number,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(),
@@ -50,6 +109,7 @@ class _SettingsState extends State<Settings> {
                   ),
                 ),
                 TextField(
+                  controller: password,
                   obscureText: obscurePassword,
                   decoration: InputDecoration(
                     border: OutlineInputBorder(),
@@ -72,9 +132,8 @@ class _SettingsState extends State<Settings> {
                       primary: Colors.blue,
                       side: BorderSide(color: Colors.blue, width: 1),
                     ),
-                    onPressed: () async {
-                      await client.connect();
-                      await client.execute('export DISPLAY=:0; xrandr -o normal');
+                    onPressed: () {
+                      connect();
                     },
                     child: Text('CONNECT'),
                   ),

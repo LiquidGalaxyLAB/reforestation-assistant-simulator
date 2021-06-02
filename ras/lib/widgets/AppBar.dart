@@ -4,19 +4,24 @@ class MyAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      title: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Image.asset(
-            'assets/treeIcon.png',
-            scale: 2,
-          ),
-          Text(
-            'RAS',
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
-          ),
-        ],
+      // title: Row(
+      //   mainAxisAlignment: MainAxisAlignment.center,
+      //   children: [
+      //     Image.asset(
+      //       'assets/treeIcon.png',
+      //       scale: 2,
+      //     ),
+      //     Text(
+      //       'RAS',
+      //       style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
+      //     ),
+      //   ],
+      // ),
+      title: Text(
+        'RAS',
+        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
       ),
+      centerTitle: true,
       actions: [
         ModalRoute.of(context)!.settings.name != '/settings'
             ? IconButton(
