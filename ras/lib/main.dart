@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:ras/screens/Settings.dart';
+// import 'package:ras/screens/MapBuilder.dart';
 import 'package:ras/widgets/AppBar.dart';
 
 void main() {
@@ -10,12 +12,16 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'RAS',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: MyHomePage(),
-    );
+        title: 'RAS',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        initialRoute: '/',
+        routes: {
+          '/': (context) => MyHomePage(),
+          // '/map': (context) => MapBuilder(),
+          '/settings': (context) => Settings(),
+        });
   }
 }
 
@@ -30,7 +36,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(50),
-        child: myAppBar(),
+        child: MyAppBar(),
       ),
       body: Center(
         child: Column(
@@ -39,6 +45,16 @@ class _MyHomePageState extends State<MyHomePage> {
             Text(
               'Hello World!',
             ),
+            ElevatedButton(
+              onPressed: () => {
+                Navigator.pushNamed(context, '/map')
+              },
+              style: ElevatedButton.styleFrom(
+                primary: Colors.red, // background
+                onPrimary: Colors.white, // foreground
+              ),
+              child: Text('Go to map screen'),
+            )
           ],
         ),
       ),

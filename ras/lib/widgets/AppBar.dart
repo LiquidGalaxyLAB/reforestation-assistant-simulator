@@ -1,15 +1,33 @@
 import 'package:flutter/material.dart';
 
-Widget myAppBar() {
-  return AppBar(
-    title: Text(
-      'RAS',
-      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
-    ),
-    leading: Image.asset(
-      'assets/treeIcon.png',
-      scale: 1,
-    ),
-    backgroundColor: Colors.blue.shade900,
-  );
+class MyAppBar extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return AppBar(
+      title: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Image.asset(
+            'assets/treeIcon.png',
+            scale: 2,
+          ),
+          Text(
+            'RAS',
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
+          ),
+        ],
+      ),
+      actions: [
+        ModalRoute.of(context)!.settings.name != '/settings'
+            ? IconButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, '/settings');
+                },
+                icon: Icon(Icons.settings),
+              )
+            : SizedBox(),
+      ],
+      backgroundColor: Colors.blue.shade900,
+    );
+  }
 }
