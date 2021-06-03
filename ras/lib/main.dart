@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ras/screens/Settings.dart';
-// import 'package:ras/screens/MapBuilder.dart';
+import 'package:ras/screens/MapBuilder.dart';
 import 'package:ras/widgets/AppBar.dart';
 
 void main() {
@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
         initialRoute: '/',
         routes: {
           '/': (context) => MyHomePage(),
-          // '/map': (context) => MapBuilder(),
+          '/map': (context) => MapBuilder(),
           '/settings': (context) => Settings(),
         });
   }
