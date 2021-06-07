@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ras/screens/Settings.dart';
-// import 'package:ras/screens/MapBuilder.dart';
+import 'package:ras/screens/MapBuilder.dart';
 import 'package:ras/widgets/AppBar.dart';
 
 void main() {
@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
         initialRoute: '/',
         routes: {
           '/': (context) => MyHomePage(),
-          // '/map': (context) => MapBuilder(),
+          '/map': (context) => MapBuilder(),
           '/settings': (context) => Settings(),
         });
   }
@@ -46,16 +46,16 @@ class _MyHomePageState extends State<MyHomePage> {
             Text(
               'Hello World!',
             ),
-            // ElevatedButton(
-            //   onPressed: () => {
-            //     Navigator.pushNamed(context, '/map')
-            //   },
-            //   style: ElevatedButton.styleFrom(
-            //     primary: Colors.red, // background
-            //     onPrimary: Colors.white, // foreground
-            //   ),
-            //   child: Text('Go to map screen'),
-            // )
+            ElevatedButton(
+              onPressed: () => {
+                Navigator.pushNamed(context, '/map')
+              },
+              style: ElevatedButton.styleFrom(
+                primary: Colors.red, // background
+                onPrimary: Colors.white, // foreground
+              ),
+              child: Text('Go to map screen'),
+            )
           ],
         ),
       ),
