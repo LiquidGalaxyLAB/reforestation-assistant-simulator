@@ -20,12 +20,19 @@ class _MapBuilderState extends State<MapBuilder> {
     zoom: 15,
   );
 
+  static int shapeType = 0;
+  // 0 = none; 1 = placemark; 2 = polygon ...
+
+  static bool editing = false;
+
+  Set<Marker> _markers = Set<Marker>();
+
   _setUserLocation() async {
     if (await Permission.location.request().isGranted) {
       // Either the permission was already granted before or the user just granted it.
       _determinePosition();
     } else {
-      showAlertDialog(
+      _showAlertDialog(
           'Ops!', 'You need to device location to use this feature');
     }
   }
@@ -41,7 +48,7 @@ class _MapBuilderState extends State<MapBuilder> {
     controller.animateCamera(CameraUpdate.newCameraPosition(cameraPosition));
   }
 
-  showAlertDialog(String title, String msg) {
+  _showAlertDialog(String title, String msg) {
     showDialog(
         context: context,
         builder: (BuildContext context) {
@@ -64,6 +71,30 @@ class _MapBuilderState extends State<MapBuilder> {
         });
   }
 
+  _handleTap(LatLng value) {
+    switch (shapeType) {
+      case 1:
+        // new marker
+        Marker m = Marker(
+          markerId: MarkerId('seed_marker'),
+          position: value,
+          icon: BitmapDescriptor.defaultMarkerWithHue(
+              BitmapDescriptor.hueRed),
+        );
+        setState(() {
+          _markers.add(m);
+        });
+        break;
+      default:
+    }
+  }
+
+  _removeSeedMarker() {
+    setState(() {
+      _markers.removeWhere((element) => element.markerId ==  MarkerId('seed_marker'));
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
@@ -72,23 +103,88 @@ class _MapBuilderState extends State<MapBuilder> {
           GoogleMap(
             mapType: MapType.satellite,
             initialCameraPosition: _initPosition,
+            myLocationEnabled: true,
+            myLocationButtonEnabled: false,
             onMapCreated: (GoogleMapController controller) {
               _controller.complete(controller);
             },
+            onTap: _handleTap,
+            markers: _markers,
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(top: 90.0),
-                child: FloatingActionButton(
-                    backgroundColor: Colors.black.withOpacity(0.5),
-                    child: Icon(Icons.my_location_rounded),
-                    onPressed: () {
-                      _setUserLocation();
-                    }),
-              ),
-            ],
+          SafeArea(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(top: 20.0, left: 10),
+                  child: FloatingActionButton(
+                      backgroundColor: Colors.black.withOpacity(0.5),
+                      child: Icon(Icons.arrow_back),
+                      onPressed: () {
+                        Navigator.pop(context);
+                      }),
+                ),
+                editing
+                    ? Row(
+                        children: [
+                          Padding(
+                            padding:
+                                const EdgeInsets.only(top: 20.0, right: 10),
+                            child: FloatingActionButton(
+                                backgroundColor: Colors.black.withOpacity(0.5),
+                                child: Icon(Icons.delete),
+                                onPressed: () {
+                                  // delete shape
+                                  _removeSeedMarker();
+                                  editing = false;
+                                  shapeType = 0;
+                                }),
+                          ),
+                          Padding(
+                            padding:
+                                const EdgeInsets.only(top: 20.0, right: 10),
+                            child: FloatingActionButton(
+                                backgroundColor: Colors.black.withOpacity(0.5),
+                                child: Icon(Icons.check),
+                                onPressed: () {
+                                  // finished editing shape
+                                  setState(() {
+                                    editing = false;
+                                    shapeType = 0;
+                                  });
+                                }),
+                          ),
+                        ],
+                      )
+                    : Column(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(top: 20.0),
+                            child: FloatingActionButton(
+                                backgroundColor: Colors.black.withOpacity(0.5),
+                                child: Icon(Icons.place),
+                                onPressed: () {
+                                  setState(() {
+                                    // Shape now is Placemark
+                                    shapeType = 1;
+                                    editing = true;
+                                  });
+                                }),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 90.0),
+                            child: FloatingActionButton(
+                                backgroundColor: Colors.black.withOpacity(0.5),
+                                child: Icon(Icons.my_location_rounded),
+                                onPressed: () {
+                                  _setUserLocation();
+                                }),
+                          ),
+                        ],
+                      ),
+              ],
+            ),
           )
         ],
       ),
