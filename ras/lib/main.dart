@@ -76,7 +76,7 @@ class _MyHomePageState extends State<MyHomePage> {
 		</Pair>
 	</StyleMap>
 	<Placemark>
-		<name>sorocaba</name>
+		<name>sorocity</name>
 		<LookAt>
 			<longitude>-47.45251900638822</longitude>
 			<latitude>-23.50152714811598</latitude>
@@ -108,14 +108,16 @@ class _MyHomePageState extends State<MyHomePage> {
 
     try {
       await client.connect();
+      await client.execute('> /var/www/html/kmls.txt');
       await client.connectSFTP();
       await client.sftpUpload(
         path: localPath,
-        toPath: '/home/lg',
+        toPath: '/var/www/html',
         callback: (progress) {
           print('Sent $progress');
         },
       );
+      await client.execute('echo "http://lg1:81/testkml.kml" > /var/www/html/kmls.txt');
     } catch (e) {
       print('Could not connect to host LG');
     }
