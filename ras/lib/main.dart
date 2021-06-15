@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:ras/screens/AboutScreen.dart';
 import 'package:ras/screens/HomeScreen.dart';
 import 'package:ras/screens/ProjectBuilder.dart';
+import 'package:ras/screens/SeedForm.dart';
 import 'package:ras/screens/Settings.dart';
 import 'package:ras/screens/MapBuilder.dart';
 
@@ -24,6 +26,9 @@ class MyApp extends StatelessWidget {
           '/map': (context) => MapBuilder(),
           '/settings': (context) => Settings(),
           '/project-builder': (context) => ProjectBuilder(),
-        });
+          '/about': (context) => AboutScreen(),
+          '/seed-form': (context) => SeedForm(),
+        },
+        );
   }
 }

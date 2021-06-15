@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:ras/screens/ProjectList.dart';
+import 'package:ras/screens/SeedList.dart';
 import 'package:ras/widgets/AppBar.dart';
 import 'package:path_provider/path_provider.dart';
 import 'dart:io';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:ssh/ssh.dart';
-
 
 class MyHomePage extends StatefulWidget {
   @override
@@ -93,7 +94,8 @@ class _MyHomePageState extends State<MyHomePage> {
           print('Sent $progress');
         },
       );
-      await client.execute('echo "http://lg1:81/testkml.kml" > /var/www/html/kmls.txt');
+      await client
+          .execute('echo "http://lg1:81/testkml.kml" > /var/www/html/kmls.txt');
     } catch (e) {
       print('Could not connect to host LG');
     }
@@ -115,44 +117,55 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     init();
 
-    return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(50),
-        child: MyAppBar(),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'Welcome! App under development',
-            ),
-            ElevatedButton(
-              onPressed: () => {Navigator.pushNamed(context, '/map')},
-              style: ElevatedButton.styleFrom(
-                primary: Colors.red, // background
-                onPrimary: Colors.white, // foreground
-              ),
-              child: Text('Go to map screen'),
-            ),
-             ElevatedButton(
-              onPressed: () => {Navigator.pushNamed(context, '/project-builder')},
-              style: ElevatedButton.styleFrom(
-                primary: Colors.blue, // background
-                onPrimary: Colors.white, // foreground
-              ),
-              child: Text('Go to Project Builder'),
-            ),
-            ElevatedButton(
-              onPressed: () => {createLocalFile()},
-              style: ElevatedButton.styleFrom(
-                primary: Colors.green, // background
-                onPrimary: Colors.white, // foreground
-              ),
-              child: Text('Send KML to LG'),
-            )
-          ],
+    return DefaultTabController(
+      length: 2,
+      child: Scaffold(
+        appBar: PreferredSize(
+          preferredSize: const Size.fromHeight(120),
+          child: MyAppBar(isHome: true),
         ),
+        body: TabBarView(children: [
+          Tab(
+            child: ProjectList(),
+            // child: Container(
+            //   child: Column(
+            //       mainAxisAlignment: MainAxisAlignment.center,
+            //       children: <Widget>[
+            //         Text(
+            //           'Welcome! App under development',
+            //         ),
+            //         ElevatedButton(
+            //           onPressed: () => {Navigator.pushNamed(context, '/map')},
+            //           style: ElevatedButton.styleFrom(
+            //             primary: Colors.red, // background
+            //             onPrimary: Colors.white, // foreground
+            //           ),
+            //           child: Text('Go to map screen'),
+            //         ),
+            //         ElevatedButton(
+            //           onPressed: () =>
+            //               {Navigator.pushNamed(context, '/project-builder')},
+            //           style: ElevatedButton.styleFrom(
+            //             primary: Colors.blue, // background
+            //             onPrimary: Colors.white, // foreground
+            //           ),
+            //           child: Text('Go to Project Builder'),
+            //         ),
+            //         ElevatedButton(
+            //           onPressed: () => {createLocalFile()},
+            //           style: ElevatedButton.styleFrom(
+            //             primary: Colors.green, // background
+            //             onPrimary: Colors.white, // foreground
+            //           ),
+            //           child: Text('Send KML to LG'),
+            //         ),
+            //       ]),
+            // ),
+          ),
+          Tab(
+            child: SeedList(),
+          ),
+        ]),
       ),
     );
   }

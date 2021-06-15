@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ras/route-args/ProjectBuilderArgs.dart';
 import 'package:ras/widgets/AppBar.dart';
 
 class ProjectBuilder extends StatefulWidget {
@@ -27,10 +28,13 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
 
   @override
   Widget build(BuildContext context) {
+
+    final args = ModalRoute.of(context)!.settings.arguments as ProjectBuilderArgs;
+
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(50),
-        child: MyAppBar(),
+        child: MyAppBar(isHome: false,),
       ),
       body: SafeArea(
         child: Column(

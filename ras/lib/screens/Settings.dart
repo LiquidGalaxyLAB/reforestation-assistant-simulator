@@ -80,7 +80,7 @@ class _SettingsState extends State<Settings> {
     return Scaffold(
         appBar: PreferredSize(
           preferredSize: const Size.fromHeight(50),
-          child: MyAppBar(),
+          child: MyAppBar(isHome: false,),
         ),
         body: SingleChildScrollView(
           child: Padding(
