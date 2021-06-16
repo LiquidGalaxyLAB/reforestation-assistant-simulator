@@ -14,7 +14,18 @@ class _ProjectListState extends State<ProjectList> {
     return Stack(
       children: [
         Center(
-          child: Text('Project List'),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text('Project List'),
+              ElevatedButton(
+                child: Text('DEMO TESTS'),
+                onPressed: () {
+                  Navigator.pushNamed(context, '/test');
+                },
+              )
+            ],
+          ),
         ),
         Padding(
           padding: const EdgeInsets.only(bottom: 30.0, right: 30.0),
@@ -23,7 +34,8 @@ class _ProjectListState extends State<ProjectList> {
             child: FloatingActionButton(
               onPressed: () {
                 print('New project');
-                Navigator.pushNamed(context, '/project-builder', arguments: ProjectBuilderArgs(true));
+                Navigator.pushNamed(context, '/project-builder',
+                    arguments: ProjectBuilderArgs(true));
               },
               child: Icon(Icons.add),
             ),
