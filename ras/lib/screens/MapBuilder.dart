@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:uuid/uuid.dart';
 
 class MapBuilder extends StatefulWidget {
   const MapBuilder({Key? key}) : super(key: key);
@@ -24,8 +25,12 @@ class _MapBuilderState extends State<MapBuilder> {
   // 0 = none; 1 = placemark; 2 = polygon ...
 
   static bool editing = false;
+  static bool movingMarker = false;
 
   Set<Marker> _markers = Set<Marker>();
+
+  var uuid = Uuid();
+  String currentMarkerId = '';
 
   _setUserLocation() async {
     if (await Permission.location.request().isGranted) {
@@ -37,7 +42,7 @@ class _MapBuilderState extends State<MapBuilder> {
     }
   }
 
-  _determinePosition() async {
+  Future<LatLng> _determinePosition() async {
     Position position = await GeolocatorPlatform.instance
         .getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
     CameraPosition cameraPosition = CameraPosition(
@@ -46,6 +51,8 @@ class _MapBuilderState extends State<MapBuilder> {
     );
     final GoogleMapController controller = await _controller.future;
     controller.animateCamera(CameraUpdate.newCameraPosition(cameraPosition));
+
+    return LatLng(position.latitude, position.longitude);
   }
 
   _showAlertDialog(String title, String msg) {
@@ -75,12 +82,19 @@ class _MapBuilderState extends State<MapBuilder> {
     switch (shapeType) {
       case 1:
         // new marker
+        var id = uuid.v1();
         Marker m = Marker(
-          markerId: MarkerId('seed_marker'),
-          position: value,
-          icon: BitmapDescriptor.defaultMarkerWithHue(
-              BitmapDescriptor.hueRed),
-        );
+            markerId: MarkerId(id),
+            position: value,
+            draggable: true,
+            icon:
+                BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueRed),
+            onTap: () {
+              setState(() {
+                editing = true;
+                currentMarkerId = id;
+              });
+            });
         setState(() {
           _markers.add(m);
         });
@@ -91,8 +105,15 @@ class _MapBuilderState extends State<MapBuilder> {
 
   _removeSeedMarker() {
     setState(() {
-      _markers.removeWhere((element) => element.markerId ==  MarkerId('seed_marker'));
+      _markers.removeWhere(
+          (element) => element.markerId == MarkerId(currentMarkerId));
     });
+  }
+
+  _placeSeedInMyPosition() async {
+    LatLng position = await _determinePosition();
+    print(position);
+    _handleTap(position);
   }
 
   @override
@@ -170,6 +191,27 @@ class _MapBuilderState extends State<MapBuilder> {
                                     shapeType = 1;
                                     editing = true;
                                   });
+                                }),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 20.0),
+                            child: FloatingActionButton(
+                                backgroundColor: Colors.black.withOpacity(0.5),
+                                child: Icon(Icons.place_outlined),
+                                onPressed: () {
+                                  setState(() {
+                                    shapeType = 1;
+                                    _placeSeedInMyPosition();
+                                  });
+                                }),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 20.0),
+                            child: FloatingActionButton(
+                                backgroundColor: Colors.black.withOpacity(0.5),
+                                child: Icon(Icons.crop_square),
+                                onPressed: () {
+                                  _setUserLocation();
                                 }),
                           ),
                           Padding(

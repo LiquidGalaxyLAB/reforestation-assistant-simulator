@@ -31,6 +31,7 @@ dependencies:
   permission_handler: ^8.0.1
   geolocator: ^7.0.3
   path_provider: ^2.0.2
+  uuid: 3.0.4
 
 dev_dependencies:
   flutter_test:
