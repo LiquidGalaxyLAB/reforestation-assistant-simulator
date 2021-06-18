@@ -25,12 +25,14 @@ class _MapBuilderState extends State<MapBuilder> {
   // 0 = none; 1 = placemark; 2 = polygon ...
 
   static bool editing = false;
-  static bool movingMarker = false;
 
   Set<Marker> _markers = Set<Marker>();
+  List<LatLng> _polygonVertex = [];
+  Set<Polygon> _polygons = new Set();
 
   var uuid = Uuid();
   String currentMarkerId = '';
+  String currentVertexId = '';
 
   _setUserLocation() async {
     if (await Permission.location.request().isGranted) {
@@ -93,10 +95,32 @@ class _MapBuilderState extends State<MapBuilder> {
               setState(() {
                 editing = true;
                 currentMarkerId = id;
+                shapeType = 1;
               });
             });
         setState(() {
           _markers.add(m);
+        });
+        break;
+      case 2:
+        // add vertex
+        var id = uuid.v1();
+        Marker vertex = Marker(
+            markerId: MarkerId(id),
+            position: value,
+            draggable: true,
+            icon: BitmapDescriptor.defaultMarkerWithHue(
+                BitmapDescriptor.hueYellow),
+            onTap: () {
+              currentVertexId = id;
+              editing = true;
+              shapeType = 2;
+            },
+            onDragEnd: (newValue) {});
+        setState(() {
+          _polygonVertex.add(vertex.position);
+          _markers.add(vertex);
+          if (_polygonVertex.length >= 3) _placePolygon();
         });
         break;
       default:
@@ -112,8 +136,40 @@ class _MapBuilderState extends State<MapBuilder> {
 
   _placeSeedInMyPosition() async {
     LatLng position = await _determinePosition();
-    print(position);
     _handleTap(position);
+  }
+
+  _placePolygon() {
+    setState(() {
+      _polygons.add(Polygon(
+        polygonId: PolygonId('area'),
+        points: _polygonVertex,
+        strokeColor: Colors.yellow,
+        strokeWidth: 1,
+        fillColor: Colors.yellow.withOpacity(0.15),
+      ));
+    });
+  }
+
+  _removePolygon() {
+    _polygons = Set();
+    _polygonVertex.forEach((vertex) {
+      _markers.removeWhere((element) => element.position == vertex );
+    });
+    _polygonVertex = [];
+  }
+
+  _removeElement() {
+    switch (shapeType) {
+      case 1:
+        _removeSeedMarker();
+        break;
+      case 2:
+        _removePolygon();
+        break;
+      default:
+        break;
+    }
   }
 
   @override
@@ -131,6 +187,7 @@ class _MapBuilderState extends State<MapBuilder> {
             },
             onTap: _handleTap,
             markers: _markers,
+            polygons: _polygons,
           ),
           SafeArea(
             child: Row(
@@ -157,9 +214,11 @@ class _MapBuilderState extends State<MapBuilder> {
                                 child: Icon(Icons.delete),
                                 onPressed: () {
                                   // delete shape
-                                  _removeSeedMarker();
-                                  editing = false;
-                                  shapeType = 0;
+                                  _removeElement();
+                                  setState(() {
+                                    editing = false;
+                                    shapeType = 0;
+                                  });
                                 }),
                           ),
                           Padding(
@@ -211,7 +270,10 @@ class _MapBuilderState extends State<MapBuilder> {
                                 backgroundColor: Colors.black.withOpacity(0.5),
                                 child: Icon(Icons.crop_square),
                                 onPressed: () {
-                                  _setUserLocation();
+                                  setState(() {
+                                    shapeType = 2;
+                                    editing = true;
+                                  });
                                 }),
                           ),
                           Padding(
