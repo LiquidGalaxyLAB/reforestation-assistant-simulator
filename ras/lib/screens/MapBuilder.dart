@@ -108,7 +108,7 @@ class _MapBuilderState extends State<MapBuilder> {
         Marker vertex = Marker(
             markerId: MarkerId(id),
             position: value,
-            draggable: true,
+            draggable: false,
             icon: BitmapDescriptor.defaultMarkerWithHue(
                 BitmapDescriptor.hueYellow),
             onTap: () {
