@@ -1,6 +1,6 @@
 class LookAt {
-  String lng;
-  String lat;
+  double lng;
+  double lat;
   String range;
   String tilt;
   String heading;

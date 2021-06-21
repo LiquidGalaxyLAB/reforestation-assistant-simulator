@@ -1,6 +1,6 @@
 class Point {
-  String lat;
-  String lng;
+  double lat;
+  double lng;
 
   Point(this.lat, this.lng);
 

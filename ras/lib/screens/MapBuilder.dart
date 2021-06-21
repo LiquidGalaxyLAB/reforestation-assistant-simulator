@@ -4,7 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:ras/models/kml/LookAt.dart';
+import 'package:ras/models/kml/Placemark.dart';
+import 'package:ras/models/kml/Point.dart';
 import 'package:uuid/uuid.dart';
+import 'package:ras/models/kml/Polygon.dart' as poly;
 
 class MapBuilder extends StatefulWidget {
   const MapBuilder({Key? key}) : super(key: key);
@@ -154,7 +158,7 @@ class _MapBuilderState extends State<MapBuilder> {
   _removePolygon() {
     _polygons = Set();
     _polygonVertex.forEach((vertex) {
-      _markers.removeWhere((element) => element.position == vertex );
+      _markers.removeWhere((element) => element.position == vertex);
     });
     _polygonVertex = [];
   }
@@ -170,6 +174,23 @@ class _MapBuilderState extends State<MapBuilder> {
       default:
         break;
     }
+  }
+
+  _generateKML() {
+    List<Placemark> placemarks = [];
+    
+    poly.Polygon area =
+        poly.Polygon(_polygons.first.polygonId.value, _polygons.first.points);
+
+    _markers.forEach((element) {
+      placemarks.add(Placemark(
+          element.markerId.value,
+          'seed name',
+          'seed description',
+          LookAt(element.position.longitude, element.position.latitude, '10000',
+              '45', '0'),
+          Point(element.position.longitude, element.position.latitude)));
+    });
   }
 
   @override
@@ -289,7 +310,28 @@ class _MapBuilderState extends State<MapBuilder> {
                       ),
               ],
             ),
-          )
+          ),
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: Padding(
+              padding: const EdgeInsets.only(right: 80.0, bottom: 15),
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  padding: EdgeInsets.symmetric(horizontal: 40, vertical: 10),
+                  shadowColor: Colors.black,
+                  primary: Colors.green, // background
+                  onPrimary: Colors.white, // foreground
+                ),
+                onPressed: () {
+                  _generateKML();
+                },
+                child: Text(
+                  'SAVE',
+                  style: TextStyle(fontSize: 20),
+                ),
+              ),
+            ),
+          ),
         ],
       ),
     );
