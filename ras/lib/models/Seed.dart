@@ -33,4 +33,22 @@ class Seed {
       "establishmentCost": establishmentCost,
     };
   }
+
+  static List<Seed> toList(List<dynamic> list) {
+    List<Seed> seeds = [];
+    list.forEach((element) {
+      seeds.add(Seed(
+        element['commonName'],
+        element['scientificName'],
+        element['icon'],
+        element['co2PerYear'],
+        element['germinativePotential'],
+        element['estimatedLongevity'],
+        element['estimatedFinalHeight'],
+        element['seedCost'],
+        element['establishmentCost'],
+      ));
+    });
+    return seeds;
+  }
 }

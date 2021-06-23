@@ -5,16 +5,17 @@ class SeedRepository {
   final String _storeName = 'seeds';
   final DatabaseService _db = DatabaseService();
 
-  create(Seed seed) {
+  Future create(Seed seed) {
     return _db.createEntry(_storeName, seed.toMap());
   }
 
-  update(Seed seed, String id) {
+  Future update(Seed seed, String id) {
     return _db.updateEntry(_storeName, id, seed.toMap());
   }
 
-  getAll() {
-    return _db.getAllEntries(_storeName);
+  Future<List<Seed>>getAll() async {
+    List<dynamic> entries = await _db.getAllEntries(_storeName);
+    return Seed.toList(entries);
   }
 
   getOne(String id) {
