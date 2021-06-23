@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:ras/models/Seed.dart';
+import 'package:ras/repositories/Seed.dart';
 import 'package:ras/route-args/SeedFormArgs.dart';
 import 'package:ras/widgets/AppBar.dart';
 
@@ -11,6 +13,15 @@ class SeedForm extends StatefulWidget {
 
 class _SeedFormState extends State<SeedForm> {
   final _formKey = GlobalKey<FormState>();
+  TextEditingController commonName = TextEditingController();
+  TextEditingController scientificName = TextEditingController();
+  TextEditingController co2PerYear = TextEditingController();
+  TextEditingController germinativePot = TextEditingController();
+  TextEditingController estimatedLong = TextEditingController();
+  TextEditingController estimatedFHeight = TextEditingController();
+  TextEditingController seedCost = TextEditingController();
+  TextEditingController establishmentCost = TextEditingController();
+  // ADD ICON
 
   showHelpDialog(String title, String msg) {
     showDialog(
@@ -32,6 +43,27 @@ class _SeedFormState extends State<SeedForm> {
             ],
           );
         });
+  }
+
+  saveSeed() async {
+    Seed seed = Seed(
+      commonName.text,
+      scientificName.text,
+      'urlicon',
+      double.parse(co2PerYear.text),
+      double.parse(germinativePot.text),
+      int.parse(estimatedLong.text),
+      double.parse(estimatedFHeight.text),
+      double.parse(seedCost.text),
+      double.parse(establishmentCost.text),
+    );
+
+    Future response = SeedRepository().create(seed);
+    response.then((value) { 
+      print('Success!!!! $value');
+      Navigator.of(context).pop();
+    });
+    response.catchError((onError) => print('Error $onError'));
   }
 
   @override
@@ -73,6 +105,7 @@ class _SeedFormState extends State<SeedForm> {
                   children: [
                     Expanded(
                       child: TextFormField(
+                        controller: commonName,
                         validator: (value) {
                           if (value == null || value.isEmpty) {
                             return 'Please enter a common name';
@@ -107,6 +140,7 @@ class _SeedFormState extends State<SeedForm> {
                   children: [
                     Expanded(
                       child: TextFormField(
+                        controller: scientificName,
                         decoration: InputDecoration(
                           filled: true,
                         ),
@@ -171,6 +205,7 @@ class _SeedFormState extends State<SeedForm> {
                   children: [
                     Expanded(
                       child: TextFormField(
+                        controller: co2PerYear,
                         keyboardType: TextInputType.number,
                         decoration: InputDecoration(
                           filled: true,
@@ -199,6 +234,7 @@ class _SeedFormState extends State<SeedForm> {
                   children: [
                     Expanded(
                       child: TextFormField(
+                        controller: germinativePot,
                         keyboardType: TextInputType.number,
                         decoration: InputDecoration(
                           filled: true,
@@ -227,6 +263,7 @@ class _SeedFormState extends State<SeedForm> {
                   children: [
                     Expanded(
                       child: TextFormField(
+                        controller: estimatedLong,
                         keyboardType: TextInputType.number,
                         decoration: InputDecoration(
                           filled: true,
@@ -256,6 +293,7 @@ class _SeedFormState extends State<SeedForm> {
                   children: [
                     Expanded(
                       child: TextFormField(
+                        controller: estimatedFHeight,
                         keyboardType: TextInputType.number,
                         decoration: InputDecoration(
                           filled: true,
@@ -285,6 +323,7 @@ class _SeedFormState extends State<SeedForm> {
                   children: [
                     Expanded(
                       child: TextFormField(
+                        controller: seedCost,
                         keyboardType: TextInputType.number,
                         decoration: InputDecoration(
                           filled: true,
@@ -313,6 +352,7 @@ class _SeedFormState extends State<SeedForm> {
                   children: [
                     Expanded(
                       child: TextFormField(
+                        controller: establishmentCost,
                         keyboardType: TextInputType.number,
                         decoration: InputDecoration(
                           filled: true,
@@ -347,6 +387,7 @@ class _SeedFormState extends State<SeedForm> {
                           onPressed: () {
                             if (_formKey.currentState!.validate()) {
                               print('validated!');
+                              saveSeed();
                             } else
                               print('ooppsss');
                           },
