@@ -19,29 +19,117 @@ class _SeedListState extends State<SeedList> {
       children: [
         Column(
           children: [
-            ElevatedButton.icon(
-                onPressed: () {
-                  setState(() {
-                    _listSeeds = SeedRepository().getAll();
-                  });
-                },
-                icon: Icon(Icons.refresh),
-                label: Text('Refresh Table')),
-            Container(
-              height: 600,
+            Padding(
+              padding: const EdgeInsets.all(15.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    'SPECIES TABLE',
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                  ),
+                  ElevatedButton.icon(
+                      onPressed: () {
+                        setState(() {
+                          _listSeeds = SeedRepository().getAll();
+                        });
+                      },
+                      icon: Icon(Icons.refresh),
+                      label: Text('Refresh Table')),
+                ],
+              ),
+            ),
+            Expanded(
               child: FutureBuilder(
                   future: _listSeeds,
                   builder: (BuildContext context, AsyncSnapshot snapshot) {
                     if (snapshot.hasData) {
+                      List<Seed> data = snapshot.data;
                       return ListView.builder(
                           itemCount: snapshot.data.length,
                           itemBuilder: (context, index) {
-                            return ListTile(
-                              title: Text('${snapshot.data[index].commonName}'),
+                            return ExpansionTile(
+                              title: Text('${data[index].commonName}'),
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 15.0),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Expanded(
+                                        child: ListTile(
+                                          contentPadding: EdgeInsets.zero,
+                                          leading: Icon(Icons.legend_toggle_rounded),
+                                          title: Text('Seed Icon'),
+                                        ),
+                                      ),
+                                      Expanded(
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.end,
+                                          children: [
+                                            IconButton(
+                                              icon: Icon(Icons.edit),
+                                              onPressed: () {},
+                                            ),
+                                            IconButton(
+                                              icon: Icon(
+                                                Icons.delete,
+                                                color: Colors.red,
+                                              ),
+                                              onPressed: () {},
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                ListTile(
+                                  title: Text('${data[index].commonName}'),
+                                  subtitle: Text('Common name'),
+                                ),
+                                ListTile(
+                                  title: Text('${data[index].scientificName}'),
+                                  subtitle: Text('Scientific name'),
+                                ),
+                                ListTile(
+                                  title: Text('${data[index].co2PerYear}'),
+                                  subtitle: Text('CO2 capture per year'),
+                                ),
+                                ListTile(
+                                  title: Text(
+                                      '${data[index].germinativePotential}%'),
+                                  subtitle: Text('Germinative potential (%)'),
+                                ),
+                                ListTile(
+                                  title: Text(
+                                      '${data[index].estimatedLongevity} years'),
+                                  subtitle: Text('Estimated longevity (years)'),
+                                ),
+                                ListTile(
+                                  title: Text(
+                                      '${data[index].estimatedFinalHeight}m'),
+                                  subtitle:
+                                      Text('Estimated final height (meters)'),
+                                ),
+                                ListTile(
+                                  title: Text(
+                                      '\$${data[index].seedCost} each 1kg'),
+                                  subtitle: Text('Seed Cost (1kg)'),
+                                ),
+                                ListTile(
+                                  title: Text(
+                                      '\$${data[index].establishmentCost}'),
+                                  subtitle: Text('Establishment cost'),
+                                ),
+                              ],
                             );
                           });
                     } else if (snapshot.hasError) {
-                      return Text('Error ${snapshot.error}');
+                      return Text('Error: ${snapshot.error}');
                     } else {
                       return Column(
                         children: [
@@ -52,7 +140,7 @@ class _SeedListState extends State<SeedList> {
                           ),
                           Padding(
                             padding: EdgeInsets.only(top: 16),
-                            child: Text('Awaiting result...'),
+                            child: Text('Loading data...'),
                           )
                         ],
                       );
