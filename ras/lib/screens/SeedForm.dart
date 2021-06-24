@@ -45,30 +45,66 @@ class _SeedFormState extends State<SeedForm> {
         });
   }
 
-  saveSeed() async {
-    Seed seed = Seed(
-      commonName.text,
-      scientificName.text,
-      'urlicon',
-      double.parse(co2PerYear.text),
-      double.parse(germinativePot.text),
-      int.parse(estimatedLong.text),
-      double.parse(estimatedFHeight.text),
-      double.parse(seedCost.text),
-      double.parse(establishmentCost.text),
-    );
+  saveSeed(SeedFormArgs args) async {
+    if (args.isNew) {
+      Seed seed = Seed(
+        '',
+        commonName.text,
+        scientificName.text,
+        'urlicon',
+        double.parse(co2PerYear.text),
+        double.parse(germinativePot.text),
+        int.parse(estimatedLong.text),
+        double.parse(estimatedFHeight.text),
+        double.parse(seedCost.text),
+        double.parse(establishmentCost.text),
+      );
+      Future response = SeedRepository().create(seed);
+      response.then((value) {
+        print('Success!!!! $value');
+        Navigator.of(context).pop();
+      });
+      response.catchError((onError) => print('Error $onError'));
+    } else {
+      Seed seed = Seed(
+        args.seed!.id,
+        commonName.text,
+        scientificName.text,
+        'urlicon',
+        double.parse(co2PerYear.text),
+        double.parse(germinativePot.text),
+        int.parse(estimatedLong.text),
+        double.parse(estimatedFHeight.text),
+        double.parse(seedCost.text),
+        double.parse(establishmentCost.text),
+      );
+      Future response = SeedRepository().update(seed, seed.id);
+      response.then((value) {
+        print('Success! Seed updated');
+        Navigator.of(context).pop();
+      });
+      response.catchError((onError) => print('Error $onError'));
+    }
+  }
 
-    Future response = SeedRepository().create(seed);
-    response.then((value) { 
-      print('Success!!!! $value');
-      Navigator.of(context).pop();
-    });
-    response.catchError((onError) => print('Error $onError'));
+  _init(SeedFormArgs args) {
+    if (!args.isNew) {
+      commonName.text = args.seed!.commonName;
+      scientificName.text = args.seed!.scientificName;
+      co2PerYear.text = args.seed!.co2PerYear.toString();
+      germinativePot.text = args.seed!.germinativePotential.toString();
+      estimatedLong.text = args.seed!.estimatedLongevity.toString();
+      estimatedFHeight.text = args.seed!.estimatedFinalHeight.toString();
+      seedCost.text = args.seed!.seedCost.toString();
+      establishmentCost.text = args.seed!.establishmentCost.toString();
+      // icon
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     final args = ModalRoute.of(context)!.settings.arguments as SeedFormArgs;
+    _init(args);
 
     return Scaffold(
       appBar: PreferredSize(
@@ -386,10 +422,9 @@ class _SeedFormState extends State<SeedForm> {
                           ),
                           onPressed: () {
                             if (_formKey.currentState!.validate()) {
-                              print('validated!');
-                              saveSeed();
+                              saveSeed(args);
                             } else
-                              print('ooppsss');
+                              print('ooppsss throw error');
                           },
                         ),
                       ),

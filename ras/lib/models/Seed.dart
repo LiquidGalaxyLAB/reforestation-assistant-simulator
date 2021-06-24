@@ -1,4 +1,5 @@
 class Seed {
+  String id;
   String commonName;
   String scientificName;
   String icon;
@@ -10,6 +11,7 @@ class Seed {
   double establishmentCost;
 
   Seed(
+      this.id,
       this.commonName,
       this.scientificName,
       this.icon,
@@ -22,6 +24,7 @@ class Seed {
 
   Map<String, dynamic> toMap() {
     return {
+      "id": id,
       "commonName": commonName,
       "scientificName": scientificName,
       "icon": icon,
@@ -38,15 +41,16 @@ class Seed {
     List<Seed> seeds = [];
     list.forEach((element) {
       seeds.add(Seed(
-        element['commonName'],
-        element['scientificName'],
-        element['icon'],
-        element['co2PerYear'],
-        element['germinativePotential'],
-        element['estimatedLongevity'],
-        element['estimatedFinalHeight'],
-        element['seedCost'],
-        element['establishmentCost'],
+        element.key,
+        element.value['commonName'],
+        element.value['scientificName'],
+        element.value['icon'],
+        element.value['co2PerYear'],
+        element.value['germinativePotential'],
+        element.value['estimatedLongevity'],
+        element.value['estimatedFinalHeight'],
+        element.value['seedCost'],
+        element.value['establishmentCost'],
       ));
     });
     return seeds;

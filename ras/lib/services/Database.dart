@@ -41,8 +41,8 @@ class DatabaseService {
     var store = stringMapStoreFactory.store(storeName);
     List<RecordSnapshot<String, Map<String, dynamic>>> recordSnapshot =
         await store.find(db);
-    return recordSnapshot.map((snapshot) {
-      return snapshot.value;
+    return recordSnapshot.map((RecordSnapshot snapshot) {
+      return snapshot;
     }).toList();
   }
 

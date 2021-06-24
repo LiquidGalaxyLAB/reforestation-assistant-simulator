@@ -61,7 +61,8 @@ class _SeedListState extends State<SeedList> {
                                       Expanded(
                                         child: ListTile(
                                           contentPadding: EdgeInsets.zero,
-                                          leading: Icon(Icons.legend_toggle_rounded),
+                                          leading:
+                                              Icon(Icons.legend_toggle_rounded),
                                           title: Text('Seed Icon'),
                                         ),
                                       ),
@@ -72,7 +73,13 @@ class _SeedListState extends State<SeedList> {
                                           children: [
                                             IconButton(
                                               icon: Icon(Icons.edit),
-                                              onPressed: () {},
+                                              onPressed: () {
+                                                Navigator.pushNamed(
+                                                    context, '/seed-form',
+                                                    arguments: SeedFormArgs(
+                                                        false,
+                                                        seed: data[index]));
+                                              },
                                             ),
                                             IconButton(
                                               icon: Icon(
@@ -155,7 +162,6 @@ class _SeedListState extends State<SeedList> {
             alignment: Alignment.bottomRight,
             child: FloatingActionButton(
               onPressed: () {
-                print('New Seed');
                 Navigator.pushNamed(context, '/seed-form',
                     arguments: SeedFormArgs(true));
               },
