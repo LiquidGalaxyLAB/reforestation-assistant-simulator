@@ -116,9 +116,11 @@ class _MapBuilderState extends State<MapBuilder> {
             icon: BitmapDescriptor.defaultMarkerWithHue(
                 BitmapDescriptor.hueYellow),
             onTap: () {
-              currentVertexId = id;
-              editing = true;
-              shapeType = 2;
+              setState(() {
+                currentVertexId = id;
+                editing = true;
+                shapeType = 2;
+              });
             },
             onDragEnd: (newValue) {});
         setState(() {
@@ -178,7 +180,7 @@ class _MapBuilderState extends State<MapBuilder> {
 
   _generateKML() {
     List<Placemark> placemarks = [];
-    
+
     poly.Polygon area =
         poly.Polygon(_polygons.first.polygonId.value, _polygons.first.points);
 
