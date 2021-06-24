@@ -13,6 +13,51 @@ class SeedList extends StatefulWidget {
 class _SeedListState extends State<SeedList> {
   Future<List<Seed>> _listSeeds = SeedRepository().getAll();
 
+  showDeleteDialog(String title, String msg, String id) {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text('$title'),
+            content: Text('$msg'),
+            actions: <Widget>[
+              Padding(
+                padding: EdgeInsets.only(right: 20),
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    primary: Colors.red, // background
+                    onPrimary: Colors.white, // foreground
+                  ),
+                  child: Text("NO"),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.only(right: 20),
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    primary: Colors.green, // background
+                    onPrimary: Colors.white, // foreground
+                  ),
+                  child: Text("YES"),
+                  onPressed: () {
+                    // delete seed
+                    Future response = SeedRepository().delete(id);
+                    response.then((value) {
+                      print('Success!!');
+                    });
+                    response.catchError((onError) => print('Error $onError'));
+                    Navigator.of(context).pop();
+                  },
+                ),
+              ),
+            ],
+          );
+        });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -86,7 +131,12 @@ class _SeedListState extends State<SeedList> {
                                                 Icons.delete,
                                                 color: Colors.red,
                                               ),
-                                              onPressed: () {},
+                                              onPressed: () {
+                                                showDeleteDialog(
+                                                    'Are you sure?',
+                                                    'This action can\'t be undone and you will be deleting your seed!',
+                                                    data[index].id);
+                                              },
                                             ),
                                           ],
                                         ),
