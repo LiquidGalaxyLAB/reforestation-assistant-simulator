@@ -284,10 +284,22 @@ class _TestPlaygrounfState extends State<TestPlaygrounf> {
       );
       await client
           .execute('echo "http://lg1:81/REGION1.kml" > /var/www/html/kmls.txt');
-      await client.execute('echo "flytoview=<LookAt><longitude>-47.530556</longitude><latitude>-23.491647</latitude><altitude>0</altitude><heading>-10.88388407177008</heading><tilt>47.85114699982938</tilt><range>1492.665945696469</range><gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode></LookAt>" > /tmp/query.txt');
+      await client.execute(
+          'echo "flytoview=<LookAt><longitude>-47.530556</longitude><latitude>-23.491647</latitude><altitude>0</altitude><heading>-10.88388407177008</heading><tilt>47.85114699982938</tilt><range>1492.665945696469</range><gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode></LookAt>" > /tmp/query.txt');
     } catch (e) {
       print('Could not connect to host LG');
     }
+  }
+
+  cleanKML() async {
+    SSHClient client = SSHClient(
+      host: ipAddress,
+      port: 22,
+      username: "lg",
+      passwordOrKey: password,
+    );
+    await client.connect();
+    await client.execute('> /var/www/html/kmls.txt');
   }
 
   init() async {
@@ -308,9 +320,11 @@ class _TestPlaygrounfState extends State<TestPlaygrounf> {
 
     return Scaffold(
       appBar: PreferredSize(
-          preferredSize: const Size.fromHeight(50),
-          child: MyAppBar(isHome: false,),
+        preferredSize: const Size.fromHeight(50),
+        child: MyAppBar(
+          isHome: false,
         ),
+      ),
       body: Center(
         child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -321,19 +335,10 @@ class _TestPlaygrounfState extends State<TestPlaygrounf> {
               ElevatedButton(
                 onPressed: () => {Navigator.pushNamed(context, '/map')},
                 style: ElevatedButton.styleFrom(
-                  primary: Colors.red, // background
+                  primary: Colors.black, // background
                   onPrimary: Colors.white, // foreground
                 ),
                 child: Text('Go to map screen'),
-              ),
-              ElevatedButton(
-                onPressed: () =>
-                    {Navigator.pushNamed(context, '/project-builder')},
-                style: ElevatedButton.styleFrom(
-                  primary: Colors.blue, // background
-                  onPrimary: Colors.white, // foreground
-                ),
-                child: Text('Go to Project Builder'),
               ),
               ElevatedButton(
                 onPressed: () => {createLocalFile()},
@@ -342,6 +347,14 @@ class _TestPlaygrounfState extends State<TestPlaygrounf> {
                   onPrimary: Colors.white, // foreground
                 ),
                 child: Text('Send KML to LG'),
+              ),
+              ElevatedButton(
+                onPressed: () => {cleanKML()},
+                style: ElevatedButton.styleFrom(
+                  primary: Colors.red, // background
+                  onPrimary: Colors.white, // foreground
+                ),
+                child: Text('Clean KML'),
               ),
             ]),
       ),
