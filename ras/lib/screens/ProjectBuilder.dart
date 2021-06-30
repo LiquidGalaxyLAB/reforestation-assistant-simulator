@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ras/models/Seed.dart';
+import 'package:ras/repositories/Seed.dart';
 import 'package:ras/route-args/ProjectBuilderArgs.dart';
 import 'package:ras/widgets/AppBar.dart';
 
@@ -12,18 +13,20 @@ class ProjectBuilder extends StatefulWidget {
 }
 
 class _ProjectBuilderState extends State<ProjectBuilder> {
+  Future<List<Seed>> _listSeeds = SeedRepository().getAll();
+
   int _currentStep = 0;
   StepperType stepperType = StepperType.vertical;
   final _formKey = GlobalKey<FormState>();
   // BASIC INFORMATION
   TextEditingController projectName = TextEditingController();
-  DateTime selectedDate = DateTime.now();
+  DateTime dateOfProject = DateTime.now();
   String sownMode = 'By Drone';
   TextEditingController region = TextEditingController();
 
   // SOWING WINDOW TIME
-  TextEditingController minSwtDate = TextEditingController();
-  TextEditingController maxSwtdate = TextEditingController();
+  DateTime minSwtDate = DateTime.now();
+  DateTime maxSwtdate = DateTime.now();
   TextEditingController minSwtTemp = TextEditingController();
   TextEditingController maxSwtTemp = TextEditingController();
   TextEditingController avgNumberOfRains = TextEditingController();
@@ -37,7 +40,7 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
   TextEditingController validSurface = TextEditingController();
   TextEditingController notValidSurface = TextEditingController();
   TextEditingController emptyLand = TextEditingController();
-  TextEditingController orientation = TextEditingController();
+  String orientation = 'North';
   TextEditingController minAltTerrain = TextEditingController();
   TextEditingController maxAltTerrain = TextEditingController();
   TextEditingController maxDistance = TextEditingController();
@@ -49,29 +52,130 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
   TextEditingController hummus = TextEditingController();
   TextEditingController inclination = TextEditingController();
 
-  Future<void> _selectDate(BuildContext context) async {
-    final DateTime? picked = await showDatePicker(
+  Future<void> _selectDate(BuildContext context, int type) async {
+    switch (type) {
+      case 0:
+        final DateTime? picked = await showDatePicker(
+            context: context,
+            initialDate: dateOfProject,
+            firstDate: DateTime(2010, 8),
+            lastDate: DateTime(2101));
+        if (picked != null && picked != dateOfProject)
+          setState(() {
+            dateOfProject = picked;
+          });
+        break;
+      case 1:
+        final DateTime? picked = await showDatePicker(
+            context: context,
+            initialDate: minSwtDate,
+            firstDate: DateTime(2010, 8),
+            lastDate: DateTime(2101));
+        if (picked != null && picked != minSwtDate)
+          setState(() {
+            minSwtDate = picked;
+          });
+        break;
+      case 2:
+        final DateTime? picked = await showDatePicker(
+            context: context,
+            initialDate: maxSwtdate,
+            firstDate: DateTime(2010, 8),
+            lastDate: DateTime(2101));
+        if (picked != null && picked != maxSwtdate)
+          setState(() {
+            maxSwtdate = picked;
+          });
+        break;
+      default:
+    }
+  }
+
+  _selectSeeds() {
+    showDialog(
         context: context,
-        initialDate: selectedDate,
-        firstDate: DateTime(2010, 8),
-        lastDate: DateTime(2101));
-    if (picked != null && picked != selectedDate)
-      setState(() {
-        selectedDate = picked;
-      });
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text('Choose seeds'),
+                IconButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  icon: Icon(Icons.close),
+                ),
+              ],
+            ),
+            content: StatefulBuilder(
+                builder: (BuildContext context, StateSetter alertState) {
+              return FutureBuilder(
+                  future: _listSeeds,
+                  builder: (BuildContext context, AsyncSnapshot snapshot) {
+                    if (snapshot.hasData) {
+                      List<Seed> data = snapshot.data;
+                      return Container(
+                        width: double.maxFinite,
+                        height: double.maxFinite,
+                        child: ListView.builder(
+                            itemCount: snapshot.data.length,
+                            itemBuilder: (context, index) {
+                              return CheckboxListTile(
+                                  title: Text('${data[index].commonName}'),
+                                  subtitle:
+                                      Text('${data[index].scientificName}'),
+                                  value: seeds.contains(data[index]),
+                                  onChanged: (value) {
+                                    setState(() {
+                                      if (value != null) {
+                                        setState(() {
+                                          if (value)
+                                            seeds.add(data[index]);
+                                          else
+                                            seeds.removeWhere((element) =>
+                                                element.id == data[index].id);
+                                        });
+                                        alertState(() {});
+                                      }
+                                    });
+                                  });
+                            }),
+                      );
+                    } else if (snapshot.hasError) {
+                      return Text('Error: ${snapshot.error}');
+                    } else {
+                      return Column(
+                        children: [
+                          SizedBox(
+                            child: CircularProgressIndicator(),
+                            width: 60,
+                            height: 60,
+                          ),
+                          Padding(
+                            padding: EdgeInsets.only(top: 16),
+                            child: Text('Loading data...'),
+                          )
+                        ],
+                      );
+                    }
+                  });
+            }),
+          );
+        });
   }
 
   tapped(int step) {
     setState(() => _currentStep = step);
   }
 
-  continued() {
-    _currentStep < 7 ? setState(() => _currentStep += 1) : null;
-  }
+  // continued() {
+  //   _currentStep < 7 ? setState(() => _currentStep += 1) : null;
+  // }
 
-  cancel() {
-    _currentStep > 0 ? setState(() => _currentStep -= 1) : null;
-  }
+  // cancel() {
+  //   _currentStep > 0 ? setState(() => _currentStep -= 1) : null;
+  // }
 
   showHelpDialog(String title, String msg) {
     showDialog(
@@ -114,18 +218,27 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
             children: [
               Expanded(
                 child: Stepper(
+                  controlsBuilder: (BuildContext context,
+                      {VoidCallback? onStepContinue,
+                      VoidCallback? onStepCancel}) {
+                    return Row(
+                      children: <Widget>[],
+                    );
+                  },
                   type: stepperType,
                   physics: ScrollPhysics(),
                   currentStep: _currentStep,
                   onStepTapped: (step) => tapped(step),
-                  onStepContinue: continued,
-                  onStepCancel: cancel,
+                  // onStepContinue: continued,
+                  // onStepCancel: cancel,
                   steps: <Step>[
                     Step(
                       title: new Text(
-                        'Basic Information',
+                        'BASIC INFORMATION',
                         style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 16),
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16,
+                            color: Colors.blue),
                       ),
                       content: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -182,7 +295,7 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                               Expanded(
                                 child: GestureDetector(
                                   onTap: () {
-                                    _selectDate(context);
+                                    _selectDate(context, 0);
                                   },
                                   child: Container(
                                     padding: EdgeInsets.symmetric(
@@ -201,7 +314,7 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                                               Icon(Icons.calendar_today_sharp),
                                         ),
                                         Text(
-                                          '${selectedDate.toLocal()}'
+                                          '${dateOfProject.toLocal()}'
                                               .split(' ')[0],
                                           style: TextStyle(fontSize: 16),
                                         ),
@@ -324,7 +437,6 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                                   icon: Icon(Icons.help))
                             ],
                           ),
-                        
                         ],
                       ),
                       isActive: _currentStep >= 0,
@@ -334,13 +446,259 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                     ),
                     Step(
                       title: new Text(
-                        'Sowing window time',
+                        'SOWING WINDOW TIME',
                         style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 16),
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16,
+                            color: Colors.blue),
                       ),
                       content: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
-                          Text('TO DO'),
+                          Padding(
+                            padding:
+                                const EdgeInsets.only(top: 25.0, bottom: 15),
+                            child: Text(
+                              'SOWING DATE',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 16,
+                                color: Colors.black,
+                              ),
+                            ),
+                          ),
+                          Text(
+                            'Min.',
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 16,
+                              color: Colors.black54,
+                            ),
+                          ),
+                          Row(
+                            children: [
+                              Expanded(
+                                child: GestureDetector(
+                                  onTap: () {
+                                    _selectDate(context, 1);
+                                  },
+                                  child: Container(
+                                    padding: EdgeInsets.symmetric(
+                                        horizontal: 10, vertical: 15),
+                                    decoration: BoxDecoration(
+                                        color: Colors.grey.shade200,
+                                        border: Border(
+                                            bottom: BorderSide(
+                                                color: Colors.black))),
+                                    child: Row(
+                                      children: [
+                                        Padding(
+                                          padding:
+                                              const EdgeInsets.only(right: 8.0),
+                                          child:
+                                              Icon(Icons.calendar_today_sharp),
+                                        ),
+                                        Text(
+                                          '${minSwtDate.toLocal()}'
+                                              .split(' ')[0],
+                                          style: TextStyle(fontSize: 16),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              IconButton(
+                                  onPressed: () {
+                                    showHelpDialog(
+                                        'Minimum sowing date', '...');
+                                  },
+                                  icon: Icon(Icons.help))
+                            ],
+                          ),
+                          Padding(
+                            padding:
+                                const EdgeInsets.only(top: 25.0, bottom: 5),
+                            child: Text(
+                              'Max.',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 16,
+                                color: Colors.black54,
+                              ),
+                            ),
+                          ),
+                          Row(
+                            children: [
+                              Expanded(
+                                child: GestureDetector(
+                                  onTap: () {
+                                    _selectDate(context, 2);
+                                  },
+                                  child: Container(
+                                    padding: EdgeInsets.symmetric(
+                                        horizontal: 10, vertical: 15),
+                                    decoration: BoxDecoration(
+                                        color: Colors.grey.shade200,
+                                        border: Border(
+                                            bottom: BorderSide(
+                                                color: Colors.black))),
+                                    child: Row(
+                                      children: [
+                                        Padding(
+                                          padding:
+                                              const EdgeInsets.only(right: 8.0),
+                                          child:
+                                              Icon(Icons.calendar_today_sharp),
+                                        ),
+                                        Text(
+                                          '${maxSwtdate.toLocal()}'
+                                              .split(' ')[0],
+                                          style: TextStyle(fontSize: 16),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              IconButton(
+                                  onPressed: () {
+                                    showHelpDialog(
+                                        'Maximum sowing date', '...');
+                                  },
+                                  icon: Icon(Icons.help)),
+                            ],
+                          ),
+                          Padding(
+                            padding:
+                                const EdgeInsets.only(top: 25.0, bottom: 15),
+                            child: Text(
+                              'TEMPERATURE',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 16,
+                                color: Colors.black,
+                              ),
+                            ),
+                          ),
+                          Row(
+                            children: [
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      'Min.',
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 16,
+                                        color: Colors.black54,
+                                      ),
+                                    ),
+                                    TextFormField(
+                                      controller: minSwtTemp,
+                                      keyboardType: TextInputType.number,
+                                      decoration: InputDecoration(
+                                        filled: true,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              SizedBox(
+                                width: 10,
+                              ),
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      'Max.',
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 16,
+                                        color: Colors.black54,
+                                      ),
+                                    ),
+                                    TextFormField(
+                                      controller: maxSwtTemp,
+                                      keyboardType: TextInputType.number,
+                                      decoration: InputDecoration(
+                                        filled: true,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              IconButton(
+                                  onPressed: () {
+                                    showHelpDialog(
+                                        'Average temperature', '...');
+                                  },
+                                  icon: Icon(Icons.help))
+                            ],
+                          ),
+                          Padding(
+                            padding:
+                                const EdgeInsets.only(top: 25.0, bottom: 5),
+                            child: Text(
+                              'Average number of rain days',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 16,
+                                color: Colors.black54,
+                              ),
+                            ),
+                          ),
+                          Row(
+                            children: [
+                              Expanded(
+                                child: TextFormField(
+                                  controller: avgNumberOfRains,
+                                  keyboardType: TextInputType.number,
+                                  decoration: InputDecoration(
+                                    filled: true,
+                                  ),
+                                ),
+                              ),
+                              IconButton(
+                                  onPressed: () {
+                                    showHelpDialog(
+                                        'Average number of rain days', '...');
+                                  },
+                                  icon: Icon(Icons.help))
+                            ],
+                          ),
+                          Padding(
+                            padding:
+                                const EdgeInsets.only(top: 25.0, bottom: 5),
+                            child: Text(
+                              'Total days of rain',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 16,
+                                color: Colors.black54,
+                              ),
+                            ),
+                          ),
+                          Row(
+                            children: [
+                              Expanded(
+                                child: TextFormField(
+                                  controller: totalNumberOfRains,
+                                  keyboardType: TextInputType.number,
+                                  decoration: InputDecoration(
+                                    filled: true,
+                                  ),
+                                ),
+                              ),
+                              IconButton(
+                                  onPressed: () {
+                                    showHelpDialog('Total days of rain', '...');
+                                  },
+                                  icon: Icon(Icons.help))
+                            ],
+                          ),
                         ],
                       ),
                       isActive: _currentStep >= 0,
@@ -350,13 +708,40 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                     ),
                     Step(
                       title: new Text(
-                        'Select seeds',
+                        'SEED SPECIES',
                         style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 16),
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16,
+                            color: Colors.blue),
                       ),
                       content: Column(
-                        children: <Widget>[
-                          Text('TO DO'),
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          ElevatedButton.icon(
+                            style: ElevatedButton.styleFrom(
+                                primary: Colors.blueGrey),
+                            onPressed: () {
+                              _selectSeeds();
+                            },
+                            icon: Icon(Icons.check_box),
+                            label: Text('Select seed'),
+                          ),
+                          for (var i = 0; i < seeds.length; i++)
+                            ListTile(
+                                title: Text('${seeds[i].commonName}'),
+                                subtitle: Text('${seeds[i].scientificName}'),
+                                trailing: IconButton(
+                                  onPressed: () {
+                                    setState(() {
+                                      seeds.removeWhere((element) =>
+                                          element.id == seeds[i].id);
+                                    });
+                                  },
+                                  icon: Icon(
+                                    Icons.delete,
+                                    color: Colors.red,
+                                  ),
+                                )),
                         ],
                       ),
                       isActive: _currentStep >= 0,
@@ -366,9 +751,11 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                     ),
                     Step(
                       title: new Text(
-                        'Area definition',
+                        'AREA DEFINITION',
                         style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 16),
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16,
+                            color: Colors.blue),
                       ),
                       content: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -400,13 +787,153 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                     ),
                     Step(
                       title: new Text(
-                        'Area attributes',
+                        'AREA ATTRIBUTES',
                         style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 16),
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16,
+                            color: Colors.blue),
                       ),
                       content: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
-                          Text('TO DO'),
+                          Padding(
+                            padding:
+                                const EdgeInsets.only(top: 25.0, bottom: 5),
+                            child: Text(
+                              'Valid surface (1-100)%',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 16,
+                                color: Colors.black54,
+                              ),
+                            ),
+                          ),
+                          Row(
+                            children: [
+                              Expanded(
+                                child: TextFormField(
+                                  controller: validSurface,
+                                  keyboardType: TextInputType.number,
+                                  decoration: InputDecoration(
+                                    filled: true,
+                                  ),
+                                ),
+                              ),
+                              IconButton(
+                                  onPressed: () {
+                                    showHelpDialog('Valid surface', '...');
+                                  },
+                                  icon: Icon(Icons.help))
+                            ],
+                          ),
+                          Padding(
+                            padding:
+                                const EdgeInsets.only(top: 25.0, bottom: 5),
+                            child: Text(
+                              'Invalid surface (1-100)%',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 16,
+                                color: Colors.black54,
+                              ),
+                            ),
+                          ),
+                          Row(
+                            children: [
+                              Expanded(
+                                child: TextFormField(
+                                  controller: notValidSurface,
+                                  keyboardType: TextInputType.number,
+                                  decoration: InputDecoration(
+                                    filled: true,
+                                  ),
+                                ),
+                              ),
+                              IconButton(
+                                  onPressed: () {
+                                    showHelpDialog('Invalid surface', '...');
+                                  },
+                                  icon: Icon(Icons.help))
+                            ],
+                          ),
+                          Padding(
+                            padding:
+                                const EdgeInsets.only(top: 25.0, bottom: 5),
+                            child: Text(
+                              'Empty land (1-100)%',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 16,
+                                color: Colors.black54,
+                              ),
+                            ),
+                          ),
+                          Row(
+                            children: [
+                              Expanded(
+                                child: TextFormField(
+                                  controller: emptyLand,
+                                  keyboardType: TextInputType.number,
+                                  decoration: InputDecoration(
+                                    filled: true,
+                                  ),
+                                ),
+                              ),
+                              IconButton(
+                                  onPressed: () {
+                                    showHelpDialog('Empty land', '...');
+                                  },
+                                  icon: Icon(Icons.help))
+                            ],
+                          ),
+                          Padding(
+                            padding:
+                                const EdgeInsets.only(top: 25.0, bottom: 5),
+                            child: Text(
+                              'Orientation',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 16,
+                                color: Colors.black54,
+                              ),
+                            ),
+                          ),
+                          Row(
+                            children: [
+                              Expanded(
+                                  child: DropdownButtonFormField<String>(
+                                decoration: InputDecoration(
+                                  filled: true,
+                                ),
+                                items: <String>[
+                                  'North',
+                                  'Northeast',
+                                  'Northwest',
+                                  'South',
+                                  'Southeast',
+                                  'Southwest',
+                                  'East',
+                                  'West'
+                                ].map((String value) {
+                                  return DropdownMenuItem<String>(
+                                    value: value,
+                                    child: new Text(value),
+                                  );
+                                }).toList(),
+                                value: orientation,
+                                onChanged: (value) {
+                                  setState(() {
+                                    orientation = value!;
+                                  });
+                                },
+                              )),
+                              IconButton(
+                                  onPressed: () {
+                                    showHelpDialog('Orientation', '...');
+                                  },
+                                  icon: Icon(Icons.help))
+                            ],
+                          ),
                         ],
                       ),
                       isActive: _currentStep >= 0,

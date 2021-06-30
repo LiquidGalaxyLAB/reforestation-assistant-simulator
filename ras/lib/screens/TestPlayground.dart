@@ -18,7 +18,6 @@ class _TestPlaygrounfState extends State<TestPlaygrounf> {
 
   createLocalFile() async {
     String localPath = await _localPath;
-    print('local parth $localPath');
     File localFile = File('$localPath/REGION1.kml');
     localFile.writeAsString('''
 <?xml version="1.0" encoding="UTF-8"?>

@@ -33,7 +33,6 @@ class _ProjectListState extends State<ProjectList> {
             alignment: Alignment.bottomRight,
             child: FloatingActionButton(
               onPressed: () {
-                print('New project');
                 Navigator.pushNamed(context, '/project-builder',
                     arguments: ProjectBuilderArgs(true));
               },
