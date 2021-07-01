@@ -1,5 +1,8 @@
-class ProjectBuilderArgs {
-  final bool isNew;
+import 'package:ras/models/Project.dart';
 
-  ProjectBuilderArgs(this.isNew);
+class ProjectBuilderArgs {
+  bool isNew;
+  Project? project;
+
+  ProjectBuilderArgs(this.isNew, {this.project});
 }

@@ -55,4 +55,23 @@ class Seed {
     });
     return seeds;
   }
+
+  static List<Seed> fromMapList(List<dynamic> list) {
+    List<Seed> seeds = [];
+    list.forEach((element) {
+      seeds.add(Seed(
+        element['id'],
+        element['commonName'],
+        element['scientificName'],
+        element['icon'],
+        element['co2PerYear'],
+        element['germinativePotential'],
+        element['estimatedLongevity'],
+        element['estimatedFinalHeight'],
+        element['seedCost'],
+        element['establishmentCost'],
+      ));
+    });
+    return seeds;
+  }
 }

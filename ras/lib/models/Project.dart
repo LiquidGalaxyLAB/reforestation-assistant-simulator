@@ -1,6 +1,9 @@
 import 'package:ras/models/Seed.dart';
+import 'package:sembast/timestamp.dart';
 
 class Project {
+  String id;
+
   // BASIC INFORMATION
   String projectName;
   DateTime dateOfProject;
@@ -35,6 +38,7 @@ class Project {
   double inclination;
 
   Project(
+    this.id,
     this.projectName,
     this.dateOfProject,
     this.sownMode,
@@ -63,5 +67,75 @@ class Project {
   @override
   String toString() {
     return 'Name=> ${this.projectName}; Date=> ${this.dateOfProject}; Seeds=> ${this.seeds}';
+  }
+
+  Map<String, dynamic> toMap() {
+    List mapSeeds = [];
+    seeds.forEach((element) {
+      mapSeeds.add(element.toMap());
+    });
+
+    return {
+      "id": id,
+      "projectName": projectName,
+      "dateOfProject": Timestamp.fromDateTime(dateOfProject),
+      "sownMode": sownMode,
+      "region": region,
+      "minSwtDate": Timestamp.fromDateTime(minSwtDate),
+      "maxSwtDate": Timestamp.fromDateTime(maxSwtDate),
+      "minSwtTemp": minSwtTemp,
+      "maxSwtTemp": maxSwtTemp,
+      "avgNumberOfRains": avgNumberOfRains,
+      "totalNumberOfRains": totalNumberOfRains,
+      "seeds": mapSeeds,
+      "validSurface": validSurface,
+      "notValidSurface": notValidSurface,
+      "emptyLand": emptyLand,
+      "orientation": orientation,
+      "minAltTerrain": minAltTerrain,
+      "maxAltTerrain": maxAltTerrain,
+      "maxDistance": maxDistance,
+      "depth": depth,
+      "ph": ph,
+      "fractured": fractured,
+      "hummus": hummus,
+      "inclination": inclination,
+    };
+  }
+
+  static List<Project> toList(List<dynamic> list) {
+    List<Project> projects = [];
+    list.forEach((element) {
+      List<Seed> seedList = [];
+      seedList = Seed.fromMapList(element.value['seeds']);
+
+      projects.add(Project(
+        element.key,
+        element.value['projectName'],
+        DateTime.fromMillisecondsSinceEpoch(element.value['dateOfProject'].millisecondsSinceEpoch),
+        element.value['sownMode'],
+        element.value['region'],
+        DateTime.fromMillisecondsSinceEpoch(element.value['minSwtDate'].millisecondsSinceEpoch),
+        DateTime.fromMillisecondsSinceEpoch(element.value['maxSwtDate'].millisecondsSinceEpoch),
+        element.value['minSwtTemp'],
+        element.value['maxSwtTemp'],
+        element.value['avgNumberOfRains'],
+        element.value['totalNumberOfRains'],
+        seedList,
+        element.value['validSurface'],
+        element.value['notValidSurface'],
+        element.value['emptyLand'],
+        element.value['orientation'],
+        element.value['minAltTerrain'],
+        element.value['maxAltTerrain'],
+        element.value['maxDistance'],
+        element.value['depth'],
+        element.value['ph'],
+        element.value['fractured'],
+        element.value['hummus'],
+        element.value['inclination'],
+      ));
+    });
+    return projects;
   }
 }

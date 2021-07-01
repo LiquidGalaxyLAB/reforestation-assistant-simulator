@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:ras/models/Project.dart';
 import 'package:ras/models/Seed.dart';
+import 'package:ras/repositories/Project.dart';
 import 'package:ras/repositories/Seed.dart';
 import 'package:ras/route-args/ProjectBuilderArgs.dart';
 import 'package:ras/widgets/AppBar.dart';
@@ -48,7 +50,7 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
   // SOIL ATTRIBUTES
   TextEditingController depth = TextEditingController();
   TextEditingController ph = TextEditingController();
-  TextEditingController fractured = TextEditingController();
+  String fractured = 'No';
   TextEditingController hummus = TextEditingController();
   TextEditingController inclination = TextEditingController();
 
@@ -169,14 +171,6 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
     setState(() => _currentStep = step);
   }
 
-  // continued() {
-  //   _currentStep < 7 ? setState(() => _currentStep += 1) : null;
-  // }
-
-  // cancel() {
-  //   _currentStep > 0 ? setState(() => _currentStep -= 1) : null;
-  // }
-
   showHelpDialog(String title, String msg) {
     showDialog(
         context: context,
@@ -197,6 +191,43 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
             ],
           );
         });
+  }
+
+  _saveProject(ProjectBuilderArgs args) {
+    if (args.isNew) {
+      Project project = Project(
+        '',
+        projectName.text,
+        dateOfProject,
+        sownMode,
+        region.text,
+        minSwtDate,
+        maxSwtdate,
+        double.parse(minSwtTemp.text),
+        double.parse(maxSwtTemp.text),
+        int.parse(avgNumberOfRains.text),
+        int.parse(totalNumberOfRains.text),
+        seeds,
+        double.parse(validSurface.text),
+        double.parse(notValidSurface.text),
+        double.parse(emptyLand.text),
+        orientation,
+        double.parse(minAltTerrain.text),
+        double.parse(maxAltTerrain.text),
+        double.parse(maxDistance.text),
+        double.parse(depth.text),
+        int.parse(ph.text),
+        fractured == 'Yes' ? true : false,
+        int.parse(hummus.text),
+        double.parse(inclination.text),
+      );
+      Future response = ProjectRepository().create(project);
+      response.then((value) {
+        print('Success!!!! $value');
+        Navigator.of(context).pop();
+      });
+      response.catchError((onError) => print('Error $onError'));
+    }
   }
 
   @override
@@ -934,6 +965,99 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                                   icon: Icon(Icons.help))
                             ],
                           ),
+                          Padding(
+                            padding:
+                                const EdgeInsets.only(top: 25.0, bottom: 5),
+                            child: Text(
+                              'Minimum altitude of the terrain',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 16,
+                                color: Colors.black54,
+                              ),
+                            ),
+                          ),
+                          Row(
+                            children: [
+                              Expanded(
+                                child: TextFormField(
+                                  controller: minAltTerrain,
+                                  keyboardType: TextInputType.number,
+                                  decoration: InputDecoration(
+                                    filled: true,
+                                  ),
+                                ),
+                              ),
+                              IconButton(
+                                  onPressed: () {
+                                    showHelpDialog(
+                                        'Minimum altitude of the terrain',
+                                        '...');
+                                  },
+                                  icon: Icon(Icons.help))
+                            ],
+                          ),
+                          Padding(
+                            padding:
+                                const EdgeInsets.only(top: 25.0, bottom: 5),
+                            child: Text(
+                              'Maximum altitude of terrain',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 16,
+                                color: Colors.black54,
+                              ),
+                            ),
+                          ),
+                          Row(
+                            children: [
+                              Expanded(
+                                child: TextFormField(
+                                  controller: maxAltTerrain,
+                                  keyboardType: TextInputType.number,
+                                  decoration: InputDecoration(
+                                    filled: true,
+                                  ),
+                                ),
+                              ),
+                              IconButton(
+                                  onPressed: () {
+                                    showHelpDialog(
+                                        'Maximum altitude of terrain', '...');
+                                  },
+                                  icon: Icon(Icons.help))
+                            ],
+                          ),
+                          Padding(
+                            padding:
+                                const EdgeInsets.only(top: 25.0, bottom: 5),
+                            child: Text(
+                              'Maximum distance (meters)',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 16,
+                                color: Colors.black54,
+                              ),
+                            ),
+                          ),
+                          Row(
+                            children: [
+                              Expanded(
+                                child: TextFormField(
+                                  controller: maxDistance,
+                                  keyboardType: TextInputType.number,
+                                  decoration: InputDecoration(
+                                    filled: true,
+                                  ),
+                                ),
+                              ),
+                              IconButton(
+                                  onPressed: () {
+                                    showHelpDialog('Maximum distance', '...');
+                                  },
+                                  icon: Icon(Icons.help))
+                            ],
+                          ),
                         ],
                       ),
                       isActive: _currentStep >= 0,
@@ -943,13 +1067,213 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                     ),
                     Step(
                       title: new Text(
-                        'Soil attributes',
+                        'SOIL ATTRIBUTES',
                         style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 16),
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16,
+                            color: Colors.blue),
                       ),
                       content: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
-                          Text('TO DO'),
+                          Padding(
+                            padding:
+                                const EdgeInsets.only(top: 25.0, bottom: 5),
+                            child: Text(
+                              'Depth(meters)',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 16,
+                                color: Colors.black54,
+                              ),
+                            ),
+                          ),
+                          Row(
+                            children: [
+                              Expanded(
+                                child: TextFormField(
+                                  controller: depth,
+                                  keyboardType: TextInputType.number,
+                                  decoration: InputDecoration(
+                                    filled: true,
+                                  ),
+                                ),
+                              ),
+                              IconButton(
+                                  onPressed: () {
+                                    showHelpDialog('Depth', '...');
+                                  },
+                                  icon: Icon(Icons.help))
+                            ],
+                          ),
+                          Padding(
+                            padding:
+                                const EdgeInsets.only(top: 25.0, bottom: 5),
+                            child: Text(
+                              'PH (0-14)',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 16,
+                                color: Colors.black54,
+                              ),
+                            ),
+                          ),
+                          Row(
+                            children: [
+                              Expanded(
+                                child: TextFormField(
+                                  controller: ph,
+                                  keyboardType: TextInputType.number,
+                                  decoration: InputDecoration(
+                                    filled: true,
+                                  ),
+                                ),
+                              ),
+                              IconButton(
+                                  onPressed: () {
+                                    showHelpDialog('PH', '...');
+                                  },
+                                  icon: Icon(Icons.help))
+                            ],
+                          ),
+                          Padding(
+                            padding:
+                                const EdgeInsets.only(top: 25.0, bottom: 5),
+                            child: Text(
+                              'Fractured',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 16,
+                                color: Colors.black54,
+                              ),
+                            ),
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Expanded(
+                                child: GestureDetector(
+                                  onTap: () {
+                                    setState(() {
+                                      fractured = 'Yes';
+                                    });
+                                  },
+                                  child: Container(
+                                    padding: EdgeInsets.symmetric(
+                                        horizontal: 10, vertical: 15),
+                                    decoration: BoxDecoration(
+                                      color: Colors.grey.shade200,
+                                      border: fractured == 'Yes'
+                                          ? Border.all(color: Colors.blue)
+                                          : null,
+                                    ),
+                                    child: Text(
+                                      'Yes',
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(
+                                          fontSize: 16,
+                                          color: fractured == 'Yes'
+                                              ? Colors.blue
+                                              : Colors.black),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Expanded(
+                                child: GestureDetector(
+                                  onTap: () {
+                                    setState(() {
+                                      fractured = 'No';
+                                    });
+                                  },
+                                  child: Container(
+                                    padding: EdgeInsets.symmetric(
+                                        horizontal: 10, vertical: 15),
+                                    decoration: BoxDecoration(
+                                      color: Colors.grey.shade200,
+                                      border: fractured == 'No'
+                                          ? Border.all(color: Colors.blue)
+                                          : null,
+                                    ),
+                                    child: Text(
+                                      'No',
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(
+                                          fontSize: 16,
+                                          color: fractured == 'No'
+                                              ? Colors.blue
+                                              : Colors.black),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              IconButton(
+                                  onPressed: () {
+                                    showHelpDialog('Fractured', '...');
+                                  },
+                                  icon: Icon(Icons.help))
+                            ],
+                          ),
+                          Padding(
+                            padding:
+                                const EdgeInsets.only(top: 25.0, bottom: 5),
+                            child: Text(
+                              'Hummus presence (1-10)',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 16,
+                                color: Colors.black54,
+                              ),
+                            ),
+                          ),
+                          Row(
+                            children: [
+                              Expanded(
+                                child: TextFormField(
+                                  controller: hummus,
+                                  keyboardType: TextInputType.number,
+                                  decoration: InputDecoration(
+                                    filled: true,
+                                  ),
+                                ),
+                              ),
+                              IconButton(
+                                  onPressed: () {
+                                    showHelpDialog('Hummus', '...');
+                                  },
+                                  icon: Icon(Icons.help))
+                            ],
+                          ),
+                          Padding(
+                            padding:
+                                const EdgeInsets.only(top: 25.0, bottom: 5),
+                            child: Text(
+                              'Inclination',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 16,
+                                color: Colors.black54,
+                              ),
+                            ),
+                          ),
+                          Row(
+                            children: [
+                              Expanded(
+                                child: TextFormField(
+                                  controller: inclination,
+                                  keyboardType: TextInputType.number,
+                                  decoration: InputDecoration(
+                                    filled: true,
+                                  ),
+                                ),
+                              ),
+                              IconButton(
+                                  onPressed: () {
+                                    showHelpDialog('Inclination', '...');
+                                  },
+                                  icon: Icon(Icons.help))
+                            ],
+                          ),
                         ],
                       ),
                       isActive: _currentStep >= 0,
@@ -957,41 +1281,37 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                           ? StepState.editing
                           : StepState.indexed,
                     ),
-                    Step(
-                      title: new Text(
-                        'Summary',
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 16),
-                      ),
-                      content: Column(
-                        children: <Widget>[
-                          Text('TO DO'),
-                        ],
-                      ),
-                      isActive: _currentStep >= 0,
-                      state: _currentStep == 6
-                          ? StepState.editing
-                          : StepState.indexed,
-                    ),
-                    Step(
-                      title: new Text(
-                        'Saving',
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 16),
-                      ),
-                      content: Column(
-                        children: <Widget>[
-                          Text('TO DO'),
-                        ],
-                      ),
-                      isActive: _currentStep >= 0,
-                      state: _currentStep == 7
-                          ? StepState.editing
-                          : StepState.indexed,
-                    ),
                   ],
                 ),
               ),
+              MediaQuery.of(context).viewInsets.bottom == 0
+                  ? Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Expanded(
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                                primary: Colors.green,
+                                padding: EdgeInsets.symmetric(vertical: 15)),
+                            child: Text(
+                              'SAVE',
+                              style: TextStyle(
+                                fontSize: 15,
+                                fontWeight: FontWeight.bold,
+                              ),
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                            onPressed: () {
+                              if (_formKey.currentState!.validate()) {
+                                _saveProject(args);
+                              } else
+                                print('ooppsss throw error');
+                            },
+                          ),
+                        ),
+                      ],
+                    )
+                  : SizedBox(),
             ],
           ),
         ),
