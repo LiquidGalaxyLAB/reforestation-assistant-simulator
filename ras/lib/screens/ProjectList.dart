@@ -58,122 +58,120 @@ class _ProjectListState extends State<ProjectList> {
                               margin: EdgeInsets.symmetric(horizontal: 15),
                               padding: EdgeInsets.symmetric(vertical: 10),
                               decoration: BoxDecoration(
-                                color: Colors.grey.shade100,
-                                borderRadius: BorderRadius.all(
-                                  Radius.circular(10),
-                                ),
+                                color: Colors.grey.shade300,
+                                border: Border(left: BorderSide(color: Colors.green, width: 10))
                               ),
                               child: ListTile(
-                                title: Text(
-                                  '${data[index].projectName}',
-                                  style: TextStyle(
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.bold,
+                                  title: Text(
+                                    '${data[index].projectName}',
+                                    style: TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold,
+                                    ),
                                   ),
-                                ),
-                                subtitle: Padding(
-                                  padding: const EdgeInsets.only(top: 20.0),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Padding(
-                                        padding:
-                                            const EdgeInsets.only(bottom: 5.0),
-                                        child: Row(
-                                          children: [
-                                            Text(
-                                              'Area covered: ',
-                                              style: TextStyle(
-                                                  fontWeight: FontWeight.bold,
-                                                  fontSize: 18),
-                                            ),
-                                            Text(
-                                              '${data[index].maxDistance}m',
-                                              style: TextStyle(fontSize: 18),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding:
-                                            const EdgeInsets.only(bottom: 5.0),
-                                        child: Row(
-                                          children: [
-                                            Text(
-                                              'Date: ',
-                                              style: TextStyle(
-                                                  fontWeight: FontWeight.bold,
-                                                  fontSize: 18),
-                                            ),
-                                            Text(
-                                              '${data[index].dateOfProject}',
-                                              style: TextStyle(fontSize: 18),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding:
-                                            const EdgeInsets.only(bottom: 5.0),
-                                        child: Row(
-                                          children: [
-                                            Text(
-                                              'Region: ',
-                                              style: TextStyle(
-                                                  fontWeight: FontWeight.bold,
-                                                  fontSize: 18),
-                                            ),
-                                            Text(
-                                              '${data[index].region}',
-                                              style: TextStyle(fontSize: 18),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding:
-                                            const EdgeInsets.only(bottom: 5.0),
-                                        child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Text(
-                                              'Species sown: ',
-                                              style: TextStyle(
-                                                  fontWeight: FontWeight.bold,
-                                                  fontSize: 18),
-                                            ),
-                                            for (var i = 0;
-                                                i < data[index].seeds.length;
-                                                i++)
+                                  subtitle: Padding(
+                                    padding: const EdgeInsets.only(top: 20.0),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Padding(
+                                          padding:
+                                              const EdgeInsets.only(bottom: 5.0),
+                                          child: Row(
+                                            children: [
                                               Text(
-                                                '${data[index].seeds[i].commonName} | density = XX%',
+                                                'Area covered: ',
+                                                style: TextStyle(
+                                                    fontWeight: FontWeight.bold,
+                                                    fontSize: 18),
+                                              ),
+                                              Text(
+                                                '${data[index].maxDistance}m',
                                                 style: TextStyle(fontSize: 18),
                                               ),
+                                            ],
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding:
+                                              const EdgeInsets.only(bottom: 5.0),
+                                          child: Row(
+                                            children: [
+                                              Text(
+                                                'Date: ',
+                                                style: TextStyle(
+                                                    fontWeight: FontWeight.bold,
+                                                    fontSize: 18),
+                                              ),
+                                              Text(
+                                                '${data[index].dateOfProject}',
+                                                style: TextStyle(fontSize: 18),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding:
+                                              const EdgeInsets.only(bottom: 5.0),
+                                          child: Row(
+                                            children: [
+                                              Text(
+                                                'Region: ',
+                                                style: TextStyle(
+                                                    fontWeight: FontWeight.bold,
+                                                    fontSize: 18),
+                                              ),
+                                              Text(
+                                                '${data[index].region}',
+                                                style: TextStyle(fontSize: 18),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding:
+                                              const EdgeInsets.only(bottom: 5.0),
+                                          child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Text(
+                                                'Species sown: ',
+                                                style: TextStyle(
+                                                    fontWeight: FontWeight.bold,
+                                                    fontSize: 18),
+                                              ),
+                                              for (var i = 0;
+                                                  i < data[index].seeds.length;
+                                                  i++)
+                                                Text(
+                                                  '${data[index].seeds[i].commonName} | density = XX%',
+                                                  style: TextStyle(fontSize: 18),
+                                                ),
+                                            ],
+                                          ),
+                                        ),
+                                        Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.end,
+                                          children: [
+                                            OutlinedButton.icon(
+                                              onPressed: () {},
+                                              icon: Icon(Icons.copy),
+                                              label: Text('Duplicate'),
+                                              style: OutlinedButton.styleFrom(
+                                                primary: Colors.blue,
+                                                side: BorderSide(
+                                                    color: Colors.blue, width: 1),
+                                              ),
+                                            ),
                                           ],
                                         ),
-                                      ),
-                                      Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.end,
-                                        children: [
-                                          OutlinedButton.icon(
-                                            onPressed: () {},
-                                            icon: Icon(Icons.copy),
-                                            label: Text('Duplicate'),
-                                            style: OutlinedButton.styleFrom(
-                                              primary: Colors.blue,
-                                              side: BorderSide(
-                                                  color: Colors.blue, width: 1),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ],
+                                      ],
+                                    ),
                                   ),
                                 ),
-                              ),
                             );
                           });
                     } else if (snapshot.hasError) {
