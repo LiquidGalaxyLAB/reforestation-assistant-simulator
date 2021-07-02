@@ -230,6 +230,29 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
     }
   }
 
+  initForm() {
+    minSwtTemp.text = '0';
+    maxSwtTemp.text = '0';
+    avgNumberOfRains.text = '0';
+    totalNumberOfRains.text = '0';
+    validSurface.text = '0';
+    notValidSurface.text = '0';
+    emptyLand.text = '0';
+    minAltTerrain.text = '0';
+    maxAltTerrain.text = '0';
+    maxDistance.text = '0';
+    depth.text = '0';
+    ph.text = '0';
+    hummus.text = '0';
+    inclination.text = '0';
+  }
+
+  @override
+  void initState() {
+    initForm();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     final args =

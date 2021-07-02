@@ -55,11 +55,11 @@ class _ProjectListState extends State<ProjectList> {
                           itemCount: snapshot.data.length,
                           itemBuilder: (context, index) {
                             return Container(
-                              margin: EdgeInsets.symmetric(horizontal: 15),
+                              margin: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
                               padding: EdgeInsets.symmetric(vertical: 10),
                               decoration: BoxDecoration(
-                                color: Colors.grey.shade300,
-                                border: Border(left: BorderSide(color: Colors.green, width: 10))
+                                color: Colors.grey.shade100,
+                                border: Border(left: BorderSide(color: Colors.green, width: 10),),
                               ),
                               child: ListTile(
                                   title: Text(
