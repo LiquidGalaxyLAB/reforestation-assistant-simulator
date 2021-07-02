@@ -98,6 +98,13 @@ class _SeedFormState extends State<SeedForm> {
       seedCost.text = args.seed!.seedCost.toString();
       establishmentCost.text = args.seed!.establishmentCost.toString();
       // icon
+    } else {
+      co2PerYear.text = "0";
+      germinativePot.text = "0";
+      estimatedLong.text = "0";
+      estimatedFHeight.text = "0";
+      seedCost.text = "0";
+      establishmentCost.text = "0";
     }
   }
 
