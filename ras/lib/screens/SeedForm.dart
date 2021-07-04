@@ -3,6 +3,9 @@ import 'package:ras/models/Seed.dart';
 import 'package:ras/repositories/Seed.dart';
 import 'package:ras/route-args/SeedFormArgs.dart';
 import 'package:ras/widgets/AppBar.dart';
+import 'package:image_picker/image_picker.dart';
+import 'dart:io';
+import 'package:path_provider/path_provider.dart';
 
 class SeedForm extends StatefulWidget {
   const SeedForm({Key? key}) : super(key: key);
@@ -13,6 +16,8 @@ class SeedForm extends StatefulWidget {
 
 class _SeedFormState extends State<SeedForm> {
   final _formKey = GlobalKey<FormState>();
+  final _picker = ImagePicker();
+
   TextEditingController commonName = TextEditingController();
   TextEditingController scientificName = TextEditingController();
   TextEditingController co2PerYear = TextEditingController();
@@ -21,7 +26,7 @@ class _SeedFormState extends State<SeedForm> {
   TextEditingController estimatedFHeight = TextEditingController();
   TextEditingController seedCost = TextEditingController();
   TextEditingController establishmentCost = TextEditingController();
-  // ADD ICON
+  String seedIconURL = '';
 
   showHelpDialog(String title, String msg) {
     showDialog(
@@ -51,7 +56,7 @@ class _SeedFormState extends State<SeedForm> {
         '',
         commonName.text,
         scientificName.text,
-        'urlicon',
+        seedIconURL,
         double.parse(co2PerYear.text),
         double.parse(germinativePot.text),
         int.parse(estimatedLong.text),
@@ -70,7 +75,7 @@ class _SeedFormState extends State<SeedForm> {
         args.seed!.id,
         commonName.text,
         scientificName.text,
-        'urlicon',
+        seedIconURL,
         double.parse(co2PerYear.text),
         double.parse(germinativePot.text),
         int.parse(estimatedLong.text),
@@ -87,7 +92,32 @@ class _SeedFormState extends State<SeedForm> {
     }
   }
 
-  _init(SeedFormArgs args) {
+  Future<String> get _localPath async {
+    final directory = await getApplicationDocumentsDirectory();
+
+    return directory.path;
+  }
+
+  _pickImage() async {
+    try {
+      String path = await _localPath;
+      final PickedFile? pickedFile = await _picker.getImage(
+        source: ImageSource.gallery,
+      );
+
+      final File file = File(pickedFile!.path);
+
+      final File newImage = await file.copy('$path/${commonName.text}.jpg');
+
+      setState(() {
+        seedIconURL = newImage.path;
+      });
+    } catch (e) {
+      print('ERROR OPEN GALLERY $e');
+    }
+  }
+
+  _init(SeedFormArgs args) async {
     if (!args.isNew) {
       commonName.text = args.seed!.commonName;
       scientificName.text = args.seed!.scientificName;
@@ -97,7 +127,7 @@ class _SeedFormState extends State<SeedForm> {
       estimatedFHeight.text = args.seed!.estimatedFinalHeight.toString();
       seedCost.text = args.seed!.seedCost.toString();
       establishmentCost.text = args.seed!.establishmentCost.toString();
-      // icon
+      seedIconURL = args.seed!.icon;
     } else {
       co2PerYear.text = "0";
       germinativePot.text = "0";
@@ -210,10 +240,17 @@ class _SeedFormState extends State<SeedForm> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Image.asset(
-                      'assets/treeIcon.png',
-                      scale: 1,
-                    ),
+                    seedIconURL != ''
+                        ? Container(
+                          width: 60,
+                          height: 60,
+                          child: Image.file(
+                              File(seedIconURL),
+                              scale: 1,
+                              fit: BoxFit.fill,
+                            ),
+                        )
+                        : SizedBox(),
                     ElevatedButton(
                       style: ElevatedButton.styleFrom(
                           primary: Colors.blueGrey,
@@ -224,7 +261,9 @@ class _SeedFormState extends State<SeedForm> {
                         style: TextStyle(fontSize: 14),
                         overflow: TextOverflow.ellipsis,
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        _pickImage();
+                      },
                     ),
                     IconButton(
                         onPressed: () {

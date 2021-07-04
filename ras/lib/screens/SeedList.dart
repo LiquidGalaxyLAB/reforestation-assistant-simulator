@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:ras/models/Seed.dart';
 import 'package:ras/repositories/Seed.dart';
@@ -70,7 +72,7 @@ class _SeedListState extends State<SeedList> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    'SPECIES TABLE',
+                    'SEEDS',
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                   ),
                   ElevatedButton.icon(
@@ -106,8 +108,18 @@ class _SeedListState extends State<SeedList> {
                                       Expanded(
                                         child: ListTile(
                                           contentPadding: EdgeInsets.zero,
-                                          leading:
-                                              Icon(Icons.legend_toggle_rounded),
+                                          leading: data[index].icon != ''
+                                              ? Container(
+                                                  width: 60,
+                                                  height: 60,
+                                                  child: Image.file(
+                                                    File(data[index].icon),
+                                                    scale: 1,
+                                                    fit: BoxFit.fill,
+                                                  ),
+                                                )
+                                              : Icon(
+                                                  Icons.legend_toggle_rounded),
                                           title: Text('Seed Icon'),
                                         ),
                                       ),
