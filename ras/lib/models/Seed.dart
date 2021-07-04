@@ -9,6 +9,7 @@ class Seed {
   double estimatedFinalHeight;
   double seedCost;
   double establishmentCost;
+  double? density;
 
   Seed(
       this.id,
@@ -20,7 +21,8 @@ class Seed {
       this.estimatedLongevity,
       this.estimatedFinalHeight,
       this.seedCost,
-      this.establishmentCost);
+      this.establishmentCost,
+      {this.density});
 
   Map<String, dynamic> toMap() {
     return {
@@ -34,6 +36,7 @@ class Seed {
       "estimatedFinalHeight": estimatedFinalHeight,
       "seedCost": seedCost,
       "establishmentCost": establishmentCost,
+      "density": density,
     };
   }
 
@@ -51,6 +54,7 @@ class Seed {
         element.value['estimatedFinalHeight'],
         element.value['seedCost'],
         element.value['establishmentCost'],
+        density: element.value['density'],
       ));
     });
     return seeds;
@@ -70,6 +74,7 @@ class Seed {
         element['estimatedFinalHeight'],
         element['seedCost'],
         element['establishmentCost'],
+        density: element.value['density'],
       ));
     });
     return seeds;

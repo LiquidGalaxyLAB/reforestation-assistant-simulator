@@ -36,6 +36,8 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
 
   // SEEDS TABLE
   List<Seed> seeds = [];
+  TextEditingController density = TextEditingController();
+
   // MAP INFO ?
 
   // AREA ATTRIBUTES
@@ -106,7 +108,7 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                   onPressed: () {
                     Navigator.of(context).pop();
                   },
-                  icon: Icon(Icons.close),
+                  icon: Icon(Icons.close, color: Colors.red,),
                 ),
               ],
             ),
@@ -176,14 +178,60 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
-            title: Text('$title'),
+            title: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text('$title'),
+                IconButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  icon: Icon(Icons.close, color: Colors.red,),
+                ),
+              ],
+            ),
             content: Text('$msg'),
+          );
+        });
+  }
+
+   _editSeedDensity(Seed seed) {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text('Density'),
+                IconButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  icon: Icon(Icons.close, color: Colors.red,),
+                ),
+              ],
+            ),
+            content: TextFormField(
+              controller: density,
+              keyboardType: TextInputType.number,
+              decoration: InputDecoration(
+                hintText: 'Density',
+                filled: true,
+              ),
+            ),
             actions: <Widget>[
               Padding(
                 padding: EdgeInsets.only(right: 20),
                 child: ElevatedButton(
-                  child: Text("CLOSE"),
+                  style: ElevatedButton.styleFrom(
+                    primary: Colors.green, // background
+                    onPrimary: Colors.white, // foreground
+                  ),
+                  child: Text("SAVE"),
                   onPressed: () {
+                    // TODO: add seed density to project
+                    seed.density = double.parse(density.text);
                     Navigator.of(context).pop();
                   },
                 ),
@@ -283,8 +331,6 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                   physics: ScrollPhysics(),
                   currentStep: _currentStep,
                   onStepTapped: (step) => tapped(step),
-                  // onStepContinue: continued,
-                  // onStepCancel: cancel,
                   steps: <Step>[
                     Step(
                       title: new Text(
@@ -301,7 +347,7 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                             padding:
                                 const EdgeInsets.only(top: 25.0, bottom: 5),
                             child: Text(
-                              'Project name',
+                              'Project name*',
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: 16,
@@ -786,14 +832,12 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                                 subtitle: Text('${seeds[i].scientificName}'),
                                 trailing: IconButton(
                                   onPressed: () {
-                                    setState(() {
-                                      seeds.removeWhere((element) =>
-                                          element.id == seeds[i].id);
-                                    });
+                                    _editSeedDensity(seeds[i]);
+                                    density.text = seeds[i].density.toString();
                                   },
                                   icon: Icon(
-                                    Icons.delete,
-                                    color: Colors.red,
+                                    Icons.workspaces_outline,
+                                    color: Colors.green,
                                   ),
                                 )),
                         ],

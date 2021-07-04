@@ -41,20 +41,19 @@ class _SettingsState extends State<Settings> {
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
-            title: Text('$title'),
-            content: Text('$msg'),
-            actions: <Widget>[
-              OutlinedButton(
-                child: Text("CLOSE"),
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-                style: OutlinedButton.styleFrom(
-                  primary: Colors.blue,
-                  side: BorderSide(color: Colors.blue, width: 1),
+            title: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text('$title'),
+                IconButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  icon: Icon(Icons.close, color: Colors.red,),
                 ),
-              ),
-            ],
+              ],
+            ),
+            content: Text('$msg'),
           );
         });
   }
@@ -98,21 +97,21 @@ class _SettingsState extends State<Settings> {
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 20.0),
-                  child: TextField(
+                  child: TextFormField(
                     controller: ipAddress,
                     keyboardType: TextInputType.number,
                     decoration: InputDecoration(
-                      border: OutlineInputBorder(),
+                      filled: true,
                       hintText: 'eg. 192.168.0.115',
                       labelText: 'Master machine IP Address',
                     ),
                   ),
                 ),
-                TextField(
+                TextFormField(
                   controller: password,
                   obscureText: obscurePassword,
                   decoration: InputDecoration(
-                    border: OutlineInputBorder(),
+                    filled: true,
                     hintText: 'eg. the-passw0rd-0f-my-LG',
                     labelText: 'Master machine Password',
                     suffixIcon: IconButton(
@@ -127,8 +126,8 @@ class _SettingsState extends State<Settings> {
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 20.0),
-                  child: OutlinedButton(
-                    style: OutlinedButton.styleFrom(
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
                       primary: Colors.blue,
                       side: BorderSide(color: Colors.blue, width: 1),
                     ),

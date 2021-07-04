@@ -13,18 +13,6 @@ class _MyAppBarState extends State<MyAppBar> {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      // title: Row(
-      //   children: [
-      //     Image.asset(
-      //       'assets/treeIcon.png',
-      //       scale: 2,
-      //     ),
-      //     Text(
-      //       'RAS',
-      //       style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
-      //     ),
-      //   ],
-      // ),
       leading: !widget.isHome
           ? IconButton(
               onPressed: () {
@@ -50,7 +38,7 @@ class _MyAppBarState extends State<MyAppBar> {
                   text: 'Projects',
                 ),
                 Tab(
-                  icon: Icon(Icons.photo_filter_rounded),
+                  icon: Icon(Icons.yard_outlined),
                   text: 'Seeds',
                 ),
               ],

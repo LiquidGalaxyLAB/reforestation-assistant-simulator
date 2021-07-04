@@ -33,19 +33,19 @@ class _SeedFormState extends State<SeedForm> {
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
-            title: Text('$title'),
-            content: Text('$msg'),
-            actions: <Widget>[
-              Padding(
-                padding: EdgeInsets.only(right: 20),
-                child: ElevatedButton(
-                  child: Text("CLOSE"),
+            title: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text('$title'),
+                IconButton(
                   onPressed: () {
                     Navigator.of(context).pop();
                   },
+                  icon: Icon(Icons.close, color: Colors.red,),
                 ),
-              ),
-            ],
+              ],
+            ),
+            content: Text('$msg'),
           );
         });
   }
@@ -135,6 +135,7 @@ class _SeedFormState extends State<SeedForm> {
       estimatedFHeight.text = "0";
       seedCost.text = "0";
       establishmentCost.text = "0";
+      commonName.text = "";
     }
   }
 
