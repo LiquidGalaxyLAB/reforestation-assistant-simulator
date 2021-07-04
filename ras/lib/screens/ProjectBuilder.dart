@@ -108,7 +108,10 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                   onPressed: () {
                     Navigator.of(context).pop();
                   },
-                  icon: Icon(Icons.close, color: Colors.red,),
+                  icon: Icon(
+                    Icons.close,
+                    color: Colors.red,
+                  ),
                 ),
               ],
             ),
@@ -186,7 +189,10 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                   onPressed: () {
                     Navigator.of(context).pop();
                   },
-                  icon: Icon(Icons.close, color: Colors.red,),
+                  icon: Icon(
+                    Icons.close,
+                    color: Colors.red,
+                  ),
                 ),
               ],
             ),
@@ -195,7 +201,7 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
         });
   }
 
-   _editSeedDensity(Seed seed) {
+  _editSeedDensity(Seed seed) {
     showDialog(
         context: context,
         builder: (BuildContext context) {
@@ -208,7 +214,10 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                   onPressed: () {
                     Navigator.of(context).pop();
                   },
-                  icon: Icon(Icons.close, color: Colors.red,),
+                  icon: Icon(
+                    Icons.close,
+                    color: Colors.red,
+                  ),
                 ),
               ],
             ),
@@ -898,7 +907,7 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                             padding:
                                 const EdgeInsets.only(top: 25.0, bottom: 5),
                             child: Text(
-                              'Valid surface (1-100)%',
+                              'Valid surface (0-100)%',
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: 16,
@@ -915,6 +924,13 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                                   decoration: InputDecoration(
                                     filled: true,
                                   ),
+                                  validator: (value) {
+                                    if (double.parse(value!) < 0 ||
+                                        double.parse(value) > 100) {
+                                      return 'Wrong range! Allowed values are 0 to 100';
+                                    }
+                                    return null;
+                                  },
                                 ),
                               ),
                               IconButton(
@@ -928,7 +944,7 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                             padding:
                                 const EdgeInsets.only(top: 25.0, bottom: 5),
                             child: Text(
-                              'Invalid surface (1-100)%',
+                              'Invalid surface (0-100)%',
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: 16,
@@ -945,6 +961,13 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                                   decoration: InputDecoration(
                                     filled: true,
                                   ),
+                                  validator: (value) {
+                                    if (double.parse(value!) < 0 ||
+                                        double.parse(value) > 100) {
+                                      return 'Wrong range! Allowed values are 0 to 100';
+                                    }
+                                    return null;
+                                  },
                                 ),
                               ),
                               IconButton(
@@ -958,7 +981,7 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                             padding:
                                 const EdgeInsets.only(top: 25.0, bottom: 5),
                             child: Text(
-                              'Empty land (1-100)%',
+                              'Empty land (0-100)%',
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: 16,
@@ -975,6 +998,13 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                                   decoration: InputDecoration(
                                     filled: true,
                                   ),
+                                  validator: (value) {
+                                    if (double.parse(value!) < 0 ||
+                                        double.parse(value) > 100) {
+                                      return 'Wrong range! Allowed values are 0 to 100';
+                                    }
+                                    return null;
+                                  },
                                 ),
                               ),
                               IconButton(
@@ -1194,6 +1224,13 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                                   decoration: InputDecoration(
                                     filled: true,
                                   ),
+                                  validator: (value) {
+                                    if (double.parse(value!) < 0 ||
+                                        double.parse(value) > 14) {
+                                      return 'Wrong range! Allowed values are 0 to 14';
+                                    }
+                                    return null;
+                                  },
                                 ),
                               ),
                               IconButton(
@@ -1207,7 +1244,7 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                             padding:
                                 const EdgeInsets.only(top: 25.0, bottom: 5),
                             child: Text(
-                              'Fractured',
+                              'Fractured stones',
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: 16,
@@ -1285,7 +1322,7 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                             padding:
                                 const EdgeInsets.only(top: 25.0, bottom: 5),
                             child: Text(
-                              'Hummus presence (1-10)',
+                              'Hummus presence (0-10)',
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: 16,
@@ -1302,6 +1339,13 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                                   decoration: InputDecoration(
                                     filled: true,
                                   ),
+                                  validator: (value) {
+                                    if (double.parse(value!) < 0 ||
+                                        double.parse(value) > 10) {
+                                      return 'Wrong range! Allowed values are 0 to 10';
+                                    }
+                                    return null;
+                                  },
                                 ),
                               ),
                               IconButton(
@@ -1373,6 +1417,7 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                                 _saveProject(args);
                               } else
                                 print('ooppsss throw error');
+                                showHelpDialog('Invalid fields!', 'Some fields have invalid values or are required. Please check them again');
                             },
                           ),
                         ),

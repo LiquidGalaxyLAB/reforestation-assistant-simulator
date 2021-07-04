@@ -472,6 +472,7 @@ class _SeedFormState extends State<SeedForm> {
                               saveSeed(args);
                             } else
                               print('ooppsss throw error');
+                              showHelpDialog('Invalid fields!', 'Some fields have invalid values or are required. Please check them again');
                           },
                         ),
                       ),
