@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ras/repositories/Project.dart';
 import 'package:ras/route-args/ProjectBuilderArgs.dart';
 import 'package:ras/route-args/ProjectViewArgs.dart';
 import 'package:ras/widgets/AppBar.dart';
@@ -11,6 +12,52 @@ class ProjectView extends StatefulWidget {
 }
 
 class _ProjectViewState extends State<ProjectView> {
+  showDeleteDialog(String title, String msg, String id) {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text('$title'),
+            content: Text('$msg'),
+            actions: <Widget>[
+              Padding(
+                padding: EdgeInsets.only(right: 20),
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    primary: Colors.red, // background
+                    onPrimary: Colors.white, // foreground
+                  ),
+                  child: Text("NO"),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.only(right: 20),
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    primary: Colors.green, // background
+                    onPrimary: Colors.white, // foreground
+                  ),
+                  child: Text("YES"),
+                  onPressed: () {
+                    // delete seed
+                    Future response = ProjectRepository().delete(id);
+                    response.then((value) {
+                      print('Success!!');
+                    });
+                    response.catchError((onError) => print('Error $onError'));
+                    Navigator.of(context).pop();
+                    Navigator.of(context).pop();
+                  },
+                ),
+              ),
+            ],
+          );
+        });
+  }
+
   @override
   Widget build(BuildContext context) {
     final args = ModalRoute.of(context)!.settings.arguments as ProjectViewArgs;
@@ -217,6 +264,24 @@ class _ProjectViewState extends State<ProjectView> {
                     Item('Inclination', args.project.inclination.toString()),
                   ],
                 ),
+              ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  ElevatedButton.icon(
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.red,
+                    ),
+                    onPressed: () {
+                      showDeleteDialog(
+                          'Are you sure?',
+                          'This action can\'t be undone and you will be deleting your project!',
+                          args.project.id);
+                    },
+                    label: Text('Delete project'),
+                    icon: Icon(Icons.delete_forever),
+                  ),
+                ],
               ),
             ],
           ),
