@@ -282,38 +282,94 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
       response.then((value) {
         print('Success!!!! $value');
         Navigator.of(context).pop();
+        Navigator.of(context).pop();
+      });
+      response.catchError((onError) => print('Error $onError'));
+    } else {
+      Project project = Project(
+        args.project!.id,
+        projectName.text,
+        dateOfProject,
+        sownMode,
+        region.text,
+        minSwtDate,
+        maxSwtdate,
+        double.parse(minSwtTemp.text),
+        double.parse(maxSwtTemp.text),
+        int.parse(avgNumberOfRains.text),
+        int.parse(totalNumberOfRains.text),
+        seeds,
+        double.parse(validSurface.text),
+        double.parse(notValidSurface.text),
+        double.parse(emptyLand.text),
+        orientation,
+        double.parse(minAltTerrain.text),
+        double.parse(maxAltTerrain.text),
+        double.parse(maxDistance.text),
+        double.parse(depth.text),
+        int.parse(ph.text),
+        fractured == 'Yes' ? true : false,
+        int.parse(hummus.text),
+        double.parse(inclination.text),
+      );
+      Future response = ProjectRepository().update(project, args.project!.id);
+      response.then((value) {
+        print('Success!!!! $value');
+        Navigator.of(context).pop();
+        Navigator.of(context).pop();
       });
       response.catchError((onError) => print('Error $onError'));
     }
   }
 
-  initForm() {
-    minSwtTemp.text = '0';
-    maxSwtTemp.text = '0';
-    avgNumberOfRains.text = '0';
-    totalNumberOfRains.text = '0';
-    validSurface.text = '0';
-    notValidSurface.text = '0';
-    emptyLand.text = '0';
-    minAltTerrain.text = '0';
-    maxAltTerrain.text = '0';
-    maxDistance.text = '0';
-    depth.text = '0';
-    ph.text = '0';
-    hummus.text = '0';
-    inclination.text = '0';
-  }
-
-  @override
-  void initState() {
-    initForm();
-    super.initState();
+  init(ProjectBuilderArgs args) async {
+    if (!args.isNew) {
+      projectName.text = args.project!.projectName;
+      dateOfProject = args.project!.dateOfProject;
+      sownMode = args.project!.sownMode;
+      region.text = args.project!.region;
+      minSwtDate = args.project!.minSwtDate;
+      maxSwtdate = args.project!.maxSwtDate;
+      minSwtTemp.text = args.project!.minSwtTemp.toString();
+      maxSwtTemp.text = args.project!.maxSwtTemp.toString();
+      avgNumberOfRains.text = args.project!.avgNumberOfRains.toString();
+      totalNumberOfRains.text = args.project!.totalNumberOfRains.toString();
+      seeds = args.project!.seeds;
+      validSurface.text = args.project!.validSurface.toString();
+      notValidSurface.text = args.project!.notValidSurface.toString();
+      emptyLand.text = args.project!.emptyLand.toString();
+      orientation = args.project!.orientation;
+      minAltTerrain.text = args.project!.minAltTerrain.toString();
+      maxAltTerrain.text = args.project!.maxAltTerrain.toString();
+      maxDistance.text = args.project!.maxDistance.toString();
+      depth.text = args.project!.depth.toString();
+      ph.text = args.project!.ph.toString();
+      fractured = args.project!.fractured ? 'Yes' : 'No';
+      hummus.text = args.project!.hummus.toString();
+      inclination.text = args.project!.inclination.toString();
+    } else {
+      minSwtTemp.text = '0';
+      maxSwtTemp.text = '0';
+      avgNumberOfRains.text = '0';
+      totalNumberOfRains.text = '0';
+      validSurface.text = '0';
+      notValidSurface.text = '0';
+      emptyLand.text = '0';
+      minAltTerrain.text = '0';
+      maxAltTerrain.text = '0';
+      maxDistance.text = '0';
+      depth.text = '0';
+      ph.text = '0';
+      hummus.text = '0';
+      inclination.text = '0';
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     final args =
         ModalRoute.of(context)!.settings.arguments as ProjectBuilderArgs;
+    init(args);
 
     return Scaffold(
       appBar: PreferredSize(
@@ -697,7 +753,7 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
-                                      'Min.',
+                                      'Min. (°C)',
                                       style: TextStyle(
                                         fontWeight: FontWeight.bold,
                                         fontSize: 16,
@@ -722,7 +778,7 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
-                                      'Max.',
+                                      'Max. (°C)',
                                       style: TextStyle(
                                         fontWeight: FontWeight.bold,
                                         fontSize: 16,
@@ -1395,35 +1451,34 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                   ],
                 ),
               ),
-              MediaQuery.of(context).viewInsets.bottom == 0
-                  ? Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Expanded(
-                          child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                                primary: Colors.green,
-                                padding: EdgeInsets.symmetric(vertical: 15)),
-                            child: Text(
-                              'SAVE',
-                              style: TextStyle(
-                                fontSize: 15,
-                                fontWeight: FontWeight.bold,
-                              ),
-                              overflow: TextOverflow.ellipsis,
-                            ),
-                            onPressed: () {
-                              if (_formKey.currentState!.validate()) {
-                                _saveProject(args);
-                              } else
-                                print('ooppsss throw error');
-                                showHelpDialog('Invalid fields!', 'Some fields have invalid values or are required. Please check them again');
-                            },
-                          ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Expanded(
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                          primary: Colors.green,
+                          padding: EdgeInsets.symmetric(vertical: 15)),
+                      child: Text(
+                        'SAVE',
+                        style: TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.bold,
                         ),
-                      ],
-                    )
-                  : SizedBox(),
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                      onPressed: () {
+                        if (_formKey.currentState!.validate()) {
+                          _saveProject(args);
+                        } else
+                          print('ooppsss throw error');
+                        showHelpDialog('Invalid fields!',
+                            'Some fields have invalid values or are required. Please check them again');
+                      },
+                    ),
+                  ),
+                ],
+              )
             ],
           ),
         ),

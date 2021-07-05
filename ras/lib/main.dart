@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:ras/models/Project.dart';
 import 'package:ras/screens/AboutScreen.dart';
 import 'package:ras/screens/HomeScreen.dart';
 import 'package:ras/screens/ProjectBuilder.dart';
+import 'package:ras/screens/ProjectView.dart';
 import 'package:ras/screens/SeedForm.dart';
 import 'package:ras/screens/Settings.dart';
 import 'package:ras/screens/MapBuilder.dart';
@@ -29,6 +31,7 @@ class MyApp extends StatelessWidget {
         '/project-builder': (context) => ProjectBuilder(),
         '/about': (context) => AboutScreen(),
         '/seed-form': (context) => SeedForm(),
+        '/project-view': (context) => ProjectView(),
         '/test': (context) => TestPlaygrounf(),
       },
     );

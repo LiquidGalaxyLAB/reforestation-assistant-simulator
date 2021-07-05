@@ -74,7 +74,7 @@ class Seed {
         element['estimatedFinalHeight'],
         element['seedCost'],
         element['establishmentCost'],
-        density: element.value['density'],
+        density: element['density'],
       ));
     });
     return seeds;

@@ -1,5 +1,7 @@
-class ProjectViewArgs {
-  final String id;
+import 'package:ras/models/Project.dart';
 
-  ProjectViewArgs(this.id);
+class ProjectViewArgs {
+  Project project;
+
+  ProjectViewArgs(this.project);
 }

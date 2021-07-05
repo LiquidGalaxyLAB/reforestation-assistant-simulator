@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:ras/models/Project.dart';
 import 'package:ras/repositories/Project.dart';
 import 'package:ras/route-args/ProjectBuilderArgs.dart';
+import 'package:ras/route-args/ProjectViewArgs.dart';
 
 class ProjectList extends StatefulWidget {
   const ProjectList({Key? key}) : super(key: key);
@@ -54,14 +55,23 @@ class _ProjectListState extends State<ProjectList> {
                       return ListView.builder(
                           itemCount: snapshot.data.length,
                           itemBuilder: (context, index) {
-                            return Container(
-                              margin: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-                              padding: EdgeInsets.symmetric(vertical: 10),
-                              decoration: BoxDecoration(
-                                color: Colors.grey.shade100,
-                                border: Border(left: BorderSide(color: Colors.green, width: 10),),
-                              ),
-                              child: ListTile(
+                            return GestureDetector(
+                              onTap: () {
+                                Navigator.pushNamed(context, '/project-view',
+                                    arguments: ProjectViewArgs(data[index]));
+                              },
+                              child: Container(
+                                margin: EdgeInsets.symmetric(
+                                    horizontal: 15, vertical: 10),
+                                padding: EdgeInsets.symmetric(vertical: 10),
+                                decoration: BoxDecoration(
+                                  color: Colors.grey.shade100,
+                                  border: Border(
+                                    left: BorderSide(
+                                        color: Colors.green, width: 10),
+                                  ),
+                                ),
+                                child: ListTile(
                                   title: Text(
                                     '${data[index].projectName}',
                                     style: TextStyle(
@@ -76,8 +86,8 @@ class _ProjectListState extends State<ProjectList> {
                                           CrossAxisAlignment.start,
                                       children: [
                                         Padding(
-                                          padding:
-                                              const EdgeInsets.only(bottom: 5.0),
+                                          padding: const EdgeInsets.only(
+                                              bottom: 5.0),
                                           child: Row(
                                             children: [
                                               Text(
@@ -87,15 +97,15 @@ class _ProjectListState extends State<ProjectList> {
                                                     fontSize: 18),
                                               ),
                                               Text(
-                                                '${data[index].maxDistance}m',
+                                                'XXm',
                                                 style: TextStyle(fontSize: 18),
                                               ),
                                             ],
                                           ),
                                         ),
                                         Padding(
-                                          padding:
-                                              const EdgeInsets.only(bottom: 5.0),
+                                          padding: const EdgeInsets.only(
+                                              bottom: 5.0),
                                           child: Row(
                                             children: [
                                               Text(
@@ -105,15 +115,15 @@ class _ProjectListState extends State<ProjectList> {
                                                     fontSize: 18),
                                               ),
                                               Text(
-                                                '${data[index].dateOfProject}',
+                                                '${data[index].dateOfProject.toString().substring(0,10)}',
                                                 style: TextStyle(fontSize: 18),
                                               ),
                                             ],
                                           ),
                                         ),
                                         Padding(
-                                          padding:
-                                              const EdgeInsets.only(bottom: 5.0),
+                                          padding: const EdgeInsets.only(
+                                              bottom: 5.0),
                                           child: Row(
                                             children: [
                                               Text(
@@ -130,8 +140,8 @@ class _ProjectListState extends State<ProjectList> {
                                           ),
                                         ),
                                         Padding(
-                                          padding:
-                                              const EdgeInsets.only(bottom: 5.0),
+                                          padding: const EdgeInsets.only(
+                                              bottom: 5.0),
                                           child: Column(
                                             crossAxisAlignment:
                                                 CrossAxisAlignment.start,
@@ -147,7 +157,8 @@ class _ProjectListState extends State<ProjectList> {
                                                   i++)
                                                 Text(
                                                   '${data[index].seeds[i].commonName} | density = XX%',
-                                                  style: TextStyle(fontSize: 18),
+                                                  style:
+                                                      TextStyle(fontSize: 18),
                                                 ),
                                             ],
                                           ),
@@ -163,7 +174,8 @@ class _ProjectListState extends State<ProjectList> {
                                               style: OutlinedButton.styleFrom(
                                                 primary: Colors.blue,
                                                 side: BorderSide(
-                                                    color: Colors.blue, width: 1),
+                                                    color: Colors.blue,
+                                                    width: 1),
                                               ),
                                             ),
                                           ],
@@ -172,6 +184,7 @@ class _ProjectListState extends State<ProjectList> {
                                     ),
                                   ),
                                 ),
+                              ),
                             );
                           });
                     } else if (snapshot.hasError) {
