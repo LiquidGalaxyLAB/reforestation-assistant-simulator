@@ -243,7 +243,6 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                   ),
                   child: Text("SAVE"),
                   onPressed: () {
-                    // TODO: add seed density to project
                     seed.density = double.parse(density.text);
                     Navigator.of(context).pop();
                   },
@@ -356,7 +355,6 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
 
       // map info
       geodata = args.project!.geodata;
-      print('geodata $geodata');
     } else {
       minSwtTemp.text = '0';
       maxSwtTemp.text = '0';

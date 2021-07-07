@@ -1,9 +1,10 @@
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:ras/models/kml/Placemark.dart';
-import 'package:ras/models/kml/Polygon.dart';
+import 'package:ras/models/kml/Polygon.dart' as poly;
 
 class Gmap {
   List<Placemark> markers;
-  Polygon areaPolygon;
+  poly.Polygon areaPolygon;
 
   Gmap(this.markers, this.areaPolygon);
 
@@ -21,15 +22,18 @@ class Gmap {
 
   static fromMap(dynamic map) {
     List<Placemark> markers = [];
-    Polygon polygon = Polygon('', []);
+    poly.Polygon polygon = poly.Polygon('', []);
 
     if (map != null) {
       if (map['markers'] != null) {
         markers = Placemark.fromMapList(map['markers']);
       }
       if (map['areaPolygon'] != null) {
-        print('polyyyyy ${map['areaPolygon']}');
-        // TO DO: parse polygon
+        List<LatLng> pointList = [];
+        map['areaPolygon']['coord'].forEach((element) {
+          pointList.add(LatLng(element['lat'], element['long']));
+        });
+        polygon = poly.Polygon(map['areaPolygon']['id'], pointList);
       }
     }
 

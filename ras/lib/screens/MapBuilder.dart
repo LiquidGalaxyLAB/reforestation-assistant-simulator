@@ -202,7 +202,6 @@ class _MapBuilderState extends State<MapBuilder> {
             Point(element.position.longitude, element.position.latitude)));
       });
     }
-
     isLoaded = false;
     Gmap geodata = Gmap(placemarks, area);
     Navigator.pop(context, geodata);
