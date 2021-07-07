@@ -4,9 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:ras/models/Gmap.dart';
 import 'package:ras/models/kml/LookAt.dart';
 import 'package:ras/models/kml/Placemark.dart';
 import 'package:ras/models/kml/Point.dart';
+import 'package:ras/route-args/MapBuilderArgs.dart';
 import 'package:uuid/uuid.dart';
 import 'package:ras/models/kml/Polygon.dart' as poly;
 
@@ -29,6 +31,8 @@ class _MapBuilderState extends State<MapBuilder> {
   // 0 = none; 1 = placemark; 2 = polygon ...
 
   static bool editing = false;
+
+  static bool isLoaded = false;
 
   Set<Marker> _markers = Set<Marker>();
   List<LatLng> _polygonVertex = [];
@@ -180,23 +184,79 @@ class _MapBuilderState extends State<MapBuilder> {
 
   _generateKML() {
     List<Placemark> placemarks = [];
+    poly.Polygon area = poly.Polygon('', []);
 
-    poly.Polygon area =
-        poly.Polygon(_polygons.first.polygonId.value, _polygons.first.points);
+    if (_polygons.isNotEmpty) {
+      area =
+          poly.Polygon(_polygons.first.polygonId.value, _polygons.first.points);
+    }
 
-    _markers.forEach((element) {
-      placemarks.add(Placemark(
-          element.markerId.value,
-          'seed name',
-          'seed description',
-          LookAt(element.position.longitude, element.position.latitude, '10000',
-              '45', '0'),
-          Point(element.position.longitude, element.position.latitude)));
-    });
+    if (_markers.isNotEmpty) {
+      _markers.forEach((element) {
+        placemarks.add(Placemark(
+            element.markerId.value,
+            'seed name',
+            'seed description',
+            LookAt(element.position.longitude, element.position.latitude,
+                '10000', '45', '0'),
+            Point(element.position.longitude, element.position.latitude)));
+      });
+    }
+
+    isLoaded = false;
+    Gmap geodata = Gmap(placemarks, area);
+    Navigator.pop(context, geodata);
+  }
+
+  init(MapBuilderArgs args) {
+    if (!isLoaded) {
+      // init markers
+      args.map.markers.forEach((element) {
+        Marker m = Marker(
+            markerId: MarkerId(element.id),
+            position: LatLng(element.point.lng, element.point.lat),
+            draggable: true,
+            icon:
+                BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueRed),
+            onTap: () {
+              setState(() {
+                editing = true;
+                currentMarkerId = element.id;
+                shapeType = 1;
+              });
+            });
+        _markers.add(m);
+      });
+
+      // init polygons
+      args.map.areaPolygon.coord.forEach((element) {
+        _polygonVertex.add(element);
+        _placePolygon();
+      });
+
+      // init point
+      if (args.map.areaPolygon.coord.length > 0) {
+        _initPosition = CameraPosition(
+          target: args.map.areaPolygon.coord[0],
+          zoom: 15,
+        );
+      } else if (args.map.markers.length > 0) {
+        _initPosition = CameraPosition(
+          target: LatLng(
+              args.map.markers[0].point.lng, args.map.markers[0].point.lat),
+          zoom: 15,
+        );
+      }
+
+      isLoaded = true;
+    }
   }
 
   @override
   Widget build(BuildContext context) {
+    final args = ModalRoute.of(context)!.settings.arguments as MapBuilderArgs;
+    init(args);
+
     return new Scaffold(
       body: Stack(
         children: [
@@ -220,10 +280,12 @@ class _MapBuilderState extends State<MapBuilder> {
                 Padding(
                   padding: const EdgeInsets.only(top: 20.0, left: 10),
                   child: FloatingActionButton(
+                      heroTag: 'btn1',
                       backgroundColor: Colors.black.withOpacity(0.5),
                       child: Icon(Icons.arrow_back),
                       onPressed: () {
-                        Navigator.pop(context);
+                        Navigator.pop(context, '');
+                        isLoaded = false;
                       }),
                 ),
                 editing
@@ -233,6 +295,7 @@ class _MapBuilderState extends State<MapBuilder> {
                             padding:
                                 const EdgeInsets.only(top: 20.0, right: 10),
                             child: FloatingActionButton(
+                                heroTag: 'btn2',
                                 backgroundColor: Colors.black.withOpacity(0.5),
                                 child: Icon(Icons.delete),
                                 onPressed: () {
@@ -248,6 +311,7 @@ class _MapBuilderState extends State<MapBuilder> {
                             padding:
                                 const EdgeInsets.only(top: 20.0, right: 10),
                             child: FloatingActionButton(
+                                heroTag: 'btn3',
                                 backgroundColor: Colors.black.withOpacity(0.5),
                                 child: Icon(Icons.check),
                                 onPressed: () {
@@ -265,6 +329,7 @@ class _MapBuilderState extends State<MapBuilder> {
                           Padding(
                             padding: const EdgeInsets.only(top: 20.0),
                             child: FloatingActionButton(
+                              heroTag: 'btn4',
                                 backgroundColor: Colors.black.withOpacity(0.5),
                                 child: Icon(Icons.place),
                                 onPressed: () {
@@ -278,6 +343,7 @@ class _MapBuilderState extends State<MapBuilder> {
                           Padding(
                             padding: const EdgeInsets.only(top: 20.0),
                             child: FloatingActionButton(
+                                heroTag: 'btn5',
                                 backgroundColor: Colors.black.withOpacity(0.5),
                                 child: Icon(Icons.place_outlined),
                                 onPressed: () {
@@ -290,6 +356,7 @@ class _MapBuilderState extends State<MapBuilder> {
                           Padding(
                             padding: const EdgeInsets.only(top: 20.0),
                             child: FloatingActionButton(
+                              heroTag: 'btn6',
                                 backgroundColor: Colors.black.withOpacity(0.5),
                                 child: Icon(Icons.crop_square),
                                 onPressed: () {
@@ -302,6 +369,7 @@ class _MapBuilderState extends State<MapBuilder> {
                           Padding(
                             padding: const EdgeInsets.only(top: 90.0),
                             child: FloatingActionButton(
+                              heroTag: 'btn7',
                                 backgroundColor: Colors.black.withOpacity(0.5),
                                 child: Icon(Icons.my_location_rounded),
                                 onPressed: () {

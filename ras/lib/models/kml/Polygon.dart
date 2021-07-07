@@ -1,6 +1,8 @@
+import 'package:google_maps_flutter/google_maps_flutter.dart';
+
 class Polygon {
   String id;
-  List coord;
+  List<LatLng> coord;
 
   Polygon(this.id, this.coord);
 
@@ -19,6 +21,22 @@ class Polygon {
       </outerBoundaryIs>
     </Polygon>
     ''';
+  }
+
+  toMap() {
+    List<dynamic> coordsMapList = [];
+    coord.forEach((element) {
+      dynamic obj = {
+        "lat": element.latitude,
+        "long": element.longitude,
+      };
+      coordsMapList.add(obj);
+    });
+
+    return {
+      "id": id,
+      "coord": coordsMapList,
+    };
   }
 
   coordsToString() {

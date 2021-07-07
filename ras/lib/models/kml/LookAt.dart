@@ -19,6 +19,25 @@ class LookAt {
     ''';
   }
 
+  toMap() {
+    return {
+      "lng": lng,
+      "lat": lat,
+      "range": range,
+      "tilt": tilt,
+      "heading": heading,
+    };
+  }
+
+  static fromMap(dynamic map) {
+    return LookAt(
+        map['lng'],
+        map['lat'],
+        map['range'],
+        map['tilt'],
+        map['heading']);
+  }
+
   @override
   String toString() {
     return super.toString();

@@ -11,6 +11,18 @@ class Point {
       </Point>
     ''';
   }
+
+  toMap() {
+    return {
+      "lat": lat,
+      "lng": lng,
+    };
+  }
+
+  static fromMap(dynamic map) {
+    return Point(map['lat'], map['lng']);
+  }
+
   @override
   String toString() {
     return super.toString();

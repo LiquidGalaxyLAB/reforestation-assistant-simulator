@@ -21,6 +21,30 @@ class Placemark {
     ''';
   }
 
+  toMap() {
+    return {
+      "id": id,
+      "name": name,
+      "description": description,
+      "lookAt": lookAt.toMap(),
+      "point": point.toMap(),
+    };
+  }
+
+  static List<Placemark> fromMapList(List<dynamic> list) {
+    List<Placemark> markers = [];
+    list.forEach((element) {
+      markers.add(Placemark(
+        element['id'],
+        element['name'],
+        element['description'],
+        LookAt.fromMap(element['lookAt']),
+        Point.fromMap(element['point']),
+      ));
+    });
+    return markers;
+  }
+
   @override
   String toString() {
     return super.toString();

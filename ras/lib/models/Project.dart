@@ -1,3 +1,4 @@
+import 'package:ras/models/Gmap.dart';
 import 'package:ras/models/Seed.dart';
 import 'package:sembast/timestamp.dart';
 
@@ -37,6 +38,9 @@ class Project {
   int hummus;
   double inclination;
 
+  // GMAP - KML
+  Gmap geodata;
+
   Project(
     this.id,
     this.projectName,
@@ -62,6 +66,7 @@ class Project {
     this.fractured,
     this.hummus,
     this.inclination,
+    this.geodata,
   );
 
   @override
@@ -100,6 +105,7 @@ class Project {
       "fractured": fractured,
       "hummus": hummus,
       "inclination": inclination,
+      "geodata": geodata.toMap(),
     };
   }
 
@@ -108,7 +114,6 @@ class Project {
     list.forEach((element) {
       List<Seed> seedList = [];
       seedList = Seed.fromMapList(element.value['seeds']);
-
       projects.add(Project(
         element.key,
         element.value['projectName'],
@@ -134,6 +139,7 @@ class Project {
         element.value['fractured'],
         element.value['hummus'],
         element.value['inclination'],
+        Gmap.fromMap(element.value['geodata']),
       ));
     });
     return projects;

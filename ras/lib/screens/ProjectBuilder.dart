@@ -1,9 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:ras/models/Gmap.dart';
 import 'package:ras/models/Project.dart';
 import 'package:ras/models/Seed.dart';
+import 'package:ras/models/kml/Polygon.dart';
 import 'package:ras/repositories/Project.dart';
 import 'package:ras/repositories/Seed.dart';
+import 'package:ras/route-args/MapBuilderArgs.dart';
 import 'package:ras/route-args/ProjectBuilderArgs.dart';
 import 'package:ras/widgets/AppBar.dart';
 
@@ -38,7 +41,8 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
   List<Seed> seeds = [];
   TextEditingController density = TextEditingController();
 
-  // MAP INFO ?
+  // MAP INFO
+  Gmap geodata = Gmap([], Polygon('', []));
 
   // AREA ATTRIBUTES
   TextEditingController validSurface = TextEditingController();
@@ -277,6 +281,7 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
         fractured == 'Yes' ? true : false,
         int.parse(hummus.text),
         double.parse(inclination.text),
+        geodata,
       );
       Future response = ProjectRepository().create(project);
       response.then((value) {
@@ -311,6 +316,7 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
         fractured == 'Yes' ? true : false,
         int.parse(hummus.text),
         double.parse(inclination.text),
+        geodata,
       );
       Future response = ProjectRepository().update(project, args.project!.id);
       response.then((value) {
@@ -347,6 +353,10 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
       fractured = args.project!.fractured ? 'Yes' : 'No';
       hummus.text = args.project!.hummus.toString();
       inclination.text = args.project!.inclination.toString();
+
+      // map info
+      geodata = args.project!.geodata;
+      print('geodata $geodata');
     } else {
       minSwtTemp.text = '0';
       maxSwtTemp.text = '0';
@@ -936,8 +946,13 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                                 style: TextStyle(fontSize: 14),
                                 overflow: TextOverflow.ellipsis,
                               ),
-                              onPressed: () {
-                                Navigator.pushNamed(context, '/map');
+                              onPressed: () async {
+                                final result = await Navigator.pushNamed(
+                                    context, '/map',
+                                    arguments: MapBuilderArgs(geodata));
+                                if (result is Gmap) {
+                                  geodata = result;
+                                }
                               },
                             ),
                           ),
