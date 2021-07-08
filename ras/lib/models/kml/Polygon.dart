@@ -8,7 +8,10 @@ class Polygon {
 
   generateTag() {
     return '''
-    <Polygon>
+  <Placemark>
+		<name>AREA</name>
+		<styleUrl>#m_ylw-pushpin</styleUrl>
+    <Polygon id="${this.id}">
       <extrude>1</extrude>
       <altitudeMode>clampToGround</altitudeMode>
       <tessellate>1</tessellate>
@@ -20,6 +23,7 @@ class Polygon {
         </LinearRing>
       </outerBoundaryIs>
     </Polygon>
+  </Placemark>
     ''';
   }
 

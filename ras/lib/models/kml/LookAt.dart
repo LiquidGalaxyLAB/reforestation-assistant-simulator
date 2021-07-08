@@ -15,8 +15,13 @@ class LookAt {
         <range>${this.range}</range>
         <tilt>${this.tilt}</tilt>
         <heading>${this.heading}</heading>
+        <gx:altitudeMode>clampedToGround</gx:altitudeMode>
       </LookAt>
     ''';
+  }
+
+  generateLinearString() {
+    return '<LookAt><longitude>${this.lng}</longitude><latitude>${this.lat}</latitude><range>${this.range}</range><tilt>${this.tilt}</tilt><heading>${this.heading}</heading><gx:altitudeMode>clampedToGround</gx:altitudeMode></LookAt>';
   }
 
   toMap() {

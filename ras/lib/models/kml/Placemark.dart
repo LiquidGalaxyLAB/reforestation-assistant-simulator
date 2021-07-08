@@ -12,10 +12,11 @@ class Placemark {
 
   generateTag() {
     return '''
-    <Placemark>
+    <Placemark id="${this.id}">
       <name>${this.name}</name>
       <description>${this.description}</description>
       ${this.lookAt.generateTag()}
+      <styleUrl>#m_ylw-pushpin</styleUrl>
       ${this.point.generateTag()}
     </Placemark>
     ''';

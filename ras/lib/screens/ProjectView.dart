@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:ras/models/Project.dart';
+import 'package:ras/models/kml/Kml.dart';
 import 'package:ras/repositories/Project.dart';
 import 'package:ras/route-args/ProjectBuilderArgs.dart';
 import 'package:ras/route-args/ProjectViewArgs.dart';
+import 'package:ras/services/LGConnection.dart';
 import 'package:ras/widgets/AppBar.dart';
 
 class ProjectView extends StatefulWidget {
@@ -12,6 +15,22 @@ class ProjectView extends StatefulWidget {
 }
 
 class _ProjectViewState extends State<ProjectView> {
+
+  launchToLG(ProjectViewArgs args) async {
+    Project? p = args.project;
+
+    // create kml based on geodata attribute
+    String content = KML.buildKMLContent(args.project.geodata.markers, args.project.geodata.areaPolygon);
+    KML kml = KML(args.project.projectName, content);
+    
+    // send to LG
+    await LGConnection().init();
+    LGConnection().sendToLG(kml.mount(), p)
+    .then((value) => print('Yayy sent $value'))
+    .catchError((onError) => print('oh no $onError'));
+
+  }
+
   showDeleteDialog(String title, String msg, String id) {
     showDialog(
         context: context,
@@ -93,7 +112,9 @@ class _ProjectViewState extends State<ProjectView> {
                     style: ElevatedButton.styleFrom(
                       primary: Colors.green,
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      launchToLG(args);
+                    },
                     label: Text('Launch'),
                     icon: Icon(Icons.play_circle_fill_outlined),
                   ),

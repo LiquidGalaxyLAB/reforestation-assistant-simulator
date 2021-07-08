@@ -7,7 +7,8 @@ class Point {
   generateTag(){
     return '''
       <Point>
-        <coordinates>${this.lng},${this.lat}</coordinates>
+        <gx:drawOrder>1</gx:drawOrder>
+        <coordinates>${this.lat},${this.lng}</coordinates>
       </Point>
     ''';
   }
