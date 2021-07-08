@@ -16,7 +16,7 @@ class ProjectView extends StatefulWidget {
 
 class _ProjectViewState extends State<ProjectView> {
 
-  launchToLG(ProjectViewArgs args) async {
+  launchToLG(ProjectViewArgs args) {
     Project? p = args.project;
 
     // create kml based on geodata attribute
@@ -24,7 +24,6 @@ class _ProjectViewState extends State<ProjectView> {
     KML kml = KML(args.project.projectName, content);
     
     // send to LG
-    await LGConnection().init();
     LGConnection().sendToLG(kml.mount(), p)
     .then((value) => print('Yayy sent $value'))
     .catchError((onError) => print('oh no $onError'));

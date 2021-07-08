@@ -7,15 +7,15 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:ssh/ssh.dart';
 
 class LGConnection {
-  String _ipAddress = '';
-  String _password = '';
-
-  init() async {
+  _getCredentials() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
-    _ipAddress = preferences.getString('master_ip') ?? '';
-    _password = preferences.getString('master_password') ?? '';
-    print('$_ipAddress');
-    print('$_password');
+    String ipAddress = preferences.getString('master_ip') ?? '';
+    String password = preferences.getString('master_password') ?? '';
+
+    return {
+      "ip": ipAddress,
+      "pass": password,
+    };
   }
 
   Future sendToLG(String kml, Project project) async {
@@ -41,14 +41,13 @@ class LGConnection {
   }
 
   _uploadToLG(String localPath, Project project) async {
-    print('$_ipAddress');
-    print('$_password');
-    // FIX PROBLEM WITH EMPTY IP AND PASSWORD
+    dynamic credencials = await _getCredentials();
+
     SSHClient client = SSHClient(
-      host: '192.168.0.172',
+      host: '${credencials['ip']}',
       port: 22,
       username: "lg",
-      passwordOrKey: 'lq',
+      passwordOrKey: '${credencials['pass']}',
     );
 
     LookAt flyto = LookAt(
@@ -61,8 +60,6 @@ class LGConnection {
         '1492.665945696469',
         '45',
         '0');
-      print(flyto.generateTag().trim());
-
     try {
       await client.connect();
       await client.execute('> /var/www/html/kmls.txt');
