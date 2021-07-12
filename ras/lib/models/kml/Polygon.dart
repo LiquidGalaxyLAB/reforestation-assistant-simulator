@@ -12,8 +12,8 @@ class Polygon {
 		<name>AREA</name>
 		<styleUrl>#m_ylw-pushpin</styleUrl>
     <Polygon id="${this.id}">
-      <extrude>1</extrude>
-      <altitudeMode>clampToGround</altitudeMode>
+      <extrude>4</extrude>
+      <altitudeMode>relativeToGround</altitudeMode>
       <tessellate>1</tessellate>
       <outerBoundaryIs>
         <LinearRing>
@@ -46,7 +46,7 @@ class Polygon {
   coordsToString() {
     String stringPoints = '';
     this.coord.forEach((element) {
-      stringPoints += element.longitude.toString() + ',' + element.latitude.toString() + ',0' + '\n';
+      stringPoints += element.longitude.toString() + ',' + element.latitude.toString() + ',40' + '\n';
     });
 
     return stringPoints;

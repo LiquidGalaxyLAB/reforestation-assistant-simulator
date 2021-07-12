@@ -24,9 +24,24 @@ class _TestPlaygrounfState extends State<TestPlaygrounf> {
 <kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:kml="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom">
 <Document>
 	<name>REGION1.kml</name>
-	<Style id="s_ylw-pushpin_hl">
+	<Style id="s_ylw-pushpin_hl1">
 		<IconStyle>
 			<scale>1.3</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+		<LineStyle>
+			<color>ff00ffff</color>
+		</LineStyle>
+		<PolyStyle>
+			<color>b37fffff</color>
+		</PolyStyle>
+	</Style>
+	<Style id="s_ylw-pushpin10">
+		<IconStyle>
+			<scale>1.1</scale>
 			<Icon>
 				<href>http://maps.google.com/mapfiles/kml/paddle/grn-diamond.png</href>
 			</Icon>
@@ -38,49 +53,29 @@ class _TestPlaygrounfState extends State<TestPlaygrounf> {
 			</ItemIcon>
 		</ListStyle>
 	</Style>
-	<Style id="s_ylw-pushpin">
-		<IconStyle>
-			<scale>1.1</scale>
-			<Icon>
-				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
-			</Icon>
-			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
-		</IconStyle>
-		<LineStyle>
-			<color>ff00ffff</color>
-		</LineStyle>
-		<PolyStyle>
-			<color>b37fffff</color>
-		</PolyStyle>
-	</Style>
-	<Style id="s_ylw-pushpin_hl0">
-		<IconStyle>
-			<scale>1.3</scale>
-			<Icon>
-				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
-			</Icon>
-			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
-		</IconStyle>
-		<LineStyle>
-			<color>ff00ffff</color>
-		</LineStyle>
-		<PolyStyle>
-			<color>b37fffff</color>
-		</PolyStyle>
-	</Style>
-	<StyleMap id="m_ylw-pushpin">
+	<StyleMap id="m_ylw-pushpin1">
 		<Pair>
 			<key>normal</key>
 			<styleUrl>#s_ylw-pushpin0</styleUrl>
 		</Pair>
 		<Pair>
 			<key>highlight</key>
-			<styleUrl>#s_ylw-pushpin_hl</styleUrl>
+			<styleUrl>#s_ylw-pushpin_hl1</styleUrl>
 		</Pair>
 	</StyleMap>
-	<Style id="s_ylw-pushpin0">
+	<StyleMap id="m_ylw-pushpin">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#s_ylw-pushpin10</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#s_ylw-pushpin_hl2</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="s_ylw-pushpin_hl2">
 		<IconStyle>
-			<scale>1.1</scale>
+			<scale>1.3</scale>
 			<Icon>
 				<href>http://maps.google.com/mapfiles/kml/paddle/grn-diamond.png</href>
 			</Icon>
@@ -92,27 +87,34 @@ class _TestPlaygrounfState extends State<TestPlaygrounf> {
 			</ItemIcon>
 		</ListStyle>
 	</Style>
-	<StyleMap id="m_ylw-pushpin0">
-		<Pair>
-			<key>normal</key>
-			<styleUrl>#s_ylw-pushpin</styleUrl>
-		</Pair>
-		<Pair>
-			<key>highlight</key>
-			<styleUrl>#s_ylw-pushpin_hl0</styleUrl>
-		</Pair>
-	</StyleMap>
+	<Style id="s_ylw-pushpin0">
+		<IconStyle>
+			<scale>1.1</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+		<LineStyle>
+			<color>ff00ffff</color>
+		</LineStyle>
+		<PolyStyle>
+			<color>b37fffff</color>
+		</PolyStyle>
+	</Style>
 	<Folder>
 		<name>REGION1</name>
 		<Placemark>
 			<name>Region1</name>
-			<styleUrl>#m_ylw-pushpin0</styleUrl>
+			<styleUrl>#m_ylw-pushpin1</styleUrl>
 			<Polygon>
 				<tessellate>1</tessellate>
+        <extrude>0</extrude>
+        <altitudeMode>relativeToSeaFloor</altitudeMode>
 				<outerBoundaryIs>
 					<LinearRing>
 						<coordinates>
-							-47.52931532814348,-23.48824770740416,0 -47.53031759542059,-23.48779740819821,0 -47.5313584130239,-23.49276856012656,0 -47.53123244456581,-23.49375899388531,0 -47.5301614944787,-23.49318103442081,0 -47.53000662443083,-23.49244109352411,0 -47.52969250150048,-23.4905726871609,0 -47.52931532814348,-23.48824770740416,0 
+							-47.52931532814348,-23.48824770740416,40 -47.53031759542059,-23.48779740819821,40 -47.5313584130239,-23.49276856012656,40 -47.53123244456581,-23.49375899388531,40 -47.5301614944787,-23.49318103442081,40 -47.53000662443083,-23.49244109352411,40 -47.52969250150048,-23.4905726871609,40 -47.52931532814348,-23.48824770740416,40 
 						</coordinates>
 					</LinearRing>
 				</outerBoundaryIs>
