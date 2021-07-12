@@ -20,12 +20,12 @@ class _ProjectListState extends State<ProjectList> {
       children: [
         Column(
           children: [
-            ElevatedButton(
-              child: Text('DEMO TESTS'),
-              onPressed: () {
-                Navigator.pushNamed(context, '/test');
-              },
-            ),
+            // ElevatedButton(
+            //   child: Text('DEMO TESTS'),
+            //   onPressed: () {
+            //     Navigator.pushNamed(context, '/test');
+            //   },
+            // ),
             Padding(
               padding: const EdgeInsets.all(15.0),
               child: Row(
