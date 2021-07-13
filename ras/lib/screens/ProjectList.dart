@@ -156,7 +156,7 @@ class _ProjectListState extends State<ProjectList> {
                                                   i < data[index].seeds.length;
                                                   i++)
                                                 Text(
-                                                  '${data[index].seeds[i].commonName} | density = XX%',
+                                                  '${data[index].seeds[i].commonName} | density = ${data[index].seeds[i].density}%',
                                                   style:
                                                       TextStyle(fontSize: 18),
                                                 ),

@@ -188,7 +188,7 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
             title: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text('$title'),
+                Flexible(child: Text('$title')),
                 IconButton(
                   onPressed: () {
                     Navigator.of(context).pop();
@@ -446,7 +446,7 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                               ),
                               IconButton(
                                   onPressed: () {
-                                    showHelpDialog('Project name', '...');
+                                    showHelpDialog('Project name', 'A name for the project');
                                   },
                                   icon: Icon(Icons.help))
                             ],
@@ -498,7 +498,7 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                               ),
                               IconButton(
                                   onPressed: () {
-                                    showHelpDialog('Date of project', '...');
+                                    showHelpDialog('Date of project', 'Date when the project will be started');
                                   },
                                   icon: Icon(Icons.help))
                             ],
@@ -576,7 +576,7 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                               ),
                               IconButton(
                                   onPressed: () {
-                                    showHelpDialog('Sown mode', '...');
+                                    showHelpDialog('Sown mode', 'If the sown method will be either by drone or manually');
                                   },
                                   icon: Icon(Icons.help))
                             ],
@@ -605,7 +605,7 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                               ),
                               IconButton(
                                   onPressed: () {
-                                    showHelpDialog('Region', '...');
+                                    showHelpDialog('Region', 'The region or zone of the project');
                                   },
                                   icon: Icon(Icons.help))
                             ],
@@ -632,7 +632,7 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                             padding:
                                 const EdgeInsets.only(top: 25.0, bottom: 15),
                             child: Text(
-                              'SOWING DATE',
+                              'SOWING WINDOW',
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: 16,
@@ -641,7 +641,7 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                             ),
                           ),
                           Text(
-                            'Min.',
+                            'Min. (date)',
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 16,
@@ -684,7 +684,7 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                               IconButton(
                                   onPressed: () {
                                     showHelpDialog(
-                                        'Minimum sowing date', '...');
+                                        'Minimum sowing date', 'The earliest date where is possible to perform sowing');
                                   },
                                   icon: Icon(Icons.help))
                             ],
@@ -693,7 +693,7 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                             padding:
                                 const EdgeInsets.only(top: 25.0, bottom: 5),
                             child: Text(
-                              'Max.',
+                              'Max. (date)',
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: 16,
@@ -737,7 +737,7 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                               IconButton(
                                   onPressed: () {
                                     showHelpDialog(
-                                        'Maximum sowing date', '...');
+                                        'Maximum sowing date (date)', 'The latest date where is possible to perform the sowing');
                                   },
                                   icon: Icon(Icons.help)),
                             ],
@@ -746,7 +746,7 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                             padding:
                                 const EdgeInsets.only(top: 25.0, bottom: 15),
                             child: Text(
-                              'TEMPERATURE',
+                              'SOWING WINDOW TEMPERATURES (Number, Celsium degrees -10 to 50)',
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: 16,
@@ -806,7 +806,7 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                               IconButton(
                                   onPressed: () {
                                     showHelpDialog(
-                                        'Average temperature', '...');
+                                        'Sowing Window temperatures (Number, Celsium degrees -10 to 50).', 'The minimum and maximum medium temperature in the time frame of the sowing window.');
                                   },
                                   icon: Icon(Icons.help))
                             ],
@@ -815,7 +815,7 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                             padding:
                                 const EdgeInsets.only(top: 25.0, bottom: 5),
                             child: Text(
-                              'Average number of rain days',
+                              'Average number of days of rain (Number, 0 to 31)',
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: 16,
@@ -837,7 +837,7 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                               IconButton(
                                   onPressed: () {
                                     showHelpDialog(
-                                        'Average number of rain days', '...');
+                                        'Average number of days of rain (Number, 0 to 31)', 'The average number of days that stays raining in each rain. This monthly information is delivered by the closest weather station of the site.');
                                   },
                                   icon: Icon(Icons.help))
                             ],
@@ -846,7 +846,7 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                             padding:
                                 const EdgeInsets.only(top: 25.0, bottom: 5),
                             child: Text(
-                              'Total days of rain',
+                              'Total days of rain (Number, 0 to 31)',
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: 16,
@@ -867,7 +867,7 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                               ),
                               IconButton(
                                   onPressed: () {
-                                    showHelpDialog('Total days of rain', '...');
+                                    showHelpDialog('Total days of rain (Number, 0 to 31)', 'The total days of rain in a specific month.. This monthly information is delivered by the closest weather station of the site.');
                                   },
                                   icon: Icon(Icons.help))
                             ],
@@ -976,7 +976,7 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                             padding:
                                 const EdgeInsets.only(top: 25.0, bottom: 5),
                             child: Text(
-                              'Valid surface (0-100)%',
+                              'Optimal Surface (% 0 to 100)',
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: 16,
@@ -1004,7 +1004,7 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                               ),
                               IconButton(
                                   onPressed: () {
-                                    showHelpDialog('Valid surface', '...');
+                                    showHelpDialog('Optimal Surface (% 0 to 100)', '% of surface that is optimal for direct sowing, where the seeds have chance to survival close to nurse plant.');
                                   },
                                   icon: Icon(Icons.help))
                             ],
@@ -1013,7 +1013,7 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                             padding:
                                 const EdgeInsets.only(top: 25.0, bottom: 5),
                             child: Text(
-                              'Invalid surface (0-100)%',
+                              'Not Valid Surface (% 0 to 100)',
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: 16,
@@ -1041,7 +1041,7 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                               ),
                               IconButton(
                                   onPressed: () {
-                                    showHelpDialog('Invalid surface', '...');
+                                    showHelpDialog('Not Valid Surface (% 0 to 100)', '% of surface where seeds will not grow, like rocks or present trees.');
                                   },
                                   icon: Icon(Icons.help))
                             ],
@@ -1050,7 +1050,7 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                             padding:
                                 const EdgeInsets.only(top: 25.0, bottom: 5),
                             child: Text(
-                              'Empty land (0-100)%',
+                              'Empty Land (% 0 to 100)',
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: 16,
@@ -1078,7 +1078,7 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                               ),
                               IconButton(
                                   onPressed: () {
-                                    showHelpDialog('Empty land', '...');
+                                    showHelpDialog('Empty Land (% 0 to 100)', '% of surface where seeds could grow, but don’t have the optimal conditions because don’t have any nurse plant.');
                                   },
                                   icon: Icon(Icons.help))
                             ],
@@ -1126,7 +1126,7 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                               )),
                               IconButton(
                                   onPressed: () {
-                                    showHelpDialog('Orientation', '...');
+                                    showHelpDialog('Orientation', 'The predominant orientation of the area of sowing.');
                                   },
                                   icon: Icon(Icons.help))
                             ],
@@ -1135,7 +1135,7 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                             padding:
                                 const EdgeInsets.only(top: 25.0, bottom: 5),
                             child: Text(
-                              'Minimum altitude of the terrain',
+                              'Minimum altitude of the terrain (Meters above sea level)',
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: 16,
@@ -1157,8 +1157,8 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                               IconButton(
                                   onPressed: () {
                                     showHelpDialog(
-                                        'Minimum altitude of the terrain',
-                                        '...');
+                                        'Minimum altitude of the terrain (Meters above sea level)',
+                                        'The minimum altitude of the area at the lower point.');
                                   },
                                   icon: Icon(Icons.help))
                             ],
@@ -1167,7 +1167,7 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                             padding:
                                 const EdgeInsets.only(top: 25.0, bottom: 5),
                             child: Text(
-                              'Maximum altitude of terrain',
+                              'Maximum altitude of the terrain (Meters above sea level)',
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: 16,
@@ -1189,7 +1189,7 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                               IconButton(
                                   onPressed: () {
                                     showHelpDialog(
-                                        'Maximum altitude of terrain', '...');
+                                        'Maximum altitude of the terrain (Meters above sea level)', 'The maximum altitude of the area at the highest point.');
                                   },
                                   icon: Icon(Icons.help))
                             ],
@@ -1219,7 +1219,7 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                               ),
                               IconButton(
                                   onPressed: () {
-                                    showHelpDialog('Maximum distance', '...');
+                                    showHelpDialog('Maximum distance (meters)', 'Maximum distance that will fly the drone between the take off point and the farthest point.');
                                   },
                                   icon: Icon(Icons.help))
                             ],
@@ -1246,7 +1246,7 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                             padding:
                                 const EdgeInsets.only(top: 25.0, bottom: 5),
                             child: Text(
-                              'Depth(meters)',
+                              'Soil Depth (Centimeters)',
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: 16,
@@ -1267,7 +1267,7 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                               ),
                               IconButton(
                                   onPressed: () {
-                                    showHelpDialog('Depth', '...');
+                                    showHelpDialog('Soil Depth (Centimeters)', 'Depth of the soil.');
                                   },
                                   icon: Icon(Icons.help))
                             ],
@@ -1276,7 +1276,7 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                             padding:
                                 const EdgeInsets.only(top: 25.0, bottom: 5),
                             child: Text(
-                              'PH (0-14)',
+                              'Soil PH (Number, 1-17)',
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: 16,
@@ -1304,7 +1304,7 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                               ),
                               IconButton(
                                   onPressed: () {
-                                    showHelpDialog('PH', '...');
+                                    showHelpDialog('Soil PH (Number, 1-17)', 'PH of the soil, if is basic or alkaline');
                                   },
                                   icon: Icon(Icons.help))
                             ],
@@ -1313,7 +1313,7 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                             padding:
                                 const EdgeInsets.only(top: 25.0, bottom: 5),
                             child: Text(
-                              'Fractured stones',
+                              'Rock fractured (yes/no)',
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: 16,
@@ -1382,7 +1382,7 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                               ),
                               IconButton(
                                   onPressed: () {
-                                    showHelpDialog('Fractured', '...');
+                                    showHelpDialog('Rock fractured (yes/no)', 'If the soil is rocky, if the rocks are fractured or if it is a single piece.');
                                   },
                                   icon: Icon(Icons.help))
                             ],
@@ -1391,7 +1391,7 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                             padding:
                                 const EdgeInsets.only(top: 25.0, bottom: 5),
                             child: Text(
-                              'Hummus presence (0-10)',
+                              'Hummus presence (Number, 0 to 10)',
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: 16,
@@ -1419,7 +1419,7 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                               ),
                               IconButton(
                                   onPressed: () {
-                                    showHelpDialog('Hummus', '...');
+                                    showHelpDialog('Hummus presence (Number, 0 to 10)', 'Presence of hummus, from 0 to 10. 0 for no hummus, and 10 for abundant presence.');
                                   },
                                   icon: Icon(Icons.help))
                             ],
@@ -1428,7 +1428,7 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                             padding:
                                 const EdgeInsets.only(top: 25.0, bottom: 5),
                             child: Text(
-                              'Inclination',
+                              'Area Inclination (% or angle)',
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: 16,
@@ -1449,7 +1449,7 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                               ),
                               IconButton(
                                   onPressed: () {
-                                    showHelpDialog('Inclination', '...');
+                                    showHelpDialog('Area Inclination (% or angle)', 'Inclination in % of the area.');
                                   },
                                   icon: Icon(Icons.help))
                             ],

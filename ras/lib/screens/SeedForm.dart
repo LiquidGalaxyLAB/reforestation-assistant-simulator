@@ -36,7 +36,7 @@ class _SeedFormState extends State<SeedForm> {
             title: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text('$title'),
+                Flexible(child: Text('$title')),
                 IconButton(
                   onPressed: () {
                     Navigator.of(context).pop();
@@ -194,7 +194,7 @@ class _SeedFormState extends State<SeedForm> {
                     IconButton(
                         onPressed: () {
                           showHelpDialog(
-                              'Common Name', 'Popular name, easy to remember');
+                              'Common Name', 'The common name of this plant in the region');
                         },
                         icon: Icon(Icons.help))
                   ],
@@ -222,7 +222,7 @@ class _SeedFormState extends State<SeedForm> {
                     ),
                     IconButton(
                         onPressed: () {
-                          showHelpDialog('Scientific Name', '.....');
+                          showHelpDialog('Scientific Name', 'The scientific name of this species');
                         },
                         icon: Icon(Icons.help))
                   ],
@@ -268,7 +268,7 @@ class _SeedFormState extends State<SeedForm> {
                     ),
                     IconButton(
                         onPressed: () {
-                          showHelpDialog('Icon', '.....');
+                          showHelpDialog('Icon', 'Icon that will be used to represent the seed both in the app\'s map and on Google Earth');
                         },
                         icon: Icon(Icons.help))
                   ],
@@ -276,7 +276,7 @@ class _SeedFormState extends State<SeedForm> {
                 Padding(
                   padding: const EdgeInsets.only(top: 25.0, bottom: 5),
                   child: Text(
-                    'CO2 capture per year',
+                    'CO2 capture (Number in tonnes)',
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 16,
@@ -297,7 +297,7 @@ class _SeedFormState extends State<SeedForm> {
                     ),
                     IconButton(
                         onPressed: () {
-                          showHelpDialog('CO2 capture per year', '.....');
+                          showHelpDialog('CO2 capture (Number in tonnes)', 'The total capture of CO2 after 40 years at the apogee of the live of the tree');
                         },
                         icon: Icon(Icons.help))
                   ],
@@ -326,7 +326,7 @@ class _SeedFormState extends State<SeedForm> {
                     ),
                     IconButton(
                         onPressed: () {
-                          showHelpDialog('Germinative potential (%)', '.....');
+                          showHelpDialog('Germinative potential (%)', 'The tested germinative potential measured in the laboratory with optimal conditions');
                         },
                         icon: Icon(Icons.help))
                   ],
@@ -334,7 +334,7 @@ class _SeedFormState extends State<SeedForm> {
                 Padding(
                   padding: const EdgeInsets.only(top: 25.0, bottom: 5),
                   child: Text(
-                    'Estimated longevity (years)',
+                    'Estimated longevity (number, years)',
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 16,
@@ -356,7 +356,7 @@ class _SeedFormState extends State<SeedForm> {
                     IconButton(
                         onPressed: () {
                           showHelpDialog(
-                              'Estimated longevity (years)', '.....');
+                              'Estimated longevity (number, years)', 'Estimated longevity of this species');
                         },
                         icon: Icon(Icons.help))
                   ],
@@ -364,7 +364,7 @@ class _SeedFormState extends State<SeedForm> {
                 Padding(
                   padding: const EdgeInsets.only(top: 25.0, bottom: 5),
                   child: Text(
-                    'Estimated final height (meters)',
+                    'Estimated final height (number, meters)',
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 16,
@@ -386,7 +386,7 @@ class _SeedFormState extends State<SeedForm> {
                     IconButton(
                         onPressed: () {
                           showHelpDialog(
-                              'Estimated final height (meters)', '.....');
+                              'Estimated final height (number, meters)', 'Estimated height of this species');
                         },
                         icon: Icon(Icons.help))
                   ],
@@ -394,7 +394,7 @@ class _SeedFormState extends State<SeedForm> {
                 Padding(
                   padding: const EdgeInsets.only(top: 25.0, bottom: 5),
                   child: Text(
-                    'Seed cost (1kg)',
+                    'Seed cost per kg. (number, euros)',
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 16,
@@ -415,7 +415,7 @@ class _SeedFormState extends State<SeedForm> {
                     ),
                     IconButton(
                         onPressed: () {
-                          showHelpDialog('Seed cost (1kg)', '.....');
+                          showHelpDialog('Seed cost per kg. (number, euros)', 'Cost of 1 kg of seeds of this species');
                         },
                         icon: Icon(Icons.help))
                   ],
@@ -423,7 +423,7 @@ class _SeedFormState extends State<SeedForm> {
                 Padding(
                   padding: const EdgeInsets.only(top: 25.0, bottom: 5),
                   child: Text(
-                    'Establishment cost',
+                    'Establishment cost per plant. (number, euros)',
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 16,
@@ -444,7 +444,7 @@ class _SeedFormState extends State<SeedForm> {
                     ),
                     IconButton(
                         onPressed: () {
-                          showHelpDialog('Establishment cost', '.....');
+                          showHelpDialog('Establishment cost per plant. (number, euros)', 'Plant establishment cost (Still alive after 2 years after the sowing)');
                         },
                         icon: Icon(Icons.help))
                   ],
