@@ -186,12 +186,12 @@ class _SeedListState extends State<SeedList> {
                                 ),
                                 ListTile(
                                   title: Text(
-                                      '\$${data[index].seedCost} each 1kg'),
+                                      '€${data[index].seedCost} each 1kg'),
                                   subtitle: Text('Seed Cost (1kg)'),
                                 ),
                                 ListTile(
                                   title: Text(
-                                      '\$${data[index].establishmentCost}'),
+                                      '€${data[index].establishmentCost}'),
                                   subtitle: Text('Establishment cost'),
                                 ),
                               ],

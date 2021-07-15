@@ -1304,7 +1304,7 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                               ),
                               IconButton(
                                   onPressed: () {
-                                    showHelpDialog('Soil PH (Number, 1-17)', 'PH of the soil, if is basic or alkaline');
+                                    showHelpDialog('Soil PH (Number, 1-14)', 'PH of the soil, if is basic or alkaline');
                                   },
                                   icon: Icon(Icons.help))
                             ],
