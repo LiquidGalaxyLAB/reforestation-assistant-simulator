@@ -6,6 +6,8 @@ import 'package:ras/route-args/ProjectBuilderArgs.dart';
 import 'package:ras/route-args/ProjectViewArgs.dart';
 import 'package:ras/services/LGConnection.dart';
 import 'package:ras/widgets/AppBar.dart';
+import 'package:ras/widgets/charts/BarChart.dart';
+import 'package:ras/widgets/charts/PieChart.dart';
 
 class ProjectView extends StatefulWidget {
   const ProjectView({Key? key}) : super(key: key);
@@ -340,13 +342,33 @@ class _ProjectViewState extends State<ProjectView> {
                     Item('PH', args.project.ph.toString()),
                     Item('Fractured', args.project.fractured ? 'Yes' : 'No'),
                     Item('Hummus presence', args.project.hummus.toString()),
-                    Item('Inclination', args.project.inclination.toString() + '%' +' | ${(args.project.inclination / 100) * 360}°'),
+                    Item(
+                        'Inclination',
+                        args.project.inclination.toString() +
+                            '%' +
+                            ' | ${(args.project.inclination / 100) * 360}°'),
                   ],
                 ),
               ),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical:28.0),
+                    child: Text(
+                      'Germination Information',
+                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
+                    ),
+                  ),
+                  BarChartSample(),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical:28.0),
+                    child: Text(
+                      'Total CO2 capture per species',
+                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
+                    ),
+                  ),
+                  PieChartSample(args.project.seeds),
                   ElevatedButton.icon(
                     style: ElevatedButton.styleFrom(
                       primary: Colors.red,
