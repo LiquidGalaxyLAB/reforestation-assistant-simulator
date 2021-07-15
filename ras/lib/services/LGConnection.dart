@@ -6,6 +6,34 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:ssh/ssh.dart';
 
 class LGConnection {
+  Future sendToLG(String kml, Project project) async {
+    if (project.geodata.markers.length > 0 ||
+        project.geodata.areaPolygon.coord.length > 0) {
+      return _createLocalFile(kml, project);
+    }
+    return Future.error('NO GEODATA TO UPLOAD TO LG');
+  }
+
+  Future cleanVisualization() async {
+    dynamic credencials = await _getCredentials();
+
+    SSHClient client = SSHClient(
+      host: '${credencials['ip']}',
+      port: 22,
+      username: "lg",
+      passwordOrKey: '${credencials['pass']}',
+    );
+
+    try {
+      await client.connect();
+      return await client.execute('> /var/www/html/kmls.txt');
+    }
+    catch(e) {
+      print('Could not connect to host LG');
+      return e;
+    }
+  }
+
   _getCredentials() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     String ipAddress = preferences.getString('master_ip') ?? '';
@@ -15,14 +43,6 @@ class LGConnection {
       "ip": ipAddress,
       "pass": password,
     };
-  }
-
-  Future sendToLG(String kml, Project project) async {
-    if (project.geodata.markers.length > 0 ||
-        project.geodata.areaPolygon.coord.length > 0) {
-      return _createLocalFile(kml, project);
-    }
-    return Future.error('NO GEODATA TO UPLOAD TO LG');
   }
 
   Future<String> get _localPath async {

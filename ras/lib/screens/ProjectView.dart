@@ -15,19 +15,35 @@ class ProjectView extends StatefulWidget {
 }
 
 class _ProjectViewState extends State<ProjectView> {
+  bool isOpen = false;
 
   launchToLG(ProjectViewArgs args) {
     Project? p = args.project;
 
     // create kml based on geodata attribute
-    String content = KML.buildKMLContent(args.project.geodata.markers, args.project.geodata.areaPolygon);
+    String content = KML.buildKMLContent(
+        args.project.geodata.markers, args.project.geodata.areaPolygon);
     KML kml = KML(args.project.projectName, content);
-    
-    // send to LG
-    LGConnection().sendToLG(kml.mount(), p)
-    .then((value) => print('Yayy sent $value'))
-    .catchError((onError) => print('oh no $onError'));
 
+    // send to LG
+    LGConnection().sendToLG(kml.mount(), p).then((value) {
+      print('Sent $value');
+      setState(() {
+        isOpen = true;
+      });
+    }).catchError((onError) {
+      print('oh no $onError');
+    });
+  }
+
+  cleanVisualization() {
+    LGConnection().cleanVisualization().then((value) {
+      setState(() {
+        isOpen = false;
+      });
+    }).catchError((onError) {
+      print('oh no $onError');
+    });
   }
 
   showDeleteDialog(String title, String msg, String id) {
@@ -107,16 +123,27 @@ class _ProjectViewState extends State<ProjectView> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  ElevatedButton.icon(
-                    style: ElevatedButton.styleFrom(
-                      primary: Colors.green,
-                    ),
-                    onPressed: () {
-                      launchToLG(args);
-                    },
-                    label: Text('Launch'),
-                    icon: Icon(Icons.play_circle_fill_outlined),
-                  ),
+                  !isOpen
+                      ? ElevatedButton.icon(
+                          style: ElevatedButton.styleFrom(
+                            primary: Colors.green,
+                          ),
+                          onPressed: () {
+                            launchToLG(args);
+                          },
+                          label: Text('Launch'),
+                          icon: Icon(Icons.play_circle_fill_outlined),
+                        )
+                      : ElevatedButton.icon(
+                          style: ElevatedButton.styleFrom(
+                            primary: Colors.red,
+                          ),
+                          onPressed: () {
+                            cleanVisualization();
+                          },
+                          label: Text('Clean'),
+                          icon: Icon(Icons.clear_rounded),
+                        ),
                   ElevatedButton.icon(
                     style: ElevatedButton.styleFrom(
                       primary: Colors.blue,
