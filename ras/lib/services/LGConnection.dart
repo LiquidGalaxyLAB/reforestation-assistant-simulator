@@ -11,7 +11,7 @@ class LGConnection {
         project.geodata.areaPolygon.coord.length > 0) {
       return _createLocalFile(kml, project);
     }
-    return Future.error('NO GEODATA TO UPLOAD TO LG');
+    return Future.error('nogeodata');
   }
 
   Future cleanVisualization() async {
@@ -27,10 +27,9 @@ class LGConnection {
     try {
       await client.connect();
       return await client.execute('> /var/www/html/kmls.txt');
-    }
-    catch(e) {
+    } catch (e) {
       print('Could not connect to host LG');
-      return e;
+      return Future.error(e);
     }
   }
 
@@ -92,11 +91,11 @@ class LGConnection {
       );
       await client.execute(
           'echo "http://lg1:81/${project.projectName}.kml" > /var/www/html/kmls.txt');
-      return await client
-          .execute('echo "flytoview=${flyto.generateLinearString()}" > /tmp/query.txt');
+      return await client.execute(
+          'echo "flytoview=${flyto.generateLinearString()}" > /tmp/query.txt');
     } catch (e) {
       print('Could not connect to host LG');
-      return e;
+      return Future.error(e);
     }
   }
 }

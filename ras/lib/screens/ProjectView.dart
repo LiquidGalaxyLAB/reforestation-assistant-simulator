@@ -33,6 +33,11 @@ class _ProjectViewState extends State<ProjectView> {
       });
     }).catchError((onError) {
       print('oh no $onError');
+      if (onError == 'nogeodata')
+        showAlertDialog('No GeoData',
+            'It looks like you haven\'t added any geodata to this project. Use the map on area definition to place seeds and mark areas');
+      showAlertDialog('Error launching!',
+          'An error occurred while trying to connect to LG');
     });
   }
 
@@ -43,7 +48,34 @@ class _ProjectViewState extends State<ProjectView> {
       });
     }).catchError((onError) {
       print('oh no $onError');
+      showAlertDialog('Error launching!',
+          'An error occurred while trying to connect to LG');
     });
+  }
+
+  showAlertDialog(String title, String msg) {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text('$title'),
+                IconButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  icon: Icon(
+                    Icons.close,
+                    color: Colors.red,
+                  ),
+                ),
+              ],
+            ),
+            content: Text('$msg'),
+          );
+        });
   }
 
   showDeleteDialog(String title, String msg, String id) {
