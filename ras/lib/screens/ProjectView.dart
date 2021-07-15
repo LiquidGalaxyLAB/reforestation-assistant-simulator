@@ -340,7 +340,7 @@ class _ProjectViewState extends State<ProjectView> {
                     Item('PH', args.project.ph.toString()),
                     Item('Fractured', args.project.fractured ? 'Yes' : 'No'),
                     Item('Hummus presence', args.project.hummus.toString()),
-                    Item('Inclination', args.project.inclination.toString()),
+                    Item('Inclination', args.project.inclination.toString() + '%' +' | ${(args.project.inclination / 100) * 360}°'),
                   ],
                 ),
               ),

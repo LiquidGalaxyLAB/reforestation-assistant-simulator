@@ -1428,7 +1428,7 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                             padding:
                                 const EdgeInsets.only(top: 25.0, bottom: 5),
                             child: Text(
-                              'Area Inclination (% or angle)',
+                              'Area Inclination (%)',
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: 16,
@@ -1449,7 +1449,7 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                               ),
                               IconButton(
                                   onPressed: () {
-                                    showHelpDialog('Area Inclination (% or angle)', 'Inclination in % of the area.');
+                                    showHelpDialog('Area Inclination (%)', 'Inclination in % of the area.');
                                   },
                                   icon: Icon(Icons.help))
                             ],
