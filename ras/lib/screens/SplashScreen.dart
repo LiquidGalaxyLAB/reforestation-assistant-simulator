@@ -63,7 +63,7 @@ class _SplashScreenState extends State<SplashScreen> {
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal:20.0),
-                child: Text('Reforestation Assistant', textAlign: TextAlign.center, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30, color: Colors.grey.shade700),),
+                child: Text('Reforestation Assistant & Simulator', textAlign: TextAlign.center, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30, color: Colors.grey.shade700),),
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -169,7 +169,7 @@ class _SplashScreenState extends State<SplashScreen> {
                         fit: BoxFit.contain,
                       ),
                     ),
-                    width: screenSize.width / 5,
+                    width: screenSize.width / 3,
                   ),
                 ],
               ),
