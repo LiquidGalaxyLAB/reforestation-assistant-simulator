@@ -127,12 +127,6 @@ class _SeedListState extends State<SeedList> {
                               },
                               icon: Icon(Icons.search),
                             ),
-                            IconButton(
-                              onPressed: () {
-                                // TODO: Filter
-                              },
-                              icon: Icon(Icons.filter_list),
-                            ),
                           ],
                         ),
                       ],
