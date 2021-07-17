@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ras/services/Authentication.dart';
 import 'package:ssh/ssh.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:ras/widgets/AppBar.dart';
@@ -49,13 +50,27 @@ class _SettingsState extends State<Settings> {
                   onPressed: () {
                     Navigator.of(context).pop();
                   },
-                  icon: Icon(Icons.close, color: Colors.red,),
+                  icon: Icon(
+                    Icons.close,
+                    color: Colors.red,
+                  ),
                 ),
               ],
             ),
             content: Text('$msg'),
           );
         });
+  }
+
+  signinWithGoogle() async {
+    try {
+      await Authentication().handleSignIn();
+      setState(() {
+        isLoggedIn = true;
+      });
+    } catch (e) {
+      print('Error $e');
+    }
   }
 
   init() async {
@@ -79,7 +94,9 @@ class _SettingsState extends State<Settings> {
     return Scaffold(
         appBar: PreferredSize(
           preferredSize: const Size.fromHeight(50),
-          child: MyAppBar(isHome: false,),
+          child: MyAppBar(
+            isHome: false,
+          ),
         ),
         body: SingleChildScrollView(
           child: Padding(
@@ -157,7 +174,7 @@ class _SettingsState extends State<Settings> {
                         onPressed: () {
                           setState(() {
                             // TODO: Implement signin with google
-                            isLoggedIn = true;
+                            signinWithGoogle();
                           });
                         },
                         child: Padding(

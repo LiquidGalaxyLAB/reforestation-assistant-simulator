@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "369651587526",
+    "project_id": "reforestationassistant",
+    "storage_bucket": "reforestationassistant.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:369651587526:android:13f3544bd3bd45ed4cbac7",
+        "android_client_info": {
+          "package_name": "com.example.ras"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "369651587526-13r5vcfgqlkjo1lkvm99958vd5b3jnva.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.ras",
+            "certificate_hash": "eea2ff13b3255c7b3b62089061ee81cb1aeae729"
+          }
+        },
+        {
+          "client_id": "369651587526-r5g3hp9im3go35afeui84gp2n1gbo6hm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBDP1g3xLald_uJ9WyYjF2FjvrioeAQdgk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "369651587526-r5g3hp9im3go35afeui84gp2n1gbo6hm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
