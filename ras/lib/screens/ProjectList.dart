@@ -13,45 +13,119 @@ class ProjectList extends StatefulWidget {
 
 class _ProjectListState extends State<ProjectList> {
   Future<List<Project>> _listProjects = ProjectRepository().getAll();
+  bool isSearching = false;
+  List<Project> toBeFiltered = [];
+
+  init() async {
+    _listProjects.then((value) {
+      toBeFiltered = value;
+    });
+  }
+
+  void filterSearchResults(String query) {
+    List<Project> dummySearchList = [];
+    dummySearchList.addAll(toBeFiltered);
+    if (query.isNotEmpty) {
+      List<Project> dummyListData = [];
+      dummySearchList.forEach((item) {
+        if (item.projectName.toLowerCase().contains(query.toLowerCase())) {
+          dummyListData.add(item);
+        }
+      });
+      setState(() {
+        toBeFiltered.clear();
+        toBeFiltered.addAll(dummyListData);
+      });
+      return;
+    } else {
+      setState(() {
+        _listProjects = ProjectRepository().getAll();
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
+    init();
+
     return Stack(
       children: [
         Column(
           children: [
-            // ElevatedButton(
-            //   child: Text('DEMO TESTS'),
-            //   onPressed: () {
-            //     Navigator.pushNamed(context, '/test');
-            //   },
-            // ),
-            Padding(
-              padding: const EdgeInsets.all(15.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'PROJECTS',
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-                  ),
-                  ElevatedButton.icon(
-                      onPressed: () {
-                        setState(() {
-                          _listProjects = ProjectRepository().getAll();
-                        });
+            !isSearching
+                ? Padding(
+                    padding: const EdgeInsets.all(15.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'Projects',
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 25),
+                        ),
+                        Row(
+                          children: [
+                            IconButton(
+                              onPressed: () {
+                                setState(() {
+                                  _listProjects = ProjectRepository().getAll();
+                                });
+                              },
+                              icon: Icon(Icons.refresh),
+                            ),
+                            IconButton(
+                              onPressed: () {
+                                setState(() {
+                                  isSearching = true;
+                                });
+                              },
+                              icon: Icon(Icons.search),
+                            ),
+                            IconButton(
+                              onPressed: () {
+                                // TODO: Filter
+                              },
+                              icon: Icon(Icons.filter_list),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  )
+                : Padding(
+                    padding: const EdgeInsets.all(15.0),
+                    child: TextField(
+                      onChanged: (value) {
+                        filterSearchResults(value);
                       },
-                      icon: Icon(Icons.refresh),
-                      label: Text('Refresh Table')),
-                ],
-              ),
-            ),
+                      decoration: InputDecoration(
+                        filled: true,
+                        labelText: 'Search',
+                        suffixIcon: IconButton(
+                          onPressed: () {
+                            setState(() {
+                              isSearching = false;
+                              _listProjects = ProjectRepository().getAll();
+                            });
+                          },
+                          icon: Icon(Icons.clear),
+                        ),
+                      ),
+                    ),
+                  ),
             Expanded(
               child: FutureBuilder(
                   future: _listProjects,
                   builder: (BuildContext context, AsyncSnapshot snapshot) {
                     if (snapshot.hasData) {
                       List<Project> data = snapshot.data;
+
+                      if (data.length <= 0)
+                        return Padding(
+                          padding: const EdgeInsets.symmetric(vertical:10.0),
+                          child: Text('No results', style: TextStyle(color: Colors.grey),),
+                        );
+
                       return ListView.builder(
                           itemCount: snapshot.data.length,
                           itemBuilder: (context, index) {
@@ -115,7 +189,7 @@ class _ProjectListState extends State<ProjectList> {
                                                     fontSize: 18),
                                               ),
                                               Text(
-                                                '${data[index].dateOfProject.toString().substring(0,10)}',
+                                                '${data[index].dateOfProject.toString().substring(0, 10)}',
                                                 style: TextStyle(fontSize: 18),
                                               ),
                                             ],

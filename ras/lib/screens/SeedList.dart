@@ -14,6 +14,14 @@ class SeedList extends StatefulWidget {
 
 class _SeedListState extends State<SeedList> {
   Future<List<Seed>> _listSeeds = SeedRepository().getAll();
+  bool isSearching = false;
+  List<Seed> toBeFiltered = [];
+
+  init() async {
+    _listSeeds.then((value) {
+      toBeFiltered = value;
+    });
+  }
 
   showDeleteDialog(String title, String msg, String id) {
     showDialog(
@@ -60,38 +68,113 @@ class _SeedListState extends State<SeedList> {
         });
   }
 
+  void filterSearchResults(String query) {
+    List<Seed> dummySearchList = [];
+    dummySearchList.addAll(toBeFiltered);
+    if (query.isNotEmpty) {
+      List<Seed> dummyListData = [];
+      dummySearchList.forEach((item) {
+        if (item.commonName.toLowerCase().contains(query.toLowerCase())) {
+          dummyListData.add(item);
+        }
+      });
+      setState(() {
+        toBeFiltered.clear();
+        toBeFiltered.addAll(dummyListData);
+      });
+      return;
+    } else {
+      setState(() {
+        _listSeeds = SeedRepository().getAll();
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+    init();
+
     return Stack(
       children: [
         Column(
           children: [
-            Padding(
-              padding: const EdgeInsets.all(15.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'SEEDS',
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-                  ),
-                  ElevatedButton.icon(
-                      onPressed: () {
-                        setState(() {
-                          _listSeeds = SeedRepository().getAll();
-                        });
+            !isSearching
+                ? Padding(
+                    padding: const EdgeInsets.all(15.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'Seeds',
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 25),
+                        ),
+                        Row(
+                          children: [
+                            IconButton(
+                              onPressed: () {
+                                setState(() {
+                                  _listSeeds = SeedRepository().getAll();
+                                });
+                              },
+                              icon: Icon(Icons.refresh),
+                            ),
+                            IconButton(
+                              onPressed: () {
+                                setState(() {
+                                  isSearching = true;
+                                });
+                              },
+                              icon: Icon(Icons.search),
+                            ),
+                            IconButton(
+                              onPressed: () {
+                                // TODO: Filter
+                              },
+                              icon: Icon(Icons.filter_list),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  )
+                : Padding(
+                    padding: const EdgeInsets.all(15.0),
+                    child: TextField(
+                      onChanged: (value) {
+                        filterSearchResults(value);
                       },
-                      icon: Icon(Icons.refresh),
-                      label: Text('Refresh Table')),
-                ],
-              ),
-            ),
+                      decoration: InputDecoration(
+                        filled: true,
+                        labelText: 'Search',
+                        suffixIcon: IconButton(
+                          onPressed: () {
+                            setState(() {
+                              isSearching = false;
+                              _listSeeds = SeedRepository().getAll();
+                            });
+                          },
+                          icon: Icon(Icons.clear),
+                        ),
+                      ),
+                    ),
+                  ),
             Expanded(
               child: FutureBuilder(
                   future: _listSeeds,
                   builder: (BuildContext context, AsyncSnapshot snapshot) {
                     if (snapshot.hasData) {
                       List<Seed> data = snapshot.data;
+
+                      if (data.length <= 0)
+                        return Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 10.0),
+                          child: Text(
+                            'No results',
+                            style: TextStyle(color: Colors.grey),
+                          ),
+                        );
+
                       return ListView.builder(
                           itemCount: snapshot.data.length,
                           itemBuilder: (context, index) {
@@ -185,13 +268,13 @@ class _SeedListState extends State<SeedList> {
                                       Text('Estimated final height (meters)'),
                                 ),
                                 ListTile(
-                                  title: Text(
-                                      '€${data[index].seedCost} each 1kg'),
+                                  title:
+                                      Text('€${data[index].seedCost} each 1kg'),
                                   subtitle: Text('Seed Cost (1kg)'),
                                 ),
                                 ListTile(
-                                  title: Text(
-                                      '€${data[index].establishmentCost}'),
+                                  title:
+                                      Text('€${data[index].establishmentCost}'),
                                   subtitle: Text('Establishment cost'),
                                 ),
                               ],
