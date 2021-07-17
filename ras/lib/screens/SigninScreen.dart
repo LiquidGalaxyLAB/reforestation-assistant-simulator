@@ -44,7 +44,7 @@ class _SignInScreenState extends State<SignInScreen> {
                       ),
                     ),
                     Text(
-                      'RAS offers integration with Google Drive, signin with Google to integrate or start without authentication. \n\nYou can choose to signin with Google at any time by going to the settings page',
+                      'RAS offers integration with Google Drive, sign in with Google to integrate or start without authentication. \n\nYou can choose to signin with Google at any time by going to the settings page',
                       textAlign: TextAlign.center,
                       style:
                           TextStyle(fontSize: 20, fontWeight: FontWeight.w300),
@@ -57,7 +57,7 @@ class _SignInScreenState extends State<SignInScreen> {
                   backgroundColor: MaterialStateProperty.all(Colors.blue),
                   shape: MaterialStateProperty.all(
                     RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(40),
+                      borderRadius: BorderRadius.circular(10),
                     ),
                   ),
                 ),
@@ -132,7 +132,7 @@ class _GoogleSignInButtonState extends State<GoogleSignInButton> {
                 backgroundColor: MaterialStateProperty.all(Colors.white),
                 shape: MaterialStateProperty.all(
                   RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(40),
+                    borderRadius: BorderRadius.circular(10),
                   ),
                 ),
               ),
