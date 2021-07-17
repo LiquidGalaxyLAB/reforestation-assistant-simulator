@@ -25,6 +25,10 @@ class Authentication {
     return firebaseApp;
   }
 
+  static User? currentUser() {
+    return FirebaseAuth.instance.currentUser;
+  }
+
   static Future<void> signOut({required BuildContext context}) async {
     final GoogleSignIn googleSignIn = GoogleSignIn();
     try {

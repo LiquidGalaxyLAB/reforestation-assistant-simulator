@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:ras/services/Authentication.dart';
 import 'package:ssh/ssh.dart';
@@ -16,6 +17,7 @@ class _SettingsState extends State<Settings> {
   TextEditingController password = TextEditingController();
 
   bool _isSigningOut = false;
+  User? currentUser = Authentication.currentUser();
 
   connect() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
@@ -64,8 +66,6 @@ class _SettingsState extends State<Settings> {
         });
   }
 
-  logout() {}
-
   init() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     ipAddress.text = preferences.getString('master_ip') ?? '';
@@ -96,13 +96,115 @@ class _SettingsState extends State<Settings> {
             padding:
                 const EdgeInsets.symmetric(vertical: 20.0, horizontal: 20.0),
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
+                currentUser != null
+                    ? ListTile(
+                        title: Text('${currentUser!.displayName}'),
+                        subtitle: Text('${currentUser!.email}'),
+                        contentPadding: EdgeInsets.zero,
+                        trailing: _isSigningOut
+                            ? CircularProgressIndicator(
+                                valueColor:
+                                    AlwaysStoppedAnimation<Color>(Colors.white),
+                              )
+                            : ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                  primary: Colors.red,
+                                  side: BorderSide(color: Colors.red, width: 1),
+                                ),
+                                onPressed: () async {
+                                  await Authentication.signOut(
+                                      context: context);
+                                  SharedPreferences preferences =
+                                      await SharedPreferences.getInstance();
+                                  preferences.setBool('unauthenticated', false);
+                                  Navigator.of(context).pushNamed('/login');
+                                },
+                                child: Padding(
+                                  padding:
+                                      EdgeInsets.only(top: 8.0, bottom: 8.0),
+                                  child: Text(
+                                    'LOGOUT',
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                        leading: currentUser!.photoURL != null
+                            ? ClipOval(
+                                child: Material(
+                                  color: Colors.grey.shade100,
+                                  child: Image.network(
+                                    currentUser!.photoURL!,
+                                    fit: BoxFit.fitHeight,
+                                  ),
+                                ),
+                              )
+                            : ClipOval(
+                                child: Material(
+                                  color: Colors.grey.shade100,
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(16.0),
+                                    child: Icon(Icons.person,
+                                        size: 60, color: Colors.blue),
+                                  ),
+                                ),
+                              ),
+                      )
+                    : Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          Text(
+                            'To Connect to Google Drive',
+                            textAlign: TextAlign.start,
+                            style: TextStyle(
+                                fontSize: 20, fontWeight: FontWeight.bold),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 8.0),
+                            child: ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                primary: Colors.white,
+                              ),
+                              onPressed: () async {
+                                SharedPreferences preferences =
+                                    await SharedPreferences.getInstance();
+                                preferences.setBool('unauthenticated', false);
+                                Navigator.of(context).pushNamed('/login');
+                              },
+                              child: Padding(
+                                padding: EdgeInsets.all(10),
+                                child: Wrap(
+                                  crossAxisAlignment: WrapCrossAlignment.center,
+                                  children: [
+                                    Image.asset(
+                                      'assets/google_icon.png',
+                                      scale: 45,
+                                    ),
+                                    SizedBox(width: 12),
+                                    Text(
+                                      'Sign in with Google',
+                                      style: TextStyle(
+                                          color: Colors.black54,
+                                          fontWeight: FontWeight.w700,
+                                          fontSize: 20),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
                 Padding(
-                  padding: const EdgeInsets.only(bottom: 20.0),
+                  padding: const EdgeInsets.only(bottom: 10.0, top: 10),
                   child: Text(
                     'Liquid Galaxy Connection',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+                    textAlign: TextAlign.start,
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                   ),
                 ),
                 Padding(
@@ -151,87 +253,14 @@ class _SettingsState extends State<Settings> {
                   color: Colors.grey,
                   thickness: 1,
                 ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 20.0),
-                  child: Text(
-                    'Google Drive Integration',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+                ListTile(
+                  leading: Text('🇺🇸', style: TextStyle(fontSize: 20),),
+                  title: Text('English (US)'),
+                  trailing: IconButton(
+                    onPressed: () {},
+                    icon: Icon(Icons.language, color: Colors.blue,),
                   ),
                 ),
-                ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    primary: Colors.white,
-                  ),
-                  onPressed: () async {
-                    SharedPreferences preferences =
-                        await SharedPreferences.getInstance();
-                    preferences.setBool('unauthenticated', false);
-                    Navigator.of(context).pushNamed('/login');
-                  },
-                  child: Padding(
-                    padding: EdgeInsets.all(10),
-                    child: Wrap(
-                      crossAxisAlignment: WrapCrossAlignment.center,
-                      children: [
-                        Image.asset(
-                          'assets/google_icon.png',
-                          scale: 45,
-                        ),
-                        SizedBox(width: 12),
-                        Text(
-                          'Sign in with Google',
-                          style: TextStyle(
-                              color: Colors.black54,
-                              fontWeight: FontWeight.w700,
-                              fontSize: 20),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                _isSigningOut
-                    ? CircularProgressIndicator(
-                        valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
-                      )
-                    : ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          primary: Colors.red,
-                          side: BorderSide(color: Colors.red, width: 1),
-                        ),
-                        onPressed: () async {
-                          await Authentication.signOut(context: context);
-                          SharedPreferences preferences =
-                              await SharedPreferences.getInstance();
-                          preferences.setBool('unauthenticated', false);
-                          Navigator.of(context).pushNamed('/login');
-                        },
-                        child: Padding(
-                          padding: EdgeInsets.only(top: 8.0, bottom: 8.0),
-                          child: Text(
-                            'Sign Out',
-                            style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white,
-                              letterSpacing: 2,
-                            ),
-                          ),
-                        ),
-                      ),
-                // Padding(
-                //   padding: const EdgeInsets.symmetric(vertical: 20.0),
-                //   child: ElevatedButton(
-                //     style: ElevatedButton.styleFrom(
-                //       primary: Colors.red,
-                //       side: BorderSide(color: Colors.red, width: 1),
-                //     ),
-                //     onPressed: () {
-                //       logout();
-                //     },
-                //     child: Text('LOGOUT'),
-                //   ),
-                // )
               ],
             ),
           ),
