@@ -15,6 +15,8 @@ class _SettingsState extends State<Settings> {
   TextEditingController ipAddress = TextEditingController();
   TextEditingController password = TextEditingController();
 
+  bool _isSigningOut = false;
+
   connect() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     await preferences.setString('master_ip', ipAddress.text);
@@ -62,16 +64,7 @@ class _SettingsState extends State<Settings> {
         });
   }
 
-  signinWithGoogle() async {
-    try {
-      await Authentication().handleSignIn();
-      setState(() {
-        isLoggedIn = true;
-      });
-    } catch (e) {
-      print('Error $e');
-    }
-  }
+  logout() {}
 
   init() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
@@ -166,68 +159,79 @@ class _SettingsState extends State<Settings> {
                     style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
                   ),
                 ),
-                !isLoggedIn
-                    ? ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          primary: Colors.white,
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    primary: Colors.white,
+                  ),
+                  onPressed: () async {
+                    SharedPreferences preferences =
+                        await SharedPreferences.getInstance();
+                    preferences.setBool('unauthenticated', false);
+                    Navigator.of(context).pushNamed('/login');
+                  },
+                  child: Padding(
+                    padding: EdgeInsets.all(10),
+                    child: Wrap(
+                      crossAxisAlignment: WrapCrossAlignment.center,
+                      children: [
+                        Image.asset(
+                          'assets/google_icon.png',
+                          scale: 45,
                         ),
-                        onPressed: () {
-                          setState(() {
-                            // TODO: Implement signin with google
-                            signinWithGoogle();
-                          });
+                        SizedBox(width: 12),
+                        Text(
+                          'Sign in with Google',
+                          style: TextStyle(
+                              color: Colors.black54,
+                              fontWeight: FontWeight.w700,
+                              fontSize: 20),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                _isSigningOut
+                    ? CircularProgressIndicator(
+                        valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+                      )
+                    : ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          primary: Colors.red,
+                          side: BorderSide(color: Colors.red, width: 1),
+                        ),
+                        onPressed: () async {
+                          await Authentication.signOut(context: context);
+                          SharedPreferences preferences =
+                              await SharedPreferences.getInstance();
+                          preferences.setBool('unauthenticated', false);
+                          Navigator.of(context).pushNamed('/login');
                         },
                         child: Padding(
-                          padding: EdgeInsets.all(10),
-                          child: Wrap(
-                            crossAxisAlignment: WrapCrossAlignment.center,
-                            children: [
-                              Image.asset(
-                                'assets/google_icon.png',
-                                scale: 45,
-                              ),
-                              SizedBox(width: 12),
-                              Text(
-                                'Sign in with Google',
-                                style: TextStyle(
-                                    color: Colors.black54,
-                                    fontWeight: FontWeight.w700,
-                                    fontSize: 20),
-                              ),
-                            ],
+                          padding: EdgeInsets.only(top: 8.0, bottom: 8.0),
+                          child: Text(
+                            'Sign Out',
+                            style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                              letterSpacing: 2,
+                            ),
                           ),
                         ),
-                      )
-                    : SizedBox(),
-                isLoggedIn
-                    ? Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 0.0),
-                        child: Text(
-                          'You are logged in as XXXXXXXX',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontSize: 18,
-                          ),
-                        ))
-                    : SizedBox(),
-                isLoggedIn
-                    ? Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 20.0),
-                        child: OutlinedButton(
-                          style: OutlinedButton.styleFrom(
-                            primary: Colors.red,
-                            side: BorderSide(color: Colors.red, width: 1),
-                          ),
-                          onPressed: () {
-                            setState(() {
-                              // TODO: Implement Logout
-                              isLoggedIn = false;
-                            });
-                          },
-                          child: Text('LOGOUT'),
-                        ),
-                      )
-                    : SizedBox(),
+                      ),
+                // Padding(
+                //   padding: const EdgeInsets.symmetric(vertical: 20.0),
+                //   child: ElevatedButton(
+                //     style: ElevatedButton.styleFrom(
+                //       primary: Colors.red,
+                //       side: BorderSide(color: Colors.red, width: 1),
+                //     ),
+                //     onPressed: () {
+                //       logout();
+                //     },
+                //     child: Text('LOGOUT'),
+                //   ),
+                // )
               ],
             ),
           ),

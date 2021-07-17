@@ -37,7 +37,7 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   pushToHome() {
-    Navigator.pushNamed(context, '/');
+    Navigator.pushNamed(context, '/login');
   }
 
   @override

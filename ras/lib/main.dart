@@ -11,6 +11,7 @@ import 'package:ras/screens/ProjectView.dart';
 import 'package:ras/screens/SeedForm.dart';
 import 'package:ras/screens/Settings.dart';
 import 'package:ras/screens/MapBuilder.dart';
+import 'package:ras/screens/SigninScreen.dart';
 import 'package:ras/screens/SplashScreen.dart';
 import 'package:ras/screens/TestPlayground.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -56,6 +57,7 @@ class MyApp extends StatelessWidget {
       initialRoute: '/splash',
       routes: {
         '/': (context) => MyHomePage(),
+        '/login': (context) => SignInScreen(),
         '/splash': (context) => SplashScreen(),
         '/map': (context) => MapBuilder(),
         '/settings': (context) => Settings(),
