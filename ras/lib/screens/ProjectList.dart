@@ -15,6 +15,8 @@ class _ProjectListState extends State<ProjectList> {
   Future<List<Project>> _listProjects = ProjectRepository().getAll();
   bool isSearching = false;
   List<Project> toBeFiltered = [];
+  bool filterByNewest = false;
+  bool filterByOldest = false;
 
   init() async {
     _listProjects.then((value) {
@@ -42,6 +44,61 @@ class _ProjectListState extends State<ProjectList> {
         _listProjects = ProjectRepository().getAll();
       });
     }
+  }
+
+  void filterBottomSheet(BuildContext context) {
+    showModalBottomSheet(
+        context: context,
+        builder: (BuildContext bc) {
+          return Column(
+            children: [
+              Container(
+                width: double.infinity,
+                height: 60,
+                decoration: BoxDecoration(
+                  color: Colors.blue.shade900,
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        'Filter by',
+                        style: TextStyle(color: Colors.white, fontSize: 25),
+                      ),
+                      IconButton(
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                        icon: Icon(
+                          Icons.clear,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              CheckboxListTile(
+                  title: Text('Newest'),
+                  value: filterByNewest,
+                  onChanged: (value) {
+                    setState(() {
+                      if (value != null) filterByNewest = !filterByNewest;
+                    });
+                  }),
+              CheckboxListTile(
+                  title: Text('Oldest'),
+                  value: filterByOldest,
+                  onChanged: (value) {
+                    setState(() {
+                      if (value != null) filterByOldest = !filterByOldest;
+                    });
+                  }),
+            ],
+          );
+        });
   }
 
   @override
@@ -83,7 +140,7 @@ class _ProjectListState extends State<ProjectList> {
                             ),
                             IconButton(
                               onPressed: () {
-                                // TODO: Filter
+                                filterBottomSheet(context);
                               },
                               icon: Icon(Icons.filter_list),
                             ),
@@ -122,8 +179,11 @@ class _ProjectListState extends State<ProjectList> {
 
                       if (data.length <= 0)
                         return Padding(
-                          padding: const EdgeInsets.symmetric(vertical:10.0),
-                          child: Text('No results', style: TextStyle(color: Colors.grey),),
+                          padding: const EdgeInsets.symmetric(vertical: 10.0),
+                          child: Text(
+                            'No results',
+                            style: TextStyle(color: Colors.grey),
+                          ),
                         );
 
                       return ListView.builder(
