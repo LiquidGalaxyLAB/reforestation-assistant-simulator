@@ -24,7 +24,7 @@ class _ProjectListState extends State<ProjectList> {
     });
   }
 
-  void filterSearchResults(String query) {
+  filterSearchResults(String query) {
     List<Project> dummySearchList = [];
     dummySearchList.addAll(toBeFiltered);
     if (query.isNotEmpty) {
@@ -42,6 +42,34 @@ class _ProjectListState extends State<ProjectList> {
     } else {
       setState(() {
         _listProjects = ProjectRepository().getAll();
+        filterByNewest = false;
+        filterByOldest = false;
+      });
+    }
+  }
+
+  filterByAttributes() {
+    List<Project> dummySearchList = [];
+    dummySearchList.addAll(toBeFiltered);
+    if (filterByNewest) {
+      dummySearchList.sort((a, b) {
+        return a.dateOfProject.compareTo(b.dateOfProject);
+      });
+      setState(() {
+        toBeFiltered.clear();
+        toBeFiltered.addAll(dummySearchList);
+      });
+    } else if (filterByOldest) {
+      dummySearchList.sort((a, b) {
+        return b.dateOfProject.compareTo(a.dateOfProject);
+      });
+      setState(() {
+        toBeFiltered.clear();
+        toBeFiltered.addAll(dummySearchList);
+      });
+    } else {
+      setState(() {
+        _listProjects = ProjectRepository().getAll();
       });
     }
   }
@@ -50,54 +78,76 @@ class _ProjectListState extends State<ProjectList> {
     showModalBottomSheet(
         context: context,
         builder: (BuildContext bc) {
-          return Column(
-            children: [
-              Container(
-                width: double.infinity,
-                height: 60,
-                decoration: BoxDecoration(
-                  color: Colors.blue.shade900,
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        'Filter by',
-                        style: TextStyle(color: Colors.white, fontSize: 25),
-                      ),
-                      IconButton(
-                        onPressed: () {
-                          Navigator.of(context).pop();
-                        },
-                        icon: Icon(
-                          Icons.clear,
-                          color: Colors.white,
+          return StatefulBuilder(
+              builder: (BuildContext context, StateSetter bottomState) {
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Container(
+                  width: double.infinity,
+                  height: 60,
+                  decoration: BoxDecoration(
+                    color: Colors.blue.shade900,
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'Filter by',
+                          style: TextStyle(color: Colors.white, fontSize: 25),
                         ),
-                      ),
-                    ],
+                        IconButton(
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                          icon: Icon(
+                            Icons.clear,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
-              ),
-              CheckboxListTile(
-                  title: Text('Newest'),
-                  value: filterByNewest,
-                  onChanged: (value) {
-                    setState(() {
-                      if (value != null) filterByNewest = !filterByNewest;
-                    });
-                  }),
-              CheckboxListTile(
-                  title: Text('Oldest'),
-                  value: filterByOldest,
-                  onChanged: (value) {
-                    setState(() {
-                      if (value != null) filterByOldest = !filterByOldest;
-                    });
-                  }),
-            ],
-          );
+                CheckboxListTile(
+                    title: Text('Newest'),
+                    value: filterByNewest,
+                    onChanged: (value) {
+                      setState(() {
+                        if (value != null) {
+                          filterByNewest = !filterByNewest;
+                          if (value) filterByOldest = false;
+                        }
+                      });
+
+                      bottomState(() {});
+                    }),
+                CheckboxListTile(
+                    title: Text('Oldest'),
+                    value: filterByOldest,
+                    onChanged: (value) {
+                      setState(() {
+                        if (value != null) {
+                          filterByOldest = !filterByOldest;
+                          if (value) filterByNewest = false;
+                        }
+                      });
+                      bottomState(() {});
+                    }),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 15.0),
+                  child: ElevatedButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                        filterByAttributes();
+                      },
+                      child: Text('Search')),
+                )
+              ],
+            );
+          });
         });
   }
 
