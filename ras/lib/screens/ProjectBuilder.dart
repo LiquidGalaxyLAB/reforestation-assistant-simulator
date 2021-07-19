@@ -21,6 +21,7 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
   Future<List<Seed>> _listSeeds = SeedRepository().getAll();
 
   int _currentStep = 0;
+  bool onEnter = true;
   StepperType stepperType = StepperType.vertical;
   final _formKey = GlobalKey<FormState>();
   // BASIC INFORMATION
@@ -377,7 +378,10 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
   Widget build(BuildContext context) {
     final args =
         ModalRoute.of(context)!.settings.arguments as ProjectBuilderArgs;
-    init(args);
+    if(onEnter) {
+      init(args);
+      onEnter = false;
+    }
 
     return Scaffold(
       appBar: PreferredSize(
@@ -1276,7 +1280,7 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                             padding:
                                 const EdgeInsets.only(top: 25.0, bottom: 5),
                             child: Text(
-                              'Soil PH (Number, 1-17)',
+                              'Soil PH (Number, 0-14)',
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: 16,
