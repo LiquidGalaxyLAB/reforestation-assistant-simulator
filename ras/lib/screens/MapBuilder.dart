@@ -209,7 +209,14 @@ class _MapBuilderState extends State<MapBuilder> {
     Navigator.pop(context, geodata);
   }
 
-  init(MapBuilderArgs args) {
+  init(MapBuilderArgs args) async {
+    await BitmapDescriptor.fromAssetImage(
+            ImageConfiguration(devicePixelRatio: 2.5, size: Size(1, 1)),
+            'assets/polyVertex.png')
+        .then((onValue) {
+      polygonVertexIcon = onValue;
+    });
+
     if (!isLoaded) {
       // init markers
       args.map.markers.forEach((element) {
@@ -275,7 +282,8 @@ class _MapBuilderState extends State<MapBuilder> {
 
   @override
   void initState() {
-     BitmapDescriptor.fromAssetImage(ImageConfiguration(devicePixelRatio: 2.5, size: Size(1,1)),
+    BitmapDescriptor.fromAssetImage(
+            ImageConfiguration(devicePixelRatio: 2.5, size: Size(1, 1)),
             'assets/polyVertex.png')
         .then((onValue) {
       polygonVertexIcon = onValue;
