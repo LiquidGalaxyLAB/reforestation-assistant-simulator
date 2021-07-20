@@ -3,6 +3,7 @@ import 'package:ras/models/Project.dart';
 import 'package:ras/models/kml/LookAt.dart';
 import 'dart:io';
 import 'package:shared_preferences/shared_preferences.dart';
+// ignore: import_of_legacy_library_into_null_safe
 import 'package:ssh/ssh.dart';
 
 class LGConnection {

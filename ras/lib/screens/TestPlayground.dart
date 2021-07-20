@@ -3,6 +3,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:ras/widgets/AppBar.dart';
 import 'dart:io';
 import 'package:shared_preferences/shared_preferences.dart';
+// ignore: import_of_legacy_library_into_null_safe
 import 'package:ssh/ssh.dart';
 
 class TestPlaygrounf extends StatefulWidget {

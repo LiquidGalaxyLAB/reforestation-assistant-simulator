@@ -23,7 +23,7 @@ void main() {
 class MyApp extends StatelessWidget {
   checkLocalStorage() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
-    bool? isFirst = await preferences.getBool('first_time');
+    bool? isFirst = preferences.getBool('first_time');
     if (isFirst == null || isFirst) {
       await preferences.setBool('first_time', false);
       populateAppWithMockData();

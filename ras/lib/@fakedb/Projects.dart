@@ -7,6 +7,7 @@ import 'package:ras/models/kml/LookAt.dart';
 import 'package:ras/models/kml/Placemark.dart';
 import 'package:ras/models/kml/Point.dart';
 import 'package:ras/models/kml/Polygon.dart' as poly;
+// ignore: import_of_legacy_library_into_null_safe
 import 'package:uuid/uuid.dart';
 
 var uuid = Uuid();
