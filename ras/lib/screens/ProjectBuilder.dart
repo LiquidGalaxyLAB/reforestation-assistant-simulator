@@ -287,7 +287,6 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
       response.then((value) {
         print('Success!!!! $value');
         Navigator.of(context).pop();
-        Navigator.of(context).pop();
       });
       response.catchError((onError) => print('Error $onError'));
     } else {
@@ -321,7 +320,6 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
       Future response = ProjectRepository().update(project, args.project!.id);
       response.then((value) {
         print('Success!!!! $value');
-        Navigator.of(context).pop();
         Navigator.of(context).pop();
       });
       response.catchError((onError) => print('Error $onError'));
@@ -378,7 +376,7 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
   Widget build(BuildContext context) {
     final args =
         ModalRoute.of(context)!.settings.arguments as ProjectBuilderArgs;
-    if(onEnter) {
+    if (onEnter) {
       init(args);
       onEnter = false;
     }
@@ -450,7 +448,8 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                               ),
                               IconButton(
                                   onPressed: () {
-                                    showHelpDialog('Project name', 'A name for the project');
+                                    showHelpDialog('Project name',
+                                        'A name for the project');
                                   },
                                   icon: Icon(Icons.help))
                             ],
@@ -502,7 +501,8 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                               ),
                               IconButton(
                                   onPressed: () {
-                                    showHelpDialog('Date of project', 'Date when the project will be started');
+                                    showHelpDialog('Date of project',
+                                        'Date when the project will be started');
                                   },
                                   icon: Icon(Icons.help))
                             ],
@@ -580,7 +580,8 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                               ),
                               IconButton(
                                   onPressed: () {
-                                    showHelpDialog('Sown mode', 'If the sown method will be either by drone or manually');
+                                    showHelpDialog('Sown mode',
+                                        'If the sown method will be either by drone or manually');
                                   },
                                   icon: Icon(Icons.help))
                             ],
@@ -609,7 +610,8 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                               ),
                               IconButton(
                                   onPressed: () {
-                                    showHelpDialog('Region', 'The region or zone of the project');
+                                    showHelpDialog('Region',
+                                        'The region or zone of the project');
                                   },
                                   icon: Icon(Icons.help))
                             ],
@@ -687,8 +689,8 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                               ),
                               IconButton(
                                   onPressed: () {
-                                    showHelpDialog(
-                                        'Minimum sowing date', 'The earliest date where is possible to perform sowing');
+                                    showHelpDialog('Minimum sowing date',
+                                        'The earliest date where is possible to perform sowing');
                                   },
                                   icon: Icon(Icons.help))
                             ],
@@ -740,8 +742,8 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                               ),
                               IconButton(
                                   onPressed: () {
-                                    showHelpDialog(
-                                        'Maximum sowing date (date)', 'The latest date where is possible to perform the sowing');
+                                    showHelpDialog('Maximum sowing date (date)',
+                                        'The latest date where is possible to perform the sowing');
                                   },
                                   icon: Icon(Icons.help)),
                             ],
@@ -810,7 +812,8 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                               IconButton(
                                   onPressed: () {
                                     showHelpDialog(
-                                        'Sowing Window temperatures (Number, Celsium degrees -10 to 50).', 'The minimum and maximum medium temperature in the time frame of the sowing window.');
+                                        'Sowing Window temperatures (Number, Celsium degrees -10 to 50).',
+                                        'The minimum and maximum medium temperature in the time frame of the sowing window.');
                                   },
                                   icon: Icon(Icons.help))
                             ],
@@ -841,7 +844,8 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                               IconButton(
                                   onPressed: () {
                                     showHelpDialog(
-                                        'Average number of days of rain (Number, 0 to 31)', 'The average number of days that stays raining in each rain. This monthly information is delivered by the closest weather station of the site.');
+                                        'Average number of days of rain (Number, 0 to 31)',
+                                        'The average number of days that stays raining in each rain. This monthly information is delivered by the closest weather station of the site.');
                                   },
                                   icon: Icon(Icons.help))
                             ],
@@ -871,7 +875,9 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                               ),
                               IconButton(
                                   onPressed: () {
-                                    showHelpDialog('Total days of rain (Number, 0 to 31)', 'The total days of rain in a specific month.. This monthly information is delivered by the closest weather station of the site.');
+                                    showHelpDialog(
+                                        'Total days of rain (Number, 0 to 31)',
+                                        'The total days of rain in a specific month.. This monthly information is delivered by the closest weather station of the site.');
                                   },
                                   icon: Icon(Icons.help))
                             ],
@@ -1008,7 +1014,9 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                               ),
                               IconButton(
                                   onPressed: () {
-                                    showHelpDialog('Optimal Surface (% 0 to 100)', '% of surface that is optimal for direct sowing, where the seeds have chance to survival close to nurse plant.');
+                                    showHelpDialog(
+                                        'Optimal Surface (% 0 to 100)',
+                                        '% of surface that is optimal for direct sowing, where the seeds have chance to survival close to nurse plant.');
                                   },
                                   icon: Icon(Icons.help))
                             ],
@@ -1045,7 +1053,9 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                               ),
                               IconButton(
                                   onPressed: () {
-                                    showHelpDialog('Not Valid Surface (% 0 to 100)', '% of surface where seeds will not grow, like rocks or present trees.');
+                                    showHelpDialog(
+                                        'Not Valid Surface (% 0 to 100)',
+                                        '% of surface where seeds will not grow, like rocks or present trees.');
                                   },
                                   icon: Icon(Icons.help))
                             ],
@@ -1082,7 +1092,8 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                               ),
                               IconButton(
                                   onPressed: () {
-                                    showHelpDialog('Empty Land (% 0 to 100)', '% of surface where seeds could grow, but don’t have the optimal conditions because don’t have any nurse plant.');
+                                    showHelpDialog('Empty Land (% 0 to 100)',
+                                        '% of surface where seeds could grow, but don’t have the optimal conditions because don’t have any nurse plant.');
                                   },
                                   icon: Icon(Icons.help))
                             ],
@@ -1130,7 +1141,8 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                               )),
                               IconButton(
                                   onPressed: () {
-                                    showHelpDialog('Orientation', 'The predominant orientation of the area of sowing.');
+                                    showHelpDialog('Orientation',
+                                        'The predominant orientation of the area of sowing.');
                                   },
                                   icon: Icon(Icons.help))
                             ],
@@ -1193,7 +1205,8 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                               IconButton(
                                   onPressed: () {
                                     showHelpDialog(
-                                        'Maximum altitude of the terrain (Meters above sea level)', 'The maximum altitude of the area at the highest point.');
+                                        'Maximum altitude of the terrain (Meters above sea level)',
+                                        'The maximum altitude of the area at the highest point.');
                                   },
                                   icon: Icon(Icons.help))
                             ],
@@ -1223,7 +1236,8 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                               ),
                               IconButton(
                                   onPressed: () {
-                                    showHelpDialog('Maximum distance (meters)', 'Maximum distance that will fly the drone between the take off point and the farthest point.');
+                                    showHelpDialog('Maximum distance (meters)',
+                                        'Maximum distance that will fly the drone between the take off point and the farthest point.');
                                   },
                                   icon: Icon(Icons.help))
                             ],
@@ -1271,7 +1285,8 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                               ),
                               IconButton(
                                   onPressed: () {
-                                    showHelpDialog('Soil Depth (Centimeters)', 'Depth of the soil.');
+                                    showHelpDialog('Soil Depth (Centimeters)',
+                                        'Depth of the soil.');
                                   },
                                   icon: Icon(Icons.help))
                             ],
@@ -1308,7 +1323,8 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                               ),
                               IconButton(
                                   onPressed: () {
-                                    showHelpDialog('Soil PH (Number, 1-14)', 'PH of the soil, if is basic or alkaline');
+                                    showHelpDialog('Soil PH (Number, 1-14)',
+                                        'PH of the soil, if is basic or alkaline');
                                   },
                                   icon: Icon(Icons.help))
                             ],
@@ -1386,7 +1402,8 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                               ),
                               IconButton(
                                   onPressed: () {
-                                    showHelpDialog('Rock fractured (yes/no)', 'If the soil is rocky, if the rocks are fractured or if it is a single piece.');
+                                    showHelpDialog('Rock fractured (yes/no)',
+                                        'If the soil is rocky, if the rocks are fractured or if it is a single piece.');
                                   },
                                   icon: Icon(Icons.help))
                             ],
@@ -1423,7 +1440,9 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                               ),
                               IconButton(
                                   onPressed: () {
-                                    showHelpDialog('Hummus presence (Number, 0 to 10)', 'Presence of hummus, from 0 to 10. 0 for no hummus, and 10 for abundant presence.');
+                                    showHelpDialog(
+                                        'Hummus presence (Number, 0 to 10)',
+                                        'Presence of hummus, from 0 to 10. 0 for no hummus, and 10 for abundant presence.');
                                   },
                                   icon: Icon(Icons.help))
                             ],
@@ -1453,7 +1472,8 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                               ),
                               IconButton(
                                   onPressed: () {
-                                    showHelpDialog('Area Inclination (%)', 'Inclination in % of the area.');
+                                    showHelpDialog('Area Inclination (%)',
+                                        'Inclination in % of the area.');
                                   },
                                   icon: Icon(Icons.help))
                             ],
@@ -1487,10 +1507,11 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                       onPressed: () {
                         if (_formKey.currentState!.validate()) {
                           _saveProject(args);
-                        } else
+                        } else {
                           print('ooppsss throw error');
-                        showHelpDialog('Invalid fields!',
-                            'Some fields have invalid values or are required. Please check them again');
+                          showHelpDialog('Invalid fields!',
+                              'Some fields have invalid values or are required. Please check them again');
+                        }
                       },
                     ),
                   ),
