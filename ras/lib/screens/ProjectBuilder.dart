@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:ras/@fakedb/Projects.dart';
 import 'package:ras/models/Gmap.dart';
 import 'package:ras/models/Project.dart';
 import 'package:ras/models/Seed.dart';
@@ -137,7 +138,10 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                                   title: Text('${data[index].commonName}'),
                                   subtitle:
                                       Text('${data[index].scientificName}'),
-                                  value: seeds.contains(data[index]),
+                                  value: seeds.any((element) =>
+                                      element.id == data[index].id ||
+                                      element.commonName ==
+                                          data[index].commonName),
                                   onChanged: (value) {
                                     setState(() {
                                       if (value != null) {
@@ -146,7 +150,9 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                                             seeds.add(data[index]);
                                           else
                                             seeds.removeWhere((element) =>
-                                                element.id == data[index].id);
+                                                element.id == data[index].id ||
+                                                element.commonName ==
+                                                    data[index].commonName);
                                         });
                                         alertState(() {});
                                       }
@@ -255,6 +261,9 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
   }
 
   _saveProject(ProjectBuilderArgs args) {
+    seeds.forEach((element) {
+      if (element.density == null) element.density = 0;
+    });
     if (args.isNew) {
       Project project = Project(
         '',
@@ -915,6 +924,8 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                                 subtitle: Text('${seeds[i].scientificName}'),
                                 trailing: IconButton(
                                   onPressed: () {
+                                    if (seeds[i].density == null)
+                                      seeds[i].density = 0;
                                     _editSeedDensity(seeds[i]);
                                     density.text = seeds[i].density.toString();
                                   },
