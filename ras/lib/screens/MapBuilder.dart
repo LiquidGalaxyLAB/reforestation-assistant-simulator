@@ -35,6 +35,8 @@ class _MapBuilderState extends State<MapBuilder> {
 
   static bool isLoaded = false;
 
+  late BitmapDescriptor polygonVertexIcon;
+
   Set<Marker> _markers = Set<Marker>();
   List<LatLng> _polygonVertex = [];
   Set<Polygon> _polygons = new Set();
@@ -118,8 +120,7 @@ class _MapBuilderState extends State<MapBuilder> {
             markerId: MarkerId(id),
             position: value,
             draggable: false,
-            icon: BitmapDescriptor.defaultMarkerWithHue(
-                BitmapDescriptor.hueYellow),
+            icon: polygonVertexIcon,
             onTap: () {
               setState(() {
                 currentVertexId = id;
@@ -212,20 +213,40 @@ class _MapBuilderState extends State<MapBuilder> {
     if (!isLoaded) {
       // init markers
       args.map.markers.forEach((element) {
-        Marker m = Marker(
-            markerId: MarkerId(element.id),
-            position: LatLng(element.point.lng, element.point.lat),
-            draggable: true,
-            icon:
-                BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueRed),
-            onTap: () {
-              setState(() {
-                editing = true;
-                currentMarkerId = element.id;
-                shapeType = 1;
+        var contain = args.map.areaPolygon.coord.where((el) =>
+            el.latitude == element.point.lng &&
+            el.longitude == element.point.lat);
+        if (contain.isEmpty) {
+          Marker m = Marker(
+              markerId: MarkerId(element.id),
+              position: LatLng(element.point.lng, element.point.lat),
+              draggable: true,
+              icon: BitmapDescriptor.defaultMarkerWithHue(
+                  BitmapDescriptor.hueRed),
+              onTap: () {
+                setState(() {
+                  editing = false;
+                  currentMarkerId = element.id;
+                  shapeType = 1;
+                });
               });
-            });
-        _markers.add(m);
+          _markers.add(m);
+        } else {
+          Marker vertex = Marker(
+              markerId: MarkerId(element.id),
+              position: LatLng(element.point.lng, element.point.lat),
+              draggable: false,
+              icon: polygonVertexIcon,
+              onTap: () {
+                setState(() {
+                  currentVertexId = element.id;
+                  editing = false;
+                  shapeType = 2;
+                });
+              },
+              onDragEnd: (newValue) {});
+          _markers.add(vertex);
+        }
       });
 
       // init polygons
@@ -250,6 +271,16 @@ class _MapBuilderState extends State<MapBuilder> {
 
       isLoaded = true;
     }
+  }
+
+  @override
+  void initState() {
+     BitmapDescriptor.fromAssetImage(ImageConfiguration(devicePixelRatio: 2.5, size: Size(1,1)),
+            'assets/polyVertex.png')
+        .then((onValue) {
+      polygonVertexIcon = onValue;
+    });
+    super.initState();
   }
 
   @override
@@ -329,7 +360,7 @@ class _MapBuilderState extends State<MapBuilder> {
                           Padding(
                             padding: const EdgeInsets.only(top: 20.0),
                             child: FloatingActionButton(
-                              heroTag: 'btn4',
+                                heroTag: 'btn4',
                                 backgroundColor: Colors.black.withOpacity(0.5),
                                 child: Icon(Icons.place),
                                 onPressed: () {
@@ -356,7 +387,7 @@ class _MapBuilderState extends State<MapBuilder> {
                           Padding(
                             padding: const EdgeInsets.only(top: 20.0),
                             child: FloatingActionButton(
-                              heroTag: 'btn6',
+                                heroTag: 'btn6',
                                 backgroundColor: Colors.black.withOpacity(0.5),
                                 child: Icon(Icons.crop_square),
                                 onPressed: () {
@@ -369,7 +400,7 @@ class _MapBuilderState extends State<MapBuilder> {
                           Padding(
                             padding: const EdgeInsets.only(top: 90.0),
                             child: FloatingActionButton(
-                              heroTag: 'btn7',
+                                heroTag: 'btn7',
                                 backgroundColor: Colors.black.withOpacity(0.5),
                                 child: Icon(Icons.my_location_rounded),
                                 onPressed: () {
