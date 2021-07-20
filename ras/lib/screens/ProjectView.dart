@@ -6,8 +6,8 @@ import 'package:ras/route-args/ProjectBuilderArgs.dart';
 import 'package:ras/route-args/ProjectViewArgs.dart';
 import 'package:ras/services/LGConnection.dart';
 import 'package:ras/widgets/AppBar.dart';
-import 'package:ras/widgets/charts/BarChart.dart';
-import 'package:ras/widgets/charts/PieChart.dart';
+import 'package:ras/widgets/SurvivalInfoChart.dart';
+import 'package:ras/widgets/CO2Chart.dart';
 
 class ProjectView extends StatefulWidget {
   const ProjectView({Key? key}) : super(key: key);
@@ -360,7 +360,7 @@ class _ProjectViewState extends State<ProjectView> {
                       style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
                     ),
                   ),
-                  BarChart(args.project.seeds),
+                  SurvivalInfoChart(args.project.seeds),
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical:28.0),
                     child: Text(
@@ -368,7 +368,7 @@ class _ProjectViewState extends State<ProjectView> {
                       style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
                     ),
                   ),
-                  PieChart(),
+                  CO2Chart(args.project.seeds),
                   ElevatedButton.icon(
                     style: ElevatedButton.styleFrom(
                       primary: Colors.red,

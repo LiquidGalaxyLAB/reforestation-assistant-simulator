@@ -3,20 +3,20 @@ import 'package:syncfusion_flutter_charts/charts.dart';
 
 import 'package:flutter/material.dart';
 
-class BarChart extends StatefulWidget {
+class SurvivalInfoChart extends StatefulWidget {
   final List<Seed> seeds;
-  const BarChart(this.seeds);
+  const SurvivalInfoChart(this.seeds);
 
   @override
-  _BarChartState createState() => _BarChartState(this.seeds);
+  _SurvivalInfoChartState createState() => _SurvivalInfoChartState(this.seeds);
 }
 
-class _BarChartState extends State<BarChart> {
+class _SurvivalInfoChartState extends State<SurvivalInfoChart> {
   late List<ChartData> _chartData;
   late List<LineChartData> _lineChartData;
   final List<Seed> seeds;
 
-  _BarChartState(this.seeds);
+  _SurvivalInfoChartState(this.seeds);
 
   @override
   void initState() {
