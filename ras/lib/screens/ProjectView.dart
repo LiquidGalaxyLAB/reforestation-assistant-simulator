@@ -356,11 +356,11 @@ class _ProjectViewState extends State<ProjectView> {
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical:28.0),
                     child: Text(
-                      'Germination Information',
+                      'Survival Information',
                       style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
                     ),
                   ),
-                  BarChartSample(),
+                  BarChart(args.project.seeds),
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical:28.0),
                     child: Text(
@@ -368,7 +368,7 @@ class _ProjectViewState extends State<ProjectView> {
                       style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
                     ),
                   ),
-                  PieChartSample(args.project.seeds),
+                  PieChart(),
                   ElevatedButton.icon(
                     style: ElevatedButton.styleFrom(
                       primary: Colors.red,
