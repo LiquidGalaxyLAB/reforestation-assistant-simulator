@@ -1,10 +1,12 @@
 import 'dart:async';
+import 'dart:io';
 import 'package:flutter/material.dart';
 
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:ras/models/Gmap.dart';
+import 'package:ras/models/Seed.dart';
 import 'package:ras/models/kml/LookAt.dart';
 import 'package:ras/models/kml/Placemark.dart';
 import 'package:ras/models/kml/Point.dart';
@@ -36,6 +38,7 @@ class _MapBuilderState extends State<MapBuilder> {
   static bool isLoaded = false;
 
   late BitmapDescriptor polygonVertexIcon;
+  late BitmapDescriptor currentSeedMarkerIcon;
 
   Set<Marker> _markers = Set<Marker>();
   List<LatLng> _polygonVertex = [];
@@ -44,6 +47,8 @@ class _MapBuilderState extends State<MapBuilder> {
   var uuid = Uuid();
   String currentMarkerId = '';
   String currentVertexId = '';
+  Seed currentSeedMarker =
+      Seed('', 'Default', '-', 'default', 0, 0, 0, 0, 0, 0);
 
   _setUserLocation() async {
     if (await Permission.location.request().isGranted) {
@@ -66,6 +71,62 @@ class _MapBuilderState extends State<MapBuilder> {
     controller.animateCamera(CameraUpdate.newCameraPosition(cameraPosition));
 
     return LatLng(position.latitude, position.longitude);
+  }
+
+  _selectSeed() {
+    final args = ModalRoute.of(context)!.settings.arguments as MapBuilderArgs;
+    print('aaaaaaaaaaaa ${args.map.seeds}');
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text('Choose seeds'),
+                IconButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  icon: Icon(
+                    Icons.close,
+                    color: Colors.red,
+                  ),
+                ),
+              ],
+            ),
+            content: StatefulBuilder(
+                builder: (BuildContext context, StateSetter alertState) {
+              return Container(
+                width: double.maxFinite,
+                height: double.maxFinite,
+                child: ListView.builder(
+                    itemCount: args.map.seeds.length,
+                    itemBuilder: (context, index) {
+                      Seed seed = args.map.seeds[index];
+                      return ListTile(
+                        title: Text('${seed.commonName}'),
+                        subtitle: Text('${seed.scientificName}'),
+                        onTap: () {
+                          setState(() {
+                            currentSeedMarker = seed;
+                            BitmapDescriptor.fromAssetImage(
+                                    ImageConfiguration(
+                                        devicePixelRatio: 2.5,
+                                        size: Size(1, 1)),
+                                    '${currentSeedMarker.icon}')
+                                .then((onValue) {
+                              currentSeedMarkerIcon = onValue;
+                            });
+                          });
+                          Navigator.pop(context);
+                        },
+                      );
+                    }),
+              );
+            }),
+          );
+        });
   }
 
   _showAlertDialog(String title, String msg) {
@@ -98,10 +159,10 @@ class _MapBuilderState extends State<MapBuilder> {
         var id = uuid.v1();
         Marker m = Marker(
             markerId: MarkerId(id),
+            infoWindow: InfoWindow(title: currentSeedMarker.commonName),
             position: value,
             draggable: true,
-            icon:
-                BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueRed),
+            icon: currentSeedMarkerIcon,
             onTap: () {
               setState(() {
                 editing = true;
@@ -205,7 +266,9 @@ class _MapBuilderState extends State<MapBuilder> {
       });
     }
     isLoaded = false;
-    Gmap geodata = Gmap(placemarks, area);
+    editing = false;
+    shapeType = 0;
+    Gmap geodata = Gmap(placemarks, area, []);
     Navigator.pop(context, geodata);
   }
 
@@ -307,7 +370,9 @@ class _MapBuilderState extends State<MapBuilder> {
             onMapCreated: (GoogleMapController controller) {
               _controller.complete(controller);
             },
-            onTap: _handleTap,
+            onTap: (value) {
+              _handleTap(value);
+            },
             markers: _markers,
             polygons: _polygons,
           ),
@@ -328,38 +393,91 @@ class _MapBuilderState extends State<MapBuilder> {
                       }),
                 ),
                 editing
-                    ? Row(
+                    ? Column(
+                        crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
-                          Padding(
-                            padding:
-                                const EdgeInsets.only(top: 20.0, right: 10),
-                            child: FloatingActionButton(
-                                heroTag: 'btn2',
-                                backgroundColor: Colors.black.withOpacity(0.5),
-                                child: Icon(Icons.delete),
-                                onPressed: () {
-                                  // delete shape
-                                  _removeElement();
-                                  setState(() {
-                                    editing = false;
-                                    shapeType = 0;
-                                  });
-                                }),
+                          Row(
+                            children: [
+                              Padding(
+                                padding:
+                                    const EdgeInsets.only(top: 20.0, right: 10),
+                                child: FloatingActionButton(
+                                    heroTag: 'btn2',
+                                    backgroundColor:
+                                        Colors.black.withOpacity(0.5),
+                                    child: Icon(Icons.delete),
+                                    onPressed: () {
+                                      // delete shape
+                                      _removeElement();
+                                      setState(() {
+                                        editing = false;
+                                        shapeType = 0;
+                                      });
+                                    }),
+                              ),
+                              Padding(
+                                padding:
+                                    const EdgeInsets.only(top: 20.0, right: 10),
+                                child: FloatingActionButton(
+                                    heroTag: 'btn3',
+                                    backgroundColor:
+                                        Colors.black.withOpacity(0.5),
+                                    child: Icon(Icons.check),
+                                    onPressed: () {
+                                      // finished editing shape
+                                      setState(() {
+                                        editing = false;
+                                        shapeType = 0;
+                                      });
+                                    }),
+                              ),
+                            ],
                           ),
-                          Padding(
-                            padding:
-                                const EdgeInsets.only(top: 20.0, right: 10),
-                            child: FloatingActionButton(
-                                heroTag: 'btn3',
-                                backgroundColor: Colors.black.withOpacity(0.5),
-                                child: Icon(Icons.check),
-                                onPressed: () {
-                                  // finished editing shape
-                                  setState(() {
-                                    editing = false;
-                                    shapeType = 0;
-                                  });
-                                }),
+                          GestureDetector(
+                            onTap: () {
+                              _selectSeed();
+                            },
+                            child: Container(
+                              margin: EdgeInsets.only(top: 10, right: 10),
+                              decoration: BoxDecoration(
+                                color: Colors.black.withOpacity(0.5),
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(10)),
+                              ),
+                              child: Row(
+                                children: [
+                                  Container(
+                                    width: 30,
+                                    height: 30,
+                                    child: currentSeedMarker.icon != 'default'
+                                        ? Image.file(
+                                            File(currentSeedMarker.icon),
+                                            scale: 1,
+                                            fit: BoxFit.fill,
+                                          )
+                                        : Image.asset(
+                                            'assets/treeIcon.png',
+                                            scale: 1,
+                                            fit: BoxFit.fill,
+                                          ),
+                                  ),
+                                  Text(
+                                    '${currentSeedMarker.commonName}',
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.white),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 5.0),
+                                    child: Icon(
+                                      Icons.change_circle,
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
                           ),
                         ],
                       )

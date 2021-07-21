@@ -43,7 +43,7 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
   TextEditingController density = TextEditingController();
 
   // MAP INFO
-  Gmap geodata = Gmap([], Polygon('', []));
+  Gmap geodata = Gmap([], Polygon('', []),[]);
 
   // AREA ATTRIBUTES
   TextEditingController validSurface = TextEditingController();
@@ -294,7 +294,7 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
       Future response = ProjectRepository().create(project);
       response.then((value) {
         print('Success!!!! $value');
-        Navigator.of(context).pop();
+        Navigator.of(context).popUntil(ModalRoute.withName('/'));
       });
       response.catchError((onError) => print('Error $onError'));
     } else {
@@ -328,7 +328,7 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
       Future response = ProjectRepository().update(project, args.project!.id);
       response.then((value) {
         print('Success!!!! $value');
-        Navigator.of(context).pop();
+        Navigator.of(context).popUntil(ModalRoute.withName('/'));
       });
       response.catchError((onError) => print('Error $onError'));
     }
@@ -362,6 +362,7 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
 
       // map info
       geodata = args.project!.geodata;
+      geodata.seeds = args.project!.seeds;
     } else {
       minSwtTemp.text = '0';
       maxSwtTemp.text = '0';
