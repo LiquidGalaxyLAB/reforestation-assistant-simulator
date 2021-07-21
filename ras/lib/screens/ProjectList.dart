@@ -24,6 +24,45 @@ class _ProjectListState extends State<ProjectList> {
     });
   }
 
+  duplicateProject(Project model) {
+     Project project = Project(
+        '',
+        model.projectName,
+        model.dateOfProject,
+        model.sownMode,
+        model.region,
+        model.minSwtDate,
+        model.maxSwtDate,
+        model.minSwtTemp,
+        model.maxSwtTemp,
+        model.avgNumberOfRains,
+        model.totalNumberOfRains,
+        model.seeds,
+        model.validSurface,
+        model.notValidSurface,
+        model.emptyLand,
+        model.orientation,
+        model.minAltTerrain,
+        model.maxAltTerrain,
+        model.maxDistance,
+        model.depth,
+        model.ph,
+        model.fractured,
+        model.hummus,
+        model.inclination,
+        model.geodata,
+      );
+      Future response = ProjectRepository().create(project);
+      response.then((value) {
+        print('Success!!!! $value');
+        setState(() {
+          _listProjects = ProjectRepository().getAll();
+        });
+        
+      });
+      response.catchError((onError) => print('Error $onError'));
+  }
+
   filterSearchResults(String query) {
     List<Project> dummySearchList = [];
     dummySearchList.addAll(toBeFiltered);
@@ -352,7 +391,9 @@ class _ProjectListState extends State<ProjectList> {
                                               MainAxisAlignment.end,
                                           children: [
                                             OutlinedButton.icon(
-                                              onPressed: () {},
+                                              onPressed: () {
+                                                duplicateProject(data[index]);
+                                              },
                                               icon: Icon(Icons.copy),
                                               label: Text('Duplicate'),
                                               style: OutlinedButton.styleFrom(
