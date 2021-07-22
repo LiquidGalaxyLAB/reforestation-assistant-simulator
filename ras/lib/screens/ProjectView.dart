@@ -114,10 +114,10 @@ class _ProjectViewState extends State<ProjectView> {
                     Future response = ProjectRepository().delete(id);
                     response.then((value) {
                       print('Success!!');
+                      Navigator.pop(context);
+                      Navigator.of(context).pop({"reload": true});
                     });
                     response.catchError((onError) => print('Error $onError'));
-                    Navigator.of(context).pop();
-                    Navigator.of(context).pop();
                   },
                 ),
               ),
@@ -205,13 +205,18 @@ class _ProjectViewState extends State<ProjectView> {
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
                 ),
                 trailing: IconButton(
-                    onPressed: () {
-                      Navigator.pushNamed(
+                    onPressed: () async {
+                      dynamic response = await Navigator.pushNamed(
                         context,
                         '/project-builder',
                         arguments:
                             ProjectBuilderArgs(false, project: args.project),
                       );
+
+                      if(response != null) {
+                        if(response['reload']) 
+                          Navigator.of(context).pop({"reload": true});
+                      }
                     },
                     icon: Icon(
                       Icons.edit,

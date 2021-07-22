@@ -214,14 +214,6 @@ class _ProjectListState extends State<ProjectList> {
                             IconButton(
                               onPressed: () {
                                 setState(() {
-                                  _listProjects = ProjectRepository().getAll();
-                                });
-                              },
-                              icon: Icon(Icons.refresh),
-                            ),
-                            IconButton(
-                              onPressed: () {
-                                setState(() {
                                   isSearching = true;
                                 });
                               },
@@ -279,9 +271,17 @@ class _ProjectListState extends State<ProjectList> {
                           itemCount: snapshot.data.length,
                           itemBuilder: (context, index) {
                             return GestureDetector(
-                              onTap: () {
-                                Navigator.pushNamed(context, '/project-view',
+                              onTap: () async {
+                                dynamic response = await Navigator.pushNamed(context, '/project-view',
                                     arguments: ProjectViewArgs(data[index]));
+
+                                if(response != null){
+                                  if(response['reload']){
+                                    setState(() {
+                                      _listProjects = ProjectRepository().getAll();
+                                    });
+                                  }
+                                }
                               },
                               child: Container(
                                 margin: EdgeInsets.symmetric(
@@ -438,9 +438,16 @@ class _ProjectListState extends State<ProjectList> {
           child: Align(
             alignment: Alignment.bottomRight,
             child: FloatingActionButton(
-              onPressed: () {
-                Navigator.pushNamed(context, '/project-builder',
+              onPressed: () async {
+                dynamic response = await Navigator.pushNamed(context, '/project-builder',
                     arguments: ProjectBuilderArgs(true));
+                if(response != null) {
+                  if(response['reload']) {
+                    setState(() {
+                      _listProjects = ProjectRepository().getAll();
+                    });
+                  }
+                }
               },
               child: Icon(Icons.add),
             ),

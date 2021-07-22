@@ -294,7 +294,7 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
       Future response = ProjectRepository().create(project);
       response.then((value) {
         print('Success!!!! $value');
-        Navigator.of(context).popUntil(ModalRoute.withName('/'));
+        Navigator.of(context).pop({"reload": true});
       });
       response.catchError((onError) => print('Error $onError'));
     } else {
@@ -328,7 +328,7 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
       Future response = ProjectRepository().update(project, args.project!.id);
       response.then((value) {
         print('Success!!!! $value');
-        Navigator.of(context).popUntil(ModalRoute.withName('/'));
+        Navigator.of(context).pop({"reload": true});
       });
       response.catchError((onError) => print('Error $onError'));
     }
