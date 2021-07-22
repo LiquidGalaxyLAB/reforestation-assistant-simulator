@@ -185,19 +185,16 @@ class _SeedListState extends State<SeedList> {
                                       Expanded(
                                         child: ListTile(
                                           contentPadding: EdgeInsets.zero,
-                                          leading: data[index].icon != ''
-                                              ? Container(
+                                          leading: Container(
                                                   width: 60,
                                                   height: 60,
-                                                  child: Image.file(
-                                                    File(data[index].icon),
+                                                  child: Image.asset(
+                                                    data[index].icon['url'],
                                                     scale: 1,
                                                     fit: BoxFit.fill,
                                                   ),
-                                                )
-                                              : Icon(
-                                                  Icons.legend_toggle_rounded),
-                                          title: Text('Seed Icon'),
+                                                ),
+                                          title: Text('Icon'),
                                         ),
                                       ),
                                       Expanded(

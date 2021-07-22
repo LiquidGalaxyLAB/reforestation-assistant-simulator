@@ -5,7 +5,10 @@ class FakeSeeds {
     Seed('', 
     'Blueberry', 
     'Vaccinium myrtillus', 
-    '', 
+    { 
+      "name":"Cedar",
+      "url": "assets/seedIcons/cedar.png"
+    }, 
     1.8, 
     97.0, 
     20, 
@@ -15,7 +18,10 @@ class FakeSeeds {
     Seed('', 
     'Pyrola', 
     'Pyrola minor', 
-    '', 
+    { 
+      "name":"Cedar",
+      "url": "assets/seedIcons/cedar.png"
+    }, 
     3.4, 
     97.0, 
     15, 
@@ -25,7 +31,10 @@ class FakeSeeds {
     Seed('', 
     'Common beech tree', 
     'Fagus sylvatica', 
-    '', 
+    { 
+      "name":"Cedar",
+      "url": "assets/seedIcons/cedar.png"
+    }, 
     4.8, 
     98.0, 
     400, 
@@ -35,7 +44,10 @@ class FakeSeeds {
     Seed('', 
     'Hazel', 
     'Corylus avellana', 
-    '', 
+    { 
+      "name":"Cedar",
+      "url": "assets/seedIcons/cedar.png"
+    }, 
     5.2, 
     92, 
     120, 
@@ -45,7 +57,10 @@ class FakeSeeds {
     Seed('', 
     'Hunter\'s rowal', 
     'Sorbus aucuparia', 
-    '', 
+    { 
+      "name":"Cedar",
+      "url": "assets/seedIcons/cedar.png"
+    },
     2.3, 
     96, 
     23, 
@@ -55,7 +70,10 @@ class FakeSeeds {
     Seed('', 
     'Holm oak', 
     'Quercus ilex', 
-    '', 
+    { 
+      "name":"Cedar",
+      "url": "assets/seedIcons/cedar.png"
+    },
     5, 
     80, 
     260, 
@@ -65,7 +83,10 @@ class FakeSeeds {
     Seed('', 
     'London plane', 
     'Platanus x hispanica', 
-    '', 
+    { 
+      "name":"Cedar",
+      "url": "assets/seedIcons/cedar.png"
+    }, 
     21.6, 
     90, 
     300, 
@@ -75,7 +96,10 @@ class FakeSeeds {
     Seed('', 
     'Maritime pine', 
     'Pinus pinaster', 
-    '', 
+    { 
+      "name":"Cedar",
+      "url": "assets/seedIcons/cedar.png"
+    }, 
     18.3, 
     90, 
     260, 
@@ -85,7 +109,10 @@ class FakeSeeds {
     Seed('', 
     'European red pine', 
     'Pinus sylvestris', 
-    '', 
+    { 
+      "name":"Cedar",
+      "url": "assets/seedIcons/cedar.png"
+    }, 
     3.3, 
     80, 
     200, 
@@ -95,7 +122,10 @@ class FakeSeeds {
     Seed('', 
     'Monterey pine', 
     'Pinus radiata', 
-    '', 
+    { 
+      "name":"Cedar",
+      "url": "assets/seedIcons/cedar.png"
+    },
     38.3, 
     75, 
     150, 

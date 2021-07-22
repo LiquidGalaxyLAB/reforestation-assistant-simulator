@@ -2,7 +2,7 @@ class Seed {
   String id;
   String commonName;
   String scientificName;
-  String icon;
+  dynamic icon;
   double co2PerYear;
   double germinativePotential;
   int estimatedLongevity;

@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:ras/@helpers/SeedIcons.dart';
 import 'package:ras/models/Seed.dart';
 import 'package:ras/repositories/Seed.dart';
 import 'package:ras/route-args/SeedFormArgs.dart';
 import 'package:ras/widgets/AppBar.dart';
-import 'package:image_picker/image_picker.dart';
-import 'dart:io';
 import 'package:path_provider/path_provider.dart';
 
 class SeedForm extends StatefulWidget {
@@ -16,7 +15,7 @@ class SeedForm extends StatefulWidget {
 
 class _SeedFormState extends State<SeedForm> {
   final _formKey = GlobalKey<FormState>();
-  final _picker = ImagePicker();
+  bool isLoaded = false;
 
   TextEditingController commonName = TextEditingController();
   TextEditingController scientificName = TextEditingController();
@@ -26,7 +25,7 @@ class _SeedFormState extends State<SeedForm> {
   TextEditingController estimatedFHeight = TextEditingController();
   TextEditingController seedCost = TextEditingController();
   TextEditingController establishmentCost = TextEditingController();
-  String seedIconURL = '';
+  dynamic seedIcon = SeedIcons.list[0];
 
   showHelpDialog(String title, String msg) {
     showDialog(
@@ -41,7 +40,10 @@ class _SeedFormState extends State<SeedForm> {
                   onPressed: () {
                     Navigator.of(context).pop();
                   },
-                  icon: Icon(Icons.close, color: Colors.red,),
+                  icon: Icon(
+                    Icons.close,
+                    color: Colors.red,
+                  ),
                 ),
               ],
             ),
@@ -56,7 +58,7 @@ class _SeedFormState extends State<SeedForm> {
         '',
         commonName.text,
         scientificName.text,
-        seedIconURL,
+        seedIcon,
         double.parse(co2PerYear.text),
         double.parse(germinativePot.text),
         int.parse(estimatedLong.text),
@@ -75,7 +77,7 @@ class _SeedFormState extends State<SeedForm> {
         args.seed!.id,
         commonName.text,
         scientificName.text,
-        seedIconURL,
+        seedIcon,
         double.parse(co2PerYear.text),
         double.parse(germinativePot.text),
         int.parse(estimatedLong.text),
@@ -92,32 +94,70 @@ class _SeedFormState extends State<SeedForm> {
     }
   }
 
-  Future<String> get _localPath async {
-    final directory = await getApplicationDocumentsDirectory();
+  _selectSeed() {
+    List iconSeeds = SeedIcons.list;
 
-    return directory.path;
-  }
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text('Choose Icon'),
+                IconButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  icon: Icon(
+                    Icons.close,
+                    color: Colors.red,
+                  ),
+                ),
+              ],
+            ),
+            content: StatefulBuilder(
+                builder: (BuildContext context, StateSetter alertState) {
+              return Container(
+                width: double.maxFinite,
+                height: double.maxFinite,
+                child: ListView.builder(
+                    itemCount: iconSeeds.length,
+                    itemBuilder: (context, index) {
+                      return ListTile(
+                        contentPadding: EdgeInsets.zero,
+                        leading: Container(
+                          width: 50,
+                          height: 50,
+                          child: Image.asset(
+                            iconSeeds[index]['url'],
+                            scale: 1,
+                            fit: BoxFit.fill,
+                          ),
+                        ),
+                        title: Text('${iconSeeds[index]['name']}'),
+                        onTap: () {
+                          // select icon
+                          setState(() {
+                            seedIcon = {
+                              "name": iconSeeds[index]['name'],
+                              "url": iconSeeds[index]['url']
+                            };
+                          });
 
-  _pickImage() async {
-    try {
-      String path = await _localPath;
-      final PickedFile? pickedFile = await _picker.getImage(
-        source: ImageSource.gallery,
-      );
-
-      final File file = File(pickedFile!.path);
-
-      final File newImage = await file.copy('$path/${commonName.text}.jpg');
-
-      setState(() {
-        seedIconURL = newImage.path;
-      });
-    } catch (e) {
-      print('ERROR OPEN GALLERY $e');
-    }
+                          alertState(() {});
+                          Navigator.pop(context);
+                        },
+                      );
+                    }),
+              );
+            }),
+          );
+        });
   }
 
   _init(SeedFormArgs args) async {
+    isLoaded = true;
     if (!args.isNew) {
       commonName.text = args.seed!.commonName;
       scientificName.text = args.seed!.scientificName;
@@ -127,7 +167,7 @@ class _SeedFormState extends State<SeedForm> {
       estimatedFHeight.text = args.seed!.estimatedFinalHeight.toString();
       seedCost.text = args.seed!.seedCost.toString();
       establishmentCost.text = args.seed!.establishmentCost.toString();
-      seedIconURL = args.seed!.icon;
+      seedIcon = args.seed!.icon;
     } else {
       co2PerYear.text = "0";
       germinativePot.text = "0";
@@ -142,7 +182,8 @@ class _SeedFormState extends State<SeedForm> {
   @override
   Widget build(BuildContext context) {
     final args = ModalRoute.of(context)!.settings.arguments as SeedFormArgs;
-    _init(args);
+    if (!isLoaded) _init(args);
+    print(seedIcon);
 
     return Scaffold(
       appBar: PreferredSize(
@@ -193,8 +234,8 @@ class _SeedFormState extends State<SeedForm> {
                     ),
                     IconButton(
                         onPressed: () {
-                          showHelpDialog(
-                              'Common Name', 'The common name of this plant in the region');
+                          showHelpDialog('Common Name',
+                              'The common name of this plant in the region');
                         },
                         icon: Icon(Icons.help))
                   ],
@@ -222,7 +263,8 @@ class _SeedFormState extends State<SeedForm> {
                     ),
                     IconButton(
                         onPressed: () {
-                          showHelpDialog('Scientific Name', 'The scientific name of this species');
+                          showHelpDialog('Scientific Name',
+                              'The scientific name of this species');
                         },
                         icon: Icon(Icons.help))
                   ],
@@ -241,34 +283,33 @@ class _SeedFormState extends State<SeedForm> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    seedIconURL != ''
-                        ? Container(
-                          width: 60,
-                          height: 60,
-                          child: Image.file(
-                              File(seedIconURL),
-                              scale: 1,
-                              fit: BoxFit.fill,
-                            ),
-                        )
-                        : SizedBox(),
+                    Container(
+                      width: 60,
+                      height: 60,
+                      child: Image.asset(
+                        seedIcon['url'],
+                        scale: 1,
+                        fit: BoxFit.fill,
+                      ),
+                    ),
                     ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                          primary: Colors.blueGrey,
+                          primary: Colors.blue,
                           padding: EdgeInsets.symmetric(
                               horizontal: 50, vertical: 15)),
                       child: Text(
-                        'UPLOAD FILE',
+                        'Select Icon',
                         style: TextStyle(fontSize: 14),
                         overflow: TextOverflow.ellipsis,
                       ),
                       onPressed: () {
-                        _pickImage();
+                        _selectSeed();
                       },
                     ),
                     IconButton(
                         onPressed: () {
-                          showHelpDialog('Icon', 'Icon that will be used to represent the seed both in the app\'s map and on Google Earth');
+                          showHelpDialog('Icon',
+                              'Icon that will be used to represent the seed both in the app\'s map and on Google Earth');
                         },
                         icon: Icon(Icons.help))
                   ],
@@ -297,7 +338,8 @@ class _SeedFormState extends State<SeedForm> {
                     ),
                     IconButton(
                         onPressed: () {
-                          showHelpDialog('CO2 capture (Number in tonnes)', 'The total capture of CO2 after 40 years at the apogee of the live of the tree');
+                          showHelpDialog('CO2 capture (Number in tonnes)',
+                              'The total capture of CO2 after 40 years at the apogee of the live of the tree');
                         },
                         icon: Icon(Icons.help))
                   ],
@@ -326,7 +368,8 @@ class _SeedFormState extends State<SeedForm> {
                     ),
                     IconButton(
                         onPressed: () {
-                          showHelpDialog('Germinative potential (%)', 'The tested germinative potential measured in the laboratory with optimal conditions');
+                          showHelpDialog('Germinative potential (%)',
+                              'The tested germinative potential measured in the laboratory with optimal conditions');
                         },
                         icon: Icon(Icons.help))
                   ],
@@ -355,8 +398,8 @@ class _SeedFormState extends State<SeedForm> {
                     ),
                     IconButton(
                         onPressed: () {
-                          showHelpDialog(
-                              'Estimated longevity (number, years)', 'Estimated longevity of this species');
+                          showHelpDialog('Estimated longevity (number, years)',
+                              'Estimated longevity of this species');
                         },
                         icon: Icon(Icons.help))
                   ],
@@ -386,7 +429,8 @@ class _SeedFormState extends State<SeedForm> {
                     IconButton(
                         onPressed: () {
                           showHelpDialog(
-                              'Estimated final height (number, meters)', 'Estimated height of this species');
+                              'Estimated final height (number, meters)',
+                              'Estimated height of this species');
                         },
                         icon: Icon(Icons.help))
                   ],
@@ -415,7 +459,8 @@ class _SeedFormState extends State<SeedForm> {
                     ),
                     IconButton(
                         onPressed: () {
-                          showHelpDialog('Seed cost per kg. (number, euros)', 'Cost of 1 kg of seeds of this species');
+                          showHelpDialog('Seed cost per kg. (number, euros)',
+                              'Cost of 1 kg of seeds of this species');
                         },
                         icon: Icon(Icons.help))
                   ],
@@ -444,7 +489,9 @@ class _SeedFormState extends State<SeedForm> {
                     ),
                     IconButton(
                         onPressed: () {
-                          showHelpDialog('Establishment cost per plant. (number, euros)', 'Plant establishment cost (Still alive after 2 years after the sowing)');
+                          showHelpDialog(
+                              'Establishment cost per plant. (number, euros)',
+                              'Plant establishment cost (Still alive after 2 years after the sowing)');
                         },
                         icon: Icon(Icons.help))
                   ],
@@ -470,9 +517,11 @@ class _SeedFormState extends State<SeedForm> {
                           onPressed: () {
                             if (_formKey.currentState!.validate()) {
                               saveSeed(args);
-                            } else
+                            } else {
                               print('ooppsss throw error');
-                              showHelpDialog('Invalid fields!', 'Some fields have invalid values or are required. Please check them again');
+                              showHelpDialog('Invalid fields!',
+                                  'Some fields have invalid values or are required. Please check them again');
+                            }
                           },
                         ),
                       ),
