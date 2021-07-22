@@ -39,7 +39,7 @@ class _MyAppBarState extends State<MyAppBar> {
                 ),
                 Tab(
                   icon: Icon(Icons.yard_outlined),
-                  text: 'Seeds',
+                  text: 'Species',
                 ),
               ],
             )

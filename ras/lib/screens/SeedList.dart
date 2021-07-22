@@ -108,7 +108,7 @@ class _SeedListState extends State<SeedList> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          'Seeds',
+                          'Species',
                           style: TextStyle(
                               fontWeight: FontWeight.bold, fontSize: 25),
                         ),
