@@ -69,7 +69,7 @@ class _SeedFormState extends State<SeedForm> {
       Future response = SeedRepository().create(seed);
       response.then((value) {
         print('Success!!!! $value');
-        Navigator.of(context).pop();
+        Navigator.of(context).pop({"reload": true});
       });
       response.catchError((onError) => print('Error $onError'));
     } else {
@@ -88,7 +88,7 @@ class _SeedFormState extends State<SeedForm> {
       Future response = SeedRepository().update(seed, seed.id);
       response.then((value) {
         print('Success! Seed updated');
-        Navigator.of(context).pop();
+        Navigator.of(context).pop({"reload": true});
       });
       response.catchError((onError) => print('Error $onError'));
     }

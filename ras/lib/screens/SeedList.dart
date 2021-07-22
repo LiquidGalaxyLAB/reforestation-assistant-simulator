@@ -57,6 +57,9 @@ class _SeedListState extends State<SeedList> {
                     Future response = SeedRepository().delete(id);
                     response.then((value) {
                       print('Success!!');
+                      setState(() {
+                        _listSeeds = SeedRepository().getAll();
+                      });
                     });
                     response.catchError((onError) => print('Error $onError'));
                     Navigator.of(context).pop();
@@ -111,14 +114,6 @@ class _SeedListState extends State<SeedList> {
                         ),
                         Row(
                           children: [
-                            IconButton(
-                              onPressed: () {
-                                setState(() {
-                                  _listSeeds = SeedRepository().getAll();
-                                });
-                              },
-                              icon: Icon(Icons.refresh),
-                            ),
                             IconButton(
                               onPressed: () {
                                 setState(() {
@@ -186,14 +181,14 @@ class _SeedListState extends State<SeedList> {
                                         child: ListTile(
                                           contentPadding: EdgeInsets.zero,
                                           leading: Container(
-                                                  width: 60,
-                                                  height: 60,
-                                                  child: Image.asset(
-                                                    data[index].icon['url'],
-                                                    scale: 1,
-                                                    fit: BoxFit.fill,
-                                                  ),
-                                                ),
+                                            width: 60,
+                                            height: 60,
+                                            child: Image.asset(
+                                              data[index].icon['url'],
+                                              scale: 1,
+                                              fit: BoxFit.fill,
+                                            ),
+                                          ),
                                           title: Text('Icon'),
                                         ),
                                       ),
@@ -204,12 +199,24 @@ class _SeedListState extends State<SeedList> {
                                           children: [
                                             IconButton(
                                               icon: Icon(Icons.edit),
-                                              onPressed: () {
-                                                Navigator.pushNamed(
-                                                    context, '/seed-form',
-                                                    arguments: SeedFormArgs(
-                                                        false,
-                                                        seed: data[index]));
+                                              onPressed: () async {
+                                                dynamic response =
+                                                    await Navigator.pushNamed(
+                                                  context,
+                                                  '/seed-form',
+                                                  arguments: SeedFormArgs(false,
+                                                      seed: data[index]),
+                                                );
+
+                                                if (response != null) {
+                                                  if (response['reload']) {
+                                                    setState(() {
+                                                      _listSeeds =
+                                                          SeedRepository()
+                                                              .getAll();
+                                                    });
+                                                  }
+                                                }
                                               },
                                             ),
                                             IconButton(
@@ -297,9 +304,16 @@ class _SeedListState extends State<SeedList> {
           child: Align(
             alignment: Alignment.bottomRight,
             child: FloatingActionButton(
-              onPressed: () {
-                Navigator.pushNamed(context, '/seed-form',
+              onPressed: () async {
+                dynamic response = await Navigator.pushNamed(context, '/seed-form',
                     arguments: SeedFormArgs(true));
+                if (response != null) {
+                  if (response['reload']) {
+                    setState(() {
+                      _listSeeds = SeedRepository().getAll();
+                    });
+                  }
+                }
               },
               child: Icon(Icons.add),
             ),
