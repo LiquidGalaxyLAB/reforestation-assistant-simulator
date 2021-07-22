@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:ras/models/Project.dart';
 import 'package:ras/models/kml/Kml.dart';
 import 'package:ras/repositories/Project.dart';
+import 'package:ras/route-args/MapViewArgs.dart';
 import 'package:ras/route-args/ProjectBuilderArgs.dart';
 import 'package:ras/route-args/ProjectViewArgs.dart';
 import 'package:ras/services/LGConnection.dart';
@@ -191,7 +192,10 @@ class _ProjectViewState extends State<ProjectView> {
                     style: ElevatedButton.styleFrom(
                       primary: Colors.purple,
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/map-view',
+                          arguments: MapViewArgs(args.project.geodata));
+                    },
                     label: Text('Map'),
                     icon: Icon(Icons.place),
                   ),
@@ -213,8 +217,8 @@ class _ProjectViewState extends State<ProjectView> {
                             ProjectBuilderArgs(false, project: args.project),
                       );
 
-                      if(response != null) {
-                        if(response['reload']) 
+                      if (response != null) {
+                        if (response['reload'])
                           Navigator.of(context).pop({"reload": true});
                       }
                     },
@@ -359,18 +363,20 @@ class _ProjectViewState extends State<ProjectView> {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   Padding(
-                    padding: const EdgeInsets.symmetric(vertical:28.0),
+                    padding: const EdgeInsets.symmetric(vertical: 28.0),
                     child: Text(
                       'Survival Information',
-                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
                     ),
                   ),
                   SurvivalInfoChart(args.project.seeds),
                   Padding(
-                    padding: const EdgeInsets.symmetric(vertical:28.0),
+                    padding: const EdgeInsets.symmetric(vertical: 28.0),
                     child: Text(
                       'Total CO2 capture per species',
-                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
                     ),
                   ),
                   CO2Chart(args.project.seeds),

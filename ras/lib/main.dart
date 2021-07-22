@@ -1,3 +1,5 @@
+import 'dart:collection';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:ras/@fakedb/Projects.dart';
@@ -13,8 +15,8 @@ import 'package:ras/screens/Settings.dart';
 import 'package:ras/screens/MapBuilder.dart';
 import 'package:ras/screens/SigninScreen.dart';
 import 'package:ras/screens/SplashScreen.dart';
-import 'package:ras/screens/TestPlayground.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:ras/screens/MapView.dart';
 
 void main() {
   runApp(MyApp());
@@ -65,7 +67,7 @@ class MyApp extends StatelessWidget {
         '/about': (context) => AboutScreen(),
         '/seed-form': (context) => SeedForm(),
         '/project-view': (context) => ProjectView(),
-        '/test': (context) => TestPlaygrounf(),
+        '/map-view': (context) => MapView(),
       },
     );
   }
