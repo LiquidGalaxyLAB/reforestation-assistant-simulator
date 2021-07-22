@@ -14,6 +14,7 @@ class Settings extends StatefulWidget {
 class _SettingsState extends State<Settings> {
   bool isLoggedIn = false;
   bool obscurePassword = true;
+  bool loaded = false;
   TextEditingController ipAddress = TextEditingController();
   TextEditingController password = TextEditingController();
 
@@ -71,19 +72,14 @@ class _SettingsState extends State<Settings> {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     ipAddress.text = preferences.getString('master_ip') ?? '';
     password.text = preferences.getString('master_password') ?? '';
-  }
 
-  @override
-  void dispose() {
-    // Clean up the controller when the widget is disposed.
-    ipAddress.dispose();
-    password.dispose();
-    super.dispose();
+    loaded = true;
   }
 
   @override
   Widget build(BuildContext context) {
-    init();
+
+    if(!loaded) init();
 
     return Scaffold(
         appBar: PreferredSize(
