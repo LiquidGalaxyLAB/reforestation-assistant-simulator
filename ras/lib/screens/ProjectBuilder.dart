@@ -43,7 +43,7 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
   TextEditingController density = TextEditingController();
 
   // MAP INFO
-  Gmap geodata = Gmap([], Polygon('', []),[]);
+  Gmap geodata = Gmap([], Polygon('', []), []);
 
   // AREA ATTRIBUTES
   TextEditingController validSurface = TextEditingController();
@@ -920,20 +920,32 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                           ),
                           for (var i = 0; i < seeds.length; i++)
                             ListTile(
-                                title: Text('${seeds[i].commonName}'),
-                                subtitle: Text('${seeds[i].scientificName}'),
-                                trailing: IconButton(
-                                  onPressed: () {
-                                    if (seeds[i].density == null)
-                                      seeds[i].density = 0;
-                                    _editSeedDensity(seeds[i]);
-                                    density.text = seeds[i].density.toString();
-                                  },
-                                  icon: Icon(
-                                    Icons.workspaces_outline,
-                                    color: Colors.green,
-                                  ),
-                                )),
+                              leading: IconButton(
+                                onPressed: () {
+                                  if (seeds[i].density == null)
+                                    seeds[i].density = 0;
+                                  _editSeedDensity(seeds[i]);
+                                  density.text = seeds[i].density.toString();
+                                },
+                                icon: Icon(
+                                  Icons.workspaces_outline,
+                                  color: Colors.green,
+                                ),
+                              ),
+                              title: Text('${seeds[i].commonName}'),
+                              subtitle: Text('${seeds[i].scientificName}'),
+                              trailing: IconButton(
+                                onPressed: () {
+                                  setState(() {
+                                    seeds.removeAt(i);
+                                  });
+                                },
+                                icon: Icon(
+                                  Icons.clear,
+                                  color: Colors.red,
+                                ),
+                              ),
+                            ),
                         ],
                       ),
                       isActive: _currentStep >= 0,

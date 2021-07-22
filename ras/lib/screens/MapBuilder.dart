@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:ras/@helpers/SeedIcons.dart';
 import 'package:ras/models/Gmap.dart';
 import 'package:ras/models/Seed.dart';
 import 'package:ras/models/kml/LookAt.dart';
@@ -48,7 +49,7 @@ class _MapBuilderState extends State<MapBuilder> {
   String currentMarkerId = '';
   String currentVertexId = '';
   Seed currentSeedMarker =
-      Seed('', 'Default', '-', 'default', 0, 0, 0, 0, 0, 0);
+      Seed('', 'Default', '', SeedIcons.list[0], 0, 0, 0, 0, 0, 0);
 
   _setUserLocation() async {
     if (await Permission.location.request().isGranted) {
@@ -114,7 +115,7 @@ class _MapBuilderState extends State<MapBuilder> {
                                     ImageConfiguration(
                                         devicePixelRatio: 2.5,
                                         size: Size(1, 1)),
-                                    '${currentSeedMarker.icon}')
+                                    '${currentSeedMarker.icon['url']}')
                                 .then((onValue) {
                               currentSeedMarkerIcon = onValue;
                             });
@@ -350,7 +351,15 @@ class _MapBuilderState extends State<MapBuilder> {
             'assets/polyVertex.png')
         .then((onValue) {
       polygonVertexIcon = onValue;
+
+      BitmapDescriptor.fromAssetImage(
+              ImageConfiguration(devicePixelRatio: 2.5, size: Size(1, 1)),
+              '${currentSeedMarker.icon['url']}')
+          .then((onValue) {
+        currentSeedMarkerIcon = onValue;
+      });
     });
+
     super.initState();
   }
 
@@ -433,7 +442,7 @@ class _MapBuilderState extends State<MapBuilder> {
                               ),
                             ],
                           ),
-                          GestureDetector(
+                          shapeType == 1 ? GestureDetector(
                             onTap: () {
                               _selectSeed();
                             },
@@ -449,17 +458,11 @@ class _MapBuilderState extends State<MapBuilder> {
                                   Container(
                                     width: 30,
                                     height: 30,
-                                    child: currentSeedMarker.icon != 'default'
-                                        ? Image.file(
-                                            File(currentSeedMarker.icon),
-                                            scale: 1,
-                                            fit: BoxFit.fill,
-                                          )
-                                        : Image.asset(
-                                            'assets/treeIcon.png',
-                                            scale: 1,
-                                            fit: BoxFit.fill,
-                                          ),
+                                    child: Image.asset(
+                                      currentSeedMarker.icon['url'],
+                                      scale: 1,
+                                      fit: BoxFit.fill,
+                                    ),
                                   ),
                                   Text(
                                     '${currentSeedMarker.commonName}',
@@ -478,7 +481,7 @@ class _MapBuilderState extends State<MapBuilder> {
                                 ],
                               ),
                             ),
-                          ),
+                          ): SizedBox(),
                         ],
                       )
                     : Column(
