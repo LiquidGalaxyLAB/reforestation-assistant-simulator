@@ -6,9 +6,11 @@ import 'package:ras/route-args/MapViewArgs.dart';
 import 'package:ras/route-args/ProjectBuilderArgs.dart';
 import 'package:ras/route-args/ProjectViewArgs.dart';
 import 'package:ras/services/LGConnection.dart';
+import 'package:ras/services/PdfGenerator.dart';
 import 'package:ras/widgets/AppBar.dart';
 import 'package:ras/widgets/SurvivalInfoChart.dart';
 import 'package:ras/widgets/CO2Chart.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 class ProjectView extends StatefulWidget {
   const ProjectView({Key? key}) : super(key: key);
@@ -19,6 +21,32 @@ class ProjectView extends StatefulWidget {
 
 class _ProjectViewState extends State<ProjectView> {
   bool isOpen = false;
+
+  downloadPdf(Project project) async {
+    var status = await Permission.storage.status;
+    if (status.isGranted) {
+      PdfGenerator.generatePdf(project).then((value) {
+        showAlertDialog('Success!',
+            'You can find a PDF containing the summary of the project in your Downloads folder');
+      }).catchError((onError) {
+        showAlertDialog('Sorry',
+            'An error occurred while downloading you PDF summary. Please try again later');
+      });
+    } else {
+      var isGranted = await Permission.storage.request().isGranted;
+      if (isGranted) {
+        PdfGenerator.generatePdf(project).then((value) {
+          showAlertDialog('Success!',
+              'You can find a PDF containing the summary of the project in your Downloads folder');
+        }).catchError((onError) {
+          showAlertDialog('Sorry',
+              'An error occurred while downloading you PDF summary. Please try again later');
+        });
+      } else
+        showAlertDialog('Ops!',
+            'You have to enable storage managing permissions to download the project summary');
+    }
+  }
 
   launchToLG(ProjectViewArgs args) {
     Project? p = args.project;
@@ -184,7 +212,9 @@ class _ProjectViewState extends State<ProjectView> {
                       primary: Colors.blue,
                       side: BorderSide(color: Colors.blue, width: 1),
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      downloadPdf(args.project);
+                    },
                     label: Text('Download'),
                     icon: Icon(Icons.download),
                   ),
