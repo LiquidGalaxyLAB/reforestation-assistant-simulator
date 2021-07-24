@@ -400,7 +400,14 @@ class _ProjectViewState extends State<ProjectView> {
                           TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
                     ),
                   ),
-                  SurvivalInfoChart(args.project.seeds),
+                  args.project.seeds.length > 0
+                      ? SurvivalInfoChart(args.project.seeds)
+                      : Center(
+                          child: Text(
+                            'No data',
+                            style: TextStyle(color: Colors.grey),
+                          ),
+                        ),
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 28.0),
                     child: Text(
@@ -409,7 +416,17 @@ class _ProjectViewState extends State<ProjectView> {
                           TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
                     ),
                   ),
-                  CO2Chart(args.project.seeds),
+                  args.project.seeds.length > 0
+                      ? CO2Chart(args.project.seeds)
+                      : Center(
+                          child: Padding(
+                            padding: const EdgeInsets.only(bottom:20.0),
+                            child: Text(
+                              'No data',
+                              style: TextStyle(color: Colors.grey),
+                            ),
+                          ),
+                        ),
                   ElevatedButton.icon(
                     style: ElevatedButton.styleFrom(
                       primary: Colors.red,

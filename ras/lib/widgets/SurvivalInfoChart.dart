@@ -44,6 +44,7 @@ class _SurvivalInfoChartState extends State<SurvivalInfoChart> {
       ChartData('Establishment', (0.2 * getTotalItems())),
       ChartData('Survival', (0.11 * getTotalItems())),
     ];
+
     return chartData;
   }
 

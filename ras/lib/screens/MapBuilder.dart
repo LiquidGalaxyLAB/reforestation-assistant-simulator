@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:io';
 import 'package:flutter/material.dart';
 
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -72,6 +71,46 @@ class _MapBuilderState extends State<MapBuilder> {
     controller.animateCamera(CameraUpdate.newCameraPosition(cameraPosition));
 
     return LatLng(position.latitude, position.longitude);
+  }
+
+  showReturnDialog(String title, String msg) {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text('$title'),
+            content: Text('$msg'),
+            actions: <Widget>[
+              Padding(
+                padding: EdgeInsets.only(right: 20),
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    primary: Colors.red, // background
+                    onPrimary: Colors.white, // foreground
+                  ),
+                  child: Text("NO"),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.only(right: 20),
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    primary: Colors.green, // background
+                    onPrimary: Colors.white, // foreground
+                  ),
+                  child: Text("YES"),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                    Navigator.of(context).pop();
+                  },
+                ),
+              ),
+            ],
+          );
+        });
   }
 
   _selectSeed() {
@@ -397,7 +436,8 @@ class _MapBuilderState extends State<MapBuilder> {
                       backgroundColor: Colors.black.withOpacity(0.5),
                       child: Icon(Icons.arrow_back),
                       onPressed: () {
-                        Navigator.pop(context, '');
+                        showReturnDialog('Are you sure you want to go back?',
+                            'All the changes you made in the map will be lost');
                         isLoaded = false;
                       }),
                 ),
@@ -442,46 +482,48 @@ class _MapBuilderState extends State<MapBuilder> {
                               ),
                             ],
                           ),
-                          shapeType == 1 ? GestureDetector(
-                            onTap: () {
-                              _selectSeed();
-                            },
-                            child: Container(
-                              margin: EdgeInsets.only(top: 10, right: 10),
-                              decoration: BoxDecoration(
-                                color: Colors.black.withOpacity(0.5),
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(10)),
-                              ),
-                              child: Row(
-                                children: [
-                                  Container(
-                                    width: 30,
-                                    height: 30,
-                                    child: Image.asset(
-                                      currentSeedMarker.icon['url'],
-                                      scale: 1,
-                                      fit: BoxFit.fill,
+                          shapeType == 1
+                              ? GestureDetector(
+                                  onTap: () {
+                                    _selectSeed();
+                                  },
+                                  child: Container(
+                                    margin: EdgeInsets.only(top: 10, right: 10),
+                                    decoration: BoxDecoration(
+                                      color: Colors.black.withOpacity(0.5),
+                                      borderRadius:
+                                          BorderRadius.all(Radius.circular(10)),
+                                    ),
+                                    child: Row(
+                                      children: [
+                                        Container(
+                                          width: 30,
+                                          height: 30,
+                                          child: Image.asset(
+                                            currentSeedMarker.icon['url'],
+                                            scale: 1,
+                                            fit: BoxFit.fill,
+                                          ),
+                                        ),
+                                        Text(
+                                          '${currentSeedMarker.commonName}',
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              color: Colors.white),
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.symmetric(
+                                              horizontal: 5.0),
+                                          child: Icon(
+                                            Icons.change_circle,
+                                            color: Colors.white,
+                                          ),
+                                        ),
+                                      ],
                                     ),
                                   ),
-                                  Text(
-                                    '${currentSeedMarker.commonName}',
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.white),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 5.0),
-                                    child: Icon(
-                                      Icons.change_circle,
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ): SizedBox(),
+                                )
+                              : SizedBox(),
                         ],
                       )
                     : Column(

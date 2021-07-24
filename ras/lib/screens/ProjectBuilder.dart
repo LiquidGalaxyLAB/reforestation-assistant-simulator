@@ -971,7 +971,7 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                           Flexible(
                             child: ElevatedButton(
                               style: ElevatedButton.styleFrom(
-                                  primary: Colors.blueGrey),
+                                  primary: Colors.blue),
                               child: Text(
                                 'Open Map',
                                 style: TextStyle(fontSize: 14),
