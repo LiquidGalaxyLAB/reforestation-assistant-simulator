@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ras/models/Gmap.dart';
@@ -8,6 +10,7 @@ import 'package:ras/repositories/Project.dart';
 import 'package:ras/repositories/Seed.dart';
 import 'package:ras/route-args/MapBuilderArgs.dart';
 import 'package:ras/route-args/ProjectBuilderArgs.dart';
+import 'package:ras/services/ElevationApi.dart';
 import 'package:ras/widgets/AppBar.dart';
 
 class ProjectBuilder extends StatefulWidget {
@@ -60,6 +63,31 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
   String fractured = 'No';
   TextEditingController hummus = TextEditingController();
   TextEditingController inclination = TextEditingController();
+
+  calculateAltitudeOfTerrain() async {
+    final args =
+        ModalRoute.of(context)!.settings.arguments as ProjectBuilderArgs;
+
+    List<String> coordinates = [];
+
+    args.project!.geodata.areaPolygon.coord.forEach((element) {
+      String coord = '';
+      coord = '${element.latitude},${element.longitude}';
+      coordinates.add(coord);
+    });
+
+    try {
+      List<double> elevation =
+          await ElevationAPi.getElevationOfArea(coordinates);
+      double minAltitude = elevation.reduce(min);
+      double maxAltitude = elevation.reduce(max);
+
+      print('min -->> $minAltitude');
+      print('max -->> $maxAltitude');
+    } catch (e) {
+      print('Error get infor from Open Topo Data');
+    }
+  }
 
   Future<void> _selectDate(BuildContext context, int type) async {
     switch (type) {
@@ -1171,8 +1199,17 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                             ],
                           ),
                           Padding(
-                            padding:
-                                const EdgeInsets.only(top: 25.0, bottom: 5),
+                            padding: const EdgeInsets.only(top: 8.0),
+                            child: ElevatedButton(
+                              onPressed: () {
+                                calculateAltitudeOfTerrain();
+                              },
+                              child: Text(
+                                  'Get area elevation from Open Topo Data'),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 5.0, bottom: 5),
                             child: Text(
                               'Minimum altitude of the terrain (Meters above sea level)',
                               style: TextStyle(

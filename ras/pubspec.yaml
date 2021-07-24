@@ -41,6 +41,7 @@ dependencies:
   syncfusion_flutter_charts: ^19.2.47+1
   pdf: ^2.1.0
   downloads_path_provider: ^0.1.0
+  http: ^0.13.3
 
 dev_dependencies:
   flutter_test:
