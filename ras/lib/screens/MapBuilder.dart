@@ -147,15 +147,14 @@ class _MapBuilderState extends State<MapBuilder> {
                       return ListTile(
                         title: Text('${seed.commonName}'),
                         subtitle: Text('${seed.scientificName}'),
-                        onTap: () {
-                          setState(() {
-                            currentSeedMarker = seed;
-                            BitmapDescriptor.fromAssetImage(
-                                    ImageConfiguration(
-                                        devicePixelRatio: 2.5,
-                                        size: Size(1, 1)),
-                                    '${currentSeedMarker.icon['url']}')
-                                .then((onValue) {
+                        onTap: () async {
+                          await BitmapDescriptor.fromAssetImage(
+                                  ImageConfiguration(
+                                      devicePixelRatio: 2.5, size: Size(1, 1)),
+                                  '${seed.icon['url']}')
+                              .then((onValue) {
+                            setState(() {
+                              currentSeedMarker = seed;
                               currentSeedMarkerIcon = onValue;
                             });
                           });
