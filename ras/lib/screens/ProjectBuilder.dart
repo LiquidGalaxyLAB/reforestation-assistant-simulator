@@ -77,15 +77,18 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
     });
 
     try {
-      List<double> elevation =
-          await ElevationAPi.getElevationOfArea(coordinates);
-      double minAltitude = elevation.reduce(min);
-      double maxAltitude = elevation.reduce(max);
+      List elevation = await ElevationAPi.getElevationOfArea(coordinates);
 
-      print('min -->> $minAltitude');
-      print('max -->> $maxAltitude');
+      if (elevation.isNotEmpty) {
+        elevation.sort((a, b) => a.compareTo(b));
+        minAltTerrain.text = elevation.last.toString();
+        maxAltTerrain.text = elevation.first.toString();
+      } else {
+        showHelpDialog('Sorry!',
+            'We could not find altitude information from Open Topo Data API for the region you selected');
+      }
     } catch (e) {
-      print('Error get infor from Open Topo Data');
+      print('Error get infor from Open Topo Data $e');
     }
   }
 
@@ -1199,13 +1202,33 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                             ],
                           ),
                           Padding(
-                            padding: const EdgeInsets.only(top: 8.0),
-                            child: ElevatedButton(
-                              onPressed: () {
-                                calculateAltitudeOfTerrain();
-                              },
-                              child: Text(
-                                  'Get area elevation from Open Topo Data'),
+                            padding: EdgeInsets.only(top: 20.0),
+                            child: Row(
+                              children: [
+                                Expanded(
+                                  flex: 6,
+                                  child: ElevatedButton(
+                                    onPressed: () {
+                                      calculateAltitudeOfTerrain();
+                                    },
+                                    child: Padding(
+                                      padding:
+                                          EdgeInsets.symmetric(vertical: 10.0),
+                                      child: Text(
+                                          'Get area altitude from Open Topo Data'),
+                                    ),
+                                  ),
+                                ),
+                                Expanded(
+                                  flex: 1,
+                                  child: IconButton(
+                                      onPressed: () {
+                                        showHelpDialog('Open Topo Data API',
+                                            'Altitude information from the Open Topo Data API free dataset aster30m. The automatic values are Global and can have a resolution of ~30m. The source is from NASA ASTER Service');
+                                      },
+                                      icon: Icon(Icons.help)),
+                                )
+                              ],
                             ),
                           ),
                           Padding(
