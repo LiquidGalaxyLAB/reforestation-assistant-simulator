@@ -374,6 +374,8 @@ class _ProjectViewState extends State<ProjectView> {
                         args.project.minAltTerrain.toString() + 'm'),
                     Item('Maximum altitude of the terrain',
                         args.project.maxAltTerrain.toString() + 'm'),
+                    Item('Minimum flight height',
+                        args.project.minFlightHeight.toString() + 'm'),
                     Item('Maximum distance',
                         args.project.maxDistance.toString() + 'm'),
                     ItemTitle('SOIL ATTRIBUTES'),

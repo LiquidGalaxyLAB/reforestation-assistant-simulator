@@ -30,6 +30,7 @@ class Project {
   double minAltTerrain;
   double maxAltTerrain;
   double maxDistance;
+  double minFlightHeight;
 
   // SOIL ATTRIBUTES
   double depth;
@@ -67,6 +68,7 @@ class Project {
     this.hummus,
     this.inclination,
     this.geodata,
+    this.minFlightHeight,
   );
 
   @override
@@ -106,6 +108,7 @@ class Project {
       "hummus": hummus,
       "inclination": inclination,
       "geodata": geodata.toMap(),
+      "minFlightHeight": minFlightHeight,
     };
   }
 
@@ -140,6 +143,7 @@ class Project {
         element.value['hummus'],
         element.value['inclination'],
         Gmap.fromMap(element.value['geodata']),
+        element.value['minFlightHeight'],
       ));
     });
     return projects;

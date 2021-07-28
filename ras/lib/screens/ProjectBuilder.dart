@@ -56,6 +56,7 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
   TextEditingController minAltTerrain = TextEditingController();
   TextEditingController maxAltTerrain = TextEditingController();
   TextEditingController maxDistance = TextEditingController();
+  TextEditingController minFlightHeight = TextEditingController();
 
   // SOIL ATTRIBUTES
   TextEditingController depth = TextEditingController();
@@ -83,6 +84,8 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
         elevation.sort((a, b) => a.compareTo(b));
         minAltTerrain.text = elevation.last.toString();
         maxAltTerrain.text = elevation.first.toString();
+        minFlightHeight.text =
+            ((elevation.last + elevation.first) / 2).toString();
       } else {
         showHelpDialog('Sorry!',
             'We could not find altitude information from Open Topo Data API for the region you selected');
@@ -321,6 +324,7 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
         int.parse(hummus.text),
         double.parse(inclination.text),
         geodata,
+        double.parse(minFlightHeight.text),
       );
       Future response = ProjectRepository().create(project);
       response.then((value) {
@@ -355,6 +359,7 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
         int.parse(hummus.text),
         double.parse(inclination.text),
         geodata,
+        double.parse(minFlightHeight.text),
       );
       Future response = ProjectRepository().update(project, args.project!.id);
       response.then((value) {
@@ -409,6 +414,7 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
       ph.text = '0';
       hummus.text = '0';
       inclination.text = '0';
+      minFlightHeight.text = '0';
     }
   }
 
@@ -1290,6 +1296,38 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                                     showHelpDialog(
                                         'Maximum altitude of the terrain (Meters above sea level)',
                                         'The maximum altitude of the area at the highest point.');
+                                  },
+                                  icon: Icon(Icons.help))
+                            ],
+                          ),
+                          Padding(
+                            padding:
+                                const EdgeInsets.only(top: 25.0, bottom: 5),
+                            child: Text(
+                              'Minimum safe flight height (Meters)',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 16,
+                                color: Colors.black54,
+                              ),
+                            ),
+                          ),
+                          Row(
+                            children: [
+                              Expanded(
+                                child: TextFormField(
+                                  controller: minFlightHeight,
+                                  keyboardType: TextInputType.number,
+                                  decoration: InputDecoration(
+                                    filled: true,
+                                  ),
+                                ),
+                              ),
+                              IconButton(
+                                  onPressed: () {
+                                    showHelpDialog(
+                                        'Minimum safe flight height (Meters)',
+                                        'The minimum altitude of the area that is safe for a drone to fly');
                                   },
                                   icon: Icon(Icons.help))
                             ],

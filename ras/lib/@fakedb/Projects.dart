@@ -82,6 +82,7 @@ class FakeProjects {
             LatLng(43.54724062357167, -5.534377954339718),
           ]),
           []),
+          100,
     ),
     Project(
       '',
@@ -158,6 +159,7 @@ class FakeProjects {
         ]),
         [],
       ),
+      100
     )
   ];
 }

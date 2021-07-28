@@ -51,6 +51,7 @@ class _ProjectListState extends State<ProjectList> {
         model.hummus,
         model.inclination,
         model.geodata,
+        model.minFlightHeight,
       );
       Future response = ProjectRepository().create(project);
       response.then((value) {
