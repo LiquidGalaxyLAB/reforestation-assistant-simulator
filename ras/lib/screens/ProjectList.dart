@@ -3,6 +3,7 @@ import 'package:ras/models/Project.dart';
 import 'package:ras/repositories/Project.dart';
 import 'package:ras/route-args/ProjectBuilderArgs.dart';
 import 'package:ras/route-args/ProjectViewArgs.dart';
+import 'package:ras/services/Drive.dart';
 
 class ProjectList extends StatefulWidget {
   const ProjectList({Key? key}) : super(key: key);
@@ -22,6 +23,10 @@ class _ProjectListState extends State<ProjectList> {
     _listProjects.then((value) {
       toBeFiltered = value;
     });
+  }
+
+  uploadToDrive(Project project){
+    GoogleDrive().requestPermission(project);
   }
 
   duplicateProject(Project model) {
@@ -389,8 +394,21 @@ class _ProjectListState extends State<ProjectList> {
                                         ),
                                         Row(
                                           mainAxisAlignment:
-                                              MainAxisAlignment.end,
+                                              MainAxisAlignment.spaceBetween,
                                           children: [
+                                            OutlinedButton.icon(
+                                              onPressed: () {
+                                                uploadToDrive(data[index]);
+                                              },
+                                              icon: Icon(Icons.add_to_drive),
+                                              label: Text('Upload'),
+                                              style: OutlinedButton.styleFrom(
+                                                primary: Colors.blue,
+                                                side: BorderSide(
+                                                    color: Colors.blue,
+                                                    width: 1),
+                                              ),
+                                            ),
                                             OutlinedButton.icon(
                                               onPressed: () {
                                                 duplicateProject(data[index]);
