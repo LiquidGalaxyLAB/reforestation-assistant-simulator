@@ -1,9 +1,12 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:ras/models/Project.dart';
 import 'package:ras/repositories/Project.dart';
 import 'package:ras/route-args/ProjectBuilderArgs.dart';
 import 'package:ras/route-args/ProjectViewArgs.dart';
+import 'package:ras/services/Authentication.dart';
 import 'package:ras/services/Drive.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 class ProjectList extends StatefulWidget {
   const ProjectList({Key? key}) : super(key: key);
@@ -18,6 +21,7 @@ class _ProjectListState extends State<ProjectList> {
   List<Project> toBeFiltered = [];
   bool filterByNewest = false;
   bool filterByOldest = false;
+  User? currentUser = Authentication.currentUser();
 
   init() async {
     _listProjects.then((value) {
@@ -25,48 +29,96 @@ class _ProjectListState extends State<ProjectList> {
     });
   }
 
-  uploadToDrive(Project project){
-    GoogleDrive().requestPermission(project);
+  showAlertDialog(String title, String msg) {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text('$title'),
+                IconButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  icon: Icon(
+                    Icons.close,
+                    color: Colors.red,
+                  ),
+                ),
+              ],
+            ),
+            content: Text('$msg'),
+          );
+        });
+  }
+
+  uploadToDrive(Project project) async {
+    var status = await Permission.storage.status;
+    if (status.isGranted) {
+      try {
+        await GoogleDrive().requestPermission(project);
+        showAlertDialog(
+            'Success!', 'This project has been uploaded to Google Drive');
+      } catch (e) {
+        print(e);
+        showAlertDialog('Error!',
+            'An error occured while uploading to Google Drive. Please check if you have granted permissions to the app or try again later');
+      }
+    } else {
+      var isGranted = await Permission.storage.request().isGranted;
+      if (isGranted) {
+        try {
+          await GoogleDrive().requestPermission(project);
+          showAlertDialog(
+              'Success!', 'This project has been uploaded to Google Drive');
+        } catch (e) {
+          print(e);
+          showAlertDialog('Error!',
+              'An error occured while uploading to Google Drive. Please check if you have granted permissions to the app or try again later');
+        }
+      }
+    }
   }
 
   duplicateProject(Project model) {
-     Project project = Project(
-        '',
-        model.projectName,
-        model.dateOfProject,
-        model.sownMode,
-        model.region,
-        model.minSwtDate,
-        model.maxSwtDate,
-        model.minSwtTemp,
-        model.maxSwtTemp,
-        model.avgNumberOfRains,
-        model.totalNumberOfRains,
-        model.seeds,
-        model.validSurface,
-        model.notValidSurface,
-        model.emptyLand,
-        model.orientation,
-        model.minAltTerrain,
-        model.maxAltTerrain,
-        model.maxDistance,
-        model.depth,
-        model.ph,
-        model.fractured,
-        model.hummus,
-        model.inclination,
-        model.geodata,
-        model.minFlightHeight,
-      );
-      Future response = ProjectRepository().create(project);
-      response.then((value) {
-        print('Success!!!! $value');
-        setState(() {
-          _listProjects = ProjectRepository().getAll();
-        });
-        
+    Project project = Project(
+      '',
+      model.projectName,
+      model.dateOfProject,
+      model.sownMode,
+      model.region,
+      model.minSwtDate,
+      model.maxSwtDate,
+      model.minSwtTemp,
+      model.maxSwtTemp,
+      model.avgNumberOfRains,
+      model.totalNumberOfRains,
+      model.seeds,
+      model.validSurface,
+      model.notValidSurface,
+      model.emptyLand,
+      model.orientation,
+      model.minAltTerrain,
+      model.maxAltTerrain,
+      model.maxDistance,
+      model.depth,
+      model.ph,
+      model.fractured,
+      model.hummus,
+      model.inclination,
+      model.geodata,
+      model.minFlightHeight,
+    );
+    Future response = ProjectRepository().create(project);
+    response.then((value) {
+      print('Success!!!! $value');
+      setState(() {
+        _listProjects = ProjectRepository().getAll();
       });
-      response.catchError((onError) => print('Error $onError'));
+    });
+    response.catchError((onError) => print('Error $onError'));
   }
 
   filterSearchResults(String query) {
@@ -278,13 +330,15 @@ class _ProjectListState extends State<ProjectList> {
                           itemBuilder: (context, index) {
                             return GestureDetector(
                               onTap: () async {
-                                dynamic response = await Navigator.pushNamed(context, '/project-view',
+                                dynamic response = await Navigator.pushNamed(
+                                    context, '/project-view',
                                     arguments: ProjectViewArgs(data[index]));
 
-                                if(response != null){
-                                  if(response['reload']){
+                                if (response != null) {
+                                  if (response['reload']) {
                                     setState(() {
-                                      _listProjects = ProjectRepository().getAll();
+                                      _listProjects =
+                                          ProjectRepository().getAll();
                                     });
                                   }
                                 }
@@ -396,19 +450,40 @@ class _ProjectListState extends State<ProjectList> {
                                           mainAxisAlignment:
                                               MainAxisAlignment.spaceBetween,
                                           children: [
-                                            OutlinedButton.icon(
-                                              onPressed: () {
-                                                uploadToDrive(data[index]);
-                                              },
-                                              icon: Icon(Icons.add_to_drive),
-                                              label: Text('Upload'),
-                                              style: OutlinedButton.styleFrom(
-                                                primary: Colors.blue,
-                                                side: BorderSide(
-                                                    color: Colors.blue,
-                                                    width: 1),
-                                              ),
-                                            ),
+                                            currentUser != null
+                                                ? OutlinedButton.icon(
+                                                    onPressed: () {
+                                                      uploadToDrive(
+                                                          data[index]);
+                                                    },
+                                                    icon: Icon(
+                                                        Icons.add_to_drive),
+                                                    label: Text('Upload'),
+                                                    style: OutlinedButton
+                                                        .styleFrom(
+                                                      primary: Colors.blue,
+                                                      side: BorderSide(
+                                                          color: Colors.blue,
+                                                          width: 1),
+                                                    ),
+                                                  )
+                                                : OutlinedButton.icon(
+                                                    onPressed: () {
+                                                      showAlertDialog(
+                                                          'Please login',
+                                                          'To work with Google Drive integration you need to login with Google. Go to Settings and click Sign In with Google');
+                                                    },
+                                                    icon: Icon(
+                                                        Icons.add_to_drive),
+                                                    label: Text('Upload'),
+                                                    style: OutlinedButton
+                                                        .styleFrom(
+                                                      primary: Colors.grey,
+                                                      side: BorderSide(
+                                                          color: Colors.grey,
+                                                          width: 1),
+                                                    ),
+                                                  ),
                                             OutlinedButton.icon(
                                               onPressed: () {
                                                 duplicateProject(data[index]);
@@ -458,10 +533,11 @@ class _ProjectListState extends State<ProjectList> {
             alignment: Alignment.bottomRight,
             child: FloatingActionButton(
               onPressed: () async {
-                dynamic response = await Navigator.pushNamed(context, '/project-builder',
+                dynamic response = await Navigator.pushNamed(
+                    context, '/project-builder',
                     arguments: ProjectBuilderArgs(true));
-                if(response != null) {
-                  if(response['reload']) {
+                if (response != null) {
+                  if (response['reload']) {
                     setState(() {
                       _listProjects = ProjectRepository().getAll();
                     });

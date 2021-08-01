@@ -1,7 +1,10 @@
+import 'dart:io';
+
 import 'package:googleapis/drive/v3.dart' as drive;
 import 'package:google_sign_in/google_sign_in.dart' as signIn;
 import 'package:http/http.dart' as http;
 import 'package:ras/models/Project.dart';
+import 'package:ras/services/PdfGenerator.dart';
 
 class GoogleDrive {
   requestPermission(Project project) async {
@@ -10,6 +13,7 @@ class GoogleDrive {
     final signIn.GoogleSignInAccount? account = await googleSignIn.signIn();
     print("User account $account");
     if (account != null) uploadFile(account, project);
+    else return Future.error('Error uploading to drive');
   }
 
   uploadFile(signIn.GoogleSignInAccount account, Project pr) async {
@@ -17,13 +21,18 @@ class GoogleDrive {
     final authenticateClient = GoogleAuthClient(authHeaders);
     final driveApi = drive.DriveApi(authenticateClient);
 
-    final Stream<List<int>> mediaStream =
-        Future.value([104, 105]).asStream().asBroadcastStream();
-    var media = new drive.Media(mediaStream, 2);
+    File pdf = await PdfGenerator.generatePdf(pr);
     var driveFile = new drive.File();
-    driveFile.name = "hello_world.txt";
-    final result = await driveApi.files.create(driveFile, uploadMedia: media);
-    print("Upload result: $result");
+    driveFile.name = "${pr.projectName}";
+
+    try {
+      final result = await driveApi.files.create(driveFile,
+          uploadMedia: drive.Media(pdf.openRead(), pdf.lengthSync()));
+      await pdf.delete();
+      return Future.value(result);
+    } catch (e) {
+      return Future.error('Error uploading to drive $e');
+    }
   }
 }
 
