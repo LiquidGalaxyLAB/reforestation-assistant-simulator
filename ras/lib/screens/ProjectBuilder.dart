@@ -393,6 +393,7 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
       fractured = args.project!.fractured ? 'Yes' : 'No';
       hummus.text = args.project!.hummus.toString();
       inclination.text = args.project!.inclination.toString();
+      minFlightHeight.text = args.project!.minFlightHeight.toString();
 
       // map info
       geodata = args.project!.geodata;
