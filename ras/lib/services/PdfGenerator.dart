@@ -1,8 +1,6 @@
 import 'dart:io';
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:downloads_path_provider/downloads_path_provider.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/services.dart';
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:pdf/pdf.dart';
 // ignore: import_of_legacy_library_into_null_safe
@@ -54,10 +52,6 @@ class PdfGenerator {
 
     final pdf = pw.Document();
     final downloadsDirectory = await DownloadsPathProvider.downloadsDirectory;
-
-    final appIcon = pw.MemoryImage(
-      (await rootBundle.load('assets/logoRas.png')).buffer.asUint8List(),
-    );
 
     pdf.addPage(
       pw.MultiPage(

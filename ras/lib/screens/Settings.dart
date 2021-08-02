@@ -1,10 +1,12 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:ras/services/Authentication.dart';
+import 'package:ras/services/Database.dart';
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:ssh/ssh.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:ras/widgets/AppBar.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 class Settings extends StatefulWidget {
   @override
@@ -68,6 +70,34 @@ class _SettingsState extends State<Settings> {
         });
   }
 
+  exportDb() async {
+    var status = await Permission.storage.status;
+    if (status.isGranted) {
+      try {
+          await DatabaseService().exportDB();
+        showAlertDialog(
+            'Success!', 'Database exported! You can find the file in the Download\'s directory');
+      } catch (e) {
+        print(e);
+        showAlertDialog('Error!',
+            'An error occured while exporting the database. Please check if you have granted permissions to the app or try again later');
+      }
+    } else {
+      var isGranted = await Permission.storage.request().isGranted;
+      if (isGranted) {
+        try {
+            await DatabaseService().exportDB();
+          showAlertDialog(
+              'Success!', 'Database exported! You can find the file in the Download\'s directory');
+        } catch (e) {
+          print(e);
+          showAlertDialog('Error!',
+              'An error occured while exporting the database. Please check if you have granted permissions to the app or try again later');
+        }
+      }
+    }
+  }
+
   init() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     ipAddress.text = preferences.getString('master_ip') ?? '';
@@ -78,8 +108,7 @@ class _SettingsState extends State<Settings> {
 
   @override
   Widget build(BuildContext context) {
-
-    if(!loaded) init();
+    if (!loaded) init();
 
     return Scaffold(
         appBar: PreferredSize(
@@ -251,11 +280,41 @@ class _SettingsState extends State<Settings> {
                   thickness: 1,
                 ),
                 ListTile(
-                  leading: Text('🇺🇸', style: TextStyle(fontSize: 20),),
+                  leading: Text(
+                    '🇺🇸',
+                    style: TextStyle(fontSize: 20),
+                  ),
                   title: Text('English (US)'),
                   trailing: IconButton(
                     onPressed: () {},
-                    icon: Icon(Icons.language, color: Colors.blue,),
+                    icon: Icon(
+                      Icons.language,
+                      color: Colors.blue,
+                    ),
+                  ),
+                ),
+                Divider(
+                  color: Colors.grey,
+                  thickness: 1,
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 10.0, top: 10),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        'Export database',
+                        textAlign: TextAlign.start,
+                        style: TextStyle(
+                            fontSize: 20, fontWeight: FontWeight.bold),
+                      ),
+                      ElevatedButton(
+                        onPressed: () {
+                          exportDb();
+                        },
+                        child: Text('EXPORT'),
+                      ),
+                    ],
                   ),
                 ),
               ],
