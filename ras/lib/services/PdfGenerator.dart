@@ -105,7 +105,7 @@ class PdfGenerator {
                 },
                 itemCount: project.seeds.length),
             title('AREA INFORMATION'),
-            attribute('Valid surface', '${project.validSurface}%'),
+            attribute('Optimal surface', '${project.validSurface}%'),
             attribute('Invalid surface', '${project.notValidSurface}%'),
             attribute('Empty land', '${project.emptyLand}%'),
             attribute('Orientation', '${project.orientation}'),

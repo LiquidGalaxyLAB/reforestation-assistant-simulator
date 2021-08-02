@@ -289,7 +289,7 @@ class _SettingsState extends State<Settings> {
                     onPressed: () {},
                     icon: Icon(
                       Icons.language,
-                      color: Colors.blue,
+                      color: Colors.grey,
                     ),
                   ),
                 ),

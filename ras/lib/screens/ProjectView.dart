@@ -364,7 +364,7 @@ class _ProjectViewState extends State<ProjectView> {
                         ),
                       ),
                     ItemTitle('AREA INFORMATION'),
-                    Item('Valid surface',
+                    Item('Optimal surface',
                         args.project.validSurface.toString() + '%'),
                     Item('Invalid surface',
                         args.project.notValidSurface.toString() + '%'),
