@@ -11,16 +11,16 @@ class AboutScreen extends StatefulWidget {
 
 class _AboutScreenState extends State<AboutScreen> {
   List<String> images = [
-    'assets/logoRas.png',
-    'assets/logoLg.png',
-    'assets/logoGsoc.png',
-    'assets/logoWtm.png',
-    'assets/logoLgLab.png',
-    'assets/logoLgEu.png',
-    'assets/logoTic.png',
-    'assets/logoPcital.jpg',
-    'assets/logoFacens.png',
-    'assets/logoDronecoria.png',
+    'assets/logos/logoRas.png',
+    'assets/logos/logoLg.png',
+    'assets/logos/logoGsoc.png',
+    'assets/logos/logoWtm.png',
+    'assets/logos/logoLgLab.png',
+    'assets/logos/logoLgEu.png',
+    'assets/logos/logoTic.png',
+    'assets/logos/logoPcital.jpg',
+    'assets/logos/logoFacens.png',
+    'assets/logos/logoDronecoria.png',
   ];
 
   _launchURL(String url) async {

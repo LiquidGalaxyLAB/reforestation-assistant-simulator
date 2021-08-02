@@ -28,7 +28,7 @@ class _SignInScreenState extends State<SignInScreen> {
                     Flexible(
                       flex: 1,
                       child: Image.asset(
-                        'assets/logoRas.png',
+                        'assets/logos/logoRas.png',
                         scale: 5,
                       ),
                     ),
@@ -174,7 +174,7 @@ class _GoogleSignInButtonState extends State<GoogleSignInButton> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     Image(
-                      image: AssetImage("assets/google_icon.png"),
+                      image: AssetImage("assets/logos/google_icon.png"),
                       height: 35.0,
                     ),
                     Padding(

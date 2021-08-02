@@ -58,7 +58,7 @@ class _MapViewState extends State<MapView> {
   init(MapViewArgs args) async {
     await BitmapDescriptor.fromAssetImage(
             ImageConfiguration(devicePixelRatio: 2.5, size: Size(1, 1)),
-            'assets/polyVertex.png')
+            'assets/appIcons/polyVertex.png')
         .then((onValue) {
       polygonVertexIcon = onValue;
     });
@@ -127,7 +127,7 @@ class _MapViewState extends State<MapView> {
   void initState() {
     BitmapDescriptor.fromAssetImage(
             ImageConfiguration(devicePixelRatio: 2.5, size: Size(1, 1)),
-            'assets/polyVertex.png')
+            'assets/appIcons/polyVertex.png')
         .then((onValue) {
       polygonVertexIcon = onValue;
 

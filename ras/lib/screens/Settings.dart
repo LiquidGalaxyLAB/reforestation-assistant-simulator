@@ -207,7 +207,7 @@ class _SettingsState extends State<Settings> {
                                   crossAxisAlignment: WrapCrossAlignment.center,
                                   children: [
                                     Image.asset(
-                                      'assets/google_icon.png',
+                                      'assets/logos/google_icon.png',
                                       scale: 45,
                                     ),
                                     SizedBox(width: 12),

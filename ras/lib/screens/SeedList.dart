@@ -277,7 +277,7 @@ class _SeedListState extends State<SeedList> {
                             );
                           });
                     } else if (snapshot.hasError) {
-                      return Text('Error: ${snapshot.error}');
+                      return Text('Sorry and error occurred. Error message: ${snapshot.error}');
                     } else {
                       return Column(
                         children: [
