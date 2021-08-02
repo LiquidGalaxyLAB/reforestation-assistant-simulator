@@ -100,7 +100,13 @@ class _SignInScreenState extends State<SignInScreen> {
                   } else if (snapshot.connectionState == ConnectionState.done) {
                     return GoogleSignInButton();
                   }
-                  return CircularProgressIndicator();
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      CircularProgressIndicator(),
+                      Text('Signing with Google...', style: TextStyle(color: Colors.grey),)
+                    ],
+                  );
                 },
               ),
             ],
@@ -124,9 +130,18 @@ class _GoogleSignInButtonState extends State<GoogleSignInButton> {
     return Padding(
       padding: const EdgeInsets.only(bottom: 16.0),
       child: _isSigningIn
-          ? CircularProgressIndicator(
-              valueColor: AlwaysStoppedAnimation<Color>(Colors.blue),
-            )
+          ? Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              CircularProgressIndicator(
+                  valueColor: AlwaysStoppedAnimation<Color>(Colors.blue),
+                ),
+              Padding(
+                padding: const EdgeInsets.only(top:15.0),
+                child: Text('Signing with Google...', style: TextStyle(color: Colors.grey),),
+              )
+            ],
+          )
           : OutlinedButton(
               style: ButtonStyle(
                 backgroundColor: MaterialStateProperty.all(Colors.white),

@@ -288,7 +288,7 @@ class _SeedListState extends State<SeedList> {
                           ),
                           Padding(
                             padding: EdgeInsets.only(top: 16),
-                            child: Text('Loading data...'),
+                            child: Text('Loading data...', style: TextStyle(color: Colors.grey)),
                           )
                         ],
                       );

@@ -173,7 +173,8 @@ class _SplashScreenState extends State<SplashScreen> {
                   ),
                 ],
               ),
-              CircularProgressIndicator()
+              CircularProgressIndicator(),
+              Text('Loading App...', style: TextStyle(color: Colors.grey),)
             ],
           ),
         ),
