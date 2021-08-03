@@ -10,8 +10,7 @@ class MyAppBar extends StatefulWidget {
 }
 
 class _MyAppBarState extends State<MyAppBar> {
-
-    showReturnDialog(String title, String msg) {
+  showReturnDialog(String title, String msg) {
     showDialog(
         context: context,
         builder: (BuildContext context) {
@@ -57,8 +56,13 @@ class _MyAppBarState extends State<MyAppBar> {
       leading: !widget.isHome
           ? IconButton(
               onPressed: () {
-                showReturnDialog('Are you sure you want to go back?',
-                            'All the changes you made will be lost');
+                if (ModalRoute.of(context)!.settings.name ==
+                        '/project-builder' ||
+                    ModalRoute.of(context)!.settings.name == '/seed-form') {
+                  showReturnDialog('Are you sure you want to go back?',
+                      'All the changes you made will be lost');
+                } else
+                  Navigator.of(context).pop();
               },
               icon: Icon(Icons.chevron_left),
             )
@@ -80,7 +84,11 @@ class _MyAppBarState extends State<MyAppBar> {
                   text: 'Projects',
                 ),
                 Tab(
-                  icon: Image.asset('assets/appIcons/seeds.png', height: 30, width: 30,),
+                  icon: Image.asset(
+                    'assets/appIcons/seeds.png',
+                    height: 30,
+                    width: 30,
+                  ),
                   text: 'Species',
                 ),
               ],
