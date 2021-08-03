@@ -111,7 +111,7 @@ class Project {
       "inclination": inclination,
       "geodata": geodata.toMap(),
       "minFlightHeight": minFlightHeight,
-      "prefation": predation,
+      "predation": predation,
     };
   }
 
