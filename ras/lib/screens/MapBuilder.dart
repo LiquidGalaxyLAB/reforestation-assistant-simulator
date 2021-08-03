@@ -569,6 +569,18 @@ class _MapBuilderState extends State<MapBuilder> {
                                 }),
                           ),
                           Padding(
+                            padding: const EdgeInsets.only(top: 20.0),
+                            child: FloatingActionButton(
+                                heroTag: 'btn6',
+                                backgroundColor: Colors.black.withOpacity(0.5),
+                                child: Image.asset('assets/appIcons/landpoint.png', height: 25, width: 25,),
+                                onPressed: () {
+                                  setState(() {
+                                    // landing point
+                                  });
+                                }),
+                          ),
+                          Padding(
                             padding: const EdgeInsets.only(top: 90.0),
                             child: FloatingActionButton(
                                 heroTag: 'btn7',
