@@ -105,10 +105,13 @@ class _SeedListState extends State<SeedList> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text(
-                          'Species',
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 25),
+                        Padding(
+                          padding: const EdgeInsets.only(left:10.0),
+                          child: Text(
+                            'Species',
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 25),
+                          ),
                         ),
                         Row(
                           children: [
@@ -166,28 +169,32 @@ class _SeedListState extends State<SeedList> {
                           itemCount: snapshot.data.length,
                           itemBuilder: (context, index) {
                             return ExpansionTile(
-                              title: Text('${data[index].commonName}'),
+                              title: Text(
+                                '${data[index].commonName}',
+                                style: TextStyle(fontWeight: FontWeight.bold),
+                              ),
+                              subtitle: Text('${data[index].scientificName}'),
+                              leading: Container(
+                                width: 40,
+                                height: 40,
+                                child: Image.asset(
+                                  data[index].icon['url'],
+                                  scale: 1,
+                                  fit: BoxFit.fill,
+                                ),
+                              ),
                               children: [
                                 Padding(
                                   padding: const EdgeInsets.symmetric(
                                       horizontal: 15.0),
                                   child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
+                                    mainAxisAlignment: MainAxisAlignment.end,
                                     children: [
                                       Expanded(
                                         child: ListTile(
-                                          contentPadding: EdgeInsets.zero,
-                                          leading: Container(
-                                            width: 60,
-                                            height: 60,
-                                            child: Image.asset(
-                                              data[index].icon['url'],
-                                              scale: 1,
-                                              fit: BoxFit.fill,
-                                            ),
-                                          ),
-                                          title: Text('Icon'),
+                                          title:
+                                              Text('${data[index].commonName}'),
+                                          subtitle: Text('Common name'),
                                         ),
                                       ),
                                       Expanded(
@@ -235,49 +242,67 @@ class _SeedListState extends State<SeedList> {
                                     ],
                                   ),
                                 ),
-                                ListTile(
-                                  title: Text('${data[index].commonName}'),
-                                  subtitle: Text('Common name'),
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(horizontal:10.0),
+                                  child: ListTile(
+                                    title: Text('${data[index].scientificName}'),
+                                    subtitle: Text('Scientific name'),
+                                  ),
                                 ),
-                                ListTile(
-                                  title: Text('${data[index].scientificName}'),
-                                  subtitle: Text('Scientific name'),
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(horizontal:10.0),
+                                  child: ListTile(
+                                    title: Text('${data[index].co2PerYear}'),
+                                    subtitle: Text('CO2 capture per year'),
+                                  ),
                                 ),
-                                ListTile(
-                                  title: Text('${data[index].co2PerYear}'),
-                                  subtitle: Text('CO2 capture per year'),
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(horizontal:10.0),
+                                  child: ListTile(
+                                    title: Text(
+                                        '${data[index].germinativePotential}%'),
+                                    subtitle: Text('Germinative potential (%)'),
+                                  ),
                                 ),
-                                ListTile(
-                                  title: Text(
-                                      '${data[index].germinativePotential}%'),
-                                  subtitle: Text('Germinative potential (%)'),
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(horizontal:10.0),
+                                  child: ListTile(
+                                    title: Text(
+                                        '${data[index].estimatedLongevity} years'),
+                                    subtitle: Text('Estimated longevity (years)'),
+                                  ),
                                 ),
-                                ListTile(
-                                  title: Text(
-                                      '${data[index].estimatedLongevity} years'),
-                                  subtitle: Text('Estimated longevity (years)'),
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(horizontal:10.0),
+                                  child: ListTile(
+                                    title: Text(
+                                        '${data[index].estimatedFinalHeight}m'),
+                                    subtitle:
+                                        Text('Estimated final height (meters)'),
+                                  ),
                                 ),
-                                ListTile(
-                                  title: Text(
-                                      '${data[index].estimatedFinalHeight}m'),
-                                  subtitle:
-                                      Text('Estimated final height (meters)'),
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(horizontal:10.0),
+                                  child: ListTile(
+                                    title:
+                                        Text('€${data[index].seedCost} each 1kg'),
+                                    subtitle: Text('Seed Cost (1kg)'),
+                                  ),
                                 ),
-                                ListTile(
-                                  title:
-                                      Text('€${data[index].seedCost} each 1kg'),
-                                  subtitle: Text('Seed Cost (1kg)'),
-                                ),
-                                ListTile(
-                                  title:
-                                      Text('€${data[index].establishmentCost}'),
-                                  subtitle: Text('Establishment cost'),
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(horizontal:10.0),
+                                  child: ListTile(
+                                    title:
+                                        Text('€${data[index].establishmentCost}'),
+                                    subtitle: Text('Establishment cost'),
+                                  ),
                                 ),
                               ],
                             );
                           });
                     } else if (snapshot.hasError) {
-                      return Text('Sorry and error occurred. Error message: ${snapshot.error}');
+                      return Text(
+                          'Sorry and error occurred. Error message: ${snapshot.error}');
                     } else {
                       return Column(
                         children: [
@@ -288,7 +313,8 @@ class _SeedListState extends State<SeedList> {
                           ),
                           Padding(
                             padding: EdgeInsets.only(top: 16),
-                            child: Text('Loading data...', style: TextStyle(color: Colors.grey)),
+                            child: Text('Loading data...',
+                                style: TextStyle(color: Colors.grey)),
                           )
                         ],
                       );
@@ -303,7 +329,8 @@ class _SeedListState extends State<SeedList> {
             alignment: Alignment.bottomRight,
             child: FloatingActionButton(
               onPressed: () async {
-                dynamic response = await Navigator.pushNamed(context, '/seed-form',
+                dynamic response = await Navigator.pushNamed(
+                    context, '/seed-form',
                     arguments: SeedFormArgs(true));
                 if (response != null) {
                   if (response['reload']) {
