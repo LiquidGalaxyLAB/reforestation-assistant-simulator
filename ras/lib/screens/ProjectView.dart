@@ -172,6 +172,17 @@ class _ProjectViewState extends State<ProjectView> {
           child: Column(
             children: [
               ListTile(
+                trailing: args.project.sownMode == 'By Drone'
+                    ? Image.asset(
+                        'assets/appIcons/drone.png',
+                        height: 30,
+                        width: 30,
+                      )
+                    : Icon(
+                        Icons.directions_walk_sharp,
+                        size: 30,
+                        color: Colors.brown,
+                      ),
                 contentPadding: EdgeInsets.zero,
                 title: Text(
                   '${args.project.projectName}',
@@ -422,7 +433,7 @@ class _ProjectViewState extends State<ProjectView> {
                       ? CO2Chart(args.project.seeds)
                       : Center(
                           child: Padding(
-                            padding: const EdgeInsets.only(bottom:20.0),
+                            padding: const EdgeInsets.only(bottom: 20.0),
                             child: Text(
                               'No data',
                               style: TextStyle(color: Colors.grey),

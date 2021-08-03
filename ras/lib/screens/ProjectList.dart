@@ -346,7 +346,7 @@ class _ProjectListState extends State<ProjectList> {
                               child: Container(
                                 margin: EdgeInsets.symmetric(
                                     horizontal: 15, vertical: 10),
-                                padding: EdgeInsets.only(left: 15),
+                                padding: EdgeInsets.only(left: 10),
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(15.0),
                                   color: Colors.green,
@@ -359,6 +359,13 @@ class _ProjectListState extends State<ProjectList> {
                                     color: Colors.grey.shade100,
                                   ),
                                   child: ListTile(
+                                    trailing: data[index].sownMode == 'By Drone'
+                                        ? Image.asset(
+                                            'assets/appIcons/drone.png',
+                                            height: 30,
+                                            width: 30,
+                                          )
+                                        : Icon(Icons.directions_walk_sharp, size: 30, color: Colors.brown,),
                                     contentPadding: EdgeInsets.symmetric(
                                         vertical: 10, horizontal: 10),
                                     title: Text(
@@ -490,9 +497,11 @@ class _ProjectListState extends State<ProjectList> {
                                                 icon: Icon(Icons.copy),
                                                 label: Text('Duplicate'),
                                                 style: OutlinedButton.styleFrom(
-                                                  primary: Colors.yellow.shade800,
+                                                  primary:
+                                                      Colors.yellow.shade800,
                                                   side: BorderSide(
-                                                      color: Colors.yellow.shade800,
+                                                      color: Colors
+                                                          .yellow.shade800,
                                                       width: 1),
                                                 ),
                                               ),
@@ -507,7 +516,8 @@ class _ProjectListState extends State<ProjectList> {
                             );
                           });
                     } else if (snapshot.hasError) {
-                      return Text('Sorry and error occurred. Error message: ${snapshot.error}');
+                      return Text(
+                          'Sorry and error occurred. Error message: ${snapshot.error}');
                     } else {
                       return Column(
                         children: [
@@ -518,7 +528,8 @@ class _ProjectListState extends State<ProjectList> {
                           ),
                           Padding(
                             padding: EdgeInsets.only(top: 16),
-                            child: Text('Loading data...', style: TextStyle(color: Colors.grey)),
+                            child: Text('Loading data...',
+                                style: TextStyle(color: Colors.grey)),
                           )
                         ],
                       );

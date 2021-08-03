@@ -38,7 +38,7 @@ class _MyAppBarState extends State<MyAppBar> {
                   text: 'Projects',
                 ),
                 Tab(
-                  icon: Icon(Icons.yard_outlined),
+                  icon: Image.asset('assets/appIcons/seeds.png', height: 30, width: 30,),
                   text: 'Species',
                 ),
               ],
@@ -54,7 +54,7 @@ class _MyAppBarState extends State<MyAppBar> {
               )
             : SizedBox(),
       ],
-      backgroundColor: Colors.blue.shade900,
+      backgroundColor: Colors.blue,
     );
   }
 }
