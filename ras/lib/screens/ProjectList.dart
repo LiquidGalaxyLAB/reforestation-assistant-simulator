@@ -149,7 +149,7 @@ class _ProjectListState extends State<ProjectList> {
   filterByAttributes() {
     List<Project> dummySearchList = [];
     dummySearchList.addAll(toBeFiltered);
-    if (filterByNewest) {
+    if (filterByOldest) {
       dummySearchList.sort((a, b) {
         return a.dateOfProject.compareTo(b.dateOfProject);
       });
@@ -157,7 +157,7 @@ class _ProjectListState extends State<ProjectList> {
         toBeFiltered.clear();
         toBeFiltered.addAll(dummySearchList);
       });
-    } else if (filterByOldest) {
+    } else if (filterByNewest) {
       dummySearchList.sort((a, b) {
         return b.dateOfProject.compareTo(a.dateOfProject);
       });
