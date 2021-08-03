@@ -1,8 +1,12 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:ras/models/Project.dart';
 import 'package:ras/repositories/Project.dart';
 import 'package:ras/route-args/ProjectBuilderArgs.dart';
 import 'package:ras/route-args/ProjectViewArgs.dart';
+import 'package:ras/services/Authentication.dart';
+import 'package:ras/services/Drive.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 class ProjectList extends StatefulWidget {
   const ProjectList({Key? key}) : super(key: key);
@@ -17,6 +21,7 @@ class _ProjectListState extends State<ProjectList> {
   List<Project> toBeFiltered = [];
   bool filterByNewest = false;
   bool filterByOldest = false;
+  User? currentUser = Authentication.currentUser();
 
   init() async {
     _listProjects.then((value) {
@@ -24,44 +29,97 @@ class _ProjectListState extends State<ProjectList> {
     });
   }
 
-  duplicateProject(Project model) {
-     Project project = Project(
-        '',
-        model.projectName,
-        model.dateOfProject,
-        model.sownMode,
-        model.region,
-        model.minSwtDate,
-        model.maxSwtDate,
-        model.minSwtTemp,
-        model.maxSwtTemp,
-        model.avgNumberOfRains,
-        model.totalNumberOfRains,
-        model.seeds,
-        model.validSurface,
-        model.notValidSurface,
-        model.emptyLand,
-        model.orientation,
-        model.minAltTerrain,
-        model.maxAltTerrain,
-        model.maxDistance,
-        model.depth,
-        model.ph,
-        model.fractured,
-        model.hummus,
-        model.inclination,
-        model.geodata,
-        model.minFlightHeight,
-      );
-      Future response = ProjectRepository().create(project);
-      response.then((value) {
-        print('Success!!!! $value');
-        setState(() {
-          _listProjects = ProjectRepository().getAll();
+  showAlertDialog(String title, String msg) {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text('$title'),
+                IconButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  icon: Icon(
+                    Icons.close,
+                    color: Colors.red,
+                  ),
+                ),
+              ],
+            ),
+            content: Text('$msg'),
+          );
         });
-        
+  }
+
+  uploadToDrive(Project project) async {
+    var status = await Permission.storage.status;
+    if (status.isGranted) {
+      try {
+        await GoogleDrive().requestPermission(project);
+        showAlertDialog(
+            'Success!', 'This project has been uploaded to Google Drive');
+      } catch (e) {
+        print(e);
+        showAlertDialog('Error!',
+            'An error occured while uploading to Google Drive. Please check if you have granted permissions to the app or try again later');
+      }
+    } else {
+      var isGranted = await Permission.storage.request().isGranted;
+      if (isGranted) {
+        try {
+          await GoogleDrive().requestPermission(project);
+          showAlertDialog(
+              'Success!', 'This project has been uploaded to Google Drive');
+        } catch (e) {
+          print(e);
+          showAlertDialog('Error!',
+              'An error occured while uploading to Google Drive. Please check if you have granted permissions to the app or try again later');
+        }
+      }
+    }
+  }
+
+  duplicateProject(Project model) {
+    Project project = Project(
+      '',
+      model.projectName,
+      model.dateOfProject,
+      model.sownMode,
+      model.region,
+      model.minSwtDate,
+      model.maxSwtDate,
+      model.minSwtTemp,
+      model.maxSwtTemp,
+      model.avgNumberOfRains,
+      model.totalNumberOfRains,
+      model.seeds,
+      model.validSurface,
+      model.notValidSurface,
+      model.emptyLand,
+      model.orientation,
+      model.minAltTerrain,
+      model.maxAltTerrain,
+      model.maxDistance,
+      model.depth,
+      model.ph,
+      model.fractured,
+      model.hummus,
+      model.inclination,
+      model.geodata,
+      model.minFlightHeight,
+      model.predation,
+    );
+    Future response = ProjectRepository().create(project);
+    response.then((value) {
+      print('Success!!!! $value');
+      setState(() {
+        _listProjects = ProjectRepository().getAll();
       });
-      response.catchError((onError) => print('Error $onError'));
+    });
+    response.catchError((onError) => print('Error $onError'));
   }
 
   filterSearchResults(String query) {
@@ -91,7 +149,7 @@ class _ProjectListState extends State<ProjectList> {
   filterByAttributes() {
     List<Project> dummySearchList = [];
     dummySearchList.addAll(toBeFiltered);
-    if (filterByNewest) {
+    if (filterByOldest) {
       dummySearchList.sort((a, b) {
         return a.dateOfProject.compareTo(b.dateOfProject);
       });
@@ -99,7 +157,7 @@ class _ProjectListState extends State<ProjectList> {
         toBeFiltered.clear();
         toBeFiltered.addAll(dummySearchList);
       });
-    } else if (filterByOldest) {
+    } else if (filterByNewest) {
       dummySearchList.sort((a, b) {
         return b.dateOfProject.compareTo(a.dateOfProject);
       });
@@ -273,13 +331,15 @@ class _ProjectListState extends State<ProjectList> {
                           itemBuilder: (context, index) {
                             return GestureDetector(
                               onTap: () async {
-                                dynamic response = await Navigator.pushNamed(context, '/project-view',
+                                dynamic response = await Navigator.pushNamed(
+                                    context, '/project-view',
                                     arguments: ProjectViewArgs(data[index]));
 
-                                if(response != null){
-                                  if(response['reload']){
+                                if (response != null) {
+                                  if (response['reload']) {
                                     setState(() {
-                                      _listProjects = ProjectRepository().getAll();
+                                      _listProjects =
+                                          ProjectRepository().getAll();
                                     });
                                   }
                                 }
@@ -287,126 +347,169 @@ class _ProjectListState extends State<ProjectList> {
                               child: Container(
                                 margin: EdgeInsets.symmetric(
                                     horizontal: 15, vertical: 10),
-                                padding: EdgeInsets.symmetric(vertical: 10),
+                                padding: EdgeInsets.only(left: 10),
                                 decoration: BoxDecoration(
-                                  color: Colors.grey.shade100,
-                                  border: Border(
-                                    left: BorderSide(
-                                        color: Colors.green, width: 10),
-                                  ),
+                                  borderRadius: BorderRadius.circular(15.0),
+                                  color: Colors.green,
                                 ),
-                                child: ListTile(
-                                  title: Text(
-                                    '${data[index].projectName}',
-                                    style: TextStyle(
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.bold,
-                                    ),
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.only(
+                                        topRight: Radius.circular(10.0),
+                                        bottomRight: Radius.circular(10.0)),
+                                    color: Colors.grey.shade100,
                                   ),
-                                  subtitle: Padding(
-                                    padding: const EdgeInsets.only(top: 20.0),
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Padding(
-                                          padding: const EdgeInsets.only(
-                                              bottom: 5.0),
-                                          child: Row(
-                                            children: [
-                                              Text(
-                                                'Area covered: ',
-                                                style: TextStyle(
-                                                    fontWeight: FontWeight.bold,
-                                                    fontSize: 18),
-                                              ),
-                                              Text(
-                                                'XXm',
-                                                style: TextStyle(fontSize: 18),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                        Padding(
-                                          padding: const EdgeInsets.only(
-                                              bottom: 5.0),
-                                          child: Row(
-                                            children: [
-                                              Text(
-                                                'Date: ',
-                                                style: TextStyle(
-                                                    fontWeight: FontWeight.bold,
-                                                    fontSize: 18),
-                                              ),
-                                              Text(
-                                                '${data[index].dateOfProject.toString().substring(0, 10)}',
-                                                style: TextStyle(fontSize: 18),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                        Padding(
-                                          padding: const EdgeInsets.only(
-                                              bottom: 5.0),
-                                          child: Row(
-                                            children: [
-                                              Text(
-                                                'Region: ',
-                                                style: TextStyle(
-                                                    fontWeight: FontWeight.bold,
-                                                    fontSize: 18),
-                                              ),
-                                              Text(
-                                                '${data[index].region}',
-                                                style: TextStyle(fontSize: 18),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                        Padding(
-                                          padding: const EdgeInsets.only(
-                                              bottom: 5.0),
-                                          child: Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              Text(
-                                                'Species sown: ',
-                                                style: TextStyle(
-                                                    fontWeight: FontWeight.bold,
-                                                    fontSize: 18),
-                                              ),
-                                              for (var i = 0;
-                                                  i < data[index].seeds.length;
-                                                  i++)
+                                  child: ListTile(
+                                    trailing: data[index].sownMode == 'By Drone'
+                                        ? Image.asset(
+                                            'assets/appIcons/drone.png',
+                                            height: 30,
+                                            width: 30,
+                                          )
+                                        : Icon(Icons.directions_walk_sharp, size: 30, color: Colors.brown,),
+                                    contentPadding: EdgeInsets.symmetric(
+                                        vertical: 10, horizontal: 10),
+                                    title: Text(
+                                      '${data[index].projectName}',
+                                      style: TextStyle(
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                    subtitle: Padding(
+                                      padding: const EdgeInsets.only(top: 20.0),
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Padding(
+                                            padding: const EdgeInsets.only(
+                                                bottom: 5.0),
+                                            child: Row(
+                                              children: [
                                                 Text(
-                                                  '${data[index].seeds[i].commonName} | density = ${data[index].seeds[i].density}%',
+                                                  'Date: ',
+                                                  style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      fontSize: 18),
+                                                ),
+                                                Text(
+                                                  '${data[index].dateOfProject.toString().substring(0, 10)}',
                                                   style:
                                                       TextStyle(fontSize: 18),
                                                 ),
+                                              ],
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding: const EdgeInsets.only(
+                                                bottom: 5.0),
+                                            child: Row(
+                                              children: [
+                                                Text(
+                                                  'Region: ',
+                                                  style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      fontSize: 18),
+                                                ),
+                                                Text(
+                                                  '${data[index].region}',
+                                                  style:
+                                                      TextStyle(fontSize: 18),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding: const EdgeInsets.only(
+                                                bottom: 5.0),
+                                            child: Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Text(
+                                                  'Species sown: ',
+                                                  style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      fontSize: 18),
+                                                ),
+                                                for (var i = 0;
+                                                    i <
+                                                        data[index]
+                                                            .seeds
+                                                            .length;
+                                                    i++)
+                                                  Text(
+                                                    '${data[index].seeds[i].commonName} | density = ${data[index].seeds[i].density}%',
+                                                    style:
+                                                        TextStyle(fontSize: 18),
+                                                  ),
+                                              ],
+                                            ),
+                                          ),
+                                          Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.start,
+                                            children: [
+                                              currentUser != null
+                                                  ? OutlinedButton.icon(
+                                                      onPressed: () {
+                                                        uploadToDrive(
+                                                            data[index]);
+                                                      },
+                                                      icon: Icon(
+                                                          Icons.add_to_drive),
+                                                      label: Text('Upload'),
+                                                      style: OutlinedButton
+                                                          .styleFrom(
+                                                        primary: Colors.blue,
+                                                        side: BorderSide(
+                                                            color: Colors.blue,
+                                                            width: 1),
+                                                      ),
+                                                    )
+                                                  : OutlinedButton.icon(
+                                                      onPressed: () {
+                                                        showAlertDialog(
+                                                            'Please login',
+                                                            'To work with Google Drive integration you need to login with Google. Go to Settings and click Sign In with Google');
+                                                      },
+                                                      icon: Icon(
+                                                          Icons.add_to_drive),
+                                                      label: Text('Upload'),
+                                                      style: OutlinedButton
+                                                          .styleFrom(
+                                                        primary: Colors.grey,
+                                                        side: BorderSide(
+                                                            color: Colors.grey,
+                                                            width: 1),
+                                                      ),
+                                                    ),
+                                              SizedBox(
+                                                width: 10,
+                                              ),
+                                              OutlinedButton.icon(
+                                                onPressed: () {
+                                                  duplicateProject(data[index]);
+                                                },
+                                                icon: Icon(Icons.copy),
+                                                label: Text('Duplicate'),
+                                                style: OutlinedButton.styleFrom(
+                                                  primary:
+                                                      Colors.yellow.shade800,
+                                                  side: BorderSide(
+                                                      color: Colors
+                                                          .yellow.shade800,
+                                                      width: 1),
+                                                ),
+                                              ),
                                             ],
                                           ),
-                                        ),
-                                        Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.end,
-                                          children: [
-                                            OutlinedButton.icon(
-                                              onPressed: () {
-                                                duplicateProject(data[index]);
-                                              },
-                                              icon: Icon(Icons.copy),
-                                              label: Text('Duplicate'),
-                                              style: OutlinedButton.styleFrom(
-                                                primary: Colors.blue,
-                                                side: BorderSide(
-                                                    color: Colors.blue,
-                                                    width: 1),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ],
+                                        ],
+                                      ),
                                     ),
                                   ),
                                 ),
@@ -414,7 +517,8 @@ class _ProjectListState extends State<ProjectList> {
                             );
                           });
                     } else if (snapshot.hasError) {
-                      return Text('Error: ${snapshot.error}');
+                      return Text(
+                          'Sorry and error occurred. Error message: ${snapshot.error}');
                     } else {
                       return Column(
                         children: [
@@ -425,7 +529,8 @@ class _ProjectListState extends State<ProjectList> {
                           ),
                           Padding(
                             padding: EdgeInsets.only(top: 16),
-                            child: Text('Loading data...'),
+                            child: Text('Loading data...',
+                                style: TextStyle(color: Colors.grey)),
                           )
                         ],
                       );
@@ -440,10 +545,11 @@ class _ProjectListState extends State<ProjectList> {
             alignment: Alignment.bottomRight,
             child: FloatingActionButton(
               onPressed: () async {
-                dynamic response = await Navigator.pushNamed(context, '/project-builder',
+                dynamic response = await Navigator.pushNamed(
+                    context, '/project-builder',
                     arguments: ProjectBuilderArgs(true));
-                if(response != null) {
-                  if(response['reload']) {
+                if (response != null) {
+                  if (response['reload']) {
                     setState(() {
                       _listProjects = ProjectRepository().getAll();
                     });

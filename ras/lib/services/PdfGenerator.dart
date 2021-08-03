@@ -1,8 +1,6 @@
 import 'dart:io';
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:downloads_path_provider/downloads_path_provider.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/services.dart';
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:pdf/pdf.dart';
 // ignore: import_of_legacy_library_into_null_safe
@@ -54,10 +52,6 @@ class PdfGenerator {
 
     final pdf = pw.Document();
     final downloadsDirectory = await DownloadsPathProvider.downloadsDirectory;
-
-    final appIcon = pw.MemoryImage(
-      (await rootBundle.load('assets/logoRas.png')).buffer.asUint8List(),
-    );
 
     pdf.addPage(
       pw.MultiPage(
@@ -111,7 +105,7 @@ class PdfGenerator {
                 },
                 itemCount: project.seeds.length),
             title('AREA INFORMATION'),
-            attribute('Valid surface', '${project.validSurface}%'),
+            attribute('Optimal surface', '${project.validSurface}%'),
             attribute('Invalid surface', '${project.notValidSurface}%'),
             attribute('Empty land', '${project.emptyLand}%'),
             attribute('Orientation', '${project.orientation}'),
@@ -120,6 +114,8 @@ class PdfGenerator {
             attribute('Maximum altitude of the terrain',
                 '${project.maxAltTerrain} m'),
             attribute('Maximum distance', '${project.maxDistance} m'),
+            attribute('Minimum flight height', '${project.minFlightHeight} m'),
+            attribute('Predation', '${project.predation}%'),
             title('SOIL ATTRIBUTES'),
             attribute('Depth', '${project.depth} m'),
             attribute('PH', '${project.ph}'),

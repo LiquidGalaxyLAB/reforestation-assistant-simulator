@@ -4,16 +4,16 @@ import 'package:flutter/material.dart';
 
 // List of images
 final List<String> images = [
-  'assets/logoRas.png',
-  'assets/logoLg.png',
-  'assets/logoGsoc.png',
-  'assets/logoWtm.png',
-  'assets/logoLgLab.png',
-  'assets/logoLgEu.png',
-  'assets/logoTic.png', 
-  'assets/logoPcital.jpg',
-  'assets/logoFacens.png', 
-  'assets/logoDronecoria.png', 
+  'assets/logos/logoRas.png',
+  'assets/logos/logoLg.png',
+  'assets/logos/logoGsoc.png',
+  'assets/logos/logoWtm.png',
+  'assets/logos/logoLgLab.png',
+  'assets/logos/logoLgEu.png',
+  'assets/logos/logoTic.png', 
+  'assets/logos/logoPcital.jpg',
+  'assets/logos/logoFacens.png', 
+  'assets/logos/logoDronecoria.png', 
 ];
 
 class SplashScreen extends StatefulWidget {
@@ -173,7 +173,8 @@ class _SplashScreenState extends State<SplashScreen> {
                   ),
                 ],
               ),
-              CircularProgressIndicator()
+              CircularProgressIndicator(),
+              Text('Loading App...', style: TextStyle(color: Colors.grey),)
             ],
           ),
         ),

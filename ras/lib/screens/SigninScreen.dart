@@ -28,7 +28,7 @@ class _SignInScreenState extends State<SignInScreen> {
                     Flexible(
                       flex: 1,
                       child: Image.asset(
-                        'assets/logoRas.png',
+                        'assets/logos/logoRas.png',
                         scale: 5,
                       ),
                     ),
@@ -100,7 +100,13 @@ class _SignInScreenState extends State<SignInScreen> {
                   } else if (snapshot.connectionState == ConnectionState.done) {
                     return GoogleSignInButton();
                   }
-                  return CircularProgressIndicator();
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      CircularProgressIndicator(),
+                      Text('Signing with Google...', style: TextStyle(color: Colors.grey),)
+                    ],
+                  );
                 },
               ),
             ],
@@ -124,9 +130,18 @@ class _GoogleSignInButtonState extends State<GoogleSignInButton> {
     return Padding(
       padding: const EdgeInsets.only(bottom: 16.0),
       child: _isSigningIn
-          ? CircularProgressIndicator(
-              valueColor: AlwaysStoppedAnimation<Color>(Colors.blue),
-            )
+          ? Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              CircularProgressIndicator(
+                  valueColor: AlwaysStoppedAnimation<Color>(Colors.blue),
+                ),
+              Padding(
+                padding: const EdgeInsets.only(top:15.0),
+                child: Text('Signing with Google...', style: TextStyle(color: Colors.grey),),
+              )
+            ],
+          )
           : OutlinedButton(
               style: ButtonStyle(
                 backgroundColor: MaterialStateProperty.all(Colors.white),
@@ -159,7 +174,7 @@ class _GoogleSignInButtonState extends State<GoogleSignInButton> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     Image(
-                      image: AssetImage("assets/google_icon.png"),
+                      image: AssetImage("assets/logos/google_icon.png"),
                       height: 35.0,
                     ),
                     Padding(

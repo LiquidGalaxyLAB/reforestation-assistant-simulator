@@ -172,6 +172,17 @@ class _ProjectViewState extends State<ProjectView> {
           child: Column(
             children: [
               ListTile(
+                trailing: args.project.sownMode == 'By Drone'
+                    ? Image.asset(
+                        'assets/appIcons/drone.png',
+                        height: 30,
+                        width: 30,
+                      )
+                    : Icon(
+                        Icons.directions_walk_sharp,
+                        size: 30,
+                        color: Colors.brown,
+                      ),
                 contentPadding: EdgeInsets.zero,
                 title: Text(
                   '${args.project.projectName}',
@@ -180,7 +191,6 @@ class _ProjectViewState extends State<ProjectView> {
                 subtitle: Text(
                     '${args.project.dateOfProject.toString().substring(0, 10)}'),
               ),
-              Item('Area covered', 'XXm'),
               Item('Region', '${args.project.region}'),
               Item('Sown mode', '${args.project.sownMode}'),
               Row(
@@ -364,7 +374,7 @@ class _ProjectViewState extends State<ProjectView> {
                         ),
                       ),
                     ItemTitle('AREA INFORMATION'),
-                    Item('Valid surface',
+                    Item('Optimal surface',
                         args.project.validSurface.toString() + '%'),
                     Item('Invalid surface',
                         args.project.notValidSurface.toString() + '%'),
@@ -375,9 +385,10 @@ class _ProjectViewState extends State<ProjectView> {
                     Item('Maximum altitude of the terrain',
                         args.project.maxAltTerrain.toString() + 'm'),
                     Item('Minimum flight height',
-                        args.project.minFlightHeight.toString() + 'm'),
+                        '~' + args.project.minFlightHeight.toString() + 'm'),
                     Item('Maximum distance',
                         args.project.maxDistance.toString() + 'm'),
+                    Item('Predation', args.project.predation.toString() + '%'),
                     ItemTitle('SOIL ATTRIBUTES'),
                     Item('Depth', args.project.depth.toString() + 'm'),
                     Item('PH', args.project.ph.toString()),
@@ -422,7 +433,7 @@ class _ProjectViewState extends State<ProjectView> {
                       ? CO2Chart(args.project.seeds)
                       : Center(
                           child: Padding(
-                            padding: const EdgeInsets.only(bottom:20.0),
+                            padding: const EdgeInsets.only(bottom: 20.0),
                             child: Text(
                               'No data',
                               style: TextStyle(color: Colors.grey),

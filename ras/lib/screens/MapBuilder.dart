@@ -56,7 +56,7 @@ class _MapBuilderState extends State<MapBuilder> {
       _determinePosition();
     } else {
       _showAlertDialog(
-          'Ops!', 'You need to device location to use this feature');
+          'Ops!', 'You need to enable device location to use this feature');
     }
   }
 
@@ -314,7 +314,7 @@ class _MapBuilderState extends State<MapBuilder> {
   init(MapBuilderArgs args) async {
     await BitmapDescriptor.fromAssetImage(
             ImageConfiguration(devicePixelRatio: 2.5, size: Size(1, 1)),
-            'assets/polyVertex.png')
+            'assets/appIcons/polyVertex.png')
         .then((onValue) {
       polygonVertexIcon = onValue;
     });
@@ -386,7 +386,7 @@ class _MapBuilderState extends State<MapBuilder> {
   void initState() {
     BitmapDescriptor.fromAssetImage(
             ImageConfiguration(devicePixelRatio: 2.5, size: Size(1, 1)),
-            'assets/polyVertex.png')
+            'assets/appIcons/polyVertex.png')
         .then((onValue) {
       polygonVertexIcon = onValue;
 
@@ -532,7 +532,7 @@ class _MapBuilderState extends State<MapBuilder> {
                             child: FloatingActionButton(
                                 heroTag: 'btn4',
                                 backgroundColor: Colors.black.withOpacity(0.5),
-                                child: Icon(Icons.place),
+                                child: Image.asset('assets/appIcons/map-marker-plus.png', height: 25, width: 25,),
                                 onPressed: () {
                                   setState(() {
                                     // Shape now is Placemark
@@ -546,7 +546,7 @@ class _MapBuilderState extends State<MapBuilder> {
                             child: FloatingActionButton(
                                 heroTag: 'btn5',
                                 backgroundColor: Colors.black.withOpacity(0.5),
-                                child: Icon(Icons.place_outlined),
+                                child: Image.asset('assets/appIcons/map-marker-radius.png', height: 25, width: 25,),
                                 onPressed: () {
                                   setState(() {
                                     shapeType = 1;
@@ -559,11 +559,23 @@ class _MapBuilderState extends State<MapBuilder> {
                             child: FloatingActionButton(
                                 heroTag: 'btn6',
                                 backgroundColor: Colors.black.withOpacity(0.5),
-                                child: Icon(Icons.crop_square),
+                                child: Image.asset('assets/appIcons/selection-marker.png', height: 25, width: 25,),
                                 onPressed: () {
                                   setState(() {
                                     shapeType = 2;
                                     editing = true;
+                                  });
+                                }),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 20.0),
+                            child: FloatingActionButton(
+                                heroTag: 'btn6',
+                                backgroundColor: Colors.black.withOpacity(0.5),
+                                child: Image.asset('assets/appIcons/landpoint.png', height: 25, width: 25,),
+                                onPressed: () {
+                                  setState(() {
+                                    // landing point
                                   });
                                 }),
                           ),

@@ -1,6 +1,12 @@
+import 'dart:convert';
+import 'dart:io';
+
+// ignore: import_of_legacy_library_into_null_safe
+import 'package:downloads_path_provider/downloads_path_provider.dart';
 import 'package:sembast/sembast.dart';
 import 'package:sembast/sembast_io.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:sembast/utils/sembast_import_export.dart';
 
 class DatabaseService {
   final String _dbName = 'ras.db';
@@ -52,5 +58,24 @@ class DatabaseService {
     var store = stringMapStoreFactory.store(storeName);
     Finder finder = Finder(filter: Filter.byKey(key));
     return await store.delete(db, finder: finder);
+  }
+
+  Future exportDB() async {
+    try {
+      final downloadsDirectory = await DownloadsPathProvider.downloadsDirectory;
+      String path = (await _localPath) + '/$_dbName';
+      Database db = await _dbFactory.openDatabase(path);
+      var content = await exportDatabase(db);
+
+      // Save as text
+      var saved = jsonEncode(content);
+      var savePath = downloadsDirectory.path;
+      final file = File("$savePath/ras-database.txt");
+      await file.writeAsString(saved);
+      return Future.value(file);
+    } catch (e) {
+      print(e);
+      return Future.error(e);
+    }
   }
 }

@@ -10,13 +10,59 @@ class MyAppBar extends StatefulWidget {
 }
 
 class _MyAppBarState extends State<MyAppBar> {
+  showReturnDialog(String title, String msg) {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text('$title'),
+            content: Text('$msg'),
+            actions: <Widget>[
+              Padding(
+                padding: EdgeInsets.only(right: 20),
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    primary: Colors.red, // background
+                    onPrimary: Colors.white, // foreground
+                  ),
+                  child: Text("NO"),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.only(right: 20),
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    primary: Colors.green, // background
+                    onPrimary: Colors.white, // foreground
+                  ),
+                  child: Text("YES"),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                    Navigator.of(context).pop();
+                  },
+                ),
+              ),
+            ],
+          );
+        });
+  }
+
   @override
   Widget build(BuildContext context) {
     return AppBar(
       leading: !widget.isHome
           ? IconButton(
               onPressed: () {
-                Navigator.pop(context);
+                if (ModalRoute.of(context)!.settings.name ==
+                        '/project-builder' ||
+                    ModalRoute.of(context)!.settings.name == '/seed-form') {
+                  showReturnDialog('Are you sure you want to go back?',
+                      'All the changes you made will be lost');
+                } else
+                  Navigator.of(context).pop();
               },
               icon: Icon(Icons.chevron_left),
             )
@@ -38,7 +84,11 @@ class _MyAppBarState extends State<MyAppBar> {
                   text: 'Projects',
                 ),
                 Tab(
-                  icon: Icon(Icons.yard_outlined),
+                  icon: Image.asset(
+                    'assets/appIcons/seeds.png',
+                    height: 30,
+                    width: 30,
+                  ),
                   text: 'Species',
                 ),
               ],
@@ -54,7 +104,7 @@ class _MyAppBarState extends State<MyAppBar> {
               )
             : SizedBox(),
       ],
-      backgroundColor: Colors.blue.shade900,
+      backgroundColor: Colors.blue,
     );
   }
 }

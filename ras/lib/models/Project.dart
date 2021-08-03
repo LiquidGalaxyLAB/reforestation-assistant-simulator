@@ -38,6 +38,7 @@ class Project {
   bool fractured;
   int hummus;
   double inclination;
+  double predation;
 
   // GMAP - KML
   Gmap geodata;
@@ -69,6 +70,7 @@ class Project {
     this.inclination,
     this.geodata,
     this.minFlightHeight,
+    this.predation,
   );
 
   @override
@@ -109,6 +111,7 @@ class Project {
       "inclination": inclination,
       "geodata": geodata.toMap(),
       "minFlightHeight": minFlightHeight,
+      "predation": predation,
     };
   }
 
@@ -144,6 +147,7 @@ class Project {
         element.value['inclination'],
         Gmap.fromMap(element.value['geodata']),
         element.value['minFlightHeight'],
+        element.value['predation'],
       ));
     });
     return projects;

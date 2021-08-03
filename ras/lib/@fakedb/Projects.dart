@@ -83,6 +83,7 @@ class FakeProjects {
           ]),
           []),
           100,
+          20
     ),
     Project(
       '',
@@ -159,7 +160,8 @@ class FakeProjects {
         ]),
         [],
       ),
-      100
+      100,
+      25,
     )
   ];
 }
