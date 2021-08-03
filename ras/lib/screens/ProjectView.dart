@@ -191,7 +191,6 @@ class _ProjectViewState extends State<ProjectView> {
                 subtitle: Text(
                     '${args.project.dateOfProject.toString().substring(0, 10)}'),
               ),
-              Item('Area covered', 'XXm'),
               Item('Region', '${args.project.region}'),
               Item('Sown mode', '${args.project.sownMode}'),
               Row(
@@ -389,6 +388,7 @@ class _ProjectViewState extends State<ProjectView> {
                         '~' + args.project.minFlightHeight.toString() + 'm'),
                     Item('Maximum distance',
                         args.project.maxDistance.toString() + 'm'),
+                    Item('Predation', args.project.predation.toString() + '%'),
                     ItemTitle('SOIL ATTRIBUTES'),
                     Item('Depth', args.project.depth.toString() + 'm'),
                     Item('PH', args.project.ph.toString()),

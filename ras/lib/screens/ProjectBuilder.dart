@@ -62,6 +62,7 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
   String fractured = 'No';
   TextEditingController hummus = TextEditingController();
   TextEditingController inclination = TextEditingController();
+  TextEditingController predation = TextEditingController();
 
   calculateAltitudeOfTerrain() async {
     final args =
@@ -323,6 +324,7 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
         double.parse(inclination.text),
         geodata,
         double.parse(minFlightHeight.text),
+        double.parse(predation.text),
       );
       Future response = ProjectRepository().create(project);
       response.then((value) {
@@ -358,6 +360,7 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
         double.parse(inclination.text),
         geodata,
         double.parse(minFlightHeight.text),
+        double.parse(predation.text),
       );
       Future response = ProjectRepository().update(project, args.project!.id);
       response.then((value) {
@@ -394,6 +397,7 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
       hummus.text = args.project!.hummus.toString();
       inclination.text = args.project!.inclination.toString();
       minFlightHeight.text = args.project!.minFlightHeight.toString();
+      predation.text = args.project!.predation.toString();
 
       // map info
       geodata = args.project!.geodata;
@@ -414,6 +418,7 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
       hummus.text = '0';
       inclination.text = '0';
       minFlightHeight.text = '0';
+      predation.text = '0';
     }
   }
 
@@ -1358,6 +1363,44 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                                   onPressed: () {
                                     showHelpDialog('Maximum distance (meters)',
                                         'Maximum distance that will fly the drone between the take off point and the farthest point.');
+                                  },
+                                  icon: Icon(Icons.help))
+                            ],
+                          ),
+                          Padding(
+                            padding:
+                                const EdgeInsets.only(top: 25.0, bottom: 5),
+                            child: Text(
+                              'Predation (% 0 to 100)',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 16,
+                                color: Colors.black54,
+                              ),
+                            ),
+                          ),
+                          Row(
+                            children: [
+                              Expanded(
+                                child: TextFormField(
+                                  controller: predation,
+                                  keyboardType: TextInputType.number,
+                                  decoration: InputDecoration(
+                                    filled: true,
+                                  ),
+                                  validator: (value) {
+                                    if (double.parse(value!) < 0 ||
+                                        double.parse(value) > 100) {
+                                      return 'Wrong range! Allowed values are 0 to 100';
+                                    }
+                                    return null;
+                                  },
+                                ),
+                              ),
+                              IconButton(
+                                  onPressed: () {
+                                    showHelpDialog('Predation (%, 0 - 100)',
+                                        'Predation in the area.');
                                   },
                                   icon: Icon(Icons.help))
                             ],

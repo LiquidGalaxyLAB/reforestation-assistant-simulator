@@ -110,6 +110,7 @@ class _ProjectListState extends State<ProjectList> {
       model.inclination,
       model.geodata,
       model.minFlightHeight,
+      model.predation,
     );
     Future response = ProjectRepository().create(project);
     response.then((value) {

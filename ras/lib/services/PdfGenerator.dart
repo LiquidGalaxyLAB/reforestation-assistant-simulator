@@ -114,6 +114,8 @@ class PdfGenerator {
             attribute('Maximum altitude of the terrain',
                 '${project.maxAltTerrain} m'),
             attribute('Maximum distance', '${project.maxDistance} m'),
+            attribute('Minimum flight height', '${project.minFlightHeight} m'),
+            attribute('Predation', '${project.predation}%'),
             title('SOIL ATTRIBUTES'),
             attribute('Depth', '${project.depth} m'),
             attribute('PH', '${project.ph}'),
