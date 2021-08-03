@@ -41,7 +41,6 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
 
   // SEEDS TABLE
   List<Seed> seeds = [];
-  TextEditingController density = TextEditingController();
 
   // MAP INFO
   Gmap geodata = Gmap([], Polygon('', []), []);
@@ -204,7 +203,8 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                           ),
                           Padding(
                             padding: EdgeInsets.only(top: 16),
-                            child: Text('Loading data...', style: TextStyle(color: Colors.grey)),
+                            child: Text('Loading data...',
+                                style: TextStyle(color: Colors.grey)),
                           )
                         ],
                       );
@@ -240,54 +240,6 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
               ],
             ),
             content: Text('$msg'),
-          );
-        });
-  }
-
-  _editSeedDensity(Seed seed) {
-    showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            title: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text('Density'),
-                IconButton(
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
-                  icon: Icon(
-                    Icons.close,
-                    color: Colors.red,
-                  ),
-                ),
-              ],
-            ),
-            content: TextFormField(
-              controller: density,
-              keyboardType: TextInputType.number,
-              decoration: InputDecoration(
-                hintText: 'Density',
-                filled: true,
-              ),
-            ),
-            actions: <Widget>[
-              Padding(
-                padding: EdgeInsets.only(right: 20),
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    primary: Colors.green, // background
-                    onPrimary: Colors.white, // foreground
-                  ),
-                  child: Text("SAVE"),
-                  onPressed: () {
-                    seed.density = double.parse(density.text);
-                    Navigator.of(context).pop();
-                  },
-                ),
-              ),
-            ],
           );
         });
   }
@@ -961,16 +913,22 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                           ),
                           for (var i = 0; i < seeds.length; i++)
                             ListTile(
-                              leading: IconButton(
-                                onPressed: () {
-                                  if (seeds[i].density == null)
-                                    seeds[i].density = 0;
-                                  _editSeedDensity(seeds[i]);
-                                  density.text = seeds[i].density.toString();
-                                },
-                                icon: Icon(
-                                  Icons.workspaces_outline,
-                                  color: Colors.green,
+                              leading: SizedBox(
+                                width: 75,
+                                height: 75,
+                                child: TextFormField(
+                                  // controller: density,
+                                  initialValue: seeds[i].density.toString(),
+                                  keyboardType: TextInputType.number,
+                                  onChanged: (value) {
+                                    print('value -> $value');
+                                    if (seeds[i].density == null) seeds[i].density = 0;
+                                    else {
+                                      if (value.length > 0) seeds[i].density = double.parse(value);
+                                      else seeds[i].density = 0;
+                                    }
+                                  },
+                                  decoration: InputDecoration(filled: true, helperText: 'Density'),
                                 ),
                               ),
                               title: Text('${seeds[i].commonName}'),
