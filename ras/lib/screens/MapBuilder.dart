@@ -25,10 +25,11 @@ class MapBuilder extends StatefulWidget {
 class _MapBuilderState extends State<MapBuilder> {
   Completer<GoogleMapController> _controller = Completer();
 
-  static CameraPosition _initPosition = CameraPosition(
-    target: LatLng(37.42796133580664, -122.085749655962),
-    zoom: 15,
-  );
+  // static CameraPosition _initPosition = CameraPosition(
+  //   target: LatLng(37.42796133580664, -122.085749655962),
+  //   zoom: 15,
+  // );
+  late CameraPosition _initPosition;
 
   static int shapeType = 0;
   // 0 = none; 1 = placemark; 2 = polygon ...
@@ -312,6 +313,26 @@ class _MapBuilderState extends State<MapBuilder> {
     Navigator.pop(context, geodata);
   }
 
+  Future<CameraPosition> defineInitPosition(MapBuilderArgs args) {
+    // init point
+    if (args.map.areaPolygon.coord.length > 0) {
+      return Future.value(CameraPosition(
+        target: args.map.areaPolygon.coord[0],
+        zoom: 15,
+      ));
+    } else if (args.map.markers.length > 0) {
+      return Future.value(CameraPosition(
+        target: LatLng(
+            args.map.markers[0].point.lng, args.map.markers[0].point.lat),
+        zoom: 15,
+      ));
+    }
+    return Future.value(CameraPosition(
+      target: LatLng(37.42796133580664, -122.085749655962),
+      zoom: 15,
+    ));
+  }
+
   init(MapBuilderArgs args) async {
     await BitmapDescriptor.fromAssetImage(
             ImageConfiguration(devicePixelRatio: 2.5, size: Size(1, 1)),
@@ -320,67 +341,53 @@ class _MapBuilderState extends State<MapBuilder> {
       polygonVertexIcon = onValue;
     });
 
-    if (!isLoaded) {
-      // init markers
-      args.map.markers.forEach((element) {
-        var contain = args.map.areaPolygon.coord.where((el) =>
-            el.latitude == element.point.lng &&
-            el.longitude == element.point.lat);
-        if (contain.isEmpty) {
-          Marker m = Marker(
-              markerId: MarkerId(element.id),
-              position: LatLng(element.point.lng, element.point.lat),
-              draggable: true,
-              icon: BitmapDescriptor.defaultMarkerWithHue(
-                  BitmapDescriptor.hueRed),
-              onTap: () {
-                setState(() {
-                  editing = false;
-                  currentMarkerId = element.id;
-                  shapeType = 1;
-                });
+    // init markers
+    args.map.markers.forEach((element) {
+      var contain = args.map.areaPolygon.coord.where((el) =>
+          el.latitude == element.point.lng &&
+          el.longitude == element.point.lat);
+      if (contain.isEmpty) {
+        Marker m = Marker(
+            markerId: MarkerId(element.id),
+            position: LatLng(element.point.lng, element.point.lat),
+            draggable: true,
+            icon:
+                BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueRed),
+            onTap: () {
+              setState(() {
+                editing = false;
+                currentMarkerId = element.id;
+                shapeType = 1;
               });
-          _markers.add(m);
-        } else {
-          Marker vertex = Marker(
-              markerId: MarkerId(element.id),
-              position: LatLng(element.point.lng, element.point.lat),
-              draggable: false,
-              icon: polygonVertexIcon,
-              onTap: () {
-                setState(() {
-                  currentVertexId = element.id;
-                  editing = false;
-                  shapeType = 2;
-                });
-              },
-              onDragEnd: (newValue) {});
-          _markers.add(vertex);
-        }
-      });
-
-      // init polygons
-      args.map.areaPolygon.coord.forEach((element) {
-        _polygonVertex.add(element);
-        _placePolygon();
-      });
-
-      // init point
-      if (args.map.areaPolygon.coord.length > 0) {
-        _initPosition = CameraPosition(
-          target: args.map.areaPolygon.coord[0],
-          zoom: 15,
-        );
-      } else if (args.map.markers.length > 0) {
-        _initPosition = CameraPosition(
-          target: LatLng(
-              args.map.markers[0].point.lng, args.map.markers[0].point.lat),
-          zoom: 15,
-        );
+            });
+        _markers.add(m);
+      } else {
+        Marker vertex = Marker(
+            markerId: MarkerId(element.id),
+            position: LatLng(element.point.lng, element.point.lat),
+            draggable: false,
+            icon: polygonVertexIcon,
+            onTap: () {
+              setState(() {
+                currentVertexId = element.id;
+                editing = false;
+                shapeType = 2;
+              });
+            },
+            onDragEnd: (newValue) {});
+        _markers.add(vertex);
       }
+    });
 
-      isLoaded = true;
-    }
+    // init polygons
+    args.map.areaPolygon.coord.forEach((element) {
+      _polygonVertex.add(element);
+      _placePolygon();
+    });
+
+    _initPosition = await defineInitPosition(args);
+
+    isLoaded = true;
   }
 
   @override
@@ -405,219 +412,248 @@ class _MapBuilderState extends State<MapBuilder> {
   @override
   Widget build(BuildContext context) {
     final args = ModalRoute.of(context)!.settings.arguments as MapBuilderArgs;
-    init(args);
+    if (!isLoaded) init(args);
 
     return new Scaffold(
-      body: Stack(
-        children: [
-          GoogleMap(
-            mapType: MapType.satellite,
-            initialCameraPosition: _initPosition,
-            myLocationEnabled: true,
-            myLocationButtonEnabled: false,
-            onMapCreated: (GoogleMapController controller) {
-              _controller.complete(controller);
-            },
-            onTap: (value) {
-              _handleTap(value);
-            },
-            markers: _markers,
-            polygons: _polygons,
-          ),
-          SafeArea(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.start,
+      // ignore: unnecessary_null_comparison
+      body: _initPosition != null
+          ? Stack(
               children: [
-                Padding(
-                  padding: const EdgeInsets.only(top: 20.0, left: 10),
-                  child: FloatingActionButton(
-                      heroTag: 'btn1',
-                      backgroundColor: Colors.black.withOpacity(0.5),
-                      child: Icon(Icons.arrow_back),
-                      onPressed: () {
-                        showReturnDialog('Are you sure you want to go back?',
-                            'All the changes you made in the map will be lost');
-                        isLoaded = false;
-                      }),
+                GoogleMap(
+                  mapType: MapType.satellite,
+                  initialCameraPosition: _initPosition,
+                  myLocationEnabled: true,
+                  myLocationButtonEnabled: false,
+                  onMapCreated: (GoogleMapController controller) {
+                    _controller.complete(controller);
+                  },
+                  onTap: (value) {
+                    _handleTap(value);
+                  },
+                  markers: _markers,
+                  polygons: _polygons,
                 ),
-                editing
-                    ? Column(
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        children: [
-                          Row(
-                            children: [
-                              Padding(
-                                padding:
-                                    const EdgeInsets.only(top: 20.0, right: 10),
-                                child: FloatingActionButton(
-                                    heroTag: 'btn2',
-                                    backgroundColor:
-                                        Colors.black.withOpacity(0.5),
-                                    child: Icon(Icons.delete),
-                                    onPressed: () {
-                                      // delete shape
-                                      _removeElement();
-                                      setState(() {
-                                        editing = false;
-                                        shapeType = 0;
-                                      });
-                                    }),
-                              ),
-                              Padding(
-                                padding:
-                                    const EdgeInsets.only(top: 20.0, right: 10),
-                                child: FloatingActionButton(
-                                    heroTag: 'btn3',
-                                    backgroundColor:
-                                        Colors.black.withOpacity(0.5),
-                                    child: Icon(Icons.check),
-                                    onPressed: () {
-                                      // finished editing shape
-                                      setState(() {
-                                        editing = false;
-                                        shapeType = 0;
-                                      });
-                                    }),
-                              ),
-                            ],
-                          ),
-                          shapeType == 1
-                              ? GestureDetector(
-                                  onTap: () {
-                                    _selectSeed();
-                                  },
-                                  child: Container(
-                                    margin: EdgeInsets.only(top: 10, right: 10),
-                                    decoration: BoxDecoration(
-                                      color: Colors.black.withOpacity(0.5),
-                                      borderRadius:
-                                          BorderRadius.all(Radius.circular(10)),
-                                    ),
-                                    child: Row(
-                                      children: [
-                                        Container(
-                                          width: 30,
-                                          height: 30,
-                                          child: Image.asset(
-                                            currentSeedMarker.icon['url'],
-                                            scale: 1,
-                                            fit: BoxFit.fill,
-                                          ),
-                                        ),
-                                        Text(
-                                          '${currentSeedMarker.commonName}',
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.bold,
-                                              color: Colors.white),
-                                        ),
-                                        Padding(
-                                          padding: const EdgeInsets.symmetric(
-                                              horizontal: 5.0),
-                                          child: Icon(
-                                            Icons.change_circle,
-                                            color: Colors.white,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                )
-                              : SizedBox(),
-                        ],
-                      )
-                    : Column(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(top: 20.0),
-                            child: FloatingActionButton(
-                                heroTag: 'btn4',
-                                backgroundColor: Colors.black.withOpacity(0.5),
-                                child: Image.asset('assets/appIcons/map-marker-plus.png', height: 25, width: 25,),
-                                onPressed: () {
-                                  setState(() {
-                                    // Shape now is Placemark
-                                    shapeType = 1;
-                                    editing = true;
-                                  });
-                                }),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 20.0),
-                            child: FloatingActionButton(
-                                heroTag: 'btn5',
-                                backgroundColor: Colors.black.withOpacity(0.5),
-                                child: Image.asset('assets/appIcons/map-marker-radius.png', height: 25, width: 25,),
-                                onPressed: () {
-                                  setState(() {
-                                    shapeType = 1;
-                                    _placeSeedInMyPosition();
-                                  });
-                                }),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 20.0),
-                            child: FloatingActionButton(
-                                heroTag: 'btn6',
-                                backgroundColor: Colors.black.withOpacity(0.5),
-                                child: Image.asset('assets/appIcons/selection-marker.png', height: 25, width: 25,),
-                                onPressed: () {
-                                  setState(() {
-                                    shapeType = 2;
-                                    editing = true;
-                                  });
-                                }),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 20.0),
-                            child: FloatingActionButton(
-                                heroTag: 'btn6',
-                                backgroundColor: Colors.black.withOpacity(0.5),
-                                child: Image.asset('assets/appIcons/landpoint.png', height: 25, width: 25,),
-                                onPressed: () {
-                                  setState(() {
-                                    // landing point
-                                  });
-                                }),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 90.0),
-                            child: FloatingActionButton(
-                                heroTag: 'btn7',
-                                backgroundColor: Colors.black.withOpacity(0.5),
-                                child: Icon(Icons.my_location_rounded),
-                                onPressed: () {
-                                  _setUserLocation();
-                                }),
-                          ),
-                        ],
+                SafeArea(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(top: 20.0, left: 10),
+                        child: FloatingActionButton(
+                            heroTag: 'btn1',
+                            backgroundColor: Colors.black.withOpacity(0.5),
+                            child: Icon(Icons.arrow_back),
+                            onPressed: () {
+                              showReturnDialog(
+                                  'Are you sure you want to go back?',
+                                  'All the changes you made in the map will be lost');
+                              isLoaded = false;
+                            }),
                       ),
+                      editing
+                          ? Column(
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              children: [
+                                Row(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.only(
+                                          top: 20.0, right: 10),
+                                      child: FloatingActionButton(
+                                          heroTag: 'btn2',
+                                          backgroundColor:
+                                              Colors.black.withOpacity(0.5),
+                                          child: Icon(Icons.delete),
+                                          onPressed: () {
+                                            // delete shape
+                                            _removeElement();
+                                            setState(() {
+                                              editing = false;
+                                              shapeType = 0;
+                                            });
+                                          }),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.only(
+                                          top: 20.0, right: 10),
+                                      child: FloatingActionButton(
+                                          heroTag: 'btn3',
+                                          backgroundColor:
+                                              Colors.black.withOpacity(0.5),
+                                          child: Icon(Icons.check),
+                                          onPressed: () {
+                                            // finished editing shape
+                                            setState(() {
+                                              editing = false;
+                                              shapeType = 0;
+                                            });
+                                          }),
+                                    ),
+                                  ],
+                                ),
+                                shapeType == 1
+                                    ? GestureDetector(
+                                        onTap: () {
+                                          _selectSeed();
+                                        },
+                                        child: Container(
+                                          margin: EdgeInsets.only(
+                                              top: 10, right: 10),
+                                          decoration: BoxDecoration(
+                                            color:
+                                                Colors.black.withOpacity(0.5),
+                                            borderRadius: BorderRadius.all(
+                                                Radius.circular(10)),
+                                          ),
+                                          child: Row(
+                                            children: [
+                                              Container(
+                                                width: 30,
+                                                height: 30,
+                                                child: Image.asset(
+                                                  currentSeedMarker.icon['url'],
+                                                  scale: 1,
+                                                  fit: BoxFit.fill,
+                                                ),
+                                              ),
+                                              Text(
+                                                '${currentSeedMarker.commonName}',
+                                                style: TextStyle(
+                                                    fontWeight: FontWeight.bold,
+                                                    color: Colors.white),
+                                              ),
+                                              Padding(
+                                                padding:
+                                                    const EdgeInsets.symmetric(
+                                                        horizontal: 5.0),
+                                                child: Icon(
+                                                  Icons.change_circle,
+                                                  color: Colors.white,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      )
+                                    : SizedBox(),
+                              ],
+                            )
+                          : Column(
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(top: 20.0),
+                                  child: FloatingActionButton(
+                                      heroTag: 'btn4',
+                                      backgroundColor:
+                                          Colors.black.withOpacity(0.5),
+                                      child: Image.asset(
+                                        'assets/appIcons/map-marker-plus.png',
+                                        height: 25,
+                                        width: 25,
+                                      ),
+                                      onPressed: () {
+                                        setState(() {
+                                          // Shape now is Placemark
+                                          shapeType = 1;
+                                          editing = true;
+                                        });
+                                      }),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(top: 20.0),
+                                  child: FloatingActionButton(
+                                      heroTag: 'btn5',
+                                      backgroundColor:
+                                          Colors.black.withOpacity(0.5),
+                                      child: Image.asset(
+                                        'assets/appIcons/map-marker-radius.png',
+                                        height: 25,
+                                        width: 25,
+                                      ),
+                                      onPressed: () {
+                                        setState(() {
+                                          shapeType = 1;
+                                          _placeSeedInMyPosition();
+                                        });
+                                      }),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(top: 20.0),
+                                  child: FloatingActionButton(
+                                      heroTag: 'btn6',
+                                      backgroundColor:
+                                          Colors.black.withOpacity(0.5),
+                                      child: Image.asset(
+                                        'assets/appIcons/selection-marker.png',
+                                        height: 25,
+                                        width: 25,
+                                      ),
+                                      onPressed: () {
+                                        setState(() {
+                                          shapeType = 2;
+                                          editing = true;
+                                        });
+                                      }),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(top: 20.0),
+                                  child: FloatingActionButton(
+                                      heroTag: 'btn6',
+                                      backgroundColor:
+                                          Colors.black.withOpacity(0.5),
+                                      child: Image.asset(
+                                        'assets/appIcons/landpoint.png',
+                                        height: 25,
+                                        width: 25,
+                                      ),
+                                      onPressed: () {
+                                        setState(() {
+                                          // landing point
+                                        });
+                                      }),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(top: 90.0),
+                                  child: FloatingActionButton(
+                                      heroTag: 'btn7',
+                                      backgroundColor:
+                                          Colors.black.withOpacity(0.5),
+                                      child: Icon(Icons.my_location_rounded),
+                                      onPressed: () {
+                                        _setUserLocation();
+                                      }),
+                                ),
+                              ],
+                            ),
+                    ],
+                  ),
+                ),
+                Align(
+                  alignment: Alignment.bottomCenter,
+                  child: Padding(
+                    padding: const EdgeInsets.only(right: 80.0, bottom: 15),
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 40, vertical: 10),
+                        shadowColor: Colors.black,
+                        primary: Colors.green, // background
+                        onPrimary: Colors.white, // foreground
+                      ),
+                      onPressed: () {
+                        _generateKML();
+                      },
+                      child: Text(
+                        'SAVE',
+                        style: TextStyle(fontSize: 20),
+                      ),
+                    ),
+                  ),
+                ),
               ],
-            ),
-          ),
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: Padding(
-              padding: const EdgeInsets.only(right: 80.0, bottom: 15),
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  padding: EdgeInsets.symmetric(horizontal: 40, vertical: 10),
-                  shadowColor: Colors.black,
-                  primary: Colors.green, // background
-                  onPrimary: Colors.white, // foreground
-                ),
-                onPressed: () {
-                  _generateKML();
-                },
-                child: Text(
-                  'SAVE',
-                  style: TextStyle(fontSize: 20),
-                ),
-              ),
-            ),
-          ),
-        ],
-      ),
+            )
+          : SizedBox(),
     );
   }
 }

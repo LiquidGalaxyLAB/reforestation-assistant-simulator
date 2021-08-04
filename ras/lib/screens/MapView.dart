@@ -18,10 +18,11 @@ class MapView extends StatefulWidget {
 class _MapViewState extends State<MapView> {
   Completer<GoogleMapController> _controller = Completer();
 
-  static CameraPosition _initPosition = CameraPosition(
-    target: LatLng(37.42796133580664, -122.085749655962),
-    zoom: 15,
-  );
+  // static CameraPosition _initPosition = CameraPosition(
+  //   target: LatLng(37.42796133580664, -122.085749655962),
+  //   zoom: 15,
+  // );
+  late CameraPosition _initPosition;
 
   int shapeType = 0;
   // 0 = none; 1 = placemark; 2 = polygon ...
@@ -62,65 +63,65 @@ class _MapViewState extends State<MapView> {
         .then((onValue) {
       polygonVertexIcon = onValue;
     });
-      // init markers
-      args.map.markers.forEach((element) {
-        var contain = args.map.areaPolygon.coord.where((el) =>
-            el.latitude == element.point.lng &&
-            el.longitude == element.point.lat);
-        if (contain.isEmpty) {
-          Marker m = Marker(
-              markerId: MarkerId(element.id),
-              position: LatLng(element.point.lng, element.point.lat),
-              draggable: true,
-              icon: BitmapDescriptor.defaultMarkerWithHue(
-                  BitmapDescriptor.hueRed),
-              onTap: () {
-                setState(() {
-                  editing = false;
-                  currentMarkerId = element.id;
-                  shapeType = 1;
-                });
+    // init markers
+    args.map.markers.forEach((element) {
+      var contain = args.map.areaPolygon.coord.where((el) =>
+          el.latitude == element.point.lng &&
+          el.longitude == element.point.lat);
+      if (contain.isEmpty) {
+        Marker m = Marker(
+            markerId: MarkerId(element.id),
+            position: LatLng(element.point.lng, element.point.lat),
+            draggable: true,
+            icon:
+                BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueRed),
+            onTap: () {
+              setState(() {
+                editing = false;
+                currentMarkerId = element.id;
+                shapeType = 1;
               });
-          _markers.add(m);
-        } else {
-          Marker vertex = Marker(
-              markerId: MarkerId(element.id),
-              position: LatLng(element.point.lng, element.point.lat),
-              draggable: false,
-              icon: polygonVertexIcon,
-              onTap: () {
-                setState(() {
-                  currentVertexId = element.id;
-                  editing = false;
-                  shapeType = 2;
-                });
-              },
-              onDragEnd: (newValue) {});
-          _markers.add(vertex);
-        }
-      });
-
-      // init polygons
-      args.map.areaPolygon.coord.forEach((element) {
-        _polygonVertex.add(element);
-        _placePolygon();
-      });
-
-      // init point
-      if (args.map.areaPolygon.coord.length > 0) {
-        _initPosition = CameraPosition(
-          target: args.map.areaPolygon.coord[0],
-          zoom: 15,
-        );
-      } else if (args.map.markers.length > 0) {
-        _initPosition = CameraPosition(
-          target: LatLng(
-              args.map.markers[0].point.lng, args.map.markers[0].point.lat),
-          zoom: 15,
-        );
+            });
+        _markers.add(m);
+      } else {
+        Marker vertex = Marker(
+            markerId: MarkerId(element.id),
+            position: LatLng(element.point.lng, element.point.lat),
+            draggable: false,
+            icon: polygonVertexIcon,
+            onTap: () {
+              setState(() {
+                currentVertexId = element.id;
+                editing = false;
+                shapeType = 2;
+              });
+            },
+            onDragEnd: (newValue) {});
+        _markers.add(vertex);
       }
+    });
 
-      isLoaded = true;
+    // init polygons
+    args.map.areaPolygon.coord.forEach((element) {
+      _polygonVertex.add(element);
+      _placePolygon();
+    });
+
+    // init point
+    if (args.map.areaPolygon.coord.length > 0) {
+      _initPosition = CameraPosition(
+        target: args.map.areaPolygon.coord[0],
+        zoom: 15,
+      );
+    } else if (args.map.markers.length > 0) {
+      _initPosition = CameraPosition(
+        target: LatLng(
+            args.map.markers[0].point.lng, args.map.markers[0].point.lat),
+        zoom: 15,
+      );
+    }
+
+    isLoaded = true;
   }
 
   @override
@@ -148,40 +149,43 @@ class _MapViewState extends State<MapView> {
     if (!isLoaded) init(args);
 
     return new Scaffold(
-      body: Stack(
-        children: [
-          GoogleMap(
-            mapType: MapType.satellite,
-            initialCameraPosition: _initPosition,
-            myLocationEnabled: true,
-            myLocationButtonEnabled: false,
-            onMapCreated: (GoogleMapController controller) {
-              _controller.complete(controller);
-            },
-            markers: _markers,
-            polygons: _polygons,
-          ),
-          SafeArea(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
+      // ignore: unnecessary_null_comparison
+      body: _initPosition != null
+          ? Stack(
               children: [
-                Padding(
-                  padding: const EdgeInsets.only(top: 20.0, left: 10),
-                  child: FloatingActionButton(
-                      heroTag: 'btn1',
-                      backgroundColor: Colors.black.withOpacity(0.5),
-                      child: Icon(Icons.arrow_back),
-                      onPressed: () {
-                        Navigator.pop(context, '');
-                        isLoaded = false;
-                      }),
+                GoogleMap(
+                  mapType: MapType.satellite,
+                  initialCameraPosition: _initPosition,
+                  myLocationEnabled: true,
+                  myLocationButtonEnabled: false,
+                  onMapCreated: (GoogleMapController controller) {
+                    _controller.complete(controller);
+                  },
+                  markers: _markers,
+                  polygons: _polygons,
+                ),
+                SafeArea(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(top: 20.0, left: 10),
+                        child: FloatingActionButton(
+                            heroTag: 'btn1',
+                            backgroundColor: Colors.black.withOpacity(0.5),
+                            child: Icon(Icons.arrow_back),
+                            onPressed: () {
+                              Navigator.pop(context, '');
+                              isLoaded = false;
+                            }),
+                      ),
+                    ],
+                  ),
                 ),
               ],
-            ),
-          ),
-        ],
-      ),
+            )
+          : SizedBox(),
     );
   }
 }
