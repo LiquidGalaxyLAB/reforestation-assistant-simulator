@@ -58,7 +58,6 @@ class _ProjectViewState extends State<ProjectView> {
 
     // send to LG
     LGConnection().sendToLG(kml.mount(), p).then((value) {
-      print('Sent $value');
       setState(() {
         isOpen = true;
       });

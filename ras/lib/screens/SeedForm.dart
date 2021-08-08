@@ -182,7 +182,6 @@ class _SeedFormState extends State<SeedForm> {
   Widget build(BuildContext context) {
     final args = ModalRoute.of(context)!.settings.arguments as SeedFormArgs;
     if (!isLoaded) _init(args);
-    print(seedIcon);
 
     return Scaffold(
       appBar: PreferredSize(

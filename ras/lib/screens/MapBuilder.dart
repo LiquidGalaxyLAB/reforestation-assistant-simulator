@@ -116,7 +116,6 @@ class _MapBuilderState extends State<MapBuilder> {
 
   _selectSeed() {
     final args = ModalRoute.of(context)!.settings.arguments as MapBuilderArgs;
-    print('aaaaaaaaaaaa ${args.map.seeds}');
     showDialog(
         context: context,
         builder: (BuildContext context) {
@@ -412,6 +411,12 @@ class _MapBuilderState extends State<MapBuilder> {
   @override
   Widget build(BuildContext context) {
     final args = ModalRoute.of(context)!.settings.arguments as MapBuilderArgs;
+    if (args.isNew) {
+      _initPosition = CameraPosition(
+        target: LatLng(37.42796133580664, -122.085749655962),
+        zoom: 15,
+      );
+    } 
     if (!isLoaded) init(args);
 
     return new Scaffold(
