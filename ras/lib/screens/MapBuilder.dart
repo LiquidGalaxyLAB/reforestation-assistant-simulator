@@ -438,18 +438,32 @@ class _MapBuilderState extends State<MapBuilder> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.only(top: 20.0, left: 10),
-                        child: FloatingActionButton(
-                            heroTag: 'btn1',
-                            backgroundColor: Colors.black.withOpacity(0.5),
-                            child: Icon(Icons.arrow_back),
-                            onPressed: () {
-                              showReturnDialog(
-                                  'Are you sure you want to go back?',
-                                  'All the changes you made in the map will be lost');
-                              isLoaded = false;
-                            }),
+                      Row(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(top: 20.0, left: 10),
+                            child: FloatingActionButton(
+                                heroTag: 'btn1',
+                                backgroundColor: Colors.black.withOpacity(0.5),
+                                child: Icon(Icons.arrow_back),
+                                onPressed: () {
+                                  showReturnDialog(
+                                      'Are you sure you want to go back?',
+                                      'All the changes you made in the map will be lost');
+                                  isLoaded = false;
+                                }),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 20.0, left: 10),
+                            child: FloatingActionButton(
+                                heroTag: 'savebtn',
+                                backgroundColor: Colors.black.withOpacity(0.5),
+                                child: Icon(Icons.save),
+                                onPressed: () {
+                                  _generateKML();
+                                }),
+                          ),
+                        ],
                       ),
                       editing
                           ? Column(
@@ -627,28 +641,6 @@ class _MapBuilderState extends State<MapBuilder> {
                               ],
                             ),
                     ],
-                  ),
-                ),
-                Align(
-                  alignment: Alignment.bottomCenter,
-                  child: Padding(
-                    padding: const EdgeInsets.only(right: 80.0, bottom: 15),
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        padding:
-                            EdgeInsets.symmetric(horizontal: 40, vertical: 10),
-                        shadowColor: Colors.black,
-                        primary: Colors.green, // background
-                        onPrimary: Colors.white, // foreground
-                      ),
-                      onPressed: () {
-                        _generateKML();
-                      },
-                      child: Text(
-                        'SAVE',
-                        style: TextStyle(fontSize: 20),
-                      ),
-                    ),
                   ),
                 ),
               ],

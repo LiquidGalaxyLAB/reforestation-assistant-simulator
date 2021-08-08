@@ -41,19 +41,19 @@ class _SurvivalInfoChartState extends State<SurvivalInfoChart> {
         (0.9 * getTotalItems()),
       ),
       ChartData(
-        'Hydric stress',
+        'Predation',
         (0.2 * (0.9 * getTotalItems())),
       ),
       ChartData(
-        'Thermal stress',
+        'Hydric stress',
         (0.2 * (0.2 * (0.9 * getTotalItems()))),
       ),
       ChartData(
-        'Bad location',
+        'Thermal stress',
         (0.5 * (0.2 * (0.2 * (0.9 * getTotalItems())))),
       ),
       ChartData(
-        'Predation',
+        'Bad location',
         (0.5 * (0.5 * (0.2 * (0.2 * (0.9 * getTotalItems()))))),
       ),
       ChartData(
@@ -73,12 +73,12 @@ class _SurvivalInfoChartState extends State<SurvivalInfoChart> {
   List<LineChartData> getLineChartData() {
     final List<LineChartData> lineChartData = [
       LineChartData((0.9 * getTotalItems()), 'Germinative potential'),
-      LineChartData((0.2 * (0.9 * getTotalItems())), 'Hydric stress'),
-      LineChartData((0.2 * (0.2 * (0.9 * getTotalItems()))), 'Thermal stress'),
+      LineChartData((0.2 * (0.9 * getTotalItems())), 'Predation'),
+      LineChartData((0.2 * (0.2 * (0.9 * getTotalItems()))), 'Hydric stress'),
       LineChartData(
-          (0.5 * (0.2 * (0.2 * (0.9 * getTotalItems())))), 'Bad location'),
+          (0.5 * (0.2 * (0.2 * (0.9 * getTotalItems())))), 'Thermal stress'),
       LineChartData(
-          (0.5 * (0.5 * (0.2 * (0.2 * (0.9 * getTotalItems()))))), 'Predation'),
+          (0.5 * (0.5 * (0.2 * (0.2 * (0.9 * getTotalItems()))))), 'Bad location'),
       LineChartData(
           (0.2 * (0.5 * (0.5 * (0.2 * (0.2 * (0.9 * getTotalItems())))))),
           'Establishment'),
