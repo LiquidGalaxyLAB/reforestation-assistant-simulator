@@ -177,8 +177,10 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                                     setState(() {
                                       if (value != null) {
                                         setState(() {
-                                          if (value)
+                                          if (value) {
                                             seeds.add(data[index]);
+                                            seeds[index].density = 0; 
+                                          }
                                           else
                                             seeds.removeWhere((element) =>
                                                 element.id == data[index].id ||
@@ -918,7 +920,7 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                                 height: 75,
                                 child: TextFormField(
                                   // controller: density,
-                                  initialValue: seeds[i].density.toString(),
+                                  initialValue: seeds[i].density == null ? '0.0' : seeds[i].density.toString(),
                                   keyboardType: TextInputType.number,
                                   onChanged: (value) {
                                     print('value -> $value');
