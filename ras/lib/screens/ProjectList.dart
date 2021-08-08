@@ -443,7 +443,7 @@ class _ProjectListState extends State<ProjectList> {
                                                             .length;
                                                     i++)
                                                   Text(
-                                                    '${data[index].seeds[i].commonName} | density = ${data[index].seeds[i].density}%',
+                                                    '${data[index].seeds[i].commonName} | density = ${data[index].seeds[i].density} plants per hectare',
                                                     style:
                                                         TextStyle(fontSize: 18),
                                                   ),

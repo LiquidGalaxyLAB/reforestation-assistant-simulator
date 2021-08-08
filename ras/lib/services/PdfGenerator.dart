@@ -92,7 +92,7 @@ class PdfGenerator {
                       attribute(
                           'Common name', '${project.seeds[index].commonName}'),
                       attribute(
-                          'Density', '${project.seeds[index].density} seed/m²'),
+                          'Density', '${project.seeds[index].density} plants per hectare'),
                       attribute('Survival probability', 'XX'),
                       attribute('Estimated CO2 capture',
                           '${project.seeds[index].co2PerYear} per year'),

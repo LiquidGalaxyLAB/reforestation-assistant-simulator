@@ -354,7 +354,7 @@ class _ProjectViewState extends State<ProjectView> {
                             Item(
                                 'Density',
                                 args.project.seeds[i].density.toString() +
-                                    ' seed/m²'),
+                                    ' plants per hectare'),
                             Item('Survival probability', 'xxx'),
                             Item(
                                 'Estimated CO2 capture',
