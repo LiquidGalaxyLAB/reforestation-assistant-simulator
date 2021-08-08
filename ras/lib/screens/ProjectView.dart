@@ -178,10 +178,10 @@ class _ProjectViewState extends State<ProjectView> {
                         height: 30,
                         width: 30,
                       )
-                    : Icon(
-                        Icons.directions_walk_sharp,
-                        size: 30,
-                        color: Colors.brown,
+                    : Image.asset(
+                        'assets/appIcons/seeds.png',
+                        height: 30,
+                        width: 30,
                       ),
                 contentPadding: EdgeInsets.zero,
                 title: Text(

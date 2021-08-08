@@ -84,11 +84,7 @@ class _MyAppBarState extends State<MyAppBar> {
                   text: 'Projects',
                 ),
                 Tab(
-                  icon: Image.asset(
-                    'assets/appIcons/seeds.png',
-                    height: 30,
-                    width: 30,
-                  ),
+                  icon: Icon(Icons.yard_outlined),
                   text: 'Species',
                 ),
               ],

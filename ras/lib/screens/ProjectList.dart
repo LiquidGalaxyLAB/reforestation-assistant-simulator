@@ -366,7 +366,11 @@ class _ProjectListState extends State<ProjectList> {
                                             height: 30,
                                             width: 30,
                                           )
-                                        : Icon(Icons.directions_walk_sharp, size: 30, color: Colors.brown,),
+                                        : Image.asset(
+                                            'assets/appIcons/seeds.png',
+                                            height: 30,
+                                            width: 30,
+                                          ),
                                     contentPadding: EdgeInsets.symmetric(
                                         vertical: 10, horizontal: 10),
                                     title: Text(
