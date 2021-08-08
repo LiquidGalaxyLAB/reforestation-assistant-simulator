@@ -89,7 +89,7 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
             'We could not find altitude information from Open Topo Data API for the region you selected');
       }
     } catch (e) {
-      print('Error get infor from Open Topo Data $e');
+      print('Error getting info from Open Topo Data $e');
     }
   }
 
@@ -177,8 +177,10 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                                     setState(() {
                                       if (value != null) {
                                         setState(() {
-                                          if (value)
+                                          if (value) {
                                             seeds.add(data[index]);
+                                            seeds[index].density = 0; 
+                                          }
                                           else
                                             seeds.removeWhere((element) =>
                                                 element.id == data[index].id ||
@@ -918,10 +920,9 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                                 height: 75,
                                 child: TextFormField(
                                   // controller: density,
-                                  initialValue: seeds[i].density.toString(),
+                                  initialValue: seeds[i].density == null ? '0.0' : seeds[i].density.toString(),
                                   keyboardType: TextInputType.number,
                                   onChanged: (value) {
-                                    print('value -> $value');
                                     if (seeds[i].density == null) seeds[i].density = 0;
                                     else {
                                       if (value.length > 0) seeds[i].density = double.parse(value);
@@ -979,7 +980,7 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                               onPressed: () async {
                                 final result = await Navigator.pushNamed(
                                     context, '/map',
-                                    arguments: MapBuilderArgs(geodata));
+                                    arguments: MapBuilderArgs(geodata, geodata.areaPolygon.coord.isEmpty && geodata.markers.isEmpty ? true : false));
                                 if (result is Gmap) {
                                   geodata = result;
                                 }
@@ -1629,7 +1630,6 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                         if (_formKey.currentState!.validate()) {
                           _saveProject(args);
                         } else {
-                          print('ooppsss throw error');
                           showHelpDialog('Invalid fields!',
                               'Some fields have invalid values or are required. Please check them again');
                         }

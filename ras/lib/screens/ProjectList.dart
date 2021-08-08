@@ -366,7 +366,11 @@ class _ProjectListState extends State<ProjectList> {
                                             height: 30,
                                             width: 30,
                                           )
-                                        : Icon(Icons.directions_walk_sharp, size: 30, color: Colors.brown,),
+                                        : Image.asset(
+                                            'assets/appIcons/seeds.png',
+                                            height: 30,
+                                            width: 30,
+                                          ),
                                     contentPadding: EdgeInsets.symmetric(
                                         vertical: 10, horizontal: 10),
                                     title: Text(
@@ -443,7 +447,7 @@ class _ProjectListState extends State<ProjectList> {
                                                             .length;
                                                     i++)
                                                   Text(
-                                                    '${data[index].seeds[i].commonName} | density = ${data[index].seeds[i].density}%',
+                                                    '${data[index].seeds[i].commonName} | density = ${data[index].seeds[i].density} plants per hectare',
                                                     style:
                                                         TextStyle(fontSize: 18),
                                                   ),

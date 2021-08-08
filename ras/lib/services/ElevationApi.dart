@@ -14,13 +14,11 @@ class ElevationAPi {
 
     try {
       http.Response response = await http.get(url);
-      // print('Response status: ${response.statusCode}');
       
 
       if (response.statusCode == 200) {
         final body = json.decode(response.body);
         List results = body['results'];
-        // print('Response body: ${body['results']}');
 
         List pointsElevation = [];
 
@@ -28,8 +26,6 @@ class ElevationAPi {
           if (element['elevation'] != null) {
             pointsElevation.add(element['elevation']);
           }
-
-          // print(pointsElevation);
         });
         return pointsElevation;
       }

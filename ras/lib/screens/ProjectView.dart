@@ -58,7 +58,6 @@ class _ProjectViewState extends State<ProjectView> {
 
     // send to LG
     LGConnection().sendToLG(kml.mount(), p).then((value) {
-      print('Sent $value');
       setState(() {
         isOpen = true;
       });
@@ -178,10 +177,10 @@ class _ProjectViewState extends State<ProjectView> {
                         height: 30,
                         width: 30,
                       )
-                    : Icon(
-                        Icons.directions_walk_sharp,
-                        size: 30,
-                        color: Colors.brown,
+                    : Image.asset(
+                        'assets/appIcons/seeds.png',
+                        height: 30,
+                        width: 30,
                       ),
                 contentPadding: EdgeInsets.zero,
                 title: Text(
@@ -354,7 +353,7 @@ class _ProjectViewState extends State<ProjectView> {
                             Item(
                                 'Density',
                                 args.project.seeds[i].density.toString() +
-                                    ' seed/m²'),
+                                    ' plants per hectare'),
                             Item('Survival probability', 'xxx'),
                             Item(
                                 'Estimated CO2 capture',
