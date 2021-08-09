@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:ras/@fakedb/Projects.dart';
 import 'package:ras/@helpers/SeedIcons.dart';
 import 'package:ras/models/Gmap.dart';
 import 'package:ras/models/Seed.dart';
@@ -197,7 +198,7 @@ class _MapBuilderState extends State<MapBuilder> {
         });
   }
 
-  _handleTap(LatLng value) {
+  _handleTap(LatLng value) async {
     switch (shapeType) {
       case 1:
         // new marker
@@ -241,6 +242,27 @@ class _MapBuilderState extends State<MapBuilder> {
           if (_polygonVertex.length >= 3) _placePolygon();
         });
         break;
+      case 3:
+        // landing point
+        final landIcon = await getBitmapDescriptorFromAssetBytes(
+            'assets/appIcons/landpoint.png', 150);
+        Marker m = Marker(
+            markerId: MarkerId('landingPoint'),
+            infoWindow: InfoWindow(title: 'Landing Point'),
+            position: value,
+            draggable: true,
+            icon: landIcon,
+            onTap: () {
+              setState(() {
+                editing = true;
+                currentMarkerId = 'landingPoint';
+                shapeType = 3;
+              });
+            });
+        setState(() {
+          _markers.add(m);
+        });
+        break;
       default:
     }
   }
@@ -277,6 +299,12 @@ class _MapBuilderState extends State<MapBuilder> {
     _polygonVertex = [];
   }
 
+  _removeLandingPoint() {
+    setState(() {
+      _markers.removeWhere((element) => element.markerId.value == 'landingPoint');
+    });
+  }
+
   _removeElement() {
     switch (shapeType) {
       case 1:
@@ -284,6 +312,9 @@ class _MapBuilderState extends State<MapBuilder> {
         break;
       case 2:
         _removePolygon();
+        break;
+      case 3:
+        _removeLandingPoint();
         break;
       default:
         break;
@@ -293,6 +324,19 @@ class _MapBuilderState extends State<MapBuilder> {
   _generateKML() {
     List<Placemark> placemarks = [];
     poly.Polygon area = poly.Polygon('', []);
+    Placemark landingPoint = Placemark(
+      '',
+      '',
+      '',
+      LookAt(
+        0,
+        0,
+        '',
+        '',
+        '',
+      ),
+      Point(0, 0),
+    );
 
     if (_polygons.isNotEmpty) {
       area =
@@ -301,6 +345,17 @@ class _MapBuilderState extends State<MapBuilder> {
 
     if (_markers.isNotEmpty) {
       _markers.forEach((element) {
+        if (element.markerId.value == 'landingPoint') {
+          landingPoint = Placemark(
+              element.markerId.value,
+              'Landing Point',
+              'Drone take off position',
+              LookAt(element.position.longitude, element.position.latitude,
+                  '10000', '45', '0'),
+              Point(element.position.longitude, element.position.latitude));
+        }
+
+        // seed
         placemarks.add(Placemark(
             element.markerId.value,
             'seed name',
@@ -313,7 +368,12 @@ class _MapBuilderState extends State<MapBuilder> {
     isLoaded = false;
     editing = false;
     shapeType = 0;
-    Gmap geodata = Gmap(placemarks, area, []);
+    Gmap geodata = Gmap(
+      placemarks,
+      area,
+      seeds,
+      landingPoint,
+    );
     Navigator.pop(context, geodata);
   }
 
@@ -346,7 +406,7 @@ class _MapBuilderState extends State<MapBuilder> {
     });
 
     // init markers
-    args.map.markers.forEach((element) {
+    args.map.markers.forEach((element) async {
       var contain = args.map.areaPolygon.coord.where((el) =>
           el.latitude == element.point.lng &&
           el.longitude == element.point.lat);
@@ -365,7 +425,8 @@ class _MapBuilderState extends State<MapBuilder> {
               });
             });
         _markers.add(m);
-      } else {
+      }
+      else {
         Marker vertex = Marker(
             markerId: MarkerId(element.id),
             position: LatLng(element.point.lng, element.point.lat),
@@ -381,7 +442,28 @@ class _MapBuilderState extends State<MapBuilder> {
             onDragEnd: (newValue) {});
         _markers.add(vertex);
       }
+
+       if (element.id == 'landingPoint') {
+        // landing point
+        final landIcon = await getBitmapDescriptorFromAssetBytes(
+            'assets/appIcons/landpoint.png', 150);
+        Marker m = Marker(
+            markerId: MarkerId('landingPoint'),
+            infoWindow: InfoWindow(title: 'Landing Point'),
+            position: LatLng(element.point.lng, element.point.lat),
+            draggable: true,
+            icon: landIcon,
+            onTap: () {
+              setState(() {
+                editing = true;
+                currentMarkerId = 'landingPoint';
+                shapeType = 3;
+              });
+            });
+        _markers.add(m);
+      } 
     });
+
 
     // init polygons
     args.map.areaPolygon.coord.forEach((element) {
@@ -619,6 +701,8 @@ class _MapBuilderState extends State<MapBuilder> {
                                       onPressed: () {
                                         setState(() {
                                           // landing point
+                                          shapeType = 3;
+                                          editing = true;
                                         });
                                       }),
                                 ),

@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:ras/models/Gmap.dart';
 import 'package:ras/models/Project.dart';
 import 'package:ras/models/Seed.dart';
+import 'package:ras/models/kml/LookAt.dart';
+import 'package:ras/models/kml/Placemark.dart';
+import 'package:ras/models/kml/Point.dart';
 import 'package:ras/models/kml/Polygon.dart';
 import 'package:ras/repositories/Project.dart';
 import 'package:ras/repositories/Seed.dart';
@@ -43,7 +46,24 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
   List<Seed> seeds = [];
 
   // MAP INFO
-  Gmap geodata = Gmap([], Polygon('', []), []);
+  Gmap geodata = Gmap(
+    [],
+    Polygon('', []),
+    [],
+    Placemark(
+      '',
+      '',
+      '',
+      LookAt(
+        0,
+        0,
+        '',
+        '',
+        '',
+      ),
+      Point(0, 0),
+    ),
+  );
 
   // AREA ATTRIBUTES
   TextEditingController validSurface = TextEditingController();
@@ -179,9 +199,8 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                                         setState(() {
                                           if (value) {
                                             seeds.add(data[index]);
-                                            seeds[index].density = 0; 
-                                          }
-                                          else
+                                            seeds[index].density = 0;
+                                          } else
                                             seeds.removeWhere((element) =>
                                                 element.id == data[index].id ||
                                                 element.commonName ==
@@ -920,16 +939,22 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                                 height: 75,
                                 child: TextFormField(
                                   // controller: density,
-                                  initialValue: seeds[i].density == null ? '0.0' : seeds[i].density.toString(),
+                                  initialValue: seeds[i].density == null
+                                      ? '0.0'
+                                      : seeds[i].density.toString(),
                                   keyboardType: TextInputType.number,
                                   onChanged: (value) {
-                                    if (seeds[i].density == null) seeds[i].density = 0;
+                                    if (seeds[i].density == null)
+                                      seeds[i].density = 0;
                                     else {
-                                      if (value.length > 0) seeds[i].density = double.parse(value);
-                                      else seeds[i].density = 0;
+                                      if (value.length > 0)
+                                        seeds[i].density = double.parse(value);
+                                      else
+                                        seeds[i].density = 0;
                                     }
                                   },
-                                  decoration: InputDecoration(filled: true, helperText: 'Density'),
+                                  decoration: InputDecoration(
+                                      filled: true, helperText: 'Density'),
                                 ),
                               ),
                               title: Text('${seeds[i].commonName}'),
@@ -980,7 +1005,12 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                               onPressed: () async {
                                 final result = await Navigator.pushNamed(
                                     context, '/map',
-                                    arguments: MapBuilderArgs(geodata, geodata.areaPolygon.coord.isEmpty && geodata.markers.isEmpty ? true : false));
+                                    arguments: MapBuilderArgs(
+                                        geodata,
+                                        geodata.areaPolygon.coord.isEmpty &&
+                                                geodata.markers.isEmpty
+                                            ? true
+                                            : false));
                                 if (result is Gmap) {
                                   geodata = result;
                                 }
