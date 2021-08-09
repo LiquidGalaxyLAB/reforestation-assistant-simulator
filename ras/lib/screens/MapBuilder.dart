@@ -124,7 +124,7 @@ class _MapBuilderState extends State<MapBuilder> {
             title: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text('Choose seeds'),
+                Text('Choose species'),
                 IconButton(
                   onPressed: () {
                     Navigator.of(context).pop();
@@ -146,6 +146,15 @@ class _MapBuilderState extends State<MapBuilder> {
                     itemBuilder: (context, index) {
                       Seed seed = args.map.seeds[index];
                       return ListTile(
+                        leading: Container(
+                          width: 40,
+                          height: 40,
+                          child: Image.asset(
+                            seed.icon['url'],
+                            scale: 1,
+                            fit: BoxFit.fill,
+                          ),
+                        ),
                         title: Text('${seed.commonName}'),
                         subtitle: Text('${seed.scientificName}'),
                         onTap: () async {
