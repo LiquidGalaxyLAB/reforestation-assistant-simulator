@@ -11,6 +11,7 @@ import 'package:ras/models/kml/LookAt.dart';
 import 'package:ras/models/kml/Placemark.dart';
 import 'package:ras/models/kml/Point.dart';
 import 'package:ras/route-args/MapBuilderArgs.dart';
+import 'package:ras/services/ImageProcessing.dart';
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:uuid/uuid.dart';
 import 'package:ras/models/kml/Polygon.dart' as poly;
@@ -148,15 +149,11 @@ class _MapBuilderState extends State<MapBuilder> {
                         title: Text('${seed.commonName}'),
                         subtitle: Text('${seed.scientificName}'),
                         onTap: () async {
-                          await BitmapDescriptor.fromAssetImage(
-                                  ImageConfiguration(
-                                      devicePixelRatio: 2.5, size: Size(1, 1)),
-                                  '${seed.icon['url']}')
-                              .then((onValue) {
-                            setState(() {
-                              currentSeedMarker = seed;
-                              currentSeedMarkerIcon = onValue;
-                            });
+                          final icon = await getBitmapDescriptorFromAssetBytes(
+                              seed.icon['url'], 150);
+                          setState(() {
+                            currentSeedMarkerIcon = icon;
+                            currentSeedMarker = seed;
                           });
                           Navigator.pop(context);
                         },
@@ -385,26 +382,11 @@ class _MapBuilderState extends State<MapBuilder> {
 
     _initPosition = await defineInitPosition(args);
 
+    final icon = await getBitmapDescriptorFromAssetBytes(
+        currentSeedMarker.icon['url'], 150);
+    currentSeedMarkerIcon = icon;
+
     isLoaded = true;
-  }
-
-  @override
-  void initState() {
-    BitmapDescriptor.fromAssetImage(
-            ImageConfiguration(devicePixelRatio: 2.5, size: Size(1, 1)),
-            'assets/appIcons/polyVertex.png')
-        .then((onValue) {
-      polygonVertexIcon = onValue;
-
-      BitmapDescriptor.fromAssetImage(
-              ImageConfiguration(devicePixelRatio: 2.5, size: Size(1, 1)),
-              '${currentSeedMarker.icon['url']}')
-          .then((onValue) {
-        currentSeedMarkerIcon = onValue;
-      });
-    });
-
-    super.initState();
   }
 
   @override
@@ -415,7 +397,7 @@ class _MapBuilderState extends State<MapBuilder> {
         target: LatLng(37.42796133580664, -122.085749655962),
         zoom: 15,
       );
-    } 
+    }
     if (!isLoaded) init(args);
 
     return new Scaffold(
