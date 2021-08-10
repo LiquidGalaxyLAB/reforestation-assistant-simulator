@@ -4,7 +4,7 @@ import 'package:ras/models/kml/LookAt.dart';
 import 'package:ras/models/kml/Placemark.dart';
 import 'package:ras/models/kml/Point.dart';
 import 'package:ras/models/kml/Polygon.dart' as poly;
-
+// TODO: REFACTOR GMAP CLASS
 class Gmap {
   List<Placemark> markers;
   poly.Polygon areaPolygon;
@@ -49,7 +49,7 @@ class Gmap {
               map['landingPoint']['lookAt']['tilt'],
               map['landingPoint']['lookAt']['heading']),
           Point(map['landingPoint']['point']['lat'],
-              map['landingPoint']['point']['lng']));
+              map['landingPoint']['point']['lng']),'');
     } else {
       landingPoint = Placemark(
         '',
@@ -63,6 +63,7 @@ class Gmap {
           '',
         ),
         Point(0, 0),
+        ''
       );
     }
 

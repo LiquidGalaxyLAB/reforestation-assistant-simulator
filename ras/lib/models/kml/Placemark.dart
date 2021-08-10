@@ -7,8 +7,10 @@ class Placemark {
   String description;
   LookAt lookAt;
   Point point;
+  String type; // seedMarker, polyVertex, landingPoint
+  dynamic customData;
 
-  Placemark(this.id,this.name, this.description, this.lookAt, this.point);
+  Placemark(this.id,this.name, this.description, this.lookAt, this.point, this.type, {this.customData});
 
   generateTag() {
     return '''
@@ -41,6 +43,7 @@ class Placemark {
         element['description'],
         LookAt.fromMap(element['lookAt']),
         Point.fromMap(element['point']),
+        '',
       ));
     });
     return markers;

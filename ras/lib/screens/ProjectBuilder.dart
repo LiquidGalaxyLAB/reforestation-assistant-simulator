@@ -51,18 +51,18 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
     Polygon('', []),
     [],
     Placemark(
-      '',
-      '',
-      '',
-      LookAt(
-        0,
-        0,
         '',
         '',
         '',
-      ),
-      Point(0, 0),
-    ),
+        LookAt(
+          0,
+          0,
+          '',
+          '',
+          '',
+        ),
+        Point(0, 0),
+        ''),
   );
 
   // AREA ATTRIBUTES
@@ -1004,13 +1004,16 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                               ),
                               onPressed: () async {
                                 final result = await Navigator.pushNamed(
-                                    context, '/map',
-                                    arguments: MapBuilderArgs(
-                                        geodata,
-                                        geodata.areaPolygon.coord.isEmpty &&
-                                                geodata.markers.isEmpty
-                                            ? true
-                                            : false));
+                                  context,
+                                  '/map',
+                                  arguments: MapBuilderArgs(
+                                      geodata,
+                                      geodata.areaPolygon.coord.isEmpty &&
+                                              geodata.markers.isEmpty
+                                          ? true
+                                          : false,
+                                      seeds),
+                                );
                                 if (result is Gmap) {
                                   geodata = result;
                                 }
