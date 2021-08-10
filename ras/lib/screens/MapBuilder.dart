@@ -32,6 +32,7 @@ class _MapBuilderState extends State<MapBuilder> {
   Set<Marker> markers = Set<Marker>();
 
   // HELPERS
+  bool loaded = false;
   bool editing = false;
   String shapeType = 'none';
   var uuid = Uuid();
@@ -45,7 +46,7 @@ class _MapBuilderState extends State<MapBuilder> {
   @override
   Widget build(BuildContext context) {
     final args = ModalRoute.of(context)!.settings.arguments as MapBuilderArgs;
-    init(args);
+    if (!loaded) init(args);
 
     return new Scaffold(
         body: Stack(
@@ -265,7 +266,18 @@ class _MapBuilderState extends State<MapBuilder> {
   }
 
   init(MapBuilderArgs args) {
-    print('GEODATAAAAAAAAAAAA --->>> ${args.map.toMap()}');
+    if (!args.isNew) {
+      args.map.markers.forEach((element) {
+        setState(() {
+          seedMarkers.add(element);
+          placeSeedMarker(element);
+        });
+      });
+    }
+
+    setState(() {
+      loaded = true;
+    });
   }
 
   // SAVE MAP
@@ -273,7 +285,6 @@ class _MapBuilderState extends State<MapBuilder> {
     Gmap geodata = Gmap(
       seedMarkers,
       poly.Polygon('', []),
-      [],
       Placemark(
           '',
           '',
@@ -305,6 +316,26 @@ class _MapBuilderState extends State<MapBuilder> {
     }
   }
 
+  placeSeedMarker(Placemark seedM) async {
+    Seed seed = Seed.fromMap(seedM.customData['seed']);
+    final icon = await getBitmapDescriptorFromAssetBytes(seed.icon['url'], 150);
+    Marker m = Marker(
+        markerId: MarkerId(seedM.id),
+        infoWindow: InfoWindow(title: seedM.name),
+        position: LatLng(seedM.point.lat, seedM.point.lng),
+        draggable: true,
+        icon: icon,
+        onTap: () {
+          setState(() {
+            editing = true;
+            shapeType = 'seedMarker';
+          });
+        });
+    setState(() {
+      markers.add(m);
+    });
+  }
+
   newSeedMarker(LatLng point) {
     Placemark newSeed;
     // new google marker
@@ -330,7 +361,7 @@ class _MapBuilderState extends State<MapBuilder> {
         Point(point.latitude, point.longitude),
         'seedMarker',
         customData: {
-          "seed": currentSeedMarker,
+          "seed": currentSeedMarker.toMap(),
         });
 
     markers.add(m);

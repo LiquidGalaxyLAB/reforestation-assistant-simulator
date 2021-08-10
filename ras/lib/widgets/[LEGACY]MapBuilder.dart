@@ -142,33 +142,33 @@ class _MapBuilderState extends State<MapBuilder> {
               return Container(
                 width: double.maxFinite,
                 height: double.maxFinite,
-                child: ListView.builder(
-                    itemCount: args.map.seeds.length,
-                    itemBuilder: (context, index) {
-                      Seed seed = args.map.seeds[index];
-                      return ListTile(
-                        leading: Container(
-                          width: 40,
-                          height: 40,
-                          child: Image.asset(
-                            seed.icon['url'],
-                            scale: 1,
-                            fit: BoxFit.fill,
-                          ),
-                        ),
-                        title: Text('${seed.commonName}'),
-                        subtitle: Text('${seed.scientificName}'),
-                        onTap: () async {
-                          final icon = await getBitmapDescriptorFromAssetBytes(
-                              seed.icon['url'], 150);
-                          setState(() {
-                            currentSeedMarkerIcon = icon;
-                            currentSeedMarker = seed;
-                          });
-                          Navigator.pop(context);
-                        },
-                      );
-                    }),
+                // child: ListView.builder(
+                //     itemCount: args.map.seeds.length,
+                //     itemBuilder: (context, index) {
+                //       Seed seed = args.map.seeds[index];
+                //       return ListTile(
+                //         leading: Container(
+                //           width: 40,
+                //           height: 40,
+                //           child: Image.asset(
+                //             seed.icon['url'],
+                //             scale: 1,
+                //             fit: BoxFit.fill,
+                //           ),
+                //         ),
+                //         title: Text('${seed.commonName}'),
+                //         subtitle: Text('${seed.scientificName}'),
+                //         onTap: () async {
+                //           final icon = await getBitmapDescriptorFromAssetBytes(
+                //               seed.icon['url'], 150);
+                //           setState(() {
+                //             currentSeedMarkerIcon = icon;
+                //             currentSeedMarker = seed;
+                //           });
+                //           Navigator.pop(context);
+                //         },
+                //       );
+                //     }),
               );
             }),
           );
@@ -372,7 +372,6 @@ class _MapBuilderState extends State<MapBuilder> {
     Gmap geodata = Gmap(
       placemarks,
       area,
-      seeds,
       landingPoint,
     );
     Navigator.pop(context, geodata);

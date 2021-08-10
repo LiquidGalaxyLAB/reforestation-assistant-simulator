@@ -84,7 +84,6 @@ class FakeProjects {
             LatLng(43.54583519470048, -5.534711203286956),
             LatLng(43.54724062357167, -5.534377954339718),
           ]),
-          [],
           Placemark(
               uuid.v1(),
               'Landing Point',
@@ -173,7 +172,6 @@ class FakeProjects {
           LatLng(41.1806360002503, 1.298394044132793), //3
           LatLng(41.18094283127643, 1.296869305404638), //4
         ]),
-        [],
         Placemark(
             uuid.v1(),
             'Landing Point',

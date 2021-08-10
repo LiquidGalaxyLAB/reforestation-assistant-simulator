@@ -24,6 +24,21 @@ class Seed {
       this.establishmentCost,
       {this.density});
 
+  static fromMap(dynamic data) {
+    Seed seed = Seed(
+        data['id'],
+        data['commonName'],
+        data['scientificName'],
+        data['icon'],
+        data['co2PerYear'],
+        data['germinativePotential'],
+        data['estimatedLongevity'],
+        data['estimatedFinalHeight'],
+        data['seedCost'],
+        data['establishmentCost']);
+    return seed;
+  }
+
   Map<String, dynamic> toMap() {
     return {
       "id": id,

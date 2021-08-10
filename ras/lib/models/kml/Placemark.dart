@@ -31,6 +31,8 @@ class Placemark {
       "description": description,
       "lookAt": lookAt.toMap(),
       "point": point.toMap(),
+      "customData": customData,
+      "type": type,
     };
   }
 
@@ -43,7 +45,8 @@ class Placemark {
         element['description'],
         LookAt.fromMap(element['lookAt']),
         Point.fromMap(element['point']),
-        '',
+        element['type'],
+        customData: element['customData'],
       ));
     });
     return markers;

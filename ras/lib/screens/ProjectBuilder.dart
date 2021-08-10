@@ -49,7 +49,6 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
   Gmap geodata = Gmap(
     [],
     Polygon('', []),
-    [],
     Placemark(
         '',
         '',
@@ -374,7 +373,6 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
 
       // map info
       geodata = args.project!.geodata;
-      geodata.seeds = args.project!.seeds;
     } else {
       minSwtTemp.text = '0';
       maxSwtTemp.text = '0';
