@@ -24,31 +24,6 @@ class KML {
   <kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:kml="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom">
     <Document>
       <name>$name</name>
-        <Style id="s_ylw-pushpin">
-          <IconStyle>
-            <scale>1.1</scale>
-            <Icon>
-              <href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
-            </Icon>
-            <hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
-          </IconStyle>
-          <LineStyle>
-            <color>ff7fffff</color>
-          </LineStyle>
-          <PolyStyle>
-            <color>b37fffff</color>
-          </PolyStyle>
-        </Style>
-        <StyleMap id="m_ylw-pushpin">
-          <Pair>
-            <key>normal</key>
-            <styleUrl>#s_ylw-pushpin</styleUrl>
-          </Pair>
-          <Pair>
-            <key>highlight</key>
-            <styleUrl>#s_ylw-pushpin_hl</styleUrl>
-          </Pair>
-        </StyleMap>
         <Folder>
         $content
         </Folder>

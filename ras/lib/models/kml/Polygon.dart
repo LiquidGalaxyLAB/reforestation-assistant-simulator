@@ -4,17 +4,31 @@ class Polygon {
   String id;
   List<LatLng> coord;
 
+  static dynamic style = {
+    "lineStyle": {"color": "ff7fffff"},
+    "polyStyle": {
+      "color": "b37fffff",
+    }
+  };
+
   Polygon(this.id, this.coord);
 
   generateTag() {
     return '''
+  <Style id="$id">
+    <LineStyle>
+      <color>${style['lineStyle']['color']}</color>
+    </LineStyle>
+    <PolyStyle>
+      <color>${style['polyStyle']['color']}</color>
+    </PolyStyle>
+  </Style>
   <Placemark>
 		<name>AREA</name>
-		<styleUrl>#m_ylw-pushpin</styleUrl>
-    <Polygon id="${this.id}">
+		<styleUrl>$id</styleUrl>
+    <Polygon>
       <extrude>4</extrude>
-      <altitudeMode>relativeToGround</altitudeMode>
-      <tessellate>1</tessellate>
+      <altitudeMode>clampedToGround</altitudeMode>
       <outerBoundaryIs>
         <LinearRing>
           <coordinates>
@@ -46,10 +60,13 @@ class Polygon {
   coordsToString() {
     String stringPoints = '';
     this.coord.forEach((element) {
-      stringPoints += element.longitude.toString() + ',' + element.latitude.toString() + ',40' + '\n';
+      stringPoints += element.longitude.toString() +
+          ',' +
+          element.latitude.toString() +
+          ',40' +
+          '\n';
     });
 
     return stringPoints;
   }
-
 }
