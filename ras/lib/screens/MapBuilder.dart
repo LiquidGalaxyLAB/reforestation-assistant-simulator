@@ -239,7 +239,10 @@ class _MapBuilderState extends State<MapBuilder> {
                                 width: 25,
                               ),
                               onPressed: () {
-                                setState(() {});
+                                setState(() {
+                                  shapeType = 'seedMarker';
+                                  placeSeedInMyPosition();
+                                });
                               }),
                         ),
                         Padding(
@@ -323,7 +326,7 @@ class _MapBuilderState extends State<MapBuilder> {
     });
   }
 
-  // delete map elements
+  // DELETE MAP ELEMENTS
   removeElement() {
     switch (shapeType) {
       case 'seedMarker':
@@ -673,5 +676,11 @@ class _MapBuilderState extends State<MapBuilder> {
             ],
           );
         });
+  }
+
+// PLACE SEED IN MY POSITION
+placeSeedInMyPosition() async {
+    LatLng position = await _determinePosition();
+    handleTap(position);
   }
 }
