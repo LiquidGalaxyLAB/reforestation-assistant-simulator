@@ -56,7 +56,11 @@ class _MapBuilderState extends State<MapBuilder> {
         '',
       ),
       Point(0, 0),
-      'landingPOint');
+      'landingPoint');
+
+  // POLYGON AREA
+  List<LatLng> polygonVertex = [];
+  Set<Polygon> polygons = new Set();
 
   @override
   Widget build(BuildContext context) {
@@ -78,7 +82,7 @@ class _MapBuilderState extends State<MapBuilder> {
             handleTap(value);
           },
           markers: markers,
-          // polygons: _polygons,
+          polygons: polygons,
         ),
         SafeArea(
           child: Row(
@@ -242,7 +246,10 @@ class _MapBuilderState extends State<MapBuilder> {
                                 width: 25,
                               ),
                               onPressed: () {
-                                setState(() {});
+                                setState(() {
+                                  shapeType = "polygon";
+                                  editing = true;
+                                });
                               }),
                         ),
                         Padding(
@@ -295,6 +302,13 @@ class _MapBuilderState extends State<MapBuilder> {
       // place landing point
       placeLandingPoint(LatLng(
           args.map.landingPoint.point.lat, args.map.landingPoint.point.lng));
+
+      // place polygon
+      if (args.map.areaPolygon.coord.isNotEmpty) {
+        args.map.areaPolygon.coord.forEach((element) {
+          placePolygonVertex(LatLng(element.latitude, element.longitude));
+        });
+      }
     }
 
     setState(() {
@@ -306,7 +320,9 @@ class _MapBuilderState extends State<MapBuilder> {
   saveMap() {
     Gmap geodata = Gmap(
       seedMarkers,
-      poly.Polygon('', []),
+      polygons.isNotEmpty
+          ? poly.Polygon(polygons.first.polygonId.value, polygons.first.points)
+          : poly.Polygon('', []),
       landingPoint,
     );
     Navigator.pop(context, geodata);
@@ -325,9 +341,48 @@ class _MapBuilderState extends State<MapBuilder> {
         // put a landing point into the map
         placeLandingPoint(point);
         break;
+      case 'polygon':
+        placePolygonVertex(point);
+        break;
       default:
         break;
     }
+  }
+
+  placePolygonVertex(LatLng point) async {
+    final icon = await getBitmapDescriptorFromAssetBytes(
+        'assets/appIcons/polyVertex.png', 90);
+    // add vertex
+    var id = uuid.v1();
+    Marker vertex = Marker(
+        markerId: MarkerId(id),
+        position: point,
+        draggable: false,
+        icon: icon,
+        onTap: () {
+          setState(() {
+            editing = true;
+            shapeType = 'polygon';
+          });
+        },
+        onDragEnd: (newValue) {});
+    setState(() {
+      polygonVertex.add(vertex.position);
+      markers.add(vertex);
+      if (polygonVertex.length >= 3) placePolygon();
+    });
+  }
+
+  placePolygon() {
+    setState(() {
+      polygons.add(Polygon(
+        polygonId: PolygonId('area'),
+        points: polygonVertex,
+        strokeColor: Colors.yellow,
+        strokeWidth: 1,
+        fillColor: Colors.yellow.withOpacity(0.15),
+      ));
+    });
   }
 
   placeLandingPoint(LatLng point) async {
