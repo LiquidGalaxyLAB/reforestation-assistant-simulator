@@ -301,6 +301,7 @@ class _MapBuilderState extends State<MapBuilder> {
 
   init(MapBuilderArgs args) {
     if (!args.isNew) {
+      print('AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA->>>> ${args.map.markers}');
       // place seed markers
       args.map.markers.forEach((element) {
         setState(() {
@@ -381,6 +382,7 @@ class _MapBuilderState extends State<MapBuilder> {
 
   // SAVE MAP
   saveMap() {
+    print(seedMarkers[0].toMap());
     Gmap geodata = Gmap(
       seedMarkers,
       polygons.isNotEmpty
@@ -477,7 +479,9 @@ class _MapBuilderState extends State<MapBuilder> {
 
   placeSeedMarker(Placemark seedM) async {
     Seed seed = Seed.fromMap(seedM.customData['seed']);
-    final icon = await getBitmapDescriptorFromAssetBytes(seed.icon['url'], 150);
+    final icon;
+    if(seed.commonName == 'none') icon = BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueRed);
+    else icon = await getBitmapDescriptorFromAssetBytes(seed.icon['url'], 150);
     Marker m = Marker(
         markerId: MarkerId(seedM.id),
         infoWindow: InfoWindow(title: seedM.name),
