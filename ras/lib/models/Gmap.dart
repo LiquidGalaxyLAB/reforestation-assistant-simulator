@@ -4,7 +4,7 @@ import 'package:ras/models/kml/LookAt.dart';
 import 'package:ras/models/kml/Placemark.dart';
 import 'package:ras/models/kml/Point.dart';
 import 'package:ras/models/kml/Polygon.dart' as poly;
-// TODO: REFACTOR GMAP CLASS
+
 class Gmap {
   List<Placemark> markers;
   poly.Polygon areaPolygon;
@@ -21,14 +21,16 @@ class Gmap {
     return {
       "markers": mrks,
       "areaPolygon": areaPolygon.toMap(),
+      "landingPoint": landingPoint.toMap(),
     };
   }
 
   static fromMap(dynamic map) {
     List<Placemark> markers = [];
-    List<Seed> seeds = [];
     poly.Polygon polygon = poly.Polygon('', []);
     Placemark landingPoint;
+
+    print('FROM MAP =>>> ${map}');
 
     if (map['landingPoint'] != null) {
       landingPoint = Placemark(
@@ -42,22 +44,22 @@ class Gmap {
               map['landingPoint']['lookAt']['tilt'],
               map['landingPoint']['lookAt']['heading']),
           Point(map['landingPoint']['point']['lat'],
-              map['landingPoint']['point']['lng']),'');
+              map['landingPoint']['point']['lng']),
+          'landingPoint');
     } else {
       landingPoint = Placemark(
-        '',
-        '',
-        '',
-        LookAt(
-          0,
-          0,
           '',
           '',
           '',
-        ),
-        Point(0, 0),
-        ''
-      );
+          LookAt(
+            0,
+            0,
+            '',
+            '',
+            '',
+          ),
+          Point(0, 0),
+          'landingPoint');
     }
 
     if (map != null) {

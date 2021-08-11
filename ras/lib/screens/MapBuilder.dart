@@ -43,6 +43,21 @@ class _MapBuilderState extends State<MapBuilder> {
   // SEED MARKERS
   List<Placemark> seedMarkers = [];
 
+  // LANDING POINT
+  Placemark landingPoint = Placemark(
+      '',
+      'none',
+      '',
+      LookAt(
+        0,
+        0,
+        '',
+        '',
+        '',
+      ),
+      Point(0, 0),
+      'landingPOint');
+
   @override
   Widget build(BuildContext context) {
     final args = ModalRoute.of(context)!.settings.arguments as MapBuilderArgs;
@@ -243,6 +258,8 @@ class _MapBuilderState extends State<MapBuilder> {
                               onPressed: () {
                                 setState(() {
                                   // landing point
+                                  shapeType = 'landingPoint';
+                                  editing = true;
                                 });
                               }),
                         ),
@@ -267,12 +284,18 @@ class _MapBuilderState extends State<MapBuilder> {
 
   init(MapBuilderArgs args) {
     if (!args.isNew) {
+      // place seed markers
       args.map.markers.forEach((element) {
         setState(() {
           seedMarkers.add(element);
           placeSeedMarker(element);
         });
       });
+
+      // place landing point
+      print('LANDING POINTEEE ->> ${args.map.landingPoint.toMap()}');
+      placeLandingPoint(LatLng(
+          args.map.landingPoint.point.lat, args.map.landingPoint.point.lng));
     }
 
     setState(() {
@@ -282,22 +305,11 @@ class _MapBuilderState extends State<MapBuilder> {
 
   // SAVE MAP
   saveMap() {
+    print('lanifnnf ${landingPoint.toMap()}');
     Gmap geodata = Gmap(
       seedMarkers,
       poly.Polygon('', []),
-      Placemark(
-          '',
-          '',
-          '',
-          LookAt(
-            0,
-            0,
-            '',
-            '',
-            '',
-          ),
-          Point(0, 0),
-          ''),
+      landingPoint,
     );
     Navigator.pop(context, geodata);
   }
@@ -311,9 +323,40 @@ class _MapBuilderState extends State<MapBuilder> {
           seedMarkers.add(newSeedMarker(point));
         });
         break;
+      case 'landingPoint':
+        // put a landing point into the map
+        placeLandingPoint(point);
+        break;
       default:
         break;
     }
+  }
+
+  placeLandingPoint(LatLng point) async {
+    final landIcon = await getBitmapDescriptorFromAssetBytes(
+        'assets/appIcons/landpoint.png', 150);
+    Marker m = Marker(
+        markerId: MarkerId('landingPoint'),
+        infoWindow: InfoWindow(title: 'Landing Point'),
+        position: point,
+        draggable: true,
+        icon: landIcon,
+        onTap: () {
+          setState(() {
+            editing = true;
+            shapeType = 'landingPoint';
+          });
+        });
+    setState(() {
+      landingPoint = Placemark(
+          'landingPoint',
+          'Landing Point',
+          'The place where the drone will take off',
+          LookAt(point.longitude, point.latitude, '10000', '45', '0'),
+          Point(point.latitude, point.longitude),
+          'landingPoint');
+      markers.add(m);
+    });
   }
 
   placeSeedMarker(Placemark seedM) async {
