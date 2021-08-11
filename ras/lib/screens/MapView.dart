@@ -1,10 +1,12 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:ras/@helpers/SeedIcons.dart';
 import 'package:ras/models/Seed.dart';
+import 'package:ras/models/kml/LookAt.dart';
+import 'package:ras/models/kml/Placemark.dart';
+import 'package:ras/models/kml/Point.dart';
 import 'package:ras/route-args/MapViewArgs.dart';
+import 'package:ras/services/ImageProcessing.dart';
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:uuid/uuid.dart';
 
@@ -16,39 +18,145 @@ class MapView extends StatefulWidget {
 }
 
 class _MapViewState extends State<MapView> {
-  Completer<GoogleMapController> _controller = Completer();
+  // MAPS ATTRIBUTES
+  Completer<GoogleMapController> _controller = Completer(); // Map controller
+  CameraPosition initPosition = CameraPosition(
+    target: LatLng(37.42796133580664, -122.085749655962),
+    zoom: 15,
+  ); // Init position for camera when no data is loaded
+  Set<Marker> markers = Set<Marker>();
 
-  // static CameraPosition _initPosition = CameraPosition(
-  //   target: LatLng(37.42796133580664, -122.085749655962),
-  //   zoom: 15,
-  // );
-  late CameraPosition _initPosition;
-
-  int shapeType = 0;
-  // 0 = none; 1 = placemark; 2 = polygon ...
-
+  // HELPERS
+  bool loaded = false;
   bool editing = false;
-
-  bool isLoaded = false;
-
-  late BitmapDescriptor polygonVertexIcon;
-  late BitmapDescriptor currentSeedMarkerIcon;
-
-  Set<Marker> _markers = Set<Marker>();
-  List<LatLng> _polygonVertex = [];
-  Set<Polygon> _polygons = new Set();
-
-  var uuid = Uuid();
+  String shapeType = 'none';
   String currentMarkerId = '';
-  String currentVertexId = '';
-  Seed currentSeedMarker =
-      Seed('', 'Default', '', SeedIcons.list[0], 0, 0, 0, 0, 0, 0);
+  var uuid = Uuid();
+  BitmapDescriptor currentSeedMarkerIcon =
+      BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueRed);
+  Seed currentSeedMarker = Seed('', 'none', '', {}, 0, 0, 0, 0, 0, 0);
 
-  _placePolygon() {
+  // SEED MARKERS
+  List<Placemark> seedMarkers = [];
+
+  // LANDING POINT
+  Placemark landingPoint = Placemark(
+      '',
+      'none',
+      '',
+      LookAt(
+        0,
+        0,
+        '',
+        '',
+        '',
+      ),
+      Point(0, 0),
+      'landingPoint');
+
+  // POLYGON AREA
+  List<LatLng> polygonVertex = [];
+  Set<Polygon> polygons = new Set();
+
+  @override
+  Widget build(BuildContext context) {
+    final args = ModalRoute.of(context)!.settings.arguments as MapViewArgs;
+    if (!loaded) init(args);
+
+    return new Scaffold(
+        body: Stack(
+      children: [
+        GoogleMap(
+          mapType: MapType.satellite,
+          initialCameraPosition: initPosition,
+          myLocationEnabled: true,
+          myLocationButtonEnabled: false,
+          onMapCreated: (GoogleMapController controller) {
+            _controller.complete(controller);
+          },
+          markers: markers,
+          polygons: polygons,
+        ),
+        SafeArea(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(top: 20.0, left: 10),
+                    child: FloatingActionButton(
+                        heroTag: 'backBtn',
+                        backgroundColor: Colors.black.withOpacity(0.5),
+                        child: Icon(Icons.arrow_back),
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        }),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+      ],
+    ));
+  }
+
+  init(MapViewArgs args) {
+    // place seed markers
+    args.map.markers.forEach((element) {
+      setState(() {
+        seedMarkers.add(element);
+        placeSeedMarker(element);
+      });
+    });
+
+    // place landing point
+    placeLandingPoint(LatLng(
+        args.map.landingPoint.point.lat, args.map.landingPoint.point.lng));
+
+    // place polygon
+    if (args.map.areaPolygon.coord.isNotEmpty) {
+      args.map.areaPolygon.coord.forEach((element) {
+        placePolygonVertex(LatLng(element.latitude, element.longitude));
+      });
+    }
+
     setState(() {
-      _polygons.add(Polygon(
+      loaded = true;
+    });
+  }
+
+  placePolygonVertex(LatLng point) async {
+    final icon = await getBitmapDescriptorFromAssetBytes(
+        'assets/appIcons/polyVertex.png', 90);
+    // add vertex
+    var id = uuid.v1();
+    Marker vertex = Marker(
+        markerId: MarkerId(id),
+        position: point,
+        draggable: false,
+        icon: icon,
+        onTap: () {
+          setState(() {
+            editing = true;
+            shapeType = 'polygon';
+          });
+        },
+        onDragEnd: (newValue) {});
+    setState(() {
+      polygonVertex.add(vertex.position);
+      markers.add(vertex);
+      if (polygonVertex.length >= 3) placePolygon();
+    });
+  }
+
+  placePolygon() {
+    setState(() {
+      polygons.add(Polygon(
         polygonId: PolygonId('area'),
-        points: _polygonVertex,
+        points: polygonVertex,
         strokeColor: Colors.yellow,
         strokeWidth: 1,
         fillColor: Colors.yellow.withOpacity(0.15),
@@ -56,136 +164,51 @@ class _MapViewState extends State<MapView> {
     });
   }
 
-  init(MapViewArgs args) async {
-    await BitmapDescriptor.fromAssetImage(
-            ImageConfiguration(devicePixelRatio: 2.5, size: Size(1, 1)),
-            'assets/appIcons/polyVertex.png')
-        .then((onValue) {
-      polygonVertexIcon = onValue;
+  placeLandingPoint(LatLng point) async {
+    final landIcon = await getBitmapDescriptorFromAssetBytes(
+        'assets/appIcons/landpoint.png', 150);
+    Marker m = Marker(
+        markerId: MarkerId('landingPoint'),
+        infoWindow: InfoWindow(title: 'Landing Point'),
+        position: point,
+        draggable: true,
+        icon: landIcon,
+        onTap: () {
+          setState(() {
+            editing = true;
+            shapeType = 'landingPoint';
+          });
+        });
+    setState(() {
+      landingPoint = Placemark(
+          'landingPoint',
+          'Landing Point',
+          'The place where the drone will take off',
+          LookAt(point.longitude, point.latitude, '10000', '45', '0'),
+          Point(point.latitude, point.longitude),
+          'landingPoint');
+      markers.add(m);
     });
-    // init markers
-    args.map.markers.forEach((element) {
-      var contain = args.map.areaPolygon.coord.where((el) =>
-          el.latitude == element.point.lng &&
-          el.longitude == element.point.lat);
-      if (contain.isEmpty) {
-        Marker m = Marker(
-            markerId: MarkerId(element.id),
-            position: LatLng(element.point.lng, element.point.lat),
-            draggable: true,
-            icon:
-                BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueRed),
-            onTap: () {
-              setState(() {
-                editing = false;
-                currentMarkerId = element.id;
-                shapeType = 1;
-              });
-            });
-        _markers.add(m);
-      } else {
-        Marker vertex = Marker(
-            markerId: MarkerId(element.id),
-            position: LatLng(element.point.lng, element.point.lat),
-            draggable: false,
-            icon: polygonVertexIcon,
-            onTap: () {
-              setState(() {
-                currentVertexId = element.id;
-                editing = false;
-                shapeType = 2;
-              });
-            },
-            onDragEnd: (newValue) {});
-        _markers.add(vertex);
-      }
-    });
-
-    // init polygons
-    args.map.areaPolygon.coord.forEach((element) {
-      _polygonVertex.add(element);
-      _placePolygon();
-    });
-
-    // init point
-    if (args.map.areaPolygon.coord.length > 0) {
-      _initPosition = CameraPosition(
-        target: args.map.areaPolygon.coord[0],
-        zoom: 15,
-      );
-    } else if (args.map.markers.length > 0) {
-      _initPosition = CameraPosition(
-        target: LatLng(
-            args.map.markers[0].point.lng, args.map.markers[0].point.lat),
-        zoom: 15,
-      );
-    }
-
-    isLoaded = true;
   }
 
-  @override
-  void initState() {
-    BitmapDescriptor.fromAssetImage(
-            ImageConfiguration(devicePixelRatio: 2.5, size: Size(1, 1)),
-            'assets/appIcons/polyVertex.png')
-        .then((onValue) {
-      polygonVertexIcon = onValue;
-
-      BitmapDescriptor.fromAssetImage(
-              ImageConfiguration(devicePixelRatio: 2.5, size: Size(1, 1)),
-              '${currentSeedMarker.icon['url']}')
-          .then((onValue) {
-        currentSeedMarkerIcon = onValue;
-      });
+  placeSeedMarker(Placemark seedM) async {
+    Seed seed = Seed.fromMap(seedM.customData['seed']);
+    final icon = await getBitmapDescriptorFromAssetBytes(seed.icon['url'], 150);
+    Marker m = Marker(
+        markerId: MarkerId(seedM.id),
+        infoWindow: InfoWindow(title: seedM.name),
+        position: LatLng(seedM.point.lat, seedM.point.lng),
+        draggable: true,
+        icon: icon,
+        onTap: () {
+          setState(() {
+            currentMarkerId = seedM.id;
+            editing = true;
+            shapeType = 'seedMarker';
+          });
+        });
+    setState(() {
+      markers.add(m);
     });
-
-    super.initState();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    final args = ModalRoute.of(context)!.settings.arguments as MapViewArgs;
-    if (!isLoaded) init(args);
-
-    return new Scaffold(
-      // ignore: unnecessary_null_comparison
-      body: _initPosition != null
-          ? Stack(
-              children: [
-                GoogleMap(
-                  mapType: MapType.satellite,
-                  initialCameraPosition: _initPosition,
-                  myLocationEnabled: true,
-                  myLocationButtonEnabled: false,
-                  onMapCreated: (GoogleMapController controller) {
-                    _controller.complete(controller);
-                  },
-                  markers: _markers,
-                  polygons: _polygons,
-                ),
-                SafeArea(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(top: 20.0, left: 10),
-                        child: FloatingActionButton(
-                            heroTag: 'btn1',
-                            backgroundColor: Colors.black.withOpacity(0.5),
-                            child: Icon(Icons.arrow_back),
-                            onPressed: () {
-                              Navigator.pop(context, '');
-                              isLoaded = false;
-                            }),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            )
-          : SizedBox(),
-    );
   }
 }
