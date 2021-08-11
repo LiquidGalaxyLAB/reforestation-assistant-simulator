@@ -293,7 +293,6 @@ class _MapBuilderState extends State<MapBuilder> {
       });
 
       // place landing point
-      print('LANDING POINTEEE ->> ${args.map.landingPoint.toMap()}');
       placeLandingPoint(LatLng(
           args.map.landingPoint.point.lat, args.map.landingPoint.point.lng));
     }
@@ -305,7 +304,6 @@ class _MapBuilderState extends State<MapBuilder> {
 
   // SAVE MAP
   saveMap() {
-    print('lanifnnf ${landingPoint.toMap()}');
     Gmap geodata = Gmap(
       seedMarkers,
       poly.Polygon('', []),

@@ -30,8 +30,6 @@ class Gmap {
     poly.Polygon polygon = poly.Polygon('', []);
     Placemark landingPoint;
 
-    print('FROM MAP =>>> ${map}');
-
     if (map['landingPoint'] != null) {
       landingPoint = Placemark(
           map['landingPoint']['id'],
