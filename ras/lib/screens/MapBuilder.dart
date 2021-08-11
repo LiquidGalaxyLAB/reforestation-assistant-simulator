@@ -35,6 +35,7 @@ class _MapBuilderState extends State<MapBuilder> {
   bool loaded = false;
   bool editing = false;
   String shapeType = 'none';
+  String currentMarkerId = '';
   var uuid = Uuid();
   BitmapDescriptor currentSeedMarkerIcon =
       BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueRed);
@@ -130,7 +131,13 @@ class _MapBuilderState extends State<MapBuilder> {
                                   child: Icon(Icons.delete),
                                   onPressed: () {
                                     // delete shape
-                                    setState(() {});
+                                    setState(() {
+                                      removeElement();
+                                      setState(() {
+                                        editing = false;
+                                        shapeType = 'none';
+                                      });
+                                    });
                                   }),
                             ),
                             Padding(
@@ -316,6 +323,59 @@ class _MapBuilderState extends State<MapBuilder> {
     });
   }
 
+  // delete map elements
+  removeElement() {
+    switch (shapeType) {
+      case 'seedMarker':
+        removeSeedMarker();
+        break;
+      case 'polygon':
+        removePolygon();
+        break;
+      case 'landingPoint':
+        removeLandingPoint();
+        break;
+      default:
+        break;
+    }
+  }
+
+  removeSeedMarker() {
+    setState(() {
+      markers
+          .removeWhere((element) => element.markerId.value == currentMarkerId);
+      seedMarkers.removeWhere((element) => element.id == currentMarkerId);
+    });
+  }
+
+  removePolygon() {
+    polygons = Set();
+    polygonVertex.forEach((vertex) {
+      markers.removeWhere((element) => element.position == vertex);
+    });
+    polygonVertex = [];
+  }
+
+  removeLandingPoint() {
+    setState(() {
+      markers
+          .removeWhere((element) => element.markerId.value == 'landingPoint');
+      landingPoint = Placemark(
+          '',
+          'none',
+          '',
+          LookAt(
+            0,
+            0,
+            '',
+            '',
+            '',
+          ),
+          Point(0, 0),
+          'landingPoint');
+    });
+  }
+
   // SAVE MAP
   saveMap() {
     Gmap geodata = Gmap(
@@ -423,6 +483,7 @@ class _MapBuilderState extends State<MapBuilder> {
         icon: icon,
         onTap: () {
           setState(() {
+            currentMarkerId = seedM.id;
             editing = true;
             shapeType = 'seedMarker';
           });
@@ -444,6 +505,7 @@ class _MapBuilderState extends State<MapBuilder> {
         icon: currentSeedMarkerIcon,
         onTap: () {
           setState(() {
+            currentMarkerId = id;
             editing = true;
             shapeType = 'seedMarker';
           });
