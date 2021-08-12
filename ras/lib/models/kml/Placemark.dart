@@ -77,6 +77,56 @@ class Placemark {
     ''';
   }
 
+  generateCommonMarkerTag(String href) {
+    return '''
+    <Style id="high-$id">
+      <IconStyle>
+        <scale>${style['high']['scale']}</scale>
+        <Icon>
+          <href>$href</href>
+        </Icon>
+        <hotSpot 
+          x="${style['hotSpot']['x']}" 
+          y="${style['hotSpot']['y']}" 
+          xunits="${style['hotSpot']['xunits']}" 
+          yunits="${style['hotSpot']['yunits']}"
+        />
+      </IconStyle>
+    </Style>
+    <Style id="normal-$id">
+      <IconStyle>
+        <scale>${style['normal']['scale']}</scale>
+        <Icon>
+          <href>$href</href>
+        </Icon>
+        <hotSpot 
+          x="${style['hotSpot']['x']}" 
+          y="${style['hotSpot']['y']}" 
+          xunits="${style['hotSpot']['xunits']}" 
+          yunits="${style['hotSpot']['yunits']}"
+        />
+      </IconStyle>
+    </Style>
+    <StyleMap id="$id">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>normal-$id</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>high-$id</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Placemark>
+      <name>$name</name>
+      <description>$description</description>
+      ${this.lookAt.generateTag()}
+      <styleUrl>$id</styleUrl>
+      ${this.point.generateTag()}
+    </Placemark>
+    ''';
+  }
+
   toMap() {
     return {
       "id": id,

@@ -7,15 +7,21 @@ class KML {
 
   KML(this.name, this.content);
 
-  static buildKMLContent(List<Placemark> placemarks, Polygon polygon, Placemark landingPoint) {
+  static buildKMLContent(
+      List<Placemark> placemarks, Polygon polygon, Placemark landingPoint) {
     String kmlContent = '';
-    if(polygon.coord.length > 0) kmlContent += '\n ${polygon.generateTag()}';
+    if (polygon.coord.length > 0) kmlContent += '\n ${polygon.generateTag()}';
     placemarks.forEach((element) {
-      kmlContent += '\n ${element.generateTag(element.customData['seed']['icon']['name'])}';
+      if (element.customData['seed']['commonName'] == 'none') {
+        kmlContent += element.generateCommonMarkerTag(
+            'http://maps.google.com/mapfiles/kml/paddle/red-circle.png');
+      } else {
+        kmlContent +=
+            '\n ${element.generateTag(element.customData['seed']['icon']['name'])}';
+      }
     });
 
-    if(landingPoint.name != 'none') {
-      print('landingPoint ${landingPoint.toMap()}');
+    if (landingPoint.name != 'none') {
       kmlContent += '\n ${landingPoint.generateTag('landpoint.png')}';
     }
 

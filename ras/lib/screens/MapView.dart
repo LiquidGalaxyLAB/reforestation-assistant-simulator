@@ -216,7 +216,11 @@ class _MapViewState extends State<MapView> {
 
   placeSeedMarker(Placemark seedM) async {
     Seed seed = Seed.fromMap(seedM.customData['seed']);
-    final icon = await getBitmapDescriptorFromAssetBytes(seed.icon['url'], 150);
+    final icon;
+    if (seed.commonName == 'none')
+      icon = BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueRed);
+    else
+      icon = await getBitmapDescriptorFromAssetBytes(seed.icon['url'], 150);
     Marker m = Marker(
         markerId: MarkerId(seedM.id),
         infoWindow: InfoWindow(title: seedM.name),
