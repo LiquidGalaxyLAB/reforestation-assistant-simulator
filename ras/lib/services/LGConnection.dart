@@ -104,16 +104,17 @@ class LGConnection {
         },
       );
 
-      //upload seed markers icons
+      // upload seed markers icons
       await Future.forEach(project.geodata.markers, (Placemark element) async {
         String imgPath = await _createLocalImage(
             element.customData['seed']['icon']['name'],
             element.customData['seed']['icon']['url']);
         await client.sftpUpload(path: imgPath, toPath: '/var/www/html');
       });
-      // project.geodata.markers.forEach((element) async {
 
-      // });
+      // upload landpoint asset
+      String imgPath = await _createLocalImage('landpoint.png', 'assets/appIcons/landpoint.png');
+      await client.sftpUpload(path: imgPath, toPath: '/var/www/html');
 
       await client.execute(
           'echo "http://lg1:81/${project.projectName}.kml" > /var/www/html/kmls.txt');

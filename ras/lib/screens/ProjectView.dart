@@ -52,8 +52,8 @@ class _ProjectViewState extends State<ProjectView> {
     Project? p = args.project;
 
     // create kml based on geodata attribute
-    String content = KML.buildKMLContent(
-        args.project.geodata.markers, args.project.geodata.areaPolygon);
+    String content = KML.buildKMLContent(args.project.geodata.markers,
+        args.project.geodata.areaPolygon, args.project.geodata.landingPoint);
     KML kml = KML(args.project.projectName, content);
 
     // send to LG

@@ -27,13 +27,13 @@ class Placemark {
 
   Placemark(this.id,this.name, this.description, this.lookAt, this.point, this.type, {this.customData});
 
-  generateTag() {
+  generateTag(String filename) {
     return '''
     <Style id="high-$id">
       <IconStyle>
         <scale>${style['high']['scale']}</scale>
         <Icon>
-          <href>http://lg1:81/${customData['seed']['icon']['name']}</href>
+          <href>http://lg1:81/$filename</href>
         </Icon>
         <hotSpot 
           x="${style['hotSpot']['x']}" 
@@ -47,7 +47,7 @@ class Placemark {
       <IconStyle>
         <scale>${style['normal']['scale']}</scale>
         <Icon>
-          <href>http://lg1:81/${customData['seed']['icon']['name']}</href>
+          <href>http://lg1:81/$filename</href>
         </Icon>
         <hotSpot 
           x="${style['hotSpot']['x']}" 

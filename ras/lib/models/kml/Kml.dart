@@ -7,12 +7,17 @@ class KML {
 
   KML(this.name, this.content);
 
-  static buildKMLContent(List<Placemark> placemarks, Polygon polygon) {
+  static buildKMLContent(List<Placemark> placemarks, Polygon polygon, Placemark landingPoint) {
     String kmlContent = '';
     if(polygon.coord.length > 0) kmlContent += '\n ${polygon.generateTag()}';
     placemarks.forEach((element) {
-      kmlContent += '\n ${element.generateTag()}';
+      kmlContent += '\n ${element.generateTag(element.customData['seed']['icon']['name'])}';
     });
+
+    if(landingPoint.name != 'none') {
+      print('landingPoint ${landingPoint.toMap()}');
+      kmlContent += '\n ${landingPoint.generateTag('landpoint.png')}';
+    }
 
     return kmlContent;
   }
