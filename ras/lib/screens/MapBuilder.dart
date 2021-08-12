@@ -301,7 +301,6 @@ class _MapBuilderState extends State<MapBuilder> {
 
   init(MapBuilderArgs args) {
     if (!args.isNew) {
-      print('AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA->>>> ${args.map.markers}');
       // place seed markers
       args.map.markers.forEach((element) {
         setState(() {

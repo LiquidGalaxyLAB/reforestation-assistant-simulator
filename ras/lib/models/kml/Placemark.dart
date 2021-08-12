@@ -10,15 +10,68 @@ class Placemark {
   String type; // seedMarker, polyVertex, landingPoint
   dynamic customData;
 
+  static dynamic style = {
+    "hotSpot": {
+      "x": 0.5,
+      "y": 0.5,
+      "xunits": "fraction",
+      "yunits": "fraction",
+    },
+    "high": {
+      "scale": "2.0",
+    },
+    "normal": {
+      "scale": "1.0"
+    }
+  };
+
   Placemark(this.id,this.name, this.description, this.lookAt, this.point, this.type, {this.customData});
 
   generateTag() {
     return '''
-    <Placemark id="${this.id}">
-      <name>${this.name}</name>
-      <description>${this.description}</description>
+    <Style id="high-$id">
+      <IconStyle>
+        <scale>${style['high']['scale']}</scale>
+        <Icon>
+          <href>http://lg1:81/${customData['seed']['icon']['name']}</href>
+        </Icon>
+        <hotSpot 
+          x="${style['hotSpot']['x']}" 
+          y="${style['hotSpot']['y']}" 
+          xunits="${style['hotSpot']['xunits']}" 
+          yunits="${style['hotSpot']['yunits']}"
+        />
+      </IconStyle>
+    </Style>
+    <Style id="normal-$id">
+      <IconStyle>
+        <scale>${style['normal']['scale']}</scale>
+        <Icon>
+          <href>http://lg1:81/${customData['seed']['icon']['name']}</href>
+        </Icon>
+        <hotSpot 
+          x="${style['hotSpot']['x']}" 
+          y="${style['hotSpot']['y']}" 
+          xunits="${style['hotSpot']['xunits']}" 
+          yunits="${style['hotSpot']['yunits']}"
+        />
+      </IconStyle>
+    </Style>
+    <StyleMap id="$id">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>normal-$id</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>high-$id</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Placemark>
+      <name>$name</name>
+      <description>$description</description>
       ${this.lookAt.generateTag()}
-      <styleUrl>#m_ylw-pushpin</styleUrl>
+      <styleUrl>$id</styleUrl>
       ${this.point.generateTag()}
     </Placemark>
     ''';

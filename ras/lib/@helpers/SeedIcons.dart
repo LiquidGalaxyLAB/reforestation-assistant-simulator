@@ -1,15 +1,15 @@
 class SeedIcons {
   static List list = [
     { 
-      "name":"Cedar",
+      "name":"cedar.png",
       "url": "assets/seedIcons/cedar.png"
     },
     { 
-      "name":"Cedar 1",
+      "name":"cedar1.png",
       "url": "assets/seedIcons/cedar1.png"
     },
     { 
-      "name":"Palm Tree",
+      "name":"palmtree.png",
       "url": "assets/seedIcons/palmtree.png"
     }
   ];

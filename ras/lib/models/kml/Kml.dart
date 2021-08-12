@@ -4,9 +4,8 @@ import 'package:ras/models/kml/Polygon.dart';
 class KML {
   String name;
   String content;
-  String style; //TO DO: Implement different styles for markers
 
-  KML(this.name, this.content,{this.style = ''});
+  KML(this.name, this.content);
 
   static buildKMLContent(List<Placemark> placemarks, Polygon polygon) {
     String kmlContent = '';

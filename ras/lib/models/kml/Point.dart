@@ -8,7 +8,7 @@ class Point {
     return '''
       <Point>
         <gx:drawOrder>1</gx:drawOrder>
-        <coordinates>${this.lat},${this.lng}</coordinates>
+        <coordinates>${this.lng},${this.lat}</coordinates>
       </Point>
     ''';
   }

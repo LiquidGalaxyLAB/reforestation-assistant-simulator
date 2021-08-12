@@ -1,6 +1,8 @@
+import 'package:flutter/services.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:ras/models/Project.dart';
 import 'package:ras/models/kml/LookAt.dart';
+import 'package:ras/models/kml/Placemark.dart';
 import 'dart:io';
 import 'package:shared_preferences/shared_preferences.dart';
 // ignore: import_of_legacy_library_into_null_safe
@@ -59,6 +61,16 @@ class LGConnection {
     return _uploadToLG('$localPath/${project.projectName}.kml', project);
   }
 
+  _createLocalImage(String imgName, String assetsUrl) async {
+    Directory directory = await getApplicationDocumentsDirectory();
+    String imgPath = '${directory.path}/$imgName';
+    ByteData data = await rootBundle.load(assetsUrl);
+    List<int> bytes =
+        data.buffer.asUint8List(data.offsetInBytes, data.lengthInBytes);
+    await File(imgPath).writeAsBytes(bytes);
+    return imgPath;
+  }
+
   _uploadToLG(String localPath, Project project) async {
     dynamic credencials = await _getCredentials();
 
@@ -82,6 +94,7 @@ class LGConnection {
     try {
       await client.connect();
       await client.execute('> /var/www/html/kmls.txt');
+      // upload kml
       await client.connectSFTP();
       await client.sftpUpload(
         path: localPath,
@@ -90,6 +103,18 @@ class LGConnection {
           print('Sent $progress');
         },
       );
+
+      //upload seed markers icons
+      await Future.forEach(project.geodata.markers, (Placemark element) async {
+        String imgPath = await _createLocalImage(
+            element.customData['seed']['icon']['name'],
+            element.customData['seed']['icon']['url']);
+        await client.sftpUpload(path: imgPath, toPath: '/var/www/html');
+      });
+      // project.geodata.markers.forEach((element) async {
+
+      // });
+
       await client.execute(
           'echo "http://lg1:81/${project.projectName}.kml" > /var/www/html/kmls.txt');
       return await client.execute(
