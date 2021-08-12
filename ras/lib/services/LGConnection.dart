@@ -82,12 +82,16 @@ class LGConnection {
     );
 
     LookAt flyto = LookAt(
-        project.geodata.areaPolygon.coord.length > 0
-            ? project.geodata.areaPolygon.coord[0].longitude
-            : project.geodata.markers[0].lookAt.lng,
-        project.geodata.areaPolygon.coord.length > 0
-            ? project.geodata.areaPolygon.coord[0].latitude
-            : project.geodata.markers[0].lookAt.lat,
+        project.geodata.landingPoint.name != 'none'
+            ? project.geodata.landingPoint.point.lng
+            : (project.geodata.areaPolygon.coord.length > 0
+                ? project.geodata.areaPolygon.coord[0].longitude
+                : project.geodata.markers[0].lookAt.lng),
+        project.geodata.landingPoint.name != 'none'
+            ? project.geodata.landingPoint.point.lat
+            : (project.geodata.areaPolygon.coord.length > 0
+                ? project.geodata.areaPolygon.coord[0].latitude
+                : project.geodata.markers[0].lookAt.lat),
         '1492.665945696469',
         '45',
         '0');
@@ -113,7 +117,8 @@ class LGConnection {
       });
 
       // upload landpoint asset
-      String imgPath = await _createLocalImage('landpoint.png', 'assets/appIcons/landpoint.png');
+      String imgPath = await _createLocalImage(
+          'landpoint.png', 'assets/appIcons/landpoint.png');
       await client.sftpUpload(path: imgPath, toPath: '/var/www/html');
 
       await client.execute(
