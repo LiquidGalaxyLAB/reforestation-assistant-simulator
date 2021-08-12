@@ -404,7 +404,6 @@ class _MapBuilderState extends State<MapBuilder> {
 
   // SAVE MAP
   saveMap() {
-    print(seedMarkers[0].toMap());
     Gmap geodata = Gmap(
       seedMarkers,
       polygons.isNotEmpty
