@@ -103,7 +103,18 @@ class _MapViewState extends State<MapView> {
     ));
   }
 
-  init(MapViewArgs args) {
+  init(MapViewArgs args) async {
+    // set init point
+    if (args.map.landingPoint.name != 'none')
+      moveCamera(LatLng(
+          args.map.landingPoint.point.lat, args.map.landingPoint.point.lng));
+    else if (args.map.areaPolygon.coord.isNotEmpty)
+      moveCamera(LatLng(args.map.areaPolygon.coord[0].latitude,
+          args.map.areaPolygon.coord[0].longitude));
+    else if (args.map.markers.isNotEmpty)
+      moveCamera(
+          LatLng(args.map.markers[0].point.lat, args.map.markers[0].point.lng));
+
     // place seed markers
     args.map.markers.forEach((element) {
       setState(() {
@@ -126,6 +137,18 @@ class _MapViewState extends State<MapView> {
     setState(() {
       loaded = true;
     });
+  }
+
+  Future moveCamera(LatLng position) async {
+    final GoogleMapController controller = await _controller.future;
+    CameraPosition newPosition;
+    newPosition = CameraPosition(
+      target: position,
+      zoom: 15,
+    );
+
+    CameraUpdate cameraUpdate = CameraUpdate.newCameraPosition(newPosition);
+    controller.moveCamera(cameraUpdate);
   }
 
   placePolygonVertex(LatLng point) async {

@@ -301,6 +301,17 @@ class _MapBuilderState extends State<MapBuilder> {
 
   init(MapBuilderArgs args) {
     if (!args.isNew) {
+      // set init point
+      if (args.map.landingPoint.name != 'none')
+        moveCamera(LatLng(
+            args.map.landingPoint.point.lat, args.map.landingPoint.point.lng));
+      else if (args.map.areaPolygon.coord.isNotEmpty)
+        moveCamera(LatLng(args.map.areaPolygon.coord[0].latitude,
+            args.map.areaPolygon.coord[0].longitude));
+      else if (args.map.markers.isNotEmpty)
+        moveCamera(LatLng(
+            args.map.markers[0].point.lat, args.map.markers[0].point.lng));
+
       // place seed markers
       args.map.markers.forEach((element) {
         setState(() {
@@ -324,6 +335,18 @@ class _MapBuilderState extends State<MapBuilder> {
     setState(() {
       loaded = true;
     });
+  }
+
+  Future moveCamera(LatLng position) async {
+    final GoogleMapController controller = await _controller.future;
+    CameraPosition newPosition;
+    newPosition = CameraPosition(
+      target: position,
+      zoom: 15,
+    );
+
+    CameraUpdate cameraUpdate = CameraUpdate.newCameraPosition(newPosition);
+    controller.moveCamera(cameraUpdate);
   }
 
   // DELETE MAP ELEMENTS
@@ -456,7 +479,7 @@ class _MapBuilderState extends State<MapBuilder> {
         markerId: MarkerId('landingPoint'),
         infoWindow: InfoWindow(title: 'Landing Point'),
         position: point,
-        draggable: true,
+        draggable: false,
         icon: landIcon,
         onTap: () {
           setState(() {
@@ -479,13 +502,15 @@ class _MapBuilderState extends State<MapBuilder> {
   placeSeedMarker(Placemark seedM) async {
     Seed seed = Seed.fromMap(seedM.customData['seed']);
     final icon;
-    if(seed.commonName == 'none') icon = BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueRed);
-    else icon = await getBitmapDescriptorFromAssetBytes(seed.icon['url'], 150);
+    if (seed.commonName == 'none')
+      icon = BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueRed);
+    else
+      icon = await getBitmapDescriptorFromAssetBytes(seed.icon['url'], 150);
     Marker m = Marker(
         markerId: MarkerId(seedM.id),
         infoWindow: InfoWindow(title: seedM.name),
         position: LatLng(seedM.point.lat, seedM.point.lng),
-        draggable: true,
+        draggable: false,
         icon: icon,
         onTap: () {
           setState(() {
@@ -507,7 +532,7 @@ class _MapBuilderState extends State<MapBuilder> {
         markerId: MarkerId(id),
         infoWindow: InfoWindow(title: currentSeedMarker.commonName),
         position: point,
-        draggable: true,
+        draggable: false,
         icon: currentSeedMarkerIcon,
         onTap: () {
           setState(() {
@@ -682,7 +707,7 @@ class _MapBuilderState extends State<MapBuilder> {
   }
 
 // PLACE SEED IN MY POSITION
-placeSeedInMyPosition() async {
+  placeSeedInMyPosition() async {
     LatLng position = await _determinePosition();
     handleTap(position);
   }
