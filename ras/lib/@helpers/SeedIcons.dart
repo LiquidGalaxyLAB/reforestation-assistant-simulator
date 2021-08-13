@@ -13,8 +13,8 @@ class SeedIcons {
       "url": "assets/seedIcons/palmtree.png"
     },
     { 
-      "name":"baobab.png",
-      "url": "assets/seedIcons/baobab.png"
+      "name":"baobab_icon.png",
+      "url": "assets/seedIcons/baobab_icon.png"
     },
     { 
       "name":"cedar_icon.png",
