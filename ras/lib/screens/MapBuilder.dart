@@ -216,7 +216,7 @@ class _MapBuilderState extends State<MapBuilder> {
                               heroTag: 'addMarker',
                               backgroundColor: Colors.black.withOpacity(0.5),
                               child: Image.asset(
-                                'assets/appIcons/map-marker-plus.png',
+                                'assets/appIcons/new-seed-marker.png',
                                 height: 25,
                                 width: 25,
                               ),
@@ -234,7 +234,7 @@ class _MapBuilderState extends State<MapBuilder> {
                               heroTag: 'addMarkerPosition',
                               backgroundColor: Colors.black.withOpacity(0.5),
                               child: Image.asset(
-                                'assets/appIcons/map-marker-radius.png',
+                                'assets/appIcons/place-seed-marker.png',
                                 height: 25,
                                 width: 25,
                               ),
@@ -268,7 +268,7 @@ class _MapBuilderState extends State<MapBuilder> {
                               heroTag: 'landpointBtn',
                               backgroundColor: Colors.black.withOpacity(0.5),
                               child: Image.asset(
-                                'assets/appIcons/landpoint.png',
+                                'assets/appIcons/landing_white.png',
                                 height: 25,
                                 width: 25,
                               ),
