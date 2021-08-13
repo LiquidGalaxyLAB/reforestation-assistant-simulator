@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:ras/models/Project.dart';
 import 'package:ras/models/kml/Kml.dart';
@@ -5,6 +7,7 @@ import 'package:ras/repositories/Project.dart';
 import 'package:ras/route-args/MapViewArgs.dart';
 import 'package:ras/route-args/ProjectBuilderArgs.dart';
 import 'package:ras/route-args/ProjectViewArgs.dart';
+import 'package:ras/services/KmlGenerator.dart';
 import 'package:ras/services/LGConnection.dart';
 import 'package:ras/services/PdfGenerator.dart';
 import 'package:ras/widgets/AppBar.dart';
@@ -21,6 +24,44 @@ class ProjectView extends StatefulWidget {
 
 class _ProjectViewState extends State<ProjectView> {
   bool isOpen = false;
+
+  downloadKml(Project project) async {
+    // create kml based on geodata attribute
+    String content = KML.buildKMLContent(project.geodata.markers,
+        project.geodata.areaPolygon, project.geodata.landingPoint);
+    KML kml = KML(project.projectName, content);
+    final kmlDone = kml.mount();
+
+    var status = await Permission.storage.status;
+
+    if (status.isGranted) {
+      try {
+        await KMLGenerator.generateKML(kmlDone, project.projectName);
+        showAlertDialog('Success!',
+            'You can find a KML containing the map data of the project in your Downloads folder');
+      } catch (e) {
+        print('error $e');
+        showAlertDialog('Ops!',
+            'You have to enable storage managing permissions to download the project KML');
+      }
+    } else {
+      var isGranted = await Permission.storage.request().isGranted;
+      if (isGranted) {
+        // download kml
+        try {
+          await KMLGenerator.generateKML(kmlDone, project.projectName);
+          showAlertDialog('Success!',
+              'You can find a KML containing the map data of the project in your Downloads folder');
+        } catch (e) {
+          print('error $e');
+          showAlertDialog('Ops!',
+              'You have to enable storage managing permissions to download the project KML');
+        }
+      } else
+        showAlertDialog('Ops!',
+            'You have to enable storage managing permissions to download the project KML');
+    }
+  }
 
   downloadPdf(Project project) async {
     var status = await Permission.storage.status;
@@ -203,7 +244,7 @@ class _ProjectViewState extends State<ProjectView> {
                           onPressed: () {
                             launchToLG(args);
                           },
-                          label: Text('Launch'),
+                          label: Text('Launch to Liquid Galaxy'),
                           icon: Icon(Icons.play_circle_fill_outlined),
                         )
                       : ElevatedButton.icon(
@@ -218,25 +259,41 @@ class _ProjectViewState extends State<ProjectView> {
                         ),
                   ElevatedButton.icon(
                     style: ElevatedButton.styleFrom(
-                      primary: Colors.blue,
-                      side: BorderSide(color: Colors.blue, width: 1),
-                    ),
-                    onPressed: () {
-                      downloadPdf(args.project);
-                    },
-                    label: Text('Download'),
-                    icon: Icon(Icons.download),
-                  ),
-                  ElevatedButton.icon(
-                    style: ElevatedButton.styleFrom(
                       primary: Colors.purple,
                     ),
                     onPressed: () {
                       Navigator.pushNamed(context, '/map-view',
                           arguments: MapViewArgs(args.project.geodata));
                     },
-                    label: Text('Map'),
+                    label: Text('See Map'),
                     icon: Icon(Icons.place),
+                  ),
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  ElevatedButton.icon(
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.red.shade400,
+                      side: BorderSide(color: Colors.red.shade400, width: 1),
+                    ),
+                    onPressed: () {
+                      downloadPdf(args.project);
+                    },
+                    label: Text('Download PDF'),
+                    icon: Icon(Icons.download),
+                  ),
+                  ElevatedButton.icon(
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.blue,
+                      side: BorderSide(color: Colors.blue, width: 1),
+                    ),
+                    onPressed: () {
+                      downloadKml(args.project);
+                    },
+                    label: Text('Download KML'),
+                    icon: Icon(Icons.download),
                   ),
                 ],
               ),
