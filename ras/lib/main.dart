@@ -46,7 +46,7 @@ class MyApp extends StatelessWidget {
     SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
 
     // Check if it is first time on the app, if it is first time, load mockdata
-    checkLocalStorage();
+    // checkLocalStorage();
 
     return MaterialApp(
       title: 'RAS',
