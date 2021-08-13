@@ -27,7 +27,7 @@ class Polygon {
 		<name>AREA</name>
 		<styleUrl>$id</styleUrl>
     <Polygon>
-      <extrude>4</extrude>
+      <extrude>0</extrude>
       <altitudeMode>clampedToGround</altitudeMode>
       <outerBoundaryIs>
         <LinearRing>
@@ -63,7 +63,7 @@ class Polygon {
       stringPoints += element.longitude.toString() +
           ',' +
           element.latitude.toString() +
-          ',40' +
+          ',0' +
           '\n';
     });
 
