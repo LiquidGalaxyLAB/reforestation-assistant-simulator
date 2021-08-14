@@ -2,135 +2,288 @@ import 'package:ras/models/Seed.dart';
 
 class FakeSeeds {
   static List<Seed> seeds = [
-    Seed('', 
-    'Blueberry', 
-    'Vaccinium myrtillus', 
-    { 
-      "name":"Cedar",
-      "url": "assets/seedIcons/cedar.png"
-    }, 
-    1.8, 
-    97.0, 
-    20, 
-    2.5, 
-    0.40, 
-    32),
-    Seed('', 
-    'Pyrola', 
-    'Pyrola minor', 
-    { 
-      "name":"Cedar",
-      "url": "assets/seedIcons/cedar.png"
-    }, 
-    3.4, 
-    97.0, 
-    15, 
-    0.2, 
-    2.50, 
-    40),
-    Seed('', 
-    'Common beech tree', 
-    'Fagus sylvatica', 
-    { 
-      "name":"Cedar",
-      "url": "assets/seedIcons/cedar.png"
-    }, 
-    4.8, 
-    98.0, 
-    400, 
-    35, 
-    1.99, 
-    90),
-    Seed('', 
-    'Hazel', 
-    'Corylus avellana', 
-    { 
-      "name":"Cedar",
-      "url": "assets/seedIcons/cedar.png"
-    }, 
-    5.2, 
-    92, 
-    120, 
-    4, 
-    1.55, 
-    100),
-    Seed('', 
-    'Hunter\'s rowal', 
-    'Sorbus aucuparia', 
-    { 
-      "name":"Cedar",
-      "url": "assets/seedIcons/cedar.png"
-    },
-    2.3, 
-    96, 
-    23, 
-    18, 
-    0.99, 
-    74),
-    Seed('', 
-    'Holm oak', 
-    'Quercus ilex', 
-    { 
-      "name":"Cedar",
-      "url": "assets/seedIcons/cedar.png"
-    },
-    5, 
-    80, 
-    260, 
-    20, 
-    0.39, 
-    593.17),
-    Seed('', 
-    'London plane', 
-    'Platanus x hispanica', 
-    { 
-      "name":"Cedar",
-      "url": "assets/seedIcons/cedar.png"
-    }, 
-    21.6, 
-    90, 
-    300, 
-    30, 
-    0.6, 
-    184.2),
-    Seed('', 
-    'Maritime pine', 
-    'Pinus pinaster', 
-    { 
-      "name":"Cedar",
-      "url": "assets/seedIcons/cedar.png"
-    }, 
-    18.3, 
-    90, 
-    260, 
-    30, 
-    2.33, 
-    2.33),
-    Seed('', 
-    'European red pine', 
-    'Pinus sylvestris', 
-    { 
-      "name":"Cedar",
-      "url": "assets/seedIcons/cedar.png"
-    }, 
-    3.3, 
-    80, 
-    200, 
-    30, 
-    1.99, 
-    1.99),
-    Seed('', 
-    'Monterey pine', 
-    'Pinus radiata', 
-    { 
-      "name":"Cedar",
-      "url": "assets/seedIcons/cedar.png"
-    },
-    38.3, 
-    75, 
-    150, 
-    40, 
-    3.65, 
-    3.65),
- ];
+    // ----------------- FAKE SEEDS FROM DRONECORIA TEAM ----------------- //
+    Seed(
+        '', //id
+        'Abies alba', //common name
+        '', //scientific name
+        {
+          "name": "Cedar", //icon name
+          "url": "assets/seedIcons/cedar.png" //icon path
+        },
+        0.096, //co2
+        0, //germinative potential
+        0, //estimated longevity
+        0, //estimated final height
+        0, //seed cost
+        0), //establishment cost
+    Seed(
+        '', //id
+        'Abies pinsapo', //common name
+        '', //scientific name
+        {
+          "name": "Cedar", //icon name
+          "url": "assets/seedIcons/cedar.png" //icon path
+        },
+        0.328, //co2
+        0, //germinative potential
+        0, //estimated longevity
+        0, //estimated final height
+        0, //seed cost
+        0), //establishment cost
+    Seed(
+        '', //id
+        'Acer spp.', //common name
+        '', //scientific name
+        {
+          "name": "Cedar", //icon name
+          "url": "assets/seedIcons/cedar.png" //icon path
+        },
+        0.224, //co2
+        0, //germinative potential
+        0, //estimated longevity
+        0, //estimated final height
+        0, //seed cost
+        0), //establishment cost
+    Seed(
+        '', //id
+        'Alnus spp.', //common name
+        '', //scientific name
+        {
+          "name": "Cedar", //icon name
+          "url": "assets/seedIcons/cedar.png" //icon path
+        },
+        0.096, //co2
+        0, //germinative potential
+        0, //estimated longevity
+        0, //estimated final height
+        0, //seed cost
+        0), //establishment cost
+    Seed(
+        '', //id
+        'Amelanchier ovalis', //common name
+        '', //scientific name
+        {
+          "name": "Cedar", //icon name
+          "url": "assets/seedIcons/cedar.png" //icon path
+        },
+        0.222, //co2
+        0, //germinative potential
+        0, //estimated longevity
+        0, //estimated final height
+        0, //seed cost
+        0), //establishment cost
+    Seed(
+        '', //id
+        'Arbutus unedo', //common name
+        '', //scientific name
+        {
+          "name": "Cedar", //icon name
+          "url": "assets/seedIcons/cedar.png" //icon path
+        },
+        0.088, //co2
+        0, //germinative potential
+        0, //estimated longevity
+        0, //estimated final height
+        0, //seed cost
+        0), //establishment cost
+    Seed(
+        '', //id
+        'Betula spp.', //common name
+        '', //scientific name
+        {
+          "name": "Cedar", //icon name
+          "url": "assets/seedIcons/cedar.png" //icon path
+        },
+        0.092, //co2
+        0, //germinative potential
+        0, //estimated longevity
+        0, //estimated final height
+        0, //seed cost
+        0), //establishment cost
+    Seed(
+        '', //id
+        'Carpinus betulus', //common name
+        '', //scientific name
+        {
+          "name": "Cedar", //icon name
+          "url": "assets/seedIcons/cedar.png" //icon path
+        },
+        0.092, //co2
+        0, //germinative potential
+        0, //estimated longevity
+        0, //estimated final height
+        0, //seed cost
+        0), //establishment cost
+    Seed(
+        '', //id
+        'Castanea sativa', //common name
+        '', //scientific name
+        {
+          "name": "Cedar", //icon name
+          "url": "assets/seedIcons/cedar.png" //icon path
+        },
+        0.188, //co2
+        0, //germinative potential
+        0, //estimated longevity
+        0, //estimated final height
+        0, //seed cost
+        0), //establishment cost
+    Seed(
+        '', //id
+        'Ceratonia siliqua', //common name
+        '', //scientific name
+        {
+          "name": "Cedar", //icon name
+          "url": "assets/seedIcons/cedar.png" //icon path
+        },
+        0.091, //co2
+        0, //germinative potential
+        0, //estimated longevity
+        0, //estimated final height
+        0, //seed cost
+        0), //establishment cost
+    Seed(
+        '', //id
+        'Cedrus atlantica', //common name
+        '', //scientific name
+        {
+          "name": "Cedar", //icon name
+          "url": "assets/seedIcons/cedar.png" //icon path
+        },
+        1.712, //co2
+        0, //germinative potential
+        0, //estimated longevity
+        0, //estimated final height
+        0, //seed cost
+        0), //establishment cost
+    Seed(
+        '', //id
+        'Celtis australis', //common name
+        '', //scientific name
+        {
+          "name": "Cedar", //icon name
+          "url": "assets/seedIcons/cedar.png" //icon path
+        },
+        1.072, //co2
+        0, //germinative potential
+        0, //estimated longevity
+        0, //estimated final height
+        0, //seed cost
+        0), //establishment cost
+    Seed(
+        '', //id
+        'Chamaecyparis lawsoniana', //common name
+        '', //scientific name
+        {
+          "name": "Cedar", //icon name
+          "url": "assets/seedIcons/cedar.png" //icon path
+        },
+        0.01, //co2
+        0, //germinative potential
+        0, //estimated longevity
+        0, //estimated final height
+        0, //seed cost
+        0), //establishment cost
+    Seed(
+        '', //id
+        'Cornus sanguinea', //common name
+        '', //scientific name
+        {
+          "name": "Cedar", //icon name
+          "url": "assets/seedIcons/cedar.png" //icon path
+        },
+        0.222, //co2
+        0, //germinative potential
+        0, //estimated longevity
+        0, //estimated final height
+        0, //seed cost
+        0), //establishment cost
+    Seed(
+        '', //id
+        'Corylus avellana', //common name
+        '', //scientific name
+        {
+          "name": "Cedar", //icon name
+          "url": "assets/seedIcons/cedar.png" //icon path
+        },
+        0.12, //co2
+        0, //germinative potential
+        0, //estimated longevity
+        0, //estimated final height
+        0, //seed cost
+        0), //establishment cost
+    Seed(
+        '', //id
+        'Crataegus spp.', //common name
+        '', //scientific name
+        {
+          "name": "Cedar", //icon name
+          "url": "assets/seedIcons/cedar.png" //icon path
+        },
+        0.222, //co2
+        0, //germinative potential
+        0, //estimated longevity
+        0, //estimated final height
+        0, //seed cost
+        0), //establishment cost
+        Seed(
+        '', //id
+        'Cupressus arizonica', //common name
+        '', //scientific name
+        {
+          "name": "Cedar", //icon name
+          "url": "assets/seedIcons/cedar.png" //icon path
+        },
+        0.082, //co2
+        0, //germinative potential
+        0, //estimated longevity
+        0, //estimated final height
+        0, //seed cost
+        0), //establishment cost
+        Seed(
+        '', //id
+        'Cupressus macrocarpa', //common name
+        '', //scientific name
+        {
+          "name": "Cedar", //icon name
+          "url": "assets/seedIcons/cedar.png" //icon path
+        },
+        0.082, //co2
+        0, //germinative potential
+        0, //estimated longevity
+        0, //estimated final height
+        0, //seed cost
+        0), //establishment cost
+        Seed(
+        '', //id
+        'Cupressus sempervirens', //common name
+        '', //scientific name
+        {
+          "name": "Cedar", //icon name
+          "url": "assets/seedIcons/cedar.png" //icon path
+        },
+        0.082, //co2
+        0, //germinative potential
+        0, //estimated longevity
+        0, //estimated final height
+        0, //seed cost
+        0), //establishment cost
+        Seed(
+        '', //id
+        'Erica arborea (Canarias)', //common name
+        '', //scientific name
+        {
+          "name": "Cedar", //icon name
+          "url": "assets/seedIcons/cedar.png" //icon path
+        },
+        0.222, //co2
+        0, //germinative potential
+        0, //estimated longevity
+        0, //estimated final height
+        0, //seed cost
+        0), //establishment cost
+
+        // ----------------- FAKE SEEDS FROM LLEIDA LAB STUDENTS ----------------- //
+  ];
 }
