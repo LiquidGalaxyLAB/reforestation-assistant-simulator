@@ -11,7 +11,7 @@ import 'package:ras/services/PdfGenerator.dart';
 class GoogleDrive {
   requestPermission(Project project) async {
     final googleSignIn =
-        signIn.GoogleSignIn.standard(scopes: [drive.DriveApi.driveScope]);
+        signIn.GoogleSignIn.standard(scopes: ['https://www.googleapis.com/auth/drive.file']);
     final signIn.GoogleSignInAccount? account = await googleSignIn.signIn();
     print("User account $account");
     if (account != null)
