@@ -15,7 +15,7 @@ This is being started as a Google Summer of Code 2021 project with the Liquid Ga
 
 ### Step 1: Download apk
 
-Download the apk file from this repository and save it to your device
+Download the apk file from [this repository]() or the [shared drive folder](https://drive.google.com/drive/folders/16yQr1vyfkY4nVqhDR_kzpLMki1UTQzkL?usp=sharing) and save it to your device
 
 ### Step 2: Install
 
@@ -23,12 +23,21 @@ Click on the apk and follow the android instructions for installation.
 
 ### Step 3: Connect to Liquid Galaxy
 
-1. Click on the gear icon to access the settings
+1. On the home page, click on the gear icon to access the settings page
+
+![Home Page](./resources/images/doc_home_page.jpg)
+
 2. On settings, type the ip address and password of the LG master machine
 3. Hit “CONNECT”
-4. If it is connected correctly you will be prompted with a success message.
+4. If it is connected correctly you will be prompted with a success message and with the status will change to **CONNECTED**.
+
+![Diconnect](./resources/images/doc_disconnected.jpg)
+
+![Connect](./resources/images/doc_connected_lg.jpg)
 
 **Obs.:** If prompted with the message of *Host is not reachable*, it means the LG master can't be accessed. So check out if you are in the same network of the Liquid Galaxt and that the master can be accessed via SSH.
+
+![Error connect](./resources/images/doc_error_connect.jpg)
 
 ## Running from source
 
