@@ -143,6 +143,101 @@ class FakeSeeds {
         25, //estimated final height
         0.9, //seed cost
         39.9), //establishment cost
+    Seed(
+        '', //id
+        'Cork oak', //common name
+        'Quercus suber', //scientific name
+        {"name": "cedar.png", "url": "assets/seedIcons/cedar.png"},
+        20, //co2
+        89, //germinative potential
+        250, //estimated longevity
+        15, //estimated final height
+        0.21, //seed cost
+        58.3), //establishment cost
+    Seed(
+        '', //id
+        'Stone pine', //common name
+        'Pinus pinea', //scientific name
+        {"name": "cedar1.png", "url": "assets/seedIcons/cedar1.png"},
+        27, //co2
+        91, //germinative potential
+        100, //estimated longevity
+        10, //estimated final height
+        1.1, //seed cost
+        41.2), //establishment cost
+
+    // Marc Escola
+    Seed(
+        '', //id
+        'Nogal', //common name
+        'Juglans Regia', //scientific name
+        {
+          "name": "cedar-2_icon.png",
+          "url": "assets/seedIcons/cedar-2_icon.png"
+        },
+        5, //co2
+        60, //germinative potential
+        100, //estimated longevity
+        35, //estimated final height
+        2.63, //seed cost
+        120), //establishment cost
+    Seed(
+        '', //id
+        'Manzano Silvestre', //common name
+        'Malus Sylvestris', //scientific name
+        {"name": "tree-4_icon;png", "url": "assets/seedIcons/tree-4_icon.png"},
+        6, //co2
+        50, //germinative potential
+        100, //estimated longevity
+        7, //estimated final height
+        4.5, //seed cost
+        60), //establishment cost
+    Seed(
+        '', //id
+        'Ciprés', //common name
+        'Cupressus Sempervirens', //scientific name
+        {"name": "tree-3_icon.png", "url": "assets/seedIcons/tree-3_icon.png"},
+        10, //co2
+        30, //germinative potential
+        1000, //estimated longevity
+        35, //estimated final height
+        3, //seed cost
+        90), //establishment cost
+
+    // Marc Gomez
+    Seed(
+        '', //id
+        'Romero', //common name
+        'Rosmarinus', //scientific name
+        {"name": "tree-18_icon.png", "url": "assets/seedIcons/tree-18_icon.png"},
+        40, //co2
+        80, //germinative potential
+        80, //estimated longevity
+        1.5, //estimated final height
+        1.5, //seed cost
+        25), //establishment cost
+    Seed(
+        '', //id
+        'Retamas', //common name
+        'Retama', //scientific name
+        {"name": "tree-20_icon.png", "url": "assets/seedIcons/tree-20_icon.png"},
+        37, //co2
+        60, //germinative potential
+        100, //estimated longevity
+        3, //estimated final height
+        1.9, //seed cost
+        30), //establishment cost
+    Seed(
+        '', //id
+        'Encinas', //common name
+        'Quercus ilex', //scientific name
+        {"name": "tree-6_icon.png", "url": "assets/seedIcons/tree-6_icon.png"},
+        40000, //co2
+        90, //germinative potential
+        900, //estimated longevity
+        11, //estimated final height
+        3.95, //seed cost
+        100), //establishment cost
 
     // ----------------- FAKE SEEDS FROM DRONECORIA TEAM ----------------- //
     Seed(
