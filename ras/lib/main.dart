@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:ras/@fakedb/Projects.dart';
-import 'package:ras/@fakedb/Seeds.dart';
-import 'package:ras/repositories/Project.dart';
-import 'package:ras/repositories/Seed.dart';
 import 'package:ras/screens/AboutScreen.dart';
 import 'package:ras/screens/HomeScreen.dart';
 import 'package:ras/screens/ProjectBuilder.dart';
@@ -13,9 +9,11 @@ import 'package:ras/screens/Settings.dart';
 import 'package:ras/screens/MapBuilder.dart';
 import 'package:ras/screens/SigninScreen.dart';
 import 'package:ras/screens/SplashScreen.dart';
+import 'package:ras/services/Database.dart';
 import 'package:ras/services/LGConnection.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:ras/screens/MapView.dart';
+// ignore: import_of_legacy_library_into_null_safe
 import 'package:ssh/ssh.dart';
 
 void main() {
@@ -28,17 +26,8 @@ class MyApp extends StatelessWidget {
     bool? isFirst = preferences.getBool('first_time');
     if (isFirst == null || isFirst) {
       await preferences.setBool('first_time', false);
-      populateAppWithMockData();
+      await DatabaseService().importDB();
     }
-  }
-
-  populateAppWithMockData() {
-    FakeSeeds.seeds.forEach((element) async {
-      await SeedRepository().create(element);
-    });
-    // FakeProjects.projects.forEach((element) async {
-    //   await ProjectRepository().create(element);
-    // });
   }
 
   openLogos() async {

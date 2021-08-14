@@ -7,6 +7,7 @@ import 'package:sembast/sembast.dart';
 import 'package:sembast/sembast_io.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:sembast/utils/sembast_import_export.dart';
+import 'package:ras/@fakedb/Database.dart';
 
 class DatabaseService {
   final String _dbName = 'ras.db';
@@ -66,16 +67,24 @@ class DatabaseService {
       String path = (await _localPath) + '/$_dbName';
       Database db = await _dbFactory.openDatabase(path);
       var content = await exportDatabase(db);
-
+      print(content.runtimeType);
       // Save as text
       var saved = jsonEncode(content);
+      print(saved.runtimeType);
       var savePath = downloadsDirectory.path;
       final file = File("$savePath/ras-database.txt");
-      await file.writeAsString(saved);
+      // await file.writeAsString(saved);
       return Future.value(file);
     } catch (e) {
       print(e);
       return Future.error(e);
     }
+  }
+
+  Future importDB() async {
+    // Import the data
+    var map = FakeDatabase.data;
+    var importedDb = await importDatabase(map, _dbFactory, (await _localPath) + '/$_dbName');
+    print(importedDb);
   }
 }
