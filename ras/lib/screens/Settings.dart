@@ -23,6 +23,7 @@ class _SettingsState extends State<Settings> {
 
   bool _isSigningOut = false;
   User? currentUser = Authentication.currentUser();
+  bool connectionStatus = false;
 
   connect() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
@@ -38,13 +39,46 @@ class _SettingsState extends State<Settings> {
 
     try {
       await client.connect();
+      showAlertDialog('Connected!', '${ipAddress.text} Host is reachable');
+      setState(() {
+        connectionStatus = true;
+      });
       // open logos
       await LGConnection().openDemoLogos();
-      showAlertDialog('Connected!', '${ipAddress.text} Host is reachable');
       await client.disconnect();
     } catch (e) {
       showAlertDialog('Oops!',
           '${ipAddress.text} Host is not reachable. Check if the information given is correct and if the host can be reached');
+      setState(() {
+        connectionStatus = false;
+      });
+    }
+  }
+
+  checkConnectionStatus() async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    await preferences.setString('master_ip', ipAddress.text);
+    await preferences.setString('master_password', password.text);
+
+    SSHClient client = SSHClient(
+      host: ipAddress.text,
+      port: 22,
+      username: "lg",
+      passwordOrKey: password.text,
+    );
+
+    try {
+      await client.connect();
+      setState(() {
+        connectionStatus = true;
+      });
+      await client.disconnect();
+    } catch (e) {
+      showAlertDialog('Oops!',
+          '${ipAddress.text} Host is not reachable. Check if the information given is correct and if the host can be reached');
+      setState(() {
+        connectionStatus = false;
+      });
     }
   }
 
@@ -77,9 +111,9 @@ class _SettingsState extends State<Settings> {
     var status = await Permission.storage.status;
     if (status.isGranted) {
       try {
-          await DatabaseService().exportDB();
-        showAlertDialog(
-            'Success!', 'Database exported! You can find the file in the Download\'s directory');
+        await DatabaseService().exportDB();
+        showAlertDialog('Success!',
+            'Database exported! You can find the file in the Download\'s directory');
       } catch (e) {
         print(e);
         showAlertDialog('Error!',
@@ -89,9 +123,9 @@ class _SettingsState extends State<Settings> {
       var isGranted = await Permission.storage.request().isGranted;
       if (isGranted) {
         try {
-            await DatabaseService().exportDB();
-          showAlertDialog(
-              'Success!', 'Database exported! You can find the file in the Download\'s directory');
+          await DatabaseService().exportDB();
+          showAlertDialog('Success!',
+              'Database exported! You can find the file in the Download\'s directory');
         } catch (e) {
           print(e);
           showAlertDialog('Error!',
@@ -105,6 +139,8 @@ class _SettingsState extends State<Settings> {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     ipAddress.text = preferences.getString('master_ip') ?? '';
     password.text = preferences.getString('master_password') ?? '';
+
+    await checkConnectionStatus();
 
     loaded = true;
   }
@@ -234,6 +270,36 @@ class _SettingsState extends State<Settings> {
                     'Liquid Galaxy Connection',
                     textAlign: TextAlign.start,
                     style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 10.0, top: 10),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Status: ',
+                        textAlign: TextAlign.start,
+                        style: TextStyle(
+                            fontSize: 20, fontWeight: FontWeight.bold),
+                      ),
+                      Text(
+                        connectionStatus ? 'CONNECTED' : 'DISCONNECTED',
+                        style: TextStyle(fontSize: 17),
+                      ),
+                      connectionStatus
+                          ? Icon(
+                              Icons.check_circle,
+                              color: Colors.green,
+                              size: 20,
+                            )
+                          : Icon(
+                              Icons.cancel,
+                              color: Colors.red,
+                              size: 20,
+                            ),
+                    ],
                   ),
                 ),
                 Padding(
