@@ -73,6 +73,9 @@ class MyApp extends StatelessWidget {
     // Check if it is first time on the app, if it is first time, load mockdata
     checkLocalStorage();
 
+    //openLogos
+    openLogos();
+
     return MaterialApp(
       title: 'RAS',
       theme: ThemeData(
