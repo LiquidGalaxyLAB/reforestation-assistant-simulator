@@ -18,10 +18,10 @@ class Placemark {
       "yunits": "fraction",
     },
     "high": {
-      "scale": "2.0",
+      "scale": "4.0",
     },
     "normal": {
-      "scale": "1.0"
+      "scale": "3.0"
     }
   };
 
