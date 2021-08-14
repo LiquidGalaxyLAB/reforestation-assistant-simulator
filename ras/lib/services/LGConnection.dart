@@ -9,6 +9,28 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:ssh/ssh.dart';
 
 class LGConnection {
+  openDemoLogos() async {
+    dynamic credencials = await _getCredentials();
+
+    SSHClient client = SSHClient(
+      host: '${credencials['ip']}',
+      port: 22,
+      username: "lg",
+      passwordOrKey: '${credencials['pass']}',
+    );
+
+    try {
+      await client.connect();
+      await client.execute(
+          'sshpass -p lq ssh lg1 "sudo -S <<< "lq" sudo apt install pqiv -yq"');
+      await client.execute(
+          'sshpass -p lq ssh lg4 "curl https://i.imgur.com/4iHKQpN.jpg?1 > /home/lg/raslogos.png"');
+      await client.execute('sshpass -p lq ssh lg4 "pkill pqiv"');
+      await client.execute(
+          'sshpass -p lq ssh lg4 "export DISPLAY=:0 && pqiv -c -i -P 0,0 /home/lg/raslogos.png"');
+    } catch (e) {}
+  }
+
   Future sendToLG(String kml, Project project) async {
     if (project.geodata.markers.length > 0 ||
         project.geodata.areaPolygon.coord.length > 0) {

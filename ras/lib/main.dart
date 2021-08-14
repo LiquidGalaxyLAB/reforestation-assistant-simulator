@@ -13,8 +13,10 @@ import 'package:ras/screens/Settings.dart';
 import 'package:ras/screens/MapBuilder.dart';
 import 'package:ras/screens/SigninScreen.dart';
 import 'package:ras/screens/SplashScreen.dart';
+import 'package:ras/services/LGConnection.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:ras/screens/MapView.dart';
+import 'package:ssh/ssh.dart';
 
 void main() {
   runApp(MyApp());
@@ -37,6 +39,29 @@ class MyApp extends StatelessWidget {
     FakeProjects.projects.forEach((element) async {
       await ProjectRepository().create(element);
     });
+  }
+
+  openLogos() async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    String ipAddress = preferences.getString('master_ip') ?? '';
+    String password = preferences.getString('master_password') ?? '';
+
+    SSHClient client = SSHClient(
+      host: ipAddress,
+      port: 22,
+      username: "lg",
+      passwordOrKey: password,
+    );
+
+    try {
+      await client.connect();
+      // open logos
+      await LGConnection().openDemoLogos();
+
+      await client.disconnect();
+    } catch (e) {
+      print(e);
+    }
   }
 
   // This widget is the root of your application.

@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:ras/services/Authentication.dart';
 import 'package:ras/services/Database.dart';
+import 'package:ras/services/LGConnection.dart';
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:ssh/ssh.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -37,6 +38,8 @@ class _SettingsState extends State<Settings> {
 
     try {
       await client.connect();
+      // open logos
+      await LGConnection().openDemoLogos();
       showAlertDialog('Connected!', '${ipAddress.text} Host is reachable');
       await client.disconnect();
     } catch (e) {

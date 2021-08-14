@@ -11,7 +11,7 @@ class AboutScreen extends StatefulWidget {
 
 class _AboutScreenState extends State<AboutScreen> {
   List<String> images = [
-    'assets/logos/logoRas.png',
+    'assets/logos/logo_RAS_3.png',
     'assets/logos/logoLg.png',
     'assets/logos/logoGsoc.png',
     'assets/logos/logoWtm.png',

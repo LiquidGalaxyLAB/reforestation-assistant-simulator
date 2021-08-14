@@ -28,7 +28,7 @@ class _SignInScreenState extends State<SignInScreen> {
                     Flexible(
                       flex: 1,
                       child: Image.asset(
-                        'assets/logos/logoRas.png',
+                        'assets/logos/logo_RAS_3.png',
                         scale: 5,
                       ),
                     ),
