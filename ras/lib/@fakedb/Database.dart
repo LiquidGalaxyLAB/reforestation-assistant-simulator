@@ -9,7 +9,8 @@ class FakeDatabase {
           "-Mh5RawwuFykWManV-Rt",
           "-Mh5WH4DguJd33jANk9z",
           "-Mh5_2FXo4ATBARDpZqh",
-          "-MhA-Tn4lzTzv6zBx-At"
+          "-MhA-Tn4lzTzv6zBx-At",
+          "-MhA3KRMkgpeBER30T3d"
         ],
         "values": [
           {
@@ -5560,6 +5561,464 @@ class FakeDatabase {
             },
             "minFlightHeight": 100.0,
             "predation": 20.0
+          },
+          {
+            "id": "-MhA3KRMkgpeBER30T3d",
+            "projectName": "Blueberry farm ",
+            "dateOfProject": {"@Timestamp": "2021-08-15T18:27:08.827Z"},
+            "sownMode": "Manually",
+            "region": "Sorocaba, Brazil",
+            "minSwtDate": {"@Timestamp": "2021-08-15T18:27:08.827Z"},
+            "maxSwtDate": {"@Timestamp": "2021-08-15T18:27:08.827Z"},
+            "minSwtTemp": 0.0,
+            "maxSwtTemp": 0.0,
+            "avgNumberOfRains": 0,
+            "totalNumberOfRains": 0,
+            "seeds": [
+              {
+                "id": "-Mh5IQJJuX1z9rVDZYUn",
+                "commonName": "Blueberry",
+                "scientificName": "Vaccinium myrtillus",
+                "icon": {
+                  "name": "cedar.png",
+                  "url": "assets/seedIcons/cedar.png"
+                },
+                "co2PerYear": 1.8,
+                "germinativePotential": 97.0,
+                "estimatedLongevity": 20,
+                "estimatedFinalHeight": 2.5,
+                "seedCost": 0.4,
+                "establishmentCost": 32.0,
+                "density": 100.0
+              }
+            ],
+            "validSurface": 0.0,
+            "notValidSurface": 0.0,
+            "emptyLand": 0.0,
+            "orientation": "North",
+            "minAltTerrain": 0.0,
+            "maxAltTerrain": 0.0,
+            "maxDistance": 0.0,
+            "depth": 0.0,
+            "ph": 0,
+            "fractured": false,
+            "hummus": 0,
+            "inclination": 0.0,
+            "geodata": {
+              "markers": [
+                {
+                  "id": "91bd2490-fdfc-11eb-baee-7f71cae295ff",
+                  "name": "Blueberry",
+                  "description": "Vaccinium myrtillus",
+                  "lookAt": {
+                    "lng": -47.38548293709755,
+                    "lat": -23.52821280463478,
+                    "range": "10000",
+                    "tilt": "45",
+                    "heading": "0"
+                  },
+                  "point": {
+                    "lat": -23.52821280463478,
+                    "lng": -47.38548293709755
+                  },
+                  "customData": {
+                    "seed": {
+                      "id": "-Mh5IQJJuX1z9rVDZYUn",
+                      "commonName": "Blueberry",
+                      "scientificName": "Vaccinium myrtillus",
+                      "icon": {
+                        "name": "cedar.png",
+                        "url": "assets/seedIcons/cedar.png"
+                      },
+                      "co2PerYear": 1.8,
+                      "germinativePotential": 97.0,
+                      "estimatedLongevity": 20,
+                      "estimatedFinalHeight": 2.5,
+                      "seedCost": 0.4,
+                      "establishmentCost": 32.0,
+                      "density": 100.0
+                    }
+                  },
+                  "type": "seedMarker"
+                },
+                {
+                  "id": "99e241a0-fdfc-11eb-baee-7f71cae295ff",
+                  "name": "Blueberry",
+                  "description": "Vaccinium myrtillus",
+                  "lookAt": {
+                    "lng": -47.38524589687586,
+                    "lat": -23.52846087820413,
+                    "range": "10000",
+                    "tilt": "45",
+                    "heading": "0"
+                  },
+                  "point": {
+                    "lat": -23.52846087820413,
+                    "lng": -47.38524589687586
+                  },
+                  "customData": {
+                    "seed": {
+                      "id": "-Mh5IQJJuX1z9rVDZYUn",
+                      "commonName": "Blueberry",
+                      "scientificName": "Vaccinium myrtillus",
+                      "icon": {
+                        "name": "cedar.png",
+                        "url": "assets/seedIcons/cedar.png"
+                      },
+                      "co2PerYear": 1.8,
+                      "germinativePotential": 97.0,
+                      "estimatedLongevity": 20,
+                      "estimatedFinalHeight": 2.5,
+                      "seedCost": 0.4,
+                      "establishmentCost": 32.0,
+                      "density": 100.0
+                    }
+                  },
+                  "type": "seedMarker"
+                },
+                {
+                  "id": "9a7e3380-fdfc-11eb-baee-7f71cae295ff",
+                  "name": "Blueberry",
+                  "description": "Vaccinium myrtillus",
+                  "lookAt": {
+                    "lng": -47.38494213670492,
+                    "lat": -23.528608431034726,
+                    "range": "10000",
+                    "tilt": "45",
+                    "heading": "0"
+                  },
+                  "point": {
+                    "lat": -23.528608431034726,
+                    "lng": -47.38494213670492
+                  },
+                  "customData": {
+                    "seed": {
+                      "id": "-Mh5IQJJuX1z9rVDZYUn",
+                      "commonName": "Blueberry",
+                      "scientificName": "Vaccinium myrtillus",
+                      "icon": {
+                        "name": "cedar.png",
+                        "url": "assets/seedIcons/cedar.png"
+                      },
+                      "co2PerYear": 1.8,
+                      "germinativePotential": 97.0,
+                      "estimatedLongevity": 20,
+                      "estimatedFinalHeight": 2.5,
+                      "seedCost": 0.4,
+                      "establishmentCost": 32.0,
+                      "density": 100.0
+                    }
+                  },
+                  "type": "seedMarker"
+                },
+                {
+                  "id": "9b5bc240-fdfc-11eb-baee-7f71cae295ff",
+                  "name": "Blueberry",
+                  "description": "Vaccinium myrtillus",
+                  "lookAt": {
+                    "lng": -47.3850728943944,
+                    "lat": -23.52787250964695,
+                    "range": "10000",
+                    "tilt": "45",
+                    "heading": "0"
+                  },
+                  "point": {
+                    "lat": -23.52787250964695,
+                    "lng": -47.3850728943944
+                  },
+                  "customData": {
+                    "seed": {
+                      "id": "-Mh5IQJJuX1z9rVDZYUn",
+                      "commonName": "Blueberry",
+                      "scientificName": "Vaccinium myrtillus",
+                      "icon": {
+                        "name": "cedar.png",
+                        "url": "assets/seedIcons/cedar.png"
+                      },
+                      "co2PerYear": 1.8,
+                      "germinativePotential": 97.0,
+                      "estimatedLongevity": 20,
+                      "estimatedFinalHeight": 2.5,
+                      "seedCost": 0.4,
+                      "establishmentCost": 32.0,
+                      "density": 100.0
+                    }
+                  },
+                  "type": "seedMarker"
+                },
+                {
+                  "id": "9bcb9b10-fdfc-11eb-baee-7f71cae295ff",
+                  "name": "Blueberry",
+                  "description": "Vaccinium myrtillus",
+                  "lookAt": {
+                    "lng": -47.38486133515835,
+                    "lat": -23.528069247597273,
+                    "range": "10000",
+                    "tilt": "45",
+                    "heading": "0"
+                  },
+                  "point": {
+                    "lat": -23.528069247597273,
+                    "lng": -47.38486133515835
+                  },
+                  "customData": {
+                    "seed": {
+                      "id": "-Mh5IQJJuX1z9rVDZYUn",
+                      "commonName": "Blueberry",
+                      "scientificName": "Vaccinium myrtillus",
+                      "icon": {
+                        "name": "cedar.png",
+                        "url": "assets/seedIcons/cedar.png"
+                      },
+                      "co2PerYear": 1.8,
+                      "germinativePotential": 97.0,
+                      "estimatedLongevity": 20,
+                      "estimatedFinalHeight": 2.5,
+                      "seedCost": 0.4,
+                      "establishmentCost": 32.0,
+                      "density": 100.0
+                    }
+                  },
+                  "type": "seedMarker"
+                },
+                {
+                  "id": "9c3a8980-fdfc-11eb-baee-7f71cae295ff",
+                  "name": "Blueberry",
+                  "description": "Vaccinium myrtillus",
+                  "lookAt": {
+                    "lng": -47.384608536958694,
+                    "lat": -23.528329002721776,
+                    "range": "10000",
+                    "tilt": "45",
+                    "heading": "0"
+                  },
+                  "point": {
+                    "lat": -23.528329002721776,
+                    "lng": -47.384608536958694
+                  },
+                  "customData": {
+                    "seed": {
+                      "id": "-Mh5IQJJuX1z9rVDZYUn",
+                      "commonName": "Blueberry",
+                      "scientificName": "Vaccinium myrtillus",
+                      "icon": {
+                        "name": "cedar.png",
+                        "url": "assets/seedIcons/cedar.png"
+                      },
+                      "co2PerYear": 1.8,
+                      "germinativePotential": 97.0,
+                      "estimatedLongevity": 20,
+                      "estimatedFinalHeight": 2.5,
+                      "seedCost": 0.4,
+                      "establishmentCost": 32.0,
+                      "density": 100.0
+                    }
+                  },
+                  "type": "seedMarker"
+                },
+                {
+                  "id": "9cab9ad0-fdfc-11eb-baee-7f71cae295ff",
+                  "name": "Blueberry",
+                  "description": "Vaccinium myrtillus",
+                  "lookAt": {
+                    "lng": -47.38476477563381,
+                    "lat": -23.527621975737556,
+                    "range": "10000",
+                    "tilt": "45",
+                    "heading": "0"
+                  },
+                  "point": {
+                    "lat": -23.527621975737556,
+                    "lng": -47.38476477563381
+                  },
+                  "customData": {
+                    "seed": {
+                      "id": "-Mh5IQJJuX1z9rVDZYUn",
+                      "commonName": "Blueberry",
+                      "scientificName": "Vaccinium myrtillus",
+                      "icon": {
+                        "name": "cedar.png",
+                        "url": "assets/seedIcons/cedar.png"
+                      },
+                      "co2PerYear": 1.8,
+                      "germinativePotential": 97.0,
+                      "estimatedLongevity": 20,
+                      "estimatedFinalHeight": 2.5,
+                      "seedCost": 0.4,
+                      "establishmentCost": 32.0,
+                      "density": 100.0
+                    }
+                  },
+                  "type": "seedMarker"
+                },
+                {
+                  "id": "9db84fe0-fdfc-11eb-baee-7f71cae295ff",
+                  "name": "Blueberry",
+                  "description": "Vaccinium myrtillus",
+                  "lookAt": {
+                    "lng": -47.38434199243784,
+                    "lat": -23.528118739441595,
+                    "range": "10000",
+                    "tilt": "45",
+                    "heading": "0"
+                  },
+                  "point": {
+                    "lat": -23.528118739441595,
+                    "lng": -47.38434199243784
+                  },
+                  "customData": {
+                    "seed": {
+                      "id": "-Mh5IQJJuX1z9rVDZYUn",
+                      "commonName": "Blueberry",
+                      "scientificName": "Vaccinium myrtillus",
+                      "icon": {
+                        "name": "cedar.png",
+                        "url": "assets/seedIcons/cedar.png"
+                      },
+                      "co2PerYear": 1.8,
+                      "germinativePotential": 97.0,
+                      "estimatedLongevity": 20,
+                      "estimatedFinalHeight": 2.5,
+                      "seedCost": 0.4,
+                      "establishmentCost": 32.0,
+                      "density": 100.0
+                    }
+                  },
+                  "type": "seedMarker"
+                },
+                {
+                  "id": "a16ccc60-fdfc-11eb-baee-7f71cae295ff",
+                  "name": "Blueberry",
+                  "description": "Vaccinium myrtillus",
+                  "lookAt": {
+                    "lng": -47.38456595689058,
+                    "lat": -23.527796581015586,
+                    "range": "10000",
+                    "tilt": "45",
+                    "heading": "0"
+                  },
+                  "point": {
+                    "lat": -23.527796581015586,
+                    "lng": -47.38456595689058
+                  },
+                  "customData": {
+                    "seed": {
+                      "id": "-Mh5IQJJuX1z9rVDZYUn",
+                      "commonName": "Blueberry",
+                      "scientificName": "Vaccinium myrtillus",
+                      "icon": {
+                        "name": "cedar.png",
+                        "url": "assets/seedIcons/cedar.png"
+                      },
+                      "co2PerYear": 1.8,
+                      "germinativePotential": 97.0,
+                      "estimatedLongevity": 20,
+                      "estimatedFinalHeight": 2.5,
+                      "seedCost": 0.4,
+                      "establishmentCost": 32.0,
+                      "density": 100.0
+                    }
+                  },
+                  "type": "seedMarker"
+                },
+                {
+                  "id": "a5bcc590-fdfc-11eb-baee-7f71cae295ff",
+                  "name": "Blueberry",
+                  "description": "Vaccinium myrtillus",
+                  "lookAt": {
+                    "lng": -47.385217398405075,
+                    "lat": -23.528058795901053,
+                    "range": "10000",
+                    "tilt": "45",
+                    "heading": "0"
+                  },
+                  "point": {
+                    "lat": -23.528058795901053,
+                    "lng": -47.385217398405075
+                  },
+                  "customData": {
+                    "seed": {
+                      "id": "-Mh5IQJJuX1z9rVDZYUn",
+                      "commonName": "Blueberry",
+                      "scientificName": "Vaccinium myrtillus",
+                      "icon": {
+                        "name": "cedar.png",
+                        "url": "assets/seedIcons/cedar.png"
+                      },
+                      "co2PerYear": 1.8,
+                      "germinativePotential": 97.0,
+                      "estimatedLongevity": 20,
+                      "estimatedFinalHeight": 2.5,
+                      "seedCost": 0.4,
+                      "establishmentCost": 32.0,
+                      "density": 100.0
+                    }
+                  },
+                  "type": "seedMarker"
+                },
+                {
+                  "id": "a62bdb10-fdfc-11eb-baee-7f71cae295ff",
+                  "name": "Blueberry",
+                  "description": "Vaccinium myrtillus",
+                  "lookAt": {
+                    "lng": -47.384954541921616,
+                    "lat": -23.528269674081706,
+                    "range": "10000",
+                    "tilt": "45",
+                    "heading": "0"
+                  },
+                  "point": {
+                    "lat": -23.528269674081706,
+                    "lng": -47.384954541921616
+                  },
+                  "customData": {
+                    "seed": {
+                      "id": "-Mh5IQJJuX1z9rVDZYUn",
+                      "commonName": "Blueberry",
+                      "scientificName": "Vaccinium myrtillus",
+                      "icon": {
+                        "name": "cedar.png",
+                        "url": "assets/seedIcons/cedar.png"
+                      },
+                      "co2PerYear": 1.8,
+                      "germinativePotential": 97.0,
+                      "estimatedLongevity": 20,
+                      "estimatedFinalHeight": 2.5,
+                      "seedCost": 0.4,
+                      "establishmentCost": 32.0,
+                      "density": 100.0
+                    }
+                  },
+                  "type": "seedMarker"
+                }
+              ],
+              "areaPolygon": {
+                "id": "area",
+                "coord": [
+                  {"lat": -23.528224793331045, "long": -47.38570220768452},
+                  {"lat": -23.52886449628346, "long": -47.38500081002712},
+                  {"lat": -23.528172227500875, "long": -47.38412473350763},
+                  {"lat": -23.527350537847116, "long": -47.384717501699924}
+                ]
+              },
+              "landingPoint": {
+                "id": "landingPoint",
+                "name": "Landing Point",
+                "description": "The place where the drone will take off",
+                "lookAt": {
+                  "lng": -47.3842803016305,
+                  "lat": -23.527668086308843,
+                  "range": "10000",
+                  "tilt": "45",
+                  "heading": "0"
+                },
+                "point": {"lat": -23.527668086308843, "lng": -47.3842803016305},
+                "customData": null,
+                "type": "landingPoint"
+              }
+            },
+            "minFlightHeight": 0.0,
+            "predation": 0.0
           }
         ]
       },
@@ -5605,7 +6064,70 @@ class FakeDatabase {
           "-Mh5IQNPLvD6jVs_mFyV",
           "-Mh5IQNRzK_XaavezODo",
           "-Mh5IQNSAOWkvUsL0Eu6",
-          "-Mh5PzeomnDEivieUb0g"
+          "-Mh5PzeomnDEivieUb0g",
+          "-MhA53JsNI-8yj19bv3u",
+          "-MhA5FfGLTSqEGTicsro",
+          "-MhA5OWrVoJydTnrUHTr",
+          "-MhA5WDVCWANGVJl4Mdl",
+          "-MhA5eMc2A_OgqIObTrq",
+          "-MhA5m8iTbHL4vxbm_aL",
+          "-MhA5uYqcLjL6ypji3D3",
+          "-MhA63IkL1KwXIr_hWZ-",
+          "-MhA6CE1EZ_A5vpI7Dk_",
+          "-MhA6P82SCNFIP8klb3w",
+          "-MhA6TKRpxwbb2tiHjYM",
+          "-MhA6c9zgkavo2C8j3uD",
+          "-MhA7VyDWVrjhYwuNRmo",
+          "-MhA7c-KrlOvAGSO-z2d",
+          "-MhA7gzj6vaYNyOF1Mw4",
+          "-MhA7m_btqgAn26wxguj",
+          "-MhA84u7U4HVs__1ULPZ",
+          "-MhA8LtXZhi3KNk_fFSj",
+          "-MhA8SQbpoKkrznlp78P",
+          "-MhA8XsfVBsltyOo64dE",
+          "-MhA8ePDAcJ2b6t4gr2V",
+          "-MhA8kCyBTkhRSkOvDQI",
+          "-MhA8uSSbGIvc1gYYHtn",
+          "-MhA9-GjpiIfR1PM1Lm9",
+          "-MhA97niv7iD_JxXnPyn",
+          "-MhA9IWAWi4BDtW1daxn",
+          "-MhA9U0WYCOQk_BnunU6",
+          "-MhA9_E3RTo_U7QoHy6V",
+          "-MhA9gxrzW5IaYxOxRrJ",
+          "-MhA9mItI0WnPKG3H3Y0",
+          "-MhA9skKn5PbRUvcmcPf",
+          "-MhAA0-q0V7lEa3-fZpN",
+          "-MhAA8NP4QOLjuoVIqD7",
+          "-MhAAFJ3ch6nMe5slJeU",
+          "-MhAALNgPJhXJNMWi4_C",
+          "-MhAARc9nwutLWg7FNn8",
+          "-MhAAWa_ZbbVekETxk_5",
+          "-MhAAcaEYQ_uRYgFQSqu",
+          "-MhAAjdQIqgpJJiO1xAP",
+          "-MhAAqLyIDXEEuzZUp-q",
+          "-MhAAvDg5VUDVE-wAIgO",
+          "-MhAB2rU536Pk3Q6LAXQ",
+          "-MhAB8O3aHEcI91TkR-K",
+          "-MhABDJI9WTAUjEMCI8V",
+          "-MhABN8tR2OzHEda56ck",
+          "-MhABSUDxuy7hR1DoSgD",
+          "-MhABXj5JIYLCE-b5m9Z",
+          "-MhABdj8Kt4GwE-ZOtq-",
+          "-MhABkqoMwiQIngv68G2",
+          "-MhABpPl2463yVxSgqTV",
+          "-MhABu6e_4JAlVqXX2MQ",
+          "-MhABz7bqmZ29MPC4mPH",
+          "-MhAC3iBOWLOM6ev3rLL",
+          "-MhAC8_Nh8PD5PwWTTIT",
+          "-MhACD70N72lb05ZtsZ6",
+          "-MhACIFrQ2d7O1V2yt0w",
+          "-MhACIGwxJLGWmQtCx24",
+          "-MhACR8CWs39OuCxdAVf",
+          "-MhACVZqmNZmDbO1hNRR",
+          "-MhACbNwsVy4W7pFWDhW",
+          "-MhACiSBcIbwxnp6Oacb",
+          "-MhACn1WQpDsQbDcoe1V",
+          "-MhACqf4abSUA1WgAzIn"
         ],
         "values": [
           {
@@ -6237,6 +6759,999 @@ class FakeDatabase {
             "estimatedFinalHeight": 30.0,
             "seedCost": 18.38,
             "establishmentCost": 150.0,
+            "density": null
+          },
+          {
+            "id": "",
+            "commonName": "Eucalyptus camaldulensis",
+            "scientificName": "",
+            "icon": {
+              "name": "tree-5_icon.png",
+              "url": "assets/seedIcons/tree-5_icon.png"
+            },
+            "co2PerYear": 1.746,
+            "germinativePotential": 0.0,
+            "estimatedLongevity": 0,
+            "estimatedFinalHeight": 0.0,
+            "seedCost": 0.0,
+            "establishmentCost": 0.0,
+            "density": null
+          },
+          {
+            "id": "",
+            "commonName": "Eucalyptus globulus",
+            "scientificName": "",
+            "icon": {
+              "name": "tree-17_icon.png",
+              "url": "assets/seedIcons/tree-17_icon.png"
+            },
+            "co2PerYear": 2.374,
+            "germinativePotential": 0.0,
+            "estimatedLongevity": 0,
+            "estimatedFinalHeight": 0.0,
+            "seedCost": 0.0,
+            "establishmentCost": 0.0,
+            "density": null
+          },
+          {
+            "id": "",
+            "commonName": "Fagus sylvatica",
+            "scientificName": "",
+            "icon": {
+              "name": "cedar-2_icon.png",
+              "url": "assets/seedIcons/cedar-2_icon.png"
+            },
+            "co2PerYear": 0.7,
+            "germinativePotential": 0.0,
+            "estimatedLongevity": 0,
+            "estimatedFinalHeight": 0.0,
+            "seedCost": 0.0,
+            "establishmentCost": 0.0,
+            "density": null
+          },
+          {
+            "id": "",
+            "commonName": "Fraxinus spp",
+            "scientificName": "",
+            "icon": {
+              "name": "tree-7_icon.png",
+              "url": "assets/seedIcons/tree-7_icon.png"
+            },
+            "co2PerYear": 0.2,
+            "germinativePotential": 0.0,
+            "estimatedLongevity": 0,
+            "estimatedFinalHeight": 0.0,
+            "seedCost": 0.0,
+            "establishmentCost": 0.0,
+            "density": null
+          },
+          {
+            "id": "",
+            "commonName": "Llex aquifolium",
+            "scientificName": "",
+            "icon": {
+              "name": "tree-8_icon.png",
+              "url": "assets/seedIcons/tree-8_icon.png"
+            },
+            "co2PerYear": 0.06,
+            "germinativePotential": 0.0,
+            "estimatedLongevity": 0,
+            "estimatedFinalHeight": 0.0,
+            "seedCost": 0.0,
+            "establishmentCost": 0.0,
+            "density": null
+          },
+          {
+            "id": "",
+            "commonName": "Llex canariensis",
+            "scientificName": "",
+            "icon": {
+              "name": "tree-18_icon.png",
+              "url": "assets/seedIcons/tree-18_icon.png"
+            },
+            "co2PerYear": 0.078,
+            "germinativePotential": 0.0,
+            "estimatedLongevity": 0,
+            "estimatedFinalHeight": 0.0,
+            "seedCost": 0.0,
+            "establishmentCost": 0.0,
+            "density": null
+          },
+          {
+            "id": "",
+            "commonName": "Juglans regia",
+            "scientificName": "",
+            "icon": {
+              "name": "cedar-2_icon.png",
+              "url": "assets/seedIcons/cedar-2_icon.png"
+            },
+            "co2PerYear": 0.188,
+            "germinativePotential": 0.0,
+            "estimatedLongevity": 0,
+            "estimatedFinalHeight": 0.0,
+            "seedCost": 0.0,
+            "establishmentCost": 0.0,
+            "density": null
+          },
+          {
+            "id": "",
+            "commonName": "Juniperus oxycedrus, J. communis",
+            "scientificName": "",
+            "icon": {"name": "cedar.png", "url": "assets/seedIcons/cedar.png"},
+            "co2PerYear": 0.016,
+            "germinativePotential": 0.0,
+            "estimatedLongevity": 0,
+            "estimatedFinalHeight": 0.0,
+            "seedCost": 0.0,
+            "establishmentCost": 0.0,
+            "density": null
+          },
+          {
+            "id": "",
+            "commonName": "Juniperus phoenices",
+            "scientificName": "",
+            "icon": {
+              "name": "tree-5_icon.png",
+              "url": "assets/seedIcons/tree-5_icon.png"
+            },
+            "co2PerYear": 0.028,
+            "germinativePotential": 0.0,
+            "estimatedLongevity": 0,
+            "estimatedFinalHeight": 0.0,
+            "seedCost": 0.0,
+            "establishmentCost": 0.0,
+            "density": null
+          },
+          {
+            "id": "",
+            "commonName": "Juniperus thurifera",
+            "scientificName": "",
+            "icon": {
+              "name": "cedar-1_icon.png",
+              "url": "assets/seedIcons/cedar-1_icon.png"
+            },
+            "co2PerYear": 0.02,
+            "germinativePotential": 0.0,
+            "estimatedLongevity": 0,
+            "estimatedFinalHeight": 0.0,
+            "seedCost": 0.0,
+            "establishmentCost": 0.0,
+            "density": null
+          },
+          {
+            "id": "",
+            "commonName": "Larix spp",
+            "scientificName": "",
+            "icon": {
+              "name": "baobab_icon.png",
+              "url": "assets/seedIcons/baobab_icon.png"
+            },
+            "co2PerYear": 0.516,
+            "germinativePotential": 0.0,
+            "estimatedLongevity": 0,
+            "estimatedFinalHeight": 0.0,
+            "seedCost": 0.0,
+            "establishmentCost": 0.0,
+            "density": null
+          },
+          {
+            "id": "",
+            "commonName": "Laurus azorica",
+            "scientificName": "",
+            "icon": {
+              "name": "cedar-2_icon.png",
+              "url": "assets/seedIcons/cedar-2_icon.png"
+            },
+            "co2PerYear": 0.222,
+            "germinativePotential": 0.0,
+            "estimatedLongevity": 0,
+            "estimatedFinalHeight": 0.0,
+            "seedCost": 0.0,
+            "establishmentCost": 0.0,
+            "density": null
+          },
+          {
+            "id": "",
+            "commonName": "Laurus nobilis",
+            "scientificName": "",
+            "icon": {
+              "name": "cedar-1_icon.png",
+              "url": "assets/seedIcons/cedar-1_icon.png"
+            },
+            "co2PerYear": 0.222,
+            "germinativePotential": 0.0,
+            "estimatedLongevity": 0,
+            "estimatedFinalHeight": 0.0,
+            "seedCost": 0.0,
+            "establishmentCost": 0.0,
+            "density": null
+          },
+          {
+            "id": "",
+            "commonName": "Malus sylvestris",
+            "scientificName": "",
+            "icon": {
+              "name": "pine-1_icon.png",
+              "url": "assets/seedIcons/pine-1_icon.png"
+            },
+            "co2PerYear": 0.224,
+            "germinativePotential": 0.0,
+            "estimatedLongevity": 0,
+            "estimatedFinalHeight": 0.0,
+            "seedCost": 0.0,
+            "establishmentCost": 0.0,
+            "density": null
+          },
+          {
+            "id": "-MhA7gzj6vaYNyOF1Mw4",
+            "commonName": "Myrica faya",
+            "scientificName": "",
+            "icon": {
+              "name": "cedar-1_icon.png",
+              "url": "assets/seedIcons/cedar-1_icon.png"
+            },
+            "co2PerYear": 0.222,
+            "germinativePotential": 0.0,
+            "estimatedLongevity": 0,
+            "estimatedFinalHeight": 0.0,
+            "seedCost": 0.0,
+            "establishmentCost": 0.0,
+            "density": null
+          },
+          {
+            "id": "-MhA7m_btqgAn26wxguj",
+            "commonName": "Myrtus communis",
+            "scientificName": "",
+            "icon": {
+              "name": "tree_icon.png",
+              "url": "assets/seedIcons/tree_icon.png"
+            },
+            "co2PerYear": 0.222,
+            "germinativePotential": 0.0,
+            "estimatedLongevity": 0,
+            "estimatedFinalHeight": 0.0,
+            "seedCost": 0.0,
+            "establishmentCost": 0.0,
+            "density": null
+          },
+          {
+            "id": "",
+            "commonName": "Olea europaea",
+            "scientificName": "",
+            "icon": {
+              "name": "tree-5_icon.png",
+              "url": "assets/seedIcons/tree-5_icon.png"
+            },
+            "co2PerYear": 0.076,
+            "germinativePotential": 0.0,
+            "estimatedLongevity": 0,
+            "estimatedFinalHeight": 0.0,
+            "seedCost": 0.0,
+            "establishmentCost": 0.0,
+            "density": null
+          },
+          {
+            "id": "",
+            "commonName": "Phillyrea latifolia",
+            "scientificName": "",
+            "icon": {
+              "name": "tree-1_icon.png",
+              "url": "assets/seedIcons/tree-1_icon.png"
+            },
+            "co2PerYear": 0.104,
+            "germinativePotential": 0.0,
+            "estimatedLongevity": 0,
+            "estimatedFinalHeight": 0.0,
+            "seedCost": 0.0,
+            "establishmentCost": 0.0,
+            "density": null
+          },
+          {
+            "id": "",
+            "commonName": "Phoenix spp.",
+            "scientificName": "",
+            "icon": {
+              "name": "tree-20_icon.png",
+              "url": "assets/seedIcons/tree-20_icon.png"
+            },
+            "co2PerYear": 0.878,
+            "germinativePotential": 0.0,
+            "estimatedLongevity": 0,
+            "estimatedFinalHeight": 0.0,
+            "seedCost": 0.0,
+            "establishmentCost": 0.0,
+            "density": null
+          },
+          {
+            "id": "",
+            "commonName": "Picea abies",
+            "scientificName": "",
+            "icon": {"name": "cedar.png", "url": "assets/seedIcons/cedar.png"},
+            "co2PerYear": 1.712,
+            "germinativePotential": 0.0,
+            "estimatedLongevity": 0,
+            "estimatedFinalHeight": 0.0,
+            "seedCost": 0.0,
+            "establishmentCost": 0.0,
+            "density": null
+          },
+          {
+            "id": "",
+            "commonName": "Pinus canarienses",
+            "scientificName": "",
+            "icon": {
+              "name": "pine_icon.png",
+              "url": "assets/seedIcons/pine_icon.png"
+            },
+            "co2PerYear": 0.116,
+            "germinativePotential": 0.0,
+            "estimatedLongevity": 0,
+            "estimatedFinalHeight": 0.0,
+            "seedCost": 0.0,
+            "establishmentCost": 0.0,
+            "density": null
+          },
+          {
+            "id": "",
+            "commonName": "Pinus halepensies",
+            "scientificName": "",
+            "icon": {
+              "name": "pine-1_icon.png",
+              "url": "assets/seedIcons/pine-1_icon.png"
+            },
+            "co2PerYear": 0.09,
+            "germinativePotential": 0.0,
+            "estimatedLongevity": 0,
+            "estimatedFinalHeight": 0.0,
+            "seedCost": 0.0,
+            "establishmentCost": 0.0,
+            "density": null
+          },
+          {
+            "id": "",
+            "commonName": "Pinus nigra Sistema Ibérico",
+            "scientificName": "",
+            "icon": {
+              "name": "pine_icon.png",
+              "url": "assets/seedIcons/pine_icon.png"
+            },
+            "co2PerYear": 0.072,
+            "germinativePotential": 0.0,
+            "estimatedLongevity": 0,
+            "estimatedFinalHeight": 0.0,
+            "seedCost": 0.0,
+            "establishmentCost": 0.0,
+            "density": null
+          },
+          {
+            "id": "",
+            "commonName": "Pinus nigra (Resto)",
+            "scientificName": "",
+            "icon": {
+              "name": "pine_icon.png",
+              "url": "assets/seedIcons/pine_icon.png"
+            },
+            "co2PerYear": 0.068,
+            "germinativePotential": 0.0,
+            "estimatedLongevity": 0,
+            "estimatedFinalHeight": 0.0,
+            "seedCost": 0.0,
+            "establishmentCost": 0.0,
+            "density": null
+          },
+          {
+            "id": "",
+            "commonName": "Pinus pinaster spp. atlântica Zona Norte interior",
+            "scientificName": "",
+            "icon": {
+              "name": "pine-1_icon.png",
+              "url": "assets/seedIcons/pine-1_icon.png"
+            },
+            "co2PerYear": 0.574,
+            "germinativePotential": 0.0,
+            "estimatedLongevity": 0,
+            "estimatedFinalHeight": 0.0,
+            "seedCost": 0.0,
+            "establishmentCost": 0.0,
+            "density": null
+          },
+          {
+            "id": "",
+            "commonName": "Pinus pinaster ssp. atlântica Zona Norte costera",
+            "scientificName": "",
+            "icon": {
+              "name": "tree-5_icon.png",
+              "url": "assets/seedIcons/tree-5_icon.png"
+            },
+            "co2PerYear": 0.658,
+            "germinativePotential": 0.0,
+            "estimatedLongevity": 0,
+            "estimatedFinalHeight": 0.0,
+            "seedCost": 0.0,
+            "establishmentCost": 0.0,
+            "density": null
+          },
+          {
+            "id": "",
+            "commonName": "Pinus pinaster ssp. mesogeesis Sistema Central",
+            "scientificName": "",
+            "icon": {
+              "name": "pine-1_icon.png",
+              "url": "assets/seedIcons/pine-1_icon.png"
+            },
+            "co2PerYear": 0.214,
+            "germinativePotential": 0.0,
+            "estimatedLongevity": 0,
+            "estimatedFinalHeight": 0.0,
+            "seedCost": 0.0,
+            "establishmentCost": 0.0,
+            "density": null
+          },
+          {
+            "id": "",
+            "commonName": "Pinus pinaster (Resto)",
+            "scientificName": "",
+            "icon": {
+              "name": "pine-1_icon.png",
+              "url": "assets/seedIcons/pine-1_icon.png"
+            },
+            "co2PerYear": 0.05,
+            "germinativePotential": 0.0,
+            "estimatedLongevity": 0,
+            "estimatedFinalHeight": 0.0,
+            "seedCost": 0.0,
+            "establishmentCost": 0.0,
+            "density": null
+          },
+          {
+            "id": "",
+            "commonName": "Pinus pinea",
+            "scientificName": "",
+            "icon": {
+              "name": "pine_icon.png",
+              "url": "assets/seedIcons/pine_icon.png"
+            },
+            "co2PerYear": 0.164,
+            "germinativePotential": 0.0,
+            "estimatedLongevity": 0,
+            "estimatedFinalHeight": 0.0,
+            "seedCost": 0.0,
+            "establishmentCost": 0.0,
+            "density": null
+          },
+          {
+            "id": "",
+            "commonName": "Pinus radiata",
+            "scientificName": "",
+            "icon": {
+              "name": "pine_icon.png",
+              "url": "assets/seedIcons/pine_icon.png"
+            },
+            "co2PerYear": 1.152,
+            "germinativePotential": 0.0,
+            "estimatedLongevity": 0,
+            "estimatedFinalHeight": 0.0,
+            "seedCost": 0.0,
+            "establishmentCost": 0.0,
+            "density": null
+          },
+          {
+            "id": "",
+            "commonName": "Pinus sylvestris",
+            "scientificName": "",
+            "icon": {
+              "name": "pine_icon.png",
+              "url": "assets/seedIcons/pine_icon.png"
+            },
+            "co2PerYear": 0.09,
+            "germinativePotential": 0.0,
+            "estimatedLongevity": 0,
+            "estimatedFinalHeight": 0.0,
+            "seedCost": 0.0,
+            "establishmentCost": 0.0,
+            "density": null
+          },
+          {
+            "id": "",
+            "commonName": "Pinus sylvestris Sistema Ibérico",
+            "scientificName": "",
+            "icon": {
+              "name": "pine-1_icon.png",
+              "url": "assets/seedIcons/pine-1_icon.png"
+            },
+            "co2PerYear": 0.064,
+            "germinativePotential": 0.0,
+            "estimatedLongevity": 0,
+            "estimatedFinalHeight": 0.0,
+            "seedCost": 0.0,
+            "establishmentCost": 0.0,
+            "density": null
+          },
+          {
+            "id": "",
+            "commonName": "Pinus sylvestris Pirineos",
+            "scientificName": "",
+            "icon": {
+              "name": "cedar_icon.png",
+              "url": "assets/seedIcons/cedar_icon.png"
+            },
+            "co2PerYear": 0.088,
+            "germinativePotential": 0.0,
+            "estimatedLongevity": 0,
+            "estimatedFinalHeight": 0.0,
+            "seedCost": 0.0,
+            "establishmentCost": 0.0,
+            "density": null
+          },
+          {
+            "id": "",
+            "commonName": "Pinus sylvestris (Resto)",
+            "scientificName": "",
+            "icon": {
+              "name": "tree-1_icon.png",
+              "url": "assets/seedIcons/tree-1_icon.png"
+            },
+            "co2PerYear": 0.082,
+            "germinativePotential": 0.0,
+            "estimatedLongevity": 0,
+            "estimatedFinalHeight": 0.0,
+            "seedCost": 0.0,
+            "establishmentCost": 0.0,
+            "density": null
+          },
+          {
+            "id": "",
+            "commonName": "Pinus uncinata",
+            "scientificName": "",
+            "icon": {
+              "name": "cedar-2_icon.png",
+              "url": "assets/seedIcons/cedar-2_icon.png"
+            },
+            "co2PerYear": 0.082,
+            "germinativePotential": 0.0,
+            "estimatedLongevity": 0,
+            "estimatedFinalHeight": 0.0,
+            "seedCost": 0.0,
+            "establishmentCost": 0.0,
+            "density": null
+          },
+          {
+            "id": "",
+            "commonName": "Pistacia terebinthus",
+            "scientificName": "",
+            "icon": {
+              "name": "tree_icon.png",
+              "url": "assets/seedIcons/tree_icon.png"
+            },
+            "co2PerYear": 0.222,
+            "germinativePotential": 0.0,
+            "estimatedLongevity": 0,
+            "estimatedFinalHeight": 0.0,
+            "seedCost": 0.0,
+            "establishmentCost": 0.0,
+            "density": null
+          },
+          {
+            "id": "",
+            "commonName": "Platanus hispanica",
+            "scientificName": "",
+            "icon": {
+              "name": "tree-16_icon.png",
+              "url": "assets/seedIcons/tree-16_icon.png"
+            },
+            "co2PerYear": 0.704,
+            "germinativePotential": 0.0,
+            "estimatedLongevity": 0,
+            "estimatedFinalHeight": 0.0,
+            "seedCost": 0.0,
+            "establishmentCost": 0.0,
+            "density": null
+          },
+          {
+            "id": "",
+            "commonName": "Populous alba",
+            "scientificName": "",
+            "icon": {
+              "name": "cedar-1_icon.png",
+              "url": "assets/seedIcons/cedar-1_icon.png"
+            },
+            "co2PerYear": 0.704,
+            "germinativePotential": 0.0,
+            "estimatedLongevity": 0,
+            "estimatedFinalHeight": 0.0,
+            "seedCost": 0.0,
+            "establishmentCost": 0.0,
+            "density": null
+          },
+          {
+            "id": "",
+            "commonName": "Populous nigra",
+            "scientificName": "",
+            "icon": {
+              "name": "tree_icon.png",
+              "url": "assets/seedIcons/tree_icon.png"
+            },
+            "co2PerYear": 1.072,
+            "germinativePotential": 0.0,
+            "estimatedLongevity": 0,
+            "estimatedFinalHeight": 0.0,
+            "seedCost": 0.0,
+            "establishmentCost": 0.0,
+            "density": null
+          },
+          {
+            "id": "",
+            "commonName": "Populous x canadensis",
+            "scientificName": "",
+            "icon": {
+              "name": "tree-16_icon.png",
+              "url": "assets/seedIcons/tree-16_icon.png"
+            },
+            "co2PerYear": 1.18,
+            "germinativePotential": 0.0,
+            "estimatedLongevity": 0,
+            "estimatedFinalHeight": 0.0,
+            "seedCost": 0.0,
+            "establishmentCost": 0.0,
+            "density": null
+          },
+          {
+            "id": "",
+            "commonName": "Primus spp.",
+            "scientificName": "",
+            "icon": {
+              "name": "tree-8_icon.png",
+              "url": "assets/seedIcons/tree-8_icon.png"
+            },
+            "co2PerYear": 0.224,
+            "germinativePotential": 0.0,
+            "estimatedLongevity": 0,
+            "estimatedFinalHeight": 0.0,
+            "seedCost": 0.0,
+            "establishmentCost": 0.0,
+            "density": null
+          },
+          {
+            "id": "",
+            "commonName": "Pseudotsuga menziesii",
+            "scientificName": "",
+            "icon": {
+              "name": "tree-3_icon.png",
+              "url": "assets/seedIcons/tree-3_icon.png"
+            },
+            "co2PerYear": 1.712,
+            "germinativePotential": 0.0,
+            "estimatedLongevity": 0,
+            "estimatedFinalHeight": 0.0,
+            "seedCost": 0.0,
+            "establishmentCost": 0.0,
+            "density": null
+          },
+          {
+            "id": "",
+            "commonName": "Pyrus spp.",
+            "scientificName": "",
+            "icon": {"name": "cedar.png", "url": "assets/seedIcons/cedar.png"},
+            "co2PerYear": 0.224,
+            "germinativePotential": 0.0,
+            "estimatedLongevity": 0,
+            "estimatedFinalHeight": 0.0,
+            "seedCost": 0.0,
+            "establishmentCost": 0.0,
+            "density": null
+          },
+          {
+            "id": "",
+            "commonName": "Quercus canariensis",
+            "scientificName": "",
+            "icon": {
+              "name": "cedar-2_icon.png",
+              "url": "assets/seedIcons/cedar-2_icon.png"
+            },
+            "co2PerYear": 0.112,
+            "germinativePotential": 0.0,
+            "estimatedLongevity": 0,
+            "estimatedFinalHeight": 0.0,
+            "seedCost": 0.0,
+            "establishmentCost": 0.0,
+            "density": null
+          },
+          {
+            "id": "",
+            "commonName": "Quercus faginea",
+            "scientificName": "",
+            "icon": {
+              "name": "cedar-2_icon.png",
+              "url": "assets/seedIcons/cedar-2_icon.png"
+            },
+            "co2PerYear": 0.086,
+            "germinativePotential": 0.0,
+            "estimatedLongevity": 0,
+            "estimatedFinalHeight": 0.0,
+            "seedCost": 0.0,
+            "establishmentCost": 0.0,
+            "density": null
+          },
+          {
+            "id": "",
+            "commonName": "Quercus ilex",
+            "scientificName": "",
+            "icon": {
+              "name": "tree-3_icon.png",
+              "url": "assets/seedIcons/tree-3_icon.png"
+            },
+            "co2PerYear": 0.072,
+            "germinativePotential": 0.0,
+            "estimatedLongevity": 0,
+            "estimatedFinalHeight": 0.0,
+            "seedCost": 0.0,
+            "establishmentCost": 0.0,
+            "density": null
+          },
+          {
+            "id": "",
+            "commonName": "Quercus petraea",
+            "scientificName": "",
+            "icon": {
+              "name": "tree-9_icon.png",
+              "url": "assets/seedIcons/tree-9_icon.png"
+            },
+            "co2PerYear": 0.152,
+            "germinativePotential": 0.0,
+            "estimatedLongevity": 0,
+            "estimatedFinalHeight": 0.0,
+            "seedCost": 0.0,
+            "establishmentCost": 0.0,
+            "density": null
+          },
+          {
+            "id": "",
+            "commonName": "Quercus pubescens",
+            "scientificName": "",
+            "icon": {
+              "name": "cedar_icon.png",
+              "url": "assets/seedIcons/cedar_icon.png"
+            },
+            "co2PerYear": 0.166,
+            "germinativePotential": 0.0,
+            "estimatedLongevity": 0,
+            "estimatedFinalHeight": 0.0,
+            "seedCost": 0.0,
+            "establishmentCost": 0.0,
+            "density": null
+          },
+          {
+            "id": "",
+            "commonName": "Quercus pyrenaica",
+            "scientificName": "",
+            "icon": {
+              "name": "tree-7_icon.png",
+              "url": "assets/seedIcons/tree-7_icon.png"
+            },
+            "co2PerYear": 0.128,
+            "germinativePotential": 0.0,
+            "estimatedLongevity": 0,
+            "estimatedFinalHeight": 0.0,
+            "seedCost": 0.0,
+            "establishmentCost": 0.0,
+            "density": null
+          },
+          {
+            "id": "",
+            "commonName": "Quercus robur",
+            "scientificName": "",
+            "icon": {
+              "name": "tree-5_icon.png",
+              "url": "assets/seedIcons/tree-5_icon.png"
+            },
+            "co2PerYear": 0.196,
+            "germinativePotential": 0.0,
+            "estimatedLongevity": 0,
+            "estimatedFinalHeight": 0.0,
+            "seedCost": 0.0,
+            "establishmentCost": 0.0,
+            "density": null
+          },
+          {
+            "id": "",
+            "commonName": "Quercus rubra",
+            "scientificName": "",
+            "icon": {
+              "name": "palmtree.png",
+              "url": "assets/seedIcons/palmtree.png"
+            },
+            "co2PerYear": 0.244,
+            "germinativePotential": 0.0,
+            "estimatedLongevity": 0,
+            "estimatedFinalHeight": 0.0,
+            "seedCost": 0.0,
+            "establishmentCost": 0.0,
+            "density": null
+          },
+          {
+            "id": "",
+            "commonName": "Quercus suber",
+            "scientificName": "",
+            "icon": {
+              "name": "tree-1_icon.png",
+              "url": "assets/seedIcons/tree-1_icon.png"
+            },
+            "co2PerYear": 0.11,
+            "germinativePotential": 0.0,
+            "estimatedLongevity": 0,
+            "estimatedFinalHeight": 0.0,
+            "seedCost": 0.0,
+            "establishmentCost": 0.0,
+            "density": null
+          },
+          {
+            "id": "",
+            "commonName": "Rhamnus alaternus",
+            "scientificName": "",
+            "icon": {
+              "name": "tree-17_icon.png",
+              "url": "assets/seedIcons/tree-17_icon.png"
+            },
+            "co2PerYear": 0.222,
+            "germinativePotential": 0.0,
+            "estimatedLongevity": 0,
+            "estimatedFinalHeight": 0.0,
+            "seedCost": 0.0,
+            "establishmentCost": 0.0,
+            "density": null
+          },
+          {
+            "id": "",
+            "commonName": "Robinia pseudacacia",
+            "scientificName": "",
+            "icon": {"name": "cedar.png", "url": "assets/seedIcons/cedar.png"},
+            "co2PerYear": 0.228,
+            "germinativePotential": 0.0,
+            "estimatedLongevity": 0,
+            "estimatedFinalHeight": 0.0,
+            "seedCost": 0.0,
+            "establishmentCost": 0.0,
+            "density": null
+          },
+          {
+            "id": "",
+            "commonName": "Salix spp.",
+            "scientificName": "",
+            "icon": {
+              "name": "cedar-1_icon.png",
+              "url": "assets/seedIcons/cedar-1_icon.png"
+            },
+            "co2PerYear": 0.878,
+            "germinativePotential": 0.0,
+            "estimatedLongevity": 0,
+            "estimatedFinalHeight": 0.0,
+            "seedCost": 0.0,
+            "establishmentCost": 0.0,
+            "density": null
+          },
+          {
+            "id": "",
+            "commonName": "Sorbus spp.",
+            "scientificName": "",
+            "icon": {
+              "name": "tree-1_icon.png",
+              "url": "assets/seedIcons/tree-1_icon.png"
+            },
+            "co2PerYear": 0.25,
+            "germinativePotential": 0.0,
+            "estimatedLongevity": 0,
+            "estimatedFinalHeight": 0.0,
+            "seedCost": 0.0,
+            "establishmentCost": 0.0,
+            "density": null
+          },
+          {
+            "id": "",
+            "commonName": "Sorbus spp.",
+            "scientificName": "",
+            "icon": {
+              "name": "tree-1_icon.png",
+              "url": "assets/seedIcons/tree-1_icon.png"
+            },
+            "co2PerYear": 0.25,
+            "germinativePotential": 0.0,
+            "estimatedLongevity": 0,
+            "estimatedFinalHeight": 0.0,
+            "seedCost": 0.0,
+            "establishmentCost": 0.0,
+            "density": null
+          },
+          {
+            "id": "",
+            "commonName": "Tamarix spp.",
+            "scientificName": "",
+            "icon": {
+              "name": "pine_icon.png",
+              "url": "assets/seedIcons/pine_icon.png"
+            },
+            "co2PerYear": 0.096,
+            "germinativePotential": 0.0,
+            "estimatedLongevity": 0,
+            "estimatedFinalHeight": 0.0,
+            "seedCost": 0.0,
+            "establishmentCost": 0.0,
+            "density": null
+          },
+          {
+            "id": "",
+            "commonName": "Taxis baccata",
+            "scientificName": "",
+            "icon": {
+              "name": "cedar-1_icon.png",
+              "url": "assets/seedIcons/cedar-1_icon.png"
+            },
+            "co2PerYear": 0.082,
+            "germinativePotential": 0.0,
+            "estimatedLongevity": 0,
+            "estimatedFinalHeight": 0.0,
+            "seedCost": 0.0,
+            "establishmentCost": 0.0,
+            "density": null
+          },
+          {
+            "id": "",
+            "commonName": "Tetraclinis articulata",
+            "scientificName": "",
+            "icon": {
+              "name": "cedar-2_icon.png",
+              "url": "assets/seedIcons/cedar-2_icon.png"
+            },
+            "co2PerYear": 0.096,
+            "germinativePotential": 0.0,
+            "estimatedLongevity": 0,
+            "estimatedFinalHeight": 0.0,
+            "seedCost": 0.0,
+            "establishmentCost": 0.0,
+            "density": null
+          },
+          {
+            "id": "",
+            "commonName": "Thuja spp.",
+            "scientificName": "",
+            "icon": {
+              "name": "tree-8_icon.png",
+              "url": "assets/seedIcons/tree-8_icon.png"
+            },
+            "co2PerYear": 0.016,
+            "germinativePotential": 0.0,
+            "estimatedLongevity": 0,
+            "estimatedFinalHeight": 0.0,
+            "seedCost": 0.0,
+            "establishmentCost": 0.0,
+            "density": null
+          },
+          {
+            "id": "",
+            "commonName": "Tília spp.",
+            "scientificName": "",
+            "icon": {
+              "name": "tree-10_icon.png",
+              "url": "assets/seedIcons/tree-10_icon.png"
+            },
+            "co2PerYear": 0.09,
+            "germinativePotential": 0.0,
+            "estimatedLongevity": 0,
+            "estimatedFinalHeight": 0.0,
+            "seedCost": 0.0,
+            "establishmentCost": 0.0,
+            "density": null
+          },
+          {
+            "id": "",
+            "commonName": "Ulmus spp.",
+            "scientificName": "",
+            "icon": {"name": "cedar.png", "url": "assets/seedIcons/cedar.png"},
+            "co2PerYear": 0.352,
+            "germinativePotential": 0.0,
+            "estimatedLongevity": 0,
+            "estimatedFinalHeight": 0.0,
+            "seedCost": 0.0,
+            "establishmentCost": 0.0,
             "density": null
           }
         ]
