@@ -67,13 +67,11 @@ class DatabaseService {
       String path = (await _localPath) + '/$_dbName';
       Database db = await _dbFactory.openDatabase(path);
       var content = await exportDatabase(db);
-      print(content.runtimeType);
       // Save as text
       var saved = jsonEncode(content);
-      print(saved.runtimeType);
       var savePath = downloadsDirectory.path;
       final file = File("$savePath/ras-database.txt");
-      // await file.writeAsString(saved);
+      await file.writeAsString(saved);
       return Future.value(file);
     } catch (e) {
       print(e);
