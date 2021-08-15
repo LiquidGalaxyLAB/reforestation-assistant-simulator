@@ -103,10 +103,10 @@ class _AboutScreenState extends State<AboutScreen> {
               ),
               GestureDetector(
                 onTap: () {
-                  _launchURL('https://github.com/LiquidGalaxyLAB');
+                  _launchURL('https://github.com/LiquidGalaxyLAB/reforestation-assistant');
                 },
                 child: Text(
-                  'Liquid Galaxy GitHub\n',
+                  'RAS Project GitHub\n',
                   textAlign: TextAlign.center,
                   style: TextStyle(fontSize: 17, color: Colors.blue),
                 ),
