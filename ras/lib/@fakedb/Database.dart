@@ -8,7 +8,8 @@ class FakeDatabase {
         "keys": [
           "-Mh5RawwuFykWManV-Rt",
           "-Mh5WH4DguJd33jANk9z",
-          "-Mh5_2FXo4ATBARDpZqh"
+          "-Mh5_2FXo4ATBARDpZqh",
+          "-MhA-Tn4lzTzv6zBx-At"
         ],
         "values": [
           {
@@ -2122,6 +2123,3443 @@ class FakeDatabase {
             },
             "minFlightHeight": 100.0,
             "predation": 10.0
+          },
+          {
+            "id": "-MhA-Tn4lzTzv6zBx-At",
+            "projectName": "Bosque Mediterraneo",
+            "dateOfProject": {"@Timestamp": "2021-08-10T03:00:00.000Z"},
+            "sownMode": "By Drone",
+            "region": "Spain (coast)",
+            "minSwtDate": {"@Timestamp": "2021-08-17T03:00:00.000Z"},
+            "maxSwtDate": {"@Timestamp": "2027-08-10T03:00:00.000Z"},
+            "minSwtTemp": -10.0,
+            "maxSwtTemp": 42.0,
+            "avgNumberOfRains": 6,
+            "totalNumberOfRains": 5,
+            "seeds": [
+              {
+                "id": "-Mh5PzeomnDEivieUb0g",
+                "commonName": "Pino Pinonero",
+                "scientificName": "Pinus Pinea",
+                "icon": {
+                  "name": "pine-1_icon.png",
+                  "url": "assets/seedIcons/pine-1_icon.png"
+                },
+                "co2PerYear": 27000.0,
+                "germinativePotential": 80.0,
+                "estimatedLongevity": 500,
+                "estimatedFinalHeight": 30.0,
+                "seedCost": 18.38,
+                "establishmentCost": 150.0,
+                "density": 100.0
+              },
+              {
+                "id": "-Mh5IQMIWLC_aPsiJMbM",
+                "commonName": "Retamas",
+                "scientificName": "Retama",
+                "icon": {
+                  "name": "tree-20_icon.png",
+                  "url": "assets/seedIcons/tree-20_icon.png"
+                },
+                "co2PerYear": 37.0,
+                "germinativePotential": 60.0,
+                "estimatedLongevity": 100,
+                "estimatedFinalHeight": 3.0,
+                "seedCost": 1.9,
+                "establishmentCost": 30.0,
+                "density": 100.0
+              },
+              {
+                "id": "-Mh5IQLgY3QeWbK6l1LK",
+                "commonName": "Romero",
+                "scientificName": "Rosmarinus",
+                "icon": {
+                  "name": "tree-18_icon.png",
+                  "url": "assets/seedIcons/tree-18_icon.png"
+                },
+                "co2PerYear": 40.0,
+                "germinativePotential": 80.0,
+                "estimatedLongevity": 80,
+                "estimatedFinalHeight": 1.5,
+                "seedCost": 1.5,
+                "establishmentCost": 25.0,
+                "density": 200.0
+              },
+              {
+                "id": "-Mh5IQLey88pdA1AldFJ",
+                "commonName": "Ciprés",
+                "scientificName": "Cupressus Sempervirens",
+                "icon": {
+                  "name": "tree-3_icon.png",
+                  "url": "assets/seedIcons/tree-3_icon.png"
+                },
+                "co2PerYear": 10.0,
+                "germinativePotential": 30.0,
+                "estimatedLongevity": 1000,
+                "estimatedFinalHeight": 35.0,
+                "seedCost": 3.0,
+                "establishmentCost": 90.0,
+                "density": 100.0
+              },
+              {
+                "id": "-Mh5IQKb85JM7-PxY3Dt",
+                "commonName": "Pyrola",
+                "scientificName": "Pyrola minor",
+                "icon": {
+                  "name": "cedar1.png",
+                  "url": "assets/seedIcons/cedar1.png"
+                },
+                "co2PerYear": 3.4,
+                "germinativePotential": 97.0,
+                "estimatedLongevity": 15,
+                "estimatedFinalHeight": 0.2,
+                "seedCost": 2.5,
+                "establishmentCost": 40.0,
+                "density": 300.0
+              },
+              {
+                "id": "-Mh5IQKc9nI24NadZ-xd",
+                "commonName": "Common beech tree",
+                "scientificName": "Fagus sylvatica",
+                "icon": {
+                  "name": "palmtree.png",
+                  "url": "assets/seedIcons/palmtree.png"
+                },
+                "co2PerYear": 4.8,
+                "germinativePotential": 98.0,
+                "estimatedLongevity": 400,
+                "estimatedFinalHeight": 40.0,
+                "seedCost": 1.99,
+                "establishmentCost": 90.0,
+                "density": 400.0
+              }
+            ],
+            "validSurface": 85.0,
+            "notValidSurface": 15.0,
+            "emptyLand": 4.0,
+            "orientation": "Northeast",
+            "minAltTerrain": 200.0,
+            "maxAltTerrain": 764.0,
+            "maxDistance": 1299.37,
+            "depth": 500.0,
+            "ph": 8,
+            "fractured": false,
+            "hummus": 8,
+            "inclination": 2.0,
+            "geodata": {
+              "markers": [
+                {
+                  "id": "da6ee3c0-fdf4-11eb-b9c3-4135120bb15e",
+                  "name": "Pino Pinonero",
+                  "description": "Pinus Pinea",
+                  "lookAt": {
+                    "lng": 0.5465932935476303,
+                    "lat": 40.63874930801327,
+                    "range": "10000",
+                    "tilt": "45",
+                    "heading": "0"
+                  },
+                  "point": {
+                    "lat": 40.63874930801327,
+                    "lng": 0.5465932935476303
+                  },
+                  "customData": {
+                    "seed": {
+                      "id": "-Mh5PzeomnDEivieUb0g",
+                      "commonName": "Pino Pinonero",
+                      "scientificName": "Pinus Pinea",
+                      "icon": {
+                        "name": "pine-1_icon.png",
+                        "url": "assets/seedIcons/pine-1_icon.png"
+                      },
+                      "co2PerYear": 27000.0,
+                      "germinativePotential": 80.0,
+                      "estimatedLongevity": 500,
+                      "estimatedFinalHeight": 30.0,
+                      "seedCost": 18.38,
+                      "establishmentCost": 150.0,
+                      "density": 100.0
+                    }
+                  },
+                  "type": "seedMarker"
+                },
+                {
+                  "id": "daf6ff80-fdf4-11eb-b9c3-4135120bb15e",
+                  "name": "Pino Pinonero",
+                  "description": "Pinus Pinea",
+                  "lookAt": {
+                    "lng": 0.5468511208891869,
+                    "lat": 40.6393863674528,
+                    "range": "10000",
+                    "tilt": "45",
+                    "heading": "0"
+                  },
+                  "point": {"lat": 40.6393863674528, "lng": 0.5468511208891869},
+                  "customData": {
+                    "seed": {
+                      "id": "-Mh5PzeomnDEivieUb0g",
+                      "commonName": "Pino Pinonero",
+                      "scientificName": "Pinus Pinea",
+                      "icon": {
+                        "name": "pine-1_icon.png",
+                        "url": "assets/seedIcons/pine-1_icon.png"
+                      },
+                      "co2PerYear": 27000.0,
+                      "germinativePotential": 80.0,
+                      "estimatedLongevity": 500,
+                      "estimatedFinalHeight": 30.0,
+                      "seedCost": 18.38,
+                      "establishmentCost": 150.0,
+                      "density": 100.0
+                    }
+                  },
+                  "type": "seedMarker"
+                },
+                {
+                  "id": "db724a00-fdf4-11eb-b9c3-4135120bb15e",
+                  "name": "Pino Pinonero",
+                  "description": "Pinus Pinea",
+                  "lookAt": {
+                    "lng": 0.5468963831663132,
+                    "lat": 40.640081681379726,
+                    "range": "10000",
+                    "tilt": "45",
+                    "heading": "0"
+                  },
+                  "point": {
+                    "lat": 40.640081681379726,
+                    "lng": 0.5468963831663132
+                  },
+                  "customData": {
+                    "seed": {
+                      "id": "-Mh5PzeomnDEivieUb0g",
+                      "commonName": "Pino Pinonero",
+                      "scientificName": "Pinus Pinea",
+                      "icon": {
+                        "name": "pine-1_icon.png",
+                        "url": "assets/seedIcons/pine-1_icon.png"
+                      },
+                      "co2PerYear": 27000.0,
+                      "germinativePotential": 80.0,
+                      "estimatedLongevity": 500,
+                      "estimatedFinalHeight": 30.0,
+                      "seedCost": 18.38,
+                      "establishmentCost": 150.0,
+                      "density": 100.0
+                    }
+                  },
+                  "type": "seedMarker"
+                },
+                {
+                  "id": "dbed9480-fdf4-11eb-b9c3-4135120bb15e",
+                  "name": "Pino Pinonero",
+                  "description": "Pinus Pinea",
+                  "lookAt": {
+                    "lng": 0.5469644442200661,
+                    "lat": 40.640838300893144,
+                    "range": "10000",
+                    "tilt": "45",
+                    "heading": "0"
+                  },
+                  "point": {
+                    "lat": 40.640838300893144,
+                    "lng": 0.5469644442200661
+                  },
+                  "customData": {
+                    "seed": {
+                      "id": "-Mh5PzeomnDEivieUb0g",
+                      "commonName": "Pino Pinonero",
+                      "scientificName": "Pinus Pinea",
+                      "icon": {
+                        "name": "pine-1_icon.png",
+                        "url": "assets/seedIcons/pine-1_icon.png"
+                      },
+                      "co2PerYear": 27000.0,
+                      "germinativePotential": 80.0,
+                      "estimatedLongevity": 500,
+                      "estimatedFinalHeight": 30.0,
+                      "seedCost": 18.38,
+                      "establishmentCost": 150.0,
+                      "density": 100.0
+                    }
+                  },
+                  "type": "seedMarker"
+                },
+                {
+                  "id": "dcc508c0-fdf4-11eb-b9c3-4135120bb15e",
+                  "name": "Pino Pinonero",
+                  "description": "Pinus Pinea",
+                  "lookAt": {
+                    "lng": 0.5471136420965195,
+                    "lat": 40.641506123701305,
+                    "range": "10000",
+                    "tilt": "45",
+                    "heading": "0"
+                  },
+                  "point": {
+                    "lat": 40.641506123701305,
+                    "lng": 0.5471136420965195
+                  },
+                  "customData": {
+                    "seed": {
+                      "id": "-Mh5PzeomnDEivieUb0g",
+                      "commonName": "Pino Pinonero",
+                      "scientificName": "Pinus Pinea",
+                      "icon": {
+                        "name": "pine-1_icon.png",
+                        "url": "assets/seedIcons/pine-1_icon.png"
+                      },
+                      "co2PerYear": 27000.0,
+                      "germinativePotential": 80.0,
+                      "estimatedLongevity": 500,
+                      "estimatedFinalHeight": 30.0,
+                      "seedCost": 18.38,
+                      "establishmentCost": 150.0,
+                      "density": 100.0
+                    }
+                  },
+                  "type": "seedMarker"
+                },
+                {
+                  "id": "dd3b2320-fdf4-11eb-b9c3-4135120bb15e",
+                  "name": "Pino Pinonero",
+                  "description": "Pinus Pinea",
+                  "lookAt": {
+                    "lng": 0.5471112951636314,
+                    "lat": 40.642308519869125,
+                    "range": "10000",
+                    "tilt": "45",
+                    "heading": "0"
+                  },
+                  "point": {
+                    "lat": 40.642308519869125,
+                    "lng": 0.5471112951636314
+                  },
+                  "customData": {
+                    "seed": {
+                      "id": "-Mh5PzeomnDEivieUb0g",
+                      "commonName": "Pino Pinonero",
+                      "scientificName": "Pinus Pinea",
+                      "icon": {
+                        "name": "pine-1_icon.png",
+                        "url": "assets/seedIcons/pine-1_icon.png"
+                      },
+                      "co2PerYear": 27000.0,
+                      "germinativePotential": 80.0,
+                      "estimatedLongevity": 500,
+                      "estimatedFinalHeight": 30.0,
+                      "seedCost": 18.38,
+                      "establishmentCost": 150.0,
+                      "density": 100.0
+                    }
+                  },
+                  "type": "seedMarker"
+                },
+                {
+                  "id": "ddaad4e0-fdf4-11eb-b9c3-4135120bb15e",
+                  "name": "Pino Pinonero",
+                  "description": "Pinus Pinea",
+                  "lookAt": {
+                    "lng": 0.547238364815712,
+                    "lat": 40.643012453015686,
+                    "range": "10000",
+                    "tilt": "45",
+                    "heading": "0"
+                  },
+                  "point": {
+                    "lat": 40.643012453015686,
+                    "lng": 0.547238364815712
+                  },
+                  "customData": {
+                    "seed": {
+                      "id": "-Mh5PzeomnDEivieUb0g",
+                      "commonName": "Pino Pinonero",
+                      "scientificName": "Pinus Pinea",
+                      "icon": {
+                        "name": "pine-1_icon.png",
+                        "url": "assets/seedIcons/pine-1_icon.png"
+                      },
+                      "co2PerYear": 27000.0,
+                      "germinativePotential": 80.0,
+                      "estimatedLongevity": 500,
+                      "estimatedFinalHeight": 30.0,
+                      "seedCost": 18.38,
+                      "establishmentCost": 150.0,
+                      "density": 100.0
+                    }
+                  },
+                  "type": "seedMarker"
+                },
+                {
+                  "id": "e0310a90-fdf4-11eb-b9c3-4135120bb15e",
+                  "name": "Pino Pinonero",
+                  "description": "Pinus Pinea",
+                  "lookAt": {
+                    "lng": 0.54767657071352,
+                    "lat": 40.64361105747264,
+                    "range": "10000",
+                    "tilt": "45",
+                    "heading": "0"
+                  },
+                  "point": {"lat": 40.64361105747264, "lng": 0.54767657071352},
+                  "customData": {
+                    "seed": {
+                      "id": "-Mh5PzeomnDEivieUb0g",
+                      "commonName": "Pino Pinonero",
+                      "scientificName": "Pinus Pinea",
+                      "icon": {
+                        "name": "pine-1_icon.png",
+                        "url": "assets/seedIcons/pine-1_icon.png"
+                      },
+                      "co2PerYear": 27000.0,
+                      "germinativePotential": 80.0,
+                      "estimatedLongevity": 500,
+                      "estimatedFinalHeight": 30.0,
+                      "seedCost": 18.38,
+                      "establishmentCost": 150.0,
+                      "density": 100.0
+                    }
+                  },
+                  "type": "seedMarker"
+                },
+                {
+                  "id": "e0abb8d0-fdf4-11eb-b9c3-4135120bb15e",
+                  "name": "Pino Pinonero",
+                  "description": "Pinus Pinea",
+                  "lookAt": {
+                    "lng": 0.5480480566620827,
+                    "lat": 40.64427274701496,
+                    "range": "10000",
+                    "tilt": "45",
+                    "heading": "0"
+                  },
+                  "point": {
+                    "lat": 40.64427274701496,
+                    "lng": 0.5480480566620827
+                  },
+                  "customData": {
+                    "seed": {
+                      "id": "-Mh5PzeomnDEivieUb0g",
+                      "commonName": "Pino Pinonero",
+                      "scientificName": "Pinus Pinea",
+                      "icon": {
+                        "name": "pine-1_icon.png",
+                        "url": "assets/seedIcons/pine-1_icon.png"
+                      },
+                      "co2PerYear": 27000.0,
+                      "germinativePotential": 80.0,
+                      "estimatedLongevity": 500,
+                      "estimatedFinalHeight": 30.0,
+                      "seedCost": 18.38,
+                      "establishmentCost": 150.0,
+                      "density": 100.0
+                    }
+                  },
+                  "type": "seedMarker"
+                },
+                {
+                  "id": "e1730070-fdf4-11eb-b9c3-4135120bb15e",
+                  "name": "Pino Pinonero",
+                  "description": "Pinus Pinea",
+                  "lookAt": {
+                    "lng": 0.5486327782273293,
+                    "lat": 40.644892454916594,
+                    "range": "10000",
+                    "tilt": "45",
+                    "heading": "0"
+                  },
+                  "point": {
+                    "lat": 40.644892454916594,
+                    "lng": 0.5486327782273293
+                  },
+                  "customData": {
+                    "seed": {
+                      "id": "-Mh5PzeomnDEivieUb0g",
+                      "commonName": "Pino Pinonero",
+                      "scientificName": "Pinus Pinea",
+                      "icon": {
+                        "name": "pine-1_icon.png",
+                        "url": "assets/seedIcons/pine-1_icon.png"
+                      },
+                      "co2PerYear": 27000.0,
+                      "germinativePotential": 80.0,
+                      "estimatedLongevity": 500,
+                      "estimatedFinalHeight": 30.0,
+                      "seedCost": 18.38,
+                      "establishmentCost": 150.0,
+                      "density": 100.0
+                    }
+                  },
+                  "type": "seedMarker"
+                },
+                {
+                  "id": "e45fe730-fdf4-11eb-b9c3-4135120bb15e",
+                  "name": "Retamas",
+                  "description": "Retama",
+                  "lookAt": {
+                    "lng": 0.5476296320557594,
+                    "lat": 40.63914568996054,
+                    "range": "10000",
+                    "tilt": "45",
+                    "heading": "0"
+                  },
+                  "point": {
+                    "lat": 40.63914568996054,
+                    "lng": 0.5476296320557594
+                  },
+                  "customData": {
+                    "seed": {
+                      "id": "-Mh5IQMIWLC_aPsiJMbM",
+                      "commonName": "Retamas",
+                      "scientificName": "Retama",
+                      "icon": {
+                        "name": "tree-20_icon.png",
+                        "url": "assets/seedIcons/tree-20_icon.png"
+                      },
+                      "co2PerYear": 37.0,
+                      "germinativePotential": 60.0,
+                      "estimatedLongevity": 100,
+                      "estimatedFinalHeight": 3.0,
+                      "seedCost": 1.9,
+                      "establishmentCost": 30.0,
+                      "density": 100.0
+                    }
+                  },
+                  "type": "seedMarker"
+                },
+                {
+                  "id": "e4e43260-fdf4-11eb-b9c3-4135120bb15e",
+                  "name": "Retamas",
+                  "description": "Retama",
+                  "lookAt": {
+                    "lng": 0.5476075038313866,
+                    "lat": 40.64007303134243,
+                    "range": "10000",
+                    "tilt": "45",
+                    "heading": "0"
+                  },
+                  "point": {
+                    "lat": 40.64007303134243,
+                    "lng": 0.5476075038313866
+                  },
+                  "customData": {
+                    "seed": {
+                      "id": "-Mh5IQMIWLC_aPsiJMbM",
+                      "commonName": "Retamas",
+                      "scientificName": "Retama",
+                      "icon": {
+                        "name": "tree-20_icon.png",
+                        "url": "assets/seedIcons/tree-20_icon.png"
+                      },
+                      "co2PerYear": 37.0,
+                      "germinativePotential": 60.0,
+                      "estimatedLongevity": 100,
+                      "estimatedFinalHeight": 3.0,
+                      "seedCost": 1.9,
+                      "establishmentCost": 30.0,
+                      "density": 100.0
+                    }
+                  },
+                  "type": "seedMarker"
+                },
+                {
+                  "id": "e5623c00-fdf4-11eb-b9c3-4135120bb15e",
+                  "name": "Retamas",
+                  "description": "Retama",
+                  "lookAt": {
+                    "lng": 0.5476386845111847,
+                    "lat": 40.640971611579815,
+                    "range": "10000",
+                    "tilt": "45",
+                    "heading": "0"
+                  },
+                  "point": {
+                    "lat": 40.640971611579815,
+                    "lng": 0.5476386845111847
+                  },
+                  "customData": {
+                    "seed": {
+                      "id": "-Mh5IQMIWLC_aPsiJMbM",
+                      "commonName": "Retamas",
+                      "scientificName": "Retama",
+                      "icon": {
+                        "name": "tree-20_icon.png",
+                        "url": "assets/seedIcons/tree-20_icon.png"
+                      },
+                      "co2PerYear": 37.0,
+                      "germinativePotential": 60.0,
+                      "estimatedLongevity": 100,
+                      "estimatedFinalHeight": 3.0,
+                      "seedCost": 1.9,
+                      "establishmentCost": 30.0,
+                      "density": 100.0
+                    }
+                  },
+                  "type": "seedMarker"
+                },
+                {
+                  "id": "e63f2e80-fdf4-11eb-b9c3-4135120bb15e",
+                  "name": "Retamas",
+                  "description": "Retama",
+                  "lookAt": {
+                    "lng": 0.547792911529541,
+                    "lat": 40.641786734491525,
+                    "range": "10000",
+                    "tilt": "45",
+                    "heading": "0"
+                  },
+                  "point": {
+                    "lat": 40.641786734491525,
+                    "lng": 0.547792911529541
+                  },
+                  "customData": {
+                    "seed": {
+                      "id": "-Mh5IQMIWLC_aPsiJMbM",
+                      "commonName": "Retamas",
+                      "scientificName": "Retama",
+                      "icon": {
+                        "name": "tree-20_icon.png",
+                        "url": "assets/seedIcons/tree-20_icon.png"
+                      },
+                      "co2PerYear": 37.0,
+                      "germinativePotential": 60.0,
+                      "estimatedLongevity": 100,
+                      "estimatedFinalHeight": 3.0,
+                      "seedCost": 1.9,
+                      "establishmentCost": 30.0,
+                      "density": 100.0
+                    }
+                  },
+                  "type": "seedMarker"
+                },
+                {
+                  "id": "e6ace470-fdf4-11eb-b9c3-4135120bb15e",
+                  "name": "Retamas",
+                  "description": "Retama",
+                  "lookAt": {
+                    "lng": 0.5479447916150093,
+                    "lat": 40.64269801180477,
+                    "range": "10000",
+                    "tilt": "45",
+                    "heading": "0"
+                  },
+                  "point": {
+                    "lat": 40.64269801180477,
+                    "lng": 0.5479447916150093
+                  },
+                  "customData": {
+                    "seed": {
+                      "id": "-Mh5IQMIWLC_aPsiJMbM",
+                      "commonName": "Retamas",
+                      "scientificName": "Retama",
+                      "icon": {
+                        "name": "tree-20_icon.png",
+                        "url": "assets/seedIcons/tree-20_icon.png"
+                      },
+                      "co2PerYear": 37.0,
+                      "germinativePotential": 60.0,
+                      "estimatedLongevity": 100,
+                      "estimatedFinalHeight": 3.0,
+                      "seedCost": 1.9,
+                      "establishmentCost": 30.0,
+                      "density": 100.0
+                    }
+                  },
+                  "type": "seedMarker"
+                },
+                {
+                  "id": "e715b860-fdf4-11eb-b9c3-4135120bb15e",
+                  "name": "Retamas",
+                  "description": "Retama",
+                  "lookAt": {
+                    "lng": 0.5482073128223419,
+                    "lat": 40.64337370241656,
+                    "range": "10000",
+                    "tilt": "45",
+                    "heading": "0"
+                  },
+                  "point": {
+                    "lat": 40.64337370241656,
+                    "lng": 0.5482073128223419
+                  },
+                  "customData": {
+                    "seed": {
+                      "id": "-Mh5IQMIWLC_aPsiJMbM",
+                      "commonName": "Retamas",
+                      "scientificName": "Retama",
+                      "icon": {
+                        "name": "tree-20_icon.png",
+                        "url": "assets/seedIcons/tree-20_icon.png"
+                      },
+                      "co2PerYear": 37.0,
+                      "germinativePotential": 60.0,
+                      "estimatedLongevity": 100,
+                      "estimatedFinalHeight": 3.0,
+                      "seedCost": 1.9,
+                      "establishmentCost": 30.0,
+                      "density": 100.0
+                    }
+                  },
+                  "type": "seedMarker"
+                },
+                {
+                  "id": "e7e45300-fdf4-11eb-b9c3-4135120bb15e",
+                  "name": "Retamas",
+                  "description": "Retama",
+                  "lookAt": {
+                    "lng": 0.5489620193839073,
+                    "lat": 40.644092379389456,
+                    "range": "10000",
+                    "tilt": "45",
+                    "heading": "0"
+                  },
+                  "point": {
+                    "lat": 40.644092379389456,
+                    "lng": 0.5489620193839073
+                  },
+                  "customData": {
+                    "seed": {
+                      "id": "-Mh5IQMIWLC_aPsiJMbM",
+                      "commonName": "Retamas",
+                      "scientificName": "Retama",
+                      "icon": {
+                        "name": "tree-20_icon.png",
+                        "url": "assets/seedIcons/tree-20_icon.png"
+                      },
+                      "co2PerYear": 37.0,
+                      "germinativePotential": 60.0,
+                      "estimatedLongevity": 100,
+                      "estimatedFinalHeight": 3.0,
+                      "seedCost": 1.9,
+                      "establishmentCost": 30.0,
+                      "density": 100.0
+                    }
+                  },
+                  "type": "seedMarker"
+                },
+                {
+                  "id": "e89b6e00-fdf4-11eb-b9c3-4135120bb15e",
+                  "name": "Retamas",
+                  "description": "Retama",
+                  "lookAt": {
+                    "lng": 0.5496949329972267,
+                    "lat": 40.64480672391189,
+                    "range": "10000",
+                    "tilt": "45",
+                    "heading": "0"
+                  },
+                  "point": {
+                    "lat": 40.64480672391189,
+                    "lng": 0.5496949329972267
+                  },
+                  "customData": {
+                    "seed": {
+                      "id": "-Mh5IQMIWLC_aPsiJMbM",
+                      "commonName": "Retamas",
+                      "scientificName": "Retama",
+                      "icon": {
+                        "name": "tree-20_icon.png",
+                        "url": "assets/seedIcons/tree-20_icon.png"
+                      },
+                      "co2PerYear": 37.0,
+                      "germinativePotential": 60.0,
+                      "estimatedLongevity": 100,
+                      "estimatedFinalHeight": 3.0,
+                      "seedCost": 1.9,
+                      "establishmentCost": 30.0,
+                      "density": 100.0
+                    }
+                  },
+                  "type": "seedMarker"
+                },
+                {
+                  "id": "ef1f3720-fdf4-11eb-b9c3-4135120bb15e",
+                  "name": "Ciprés",
+                  "description": "Cupressus Sempervirens",
+                  "lookAt": {
+                    "lng": 0.5556588247418404,
+                    "lat": 40.64050120684306,
+                    "range": "10000",
+                    "tilt": "45",
+                    "heading": "0"
+                  },
+                  "point": {
+                    "lat": 40.64050120684306,
+                    "lng": 0.5556588247418404
+                  },
+                  "customData": {
+                    "seed": {
+                      "id": "-Mh5IQLey88pdA1AldFJ",
+                      "commonName": "Ciprés",
+                      "scientificName": "Cupressus Sempervirens",
+                      "icon": {
+                        "name": "tree-3_icon.png",
+                        "url": "assets/seedIcons/tree-3_icon.png"
+                      },
+                      "co2PerYear": 10.0,
+                      "germinativePotential": 30.0,
+                      "estimatedLongevity": 1000,
+                      "estimatedFinalHeight": 35.0,
+                      "seedCost": 3.0,
+                      "establishmentCost": 90.0,
+                      "density": 100.0
+                    }
+                  },
+                  "type": "seedMarker"
+                },
+                {
+                  "id": "ef9180f0-fdf4-11eb-b9c3-4135120bb15e",
+                  "name": "Ciprés",
+                  "description": "Cupressus Sempervirens",
+                  "lookAt": {
+                    "lng": 0.5558643490076065,
+                    "lat": 40.641198798835084,
+                    "range": "10000",
+                    "tilt": "45",
+                    "heading": "0"
+                  },
+                  "point": {
+                    "lat": 40.641198798835084,
+                    "lng": 0.5558643490076065
+                  },
+                  "customData": {
+                    "seed": {
+                      "id": "-Mh5IQLey88pdA1AldFJ",
+                      "commonName": "Ciprés",
+                      "scientificName": "Cupressus Sempervirens",
+                      "icon": {
+                        "name": "tree-3_icon.png",
+                        "url": "assets/seedIcons/tree-3_icon.png"
+                      },
+                      "co2PerYear": 10.0,
+                      "germinativePotential": 30.0,
+                      "estimatedLongevity": 1000,
+                      "estimatedFinalHeight": 35.0,
+                      "seedCost": 3.0,
+                      "establishmentCost": 90.0,
+                      "density": 100.0
+                    }
+                  },
+                  "type": "seedMarker"
+                },
+                {
+                  "id": "f00689e0-fdf4-11eb-b9c3-4135120bb15e",
+                  "name": "Ciprés",
+                  "description": "Cupressus Sempervirens",
+                  "lookAt": {
+                    "lng": 0.5561094358563423,
+                    "lat": 40.642091003788664,
+                    "range": "10000",
+                    "tilt": "45",
+                    "heading": "0"
+                  },
+                  "point": {
+                    "lat": 40.642091003788664,
+                    "lng": 0.5561094358563423
+                  },
+                  "customData": {
+                    "seed": {
+                      "id": "-Mh5IQLey88pdA1AldFJ",
+                      "commonName": "Ciprés",
+                      "scientificName": "Cupressus Sempervirens",
+                      "icon": {
+                        "name": "tree-3_icon.png",
+                        "url": "assets/seedIcons/tree-3_icon.png"
+                      },
+                      "co2PerYear": 10.0,
+                      "germinativePotential": 30.0,
+                      "estimatedLongevity": 1000,
+                      "estimatedFinalHeight": 35.0,
+                      "seedCost": 3.0,
+                      "establishmentCost": 90.0,
+                      "density": 100.0
+                    }
+                  },
+                  "type": "seedMarker"
+                },
+                {
+                  "id": "f097cd60-fdf4-11eb-b9c3-4135120bb15e",
+                  "name": "Ciprés",
+                  "description": "Cupressus Sempervirens",
+                  "lookAt": {
+                    "lng": 0.5554056912660599,
+                    "lat": 40.64262016448009,
+                    "range": "10000",
+                    "tilt": "45",
+                    "heading": "0"
+                  },
+                  "point": {
+                    "lat": 40.64262016448009,
+                    "lng": 0.5554056912660599
+                  },
+                  "customData": {
+                    "seed": {
+                      "id": "-Mh5IQLey88pdA1AldFJ",
+                      "commonName": "Ciprés",
+                      "scientificName": "Cupressus Sempervirens",
+                      "icon": {
+                        "name": "tree-3_icon.png",
+                        "url": "assets/seedIcons/tree-3_icon.png"
+                      },
+                      "co2PerYear": 10.0,
+                      "germinativePotential": 30.0,
+                      "estimatedLongevity": 1000,
+                      "estimatedFinalHeight": 35.0,
+                      "seedCost": 3.0,
+                      "establishmentCost": 90.0,
+                      "density": 100.0
+                    }
+                  },
+                  "type": "seedMarker"
+                },
+                {
+                  "id": "f0fecc90-fdf4-11eb-b9c3-4135120bb15e",
+                  "name": "Ciprés",
+                  "description": "Cupressus Sempervirens",
+                  "lookAt": {
+                    "lng": 0.5548742786049843,
+                    "lat": 40.642010357295646,
+                    "range": "10000",
+                    "tilt": "45",
+                    "heading": "0"
+                  },
+                  "point": {
+                    "lat": 40.642010357295646,
+                    "lng": 0.5548742786049843
+                  },
+                  "customData": {
+                    "seed": {
+                      "id": "-Mh5IQLey88pdA1AldFJ",
+                      "commonName": "Ciprés",
+                      "scientificName": "Cupressus Sempervirens",
+                      "icon": {
+                        "name": "tree-3_icon.png",
+                        "url": "assets/seedIcons/tree-3_icon.png"
+                      },
+                      "co2PerYear": 10.0,
+                      "germinativePotential": 30.0,
+                      "estimatedLongevity": 1000,
+                      "estimatedFinalHeight": 35.0,
+                      "seedCost": 3.0,
+                      "establishmentCost": 90.0,
+                      "density": 100.0
+                    }
+                  },
+                  "type": "seedMarker"
+                },
+                {
+                  "id": "f175d150-fdf4-11eb-b9c3-4135120bb15e",
+                  "name": "Ciprés",
+                  "description": "Cupressus Sempervirens",
+                  "lookAt": {
+                    "lng": 0.5545208975672722,
+                    "lat": 40.64151960729299,
+                    "range": "10000",
+                    "tilt": "45",
+                    "heading": "0"
+                  },
+                  "point": {
+                    "lat": 40.64151960729299,
+                    "lng": 0.5545208975672722
+                  },
+                  "customData": {
+                    "seed": {
+                      "id": "-Mh5IQLey88pdA1AldFJ",
+                      "commonName": "Ciprés",
+                      "scientificName": "Cupressus Sempervirens",
+                      "icon": {
+                        "name": "tree-3_icon.png",
+                        "url": "assets/seedIcons/tree-3_icon.png"
+                      },
+                      "co2PerYear": 10.0,
+                      "germinativePotential": 30.0,
+                      "estimatedLongevity": 1000,
+                      "estimatedFinalHeight": 35.0,
+                      "seedCost": 3.0,
+                      "establishmentCost": 90.0,
+                      "density": 100.0
+                    }
+                  },
+                  "type": "seedMarker"
+                },
+                {
+                  "id": "f1ffe8e0-fdf4-11eb-b9c3-4135120bb15e",
+                  "name": "Ciprés",
+                  "description": "Cupressus Sempervirens",
+                  "lookAt": {
+                    "lng": 0.5545510724186897,
+                    "lat": 40.64097364685543,
+                    "range": "10000",
+                    "tilt": "45",
+                    "heading": "0"
+                  },
+                  "point": {
+                    "lat": 40.64097364685543,
+                    "lng": 0.5545510724186897
+                  },
+                  "customData": {
+                    "seed": {
+                      "id": "-Mh5IQLey88pdA1AldFJ",
+                      "commonName": "Ciprés",
+                      "scientificName": "Cupressus Sempervirens",
+                      "icon": {
+                        "name": "tree-3_icon.png",
+                        "url": "assets/seedIcons/tree-3_icon.png"
+                      },
+                      "co2PerYear": 10.0,
+                      "germinativePotential": 30.0,
+                      "estimatedLongevity": 1000,
+                      "estimatedFinalHeight": 35.0,
+                      "seedCost": 3.0,
+                      "establishmentCost": 90.0,
+                      "density": 100.0
+                    }
+                  },
+                  "type": "seedMarker"
+                },
+                {
+                  "id": "f32444a0-fdf4-11eb-b9c3-4135120bb15e",
+                  "name": "Ciprés",
+                  "description": "Cupressus Sempervirens",
+                  "lookAt": {
+                    "lng": 0.555102601647377,
+                    "lat": 40.64149747384858,
+                    "range": "10000",
+                    "tilt": "45",
+                    "heading": "0"
+                  },
+                  "point": {"lat": 40.64149747384858, "lng": 0.555102601647377},
+                  "customData": {
+                    "seed": {
+                      "id": "-Mh5IQLey88pdA1AldFJ",
+                      "commonName": "Ciprés",
+                      "scientificName": "Cupressus Sempervirens",
+                      "icon": {
+                        "name": "tree-3_icon.png",
+                        "url": "assets/seedIcons/tree-3_icon.png"
+                      },
+                      "co2PerYear": 10.0,
+                      "germinativePotential": 30.0,
+                      "estimatedLongevity": 1000,
+                      "estimatedFinalHeight": 35.0,
+                      "seedCost": 3.0,
+                      "establishmentCost": 90.0,
+                      "density": 100.0
+                    }
+                  },
+                  "type": "seedMarker"
+                },
+                {
+                  "id": "f395f230-fdf4-11eb-b9c3-4135120bb15e",
+                  "name": "Ciprés",
+                  "description": "Cupressus Sempervirens",
+                  "lookAt": {
+                    "lng": 0.5554673820734024,
+                    "lat": 40.64208311722739,
+                    "range": "10000",
+                    "tilt": "45",
+                    "heading": "0"
+                  },
+                  "point": {
+                    "lat": 40.64208311722739,
+                    "lng": 0.5554673820734024
+                  },
+                  "customData": {
+                    "seed": {
+                      "id": "-Mh5IQLey88pdA1AldFJ",
+                      "commonName": "Ciprés",
+                      "scientificName": "Cupressus Sempervirens",
+                      "icon": {
+                        "name": "tree-3_icon.png",
+                        "url": "assets/seedIcons/tree-3_icon.png"
+                      },
+                      "co2PerYear": 10.0,
+                      "germinativePotential": 30.0,
+                      "estimatedLongevity": 1000,
+                      "estimatedFinalHeight": 35.0,
+                      "seedCost": 3.0,
+                      "establishmentCost": 90.0,
+                      "density": 100.0
+                    }
+                  },
+                  "type": "seedMarker"
+                },
+                {
+                  "id": "f55ef260-fdf4-11eb-b9c3-4135120bb15e",
+                  "name": "Ciprés",
+                  "description": "Cupressus Sempervirens",
+                  "lookAt": {
+                    "lng": 0.5551193654537201,
+                    "lat": 40.64104106532445,
+                    "range": "10000",
+                    "tilt": "45",
+                    "heading": "0"
+                  },
+                  "point": {
+                    "lat": 40.64104106532445,
+                    "lng": 0.5551193654537201
+                  },
+                  "customData": {
+                    "seed": {
+                      "id": "-Mh5IQLey88pdA1AldFJ",
+                      "commonName": "Ciprés",
+                      "scientificName": "Cupressus Sempervirens",
+                      "icon": {
+                        "name": "tree-3_icon.png",
+                        "url": "assets/seedIcons/tree-3_icon.png"
+                      },
+                      "co2PerYear": 10.0,
+                      "germinativePotential": 30.0,
+                      "estimatedLongevity": 1000,
+                      "estimatedFinalHeight": 35.0,
+                      "seedCost": 3.0,
+                      "establishmentCost": 90.0,
+                      "density": 100.0
+                    }
+                  },
+                  "type": "seedMarker"
+                },
+                {
+                  "id": "f8ad3300-fdf4-11eb-b9c3-4135120bb15e",
+                  "name": "Pyrola",
+                  "description": "Pyrola minor",
+                  "lookAt": {
+                    "lng": 0.5534741654992104,
+                    "lat": 40.64126240095165,
+                    "range": "10000",
+                    "tilt": "45",
+                    "heading": "0"
+                  },
+                  "point": {
+                    "lat": 40.64126240095165,
+                    "lng": 0.5534741654992104
+                  },
+                  "customData": {
+                    "seed": {
+                      "id": "-Mh5IQKb85JM7-PxY3Dt",
+                      "commonName": "Pyrola",
+                      "scientificName": "Pyrola minor",
+                      "icon": {
+                        "name": "cedar1.png",
+                        "url": "assets/seedIcons/cedar1.png"
+                      },
+                      "co2PerYear": 3.4,
+                      "germinativePotential": 97.0,
+                      "estimatedLongevity": 15,
+                      "estimatedFinalHeight": 0.2,
+                      "seedCost": 2.5,
+                      "establishmentCost": 40.0,
+                      "density": 300.0
+                    }
+                  },
+                  "type": "seedMarker"
+                },
+                {
+                  "id": "f90f2920-fdf4-11eb-b9c3-4135120bb15e",
+                  "name": "Pyrola",
+                  "description": "Pyrola minor",
+                  "lookAt": {
+                    "lng": 0.5535734072327614,
+                    "lat": 40.64207141458638,
+                    "range": "10000",
+                    "tilt": "45",
+                    "heading": "0"
+                  },
+                  "point": {
+                    "lat": 40.64207141458638,
+                    "lng": 0.5535734072327614
+                  },
+                  "customData": {
+                    "seed": {
+                      "id": "-Mh5IQKb85JM7-PxY3Dt",
+                      "commonName": "Pyrola",
+                      "scientificName": "Pyrola minor",
+                      "icon": {
+                        "name": "cedar1.png",
+                        "url": "assets/seedIcons/cedar1.png"
+                      },
+                      "co2PerYear": 3.4,
+                      "germinativePotential": 97.0,
+                      "estimatedLongevity": 15,
+                      "estimatedFinalHeight": 0.2,
+                      "seedCost": 2.5,
+                      "establishmentCost": 40.0,
+                      "density": 300.0
+                    }
+                  },
+                  "type": "seedMarker"
+                },
+                {
+                  "id": "f977fd10-fdf4-11eb-b9c3-4135120bb15e",
+                  "name": "Pyrola",
+                  "description": "Pyrola minor",
+                  "lookAt": {
+                    "lng": 0.5540940910577774,
+                    "lat": 40.64263237583115,
+                    "range": "10000",
+                    "tilt": "45",
+                    "heading": "0"
+                  },
+                  "point": {
+                    "lat": 40.64263237583115,
+                    "lng": 0.5540940910577774
+                  },
+                  "customData": {
+                    "seed": {
+                      "id": "-Mh5IQKb85JM7-PxY3Dt",
+                      "commonName": "Pyrola",
+                      "scientificName": "Pyrola minor",
+                      "icon": {
+                        "name": "cedar1.png",
+                        "url": "assets/seedIcons/cedar1.png"
+                      },
+                      "co2PerYear": 3.4,
+                      "germinativePotential": 97.0,
+                      "estimatedLongevity": 15,
+                      "estimatedFinalHeight": 0.2,
+                      "seedCost": 2.5,
+                      "establishmentCost": 40.0,
+                      "density": 300.0
+                    }
+                  },
+                  "type": "seedMarker"
+                },
+                {
+                  "id": "f9f2f970-fdf4-11eb-b9c3-4135120bb15e",
+                  "name": "Pyrola",
+                  "description": "Pyrola minor",
+                  "lookAt": {
+                    "lng": 0.5546325445175171,
+                    "lat": 40.6432498093564,
+                    "range": "10000",
+                    "tilt": "45",
+                    "heading": "0"
+                  },
+                  "point": {"lat": 40.6432498093564, "lng": 0.5546325445175171},
+                  "customData": {
+                    "seed": {
+                      "id": "-Mh5IQKb85JM7-PxY3Dt",
+                      "commonName": "Pyrola",
+                      "scientificName": "Pyrola minor",
+                      "icon": {
+                        "name": "cedar1.png",
+                        "url": "assets/seedIcons/cedar1.png"
+                      },
+                      "co2PerYear": 3.4,
+                      "germinativePotential": 97.0,
+                      "estimatedLongevity": 15,
+                      "estimatedFinalHeight": 0.2,
+                      "seedCost": 2.5,
+                      "establishmentCost": 40.0,
+                      "density": 300.0
+                    }
+                  },
+                  "type": "seedMarker"
+                },
+                {
+                  "id": "fa64a700-fdf4-11eb-b9c3-4135120bb15e",
+                  "name": "Pyrola",
+                  "description": "Pyrola minor",
+                  "lookAt": {
+                    "lng": 0.5540578812360764,
+                    "lat": 40.64385146446646,
+                    "range": "10000",
+                    "tilt": "45",
+                    "heading": "0"
+                  },
+                  "point": {
+                    "lat": 40.64385146446646,
+                    "lng": 0.5540578812360764
+                  },
+                  "customData": {
+                    "seed": {
+                      "id": "-Mh5IQKb85JM7-PxY3Dt",
+                      "commonName": "Pyrola",
+                      "scientificName": "Pyrola minor",
+                      "icon": {
+                        "name": "cedar1.png",
+                        "url": "assets/seedIcons/cedar1.png"
+                      },
+                      "co2PerYear": 3.4,
+                      "germinativePotential": 97.0,
+                      "estimatedLongevity": 15,
+                      "estimatedFinalHeight": 0.2,
+                      "seedCost": 2.5,
+                      "establishmentCost": 40.0,
+                      "density": 300.0
+                    }
+                  },
+                  "type": "seedMarker"
+                },
+                {
+                  "id": "fac64f00-fdf4-11eb-b9c3-4135120bb15e",
+                  "name": "Pyrola",
+                  "description": "Pyrola minor",
+                  "lookAt": {
+                    "lng": 0.5533916875720024,
+                    "lat": 40.64338413282797,
+                    "range": "10000",
+                    "tilt": "45",
+                    "heading": "0"
+                  },
+                  "point": {
+                    "lat": 40.64338413282797,
+                    "lng": 0.5533916875720024
+                  },
+                  "customData": {
+                    "seed": {
+                      "id": "-Mh5IQKb85JM7-PxY3Dt",
+                      "commonName": "Pyrola",
+                      "scientificName": "Pyrola minor",
+                      "icon": {
+                        "name": "cedar1.png",
+                        "url": "assets/seedIcons/cedar1.png"
+                      },
+                      "co2PerYear": 3.4,
+                      "germinativePotential": 97.0,
+                      "estimatedLongevity": 15,
+                      "estimatedFinalHeight": 0.2,
+                      "seedCost": 2.5,
+                      "establishmentCost": 40.0,
+                      "density": 300.0
+                    }
+                  },
+                  "type": "seedMarker"
+                },
+                {
+                  "id": "fb556fa0-fdf4-11eb-b9c3-4135120bb15e",
+                  "name": "Pyrola",
+                  "description": "Pyrola minor",
+                  "lookAt": {
+                    "lng": 0.5531070381402969,
+                    "lat": 40.64291221868049,
+                    "range": "10000",
+                    "tilt": "45",
+                    "heading": "0"
+                  },
+                  "point": {
+                    "lat": 40.64291221868049,
+                    "lng": 0.5531070381402969
+                  },
+                  "customData": {
+                    "seed": {
+                      "id": "-Mh5IQKb85JM7-PxY3Dt",
+                      "commonName": "Pyrola",
+                      "scientificName": "Pyrola minor",
+                      "icon": {
+                        "name": "cedar1.png",
+                        "url": "assets/seedIcons/cedar1.png"
+                      },
+                      "co2PerYear": 3.4,
+                      "germinativePotential": 97.0,
+                      "estimatedLongevity": 15,
+                      "estimatedFinalHeight": 0.2,
+                      "seedCost": 2.5,
+                      "establishmentCost": 40.0,
+                      "density": 300.0
+                    }
+                  },
+                  "type": "seedMarker"
+                },
+                {
+                  "id": "fc9569b0-fdf4-11eb-b9c3-4135120bb15e",
+                  "name": "Pyrola",
+                  "description": "Pyrola minor",
+                  "lookAt": {
+                    "lng": 0.55277980864048,
+                    "lat": 40.642371357715966,
+                    "range": "10000",
+                    "tilt": "45",
+                    "heading": "0"
+                  },
+                  "point": {"lat": 40.642371357715966, "lng": 0.55277980864048},
+                  "customData": {
+                    "seed": {
+                      "id": "-Mh5IQKb85JM7-PxY3Dt",
+                      "commonName": "Pyrola",
+                      "scientificName": "Pyrola minor",
+                      "icon": {
+                        "name": "cedar1.png",
+                        "url": "assets/seedIcons/cedar1.png"
+                      },
+                      "co2PerYear": 3.4,
+                      "germinativePotential": 97.0,
+                      "estimatedLongevity": 15,
+                      "estimatedFinalHeight": 0.2,
+                      "seedCost": 2.5,
+                      "establishmentCost": 40.0,
+                      "density": 300.0
+                    }
+                  },
+                  "type": "seedMarker"
+                },
+                {
+                  "id": "fd11ecb0-fdf4-11eb-b9c3-4135120bb15e",
+                  "name": "Pyrola",
+                  "description": "Pyrola minor",
+                  "lookAt": {
+                    "lng": 0.5527549982070923,
+                    "lat": 40.641890532200264,
+                    "range": "10000",
+                    "tilt": "45",
+                    "heading": "0"
+                  },
+                  "point": {
+                    "lat": 40.641890532200264,
+                    "lng": 0.5527549982070923
+                  },
+                  "customData": {
+                    "seed": {
+                      "id": "-Mh5IQKb85JM7-PxY3Dt",
+                      "commonName": "Pyrola",
+                      "scientificName": "Pyrola minor",
+                      "icon": {
+                        "name": "cedar1.png",
+                        "url": "assets/seedIcons/cedar1.png"
+                      },
+                      "co2PerYear": 3.4,
+                      "germinativePotential": 97.0,
+                      "estimatedLongevity": 15,
+                      "estimatedFinalHeight": 0.2,
+                      "seedCost": 2.5,
+                      "establishmentCost": 40.0,
+                      "density": 300.0
+                    }
+                  },
+                  "type": "seedMarker"
+                },
+                {
+                  "id": "fd8c25c0-fdf4-11eb-b9c3-4135120bb15e",
+                  "name": "Pyrola",
+                  "description": "Pyrola minor",
+                  "lookAt": {
+                    "lng": 0.5526262521743774,
+                    "lat": 40.64131989721289,
+                    "range": "10000",
+                    "tilt": "45",
+                    "heading": "0"
+                  },
+                  "point": {
+                    "lat": 40.64131989721289,
+                    "lng": 0.5526262521743774
+                  },
+                  "customData": {
+                    "seed": {
+                      "id": "-Mh5IQKb85JM7-PxY3Dt",
+                      "commonName": "Pyrola",
+                      "scientificName": "Pyrola minor",
+                      "icon": {
+                        "name": "cedar1.png",
+                        "url": "assets/seedIcons/cedar1.png"
+                      },
+                      "co2PerYear": 3.4,
+                      "germinativePotential": 97.0,
+                      "estimatedLongevity": 15,
+                      "estimatedFinalHeight": 0.2,
+                      "seedCost": 2.5,
+                      "establishmentCost": 40.0,
+                      "density": 300.0
+                    }
+                  },
+                  "type": "seedMarker"
+                },
+                {
+                  "id": "03f959a0-fdf5-11eb-b9c3-4135120bb15e",
+                  "name": "Romero",
+                  "description": "Rosmarinus",
+                  "lookAt": {
+                    "lng": 0.5485694110393524,
+                    "lat": 40.63957616114234,
+                    "range": "10000",
+                    "tilt": "45",
+                    "heading": "0"
+                  },
+                  "point": {
+                    "lat": 40.63957616114234,
+                    "lng": 0.5485694110393524
+                  },
+                  "customData": {
+                    "seed": {
+                      "id": "-Mh5IQLgY3QeWbK6l1LK",
+                      "commonName": "Romero",
+                      "scientificName": "Rosmarinus",
+                      "icon": {
+                        "name": "tree-18_icon.png",
+                        "url": "assets/seedIcons/tree-18_icon.png"
+                      },
+                      "co2PerYear": 40.0,
+                      "germinativePotential": 80.0,
+                      "estimatedLongevity": 80,
+                      "estimatedFinalHeight": 1.5,
+                      "seedCost": 1.5,
+                      "establishmentCost": 25.0,
+                      "density": 200.0
+                    }
+                  },
+                  "type": "seedMarker"
+                },
+                {
+                  "id": "046efed0-fdf5-11eb-b9c3-4135120bb15e",
+                  "name": "Romero",
+                  "description": "Rosmarinus",
+                  "lookAt": {
+                    "lng": 0.54847352206707,
+                    "lat": 40.6407194913354,
+                    "range": "10000",
+                    "tilt": "45",
+                    "heading": "0"
+                  },
+                  "point": {"lat": 40.6407194913354, "lng": 0.54847352206707},
+                  "customData": {
+                    "seed": {
+                      "id": "-Mh5IQLgY3QeWbK6l1LK",
+                      "commonName": "Romero",
+                      "scientificName": "Rosmarinus",
+                      "icon": {
+                        "name": "tree-18_icon.png",
+                        "url": "assets/seedIcons/tree-18_icon.png"
+                      },
+                      "co2PerYear": 40.0,
+                      "germinativePotential": 80.0,
+                      "estimatedLongevity": 80,
+                      "estimatedFinalHeight": 1.5,
+                      "seedCost": 1.5,
+                      "establishmentCost": 25.0,
+                      "density": 200.0
+                    }
+                  },
+                  "type": "seedMarker"
+                },
+                {
+                  "id": "0504fd40-fdf5-11eb-b9c3-4135120bb15e",
+                  "name": "Romero",
+                  "description": "Rosmarinus",
+                  "lookAt": {
+                    "lng": 0.5485610291361809,
+                    "lat": 40.64186381957004,
+                    "range": "10000",
+                    "tilt": "45",
+                    "heading": "0"
+                  },
+                  "point": {
+                    "lat": 40.64186381957004,
+                    "lng": 0.5485610291361809
+                  },
+                  "customData": {
+                    "seed": {
+                      "id": "-Mh5IQLgY3QeWbK6l1LK",
+                      "commonName": "Romero",
+                      "scientificName": "Rosmarinus",
+                      "icon": {
+                        "name": "tree-18_icon.png",
+                        "url": "assets/seedIcons/tree-18_icon.png"
+                      },
+                      "co2PerYear": 40.0,
+                      "germinativePotential": 80.0,
+                      "estimatedLongevity": 80,
+                      "estimatedFinalHeight": 1.5,
+                      "seedCost": 1.5,
+                      "establishmentCost": 25.0,
+                      "density": 200.0
+                    }
+                  },
+                  "type": "seedMarker"
+                },
+                {
+                  "id": "05783170-fdf5-11eb-b9c3-4135120bb15e",
+                  "name": "Romero",
+                  "description": "Rosmarinus",
+                  "lookAt": {
+                    "lng": 0.5488030984997749,
+                    "lat": 40.64269241494132,
+                    "range": "10000",
+                    "tilt": "45",
+                    "heading": "0"
+                  },
+                  "point": {
+                    "lat": 40.64269241494132,
+                    "lng": 0.5488030984997749
+                  },
+                  "customData": {
+                    "seed": {
+                      "id": "-Mh5IQLgY3QeWbK6l1LK",
+                      "commonName": "Romero",
+                      "scientificName": "Rosmarinus",
+                      "icon": {
+                        "name": "tree-18_icon.png",
+                        "url": "assets/seedIcons/tree-18_icon.png"
+                      },
+                      "co2PerYear": 40.0,
+                      "germinativePotential": 80.0,
+                      "estimatedLongevity": 80,
+                      "estimatedFinalHeight": 1.5,
+                      "seedCost": 1.5,
+                      "establishmentCost": 25.0,
+                      "density": 200.0
+                    }
+                  },
+                  "type": "seedMarker"
+                },
+                {
+                  "id": "064ce690-fdf5-11eb-b9c3-4135120bb15e",
+                  "name": "Romero",
+                  "description": "Rosmarinus",
+                  "lookAt": {
+                    "lng": 0.5494897440075874,
+                    "lat": 40.64356679196351,
+                    "range": "10000",
+                    "tilt": "45",
+                    "heading": "0"
+                  },
+                  "point": {
+                    "lat": 40.64356679196351,
+                    "lng": 0.5494897440075874
+                  },
+                  "customData": {
+                    "seed": {
+                      "id": "-Mh5IQLgY3QeWbK6l1LK",
+                      "commonName": "Romero",
+                      "scientificName": "Rosmarinus",
+                      "icon": {
+                        "name": "tree-18_icon.png",
+                        "url": "assets/seedIcons/tree-18_icon.png"
+                      },
+                      "co2PerYear": 40.0,
+                      "germinativePotential": 80.0,
+                      "estimatedLongevity": 80,
+                      "estimatedFinalHeight": 1.5,
+                      "seedCost": 1.5,
+                      "establishmentCost": 25.0,
+                      "density": 200.0
+                    }
+                  },
+                  "type": "seedMarker"
+                },
+                {
+                  "id": "06f6bb20-fdf5-11eb-b9c3-4135120bb15e",
+                  "name": "Romero",
+                  "description": "Rosmarinus",
+                  "lookAt": {
+                    "lng": 0.550321564078331,
+                    "lat": 40.64436280344665,
+                    "range": "10000",
+                    "tilt": "45",
+                    "heading": "0"
+                  },
+                  "point": {"lat": 40.64436280344665, "lng": 0.550321564078331},
+                  "customData": {
+                    "seed": {
+                      "id": "-Mh5IQLgY3QeWbK6l1LK",
+                      "commonName": "Romero",
+                      "scientificName": "Rosmarinus",
+                      "icon": {
+                        "name": "tree-18_icon.png",
+                        "url": "assets/seedIcons/tree-18_icon.png"
+                      },
+                      "co2PerYear": 40.0,
+                      "germinativePotential": 80.0,
+                      "estimatedLongevity": 80,
+                      "estimatedFinalHeight": 1.5,
+                      "seedCost": 1.5,
+                      "establishmentCost": 25.0,
+                      "density": 200.0
+                    }
+                  },
+                  "type": "seedMarker"
+                },
+                {
+                  "id": "07633890-fdf5-11eb-b9c3-4135120bb15e",
+                  "name": "Romero",
+                  "description": "Rosmarinus",
+                  "lookAt": {
+                    "lng": 0.55123720318079,
+                    "lat": 40.645222149386335,
+                    "range": "10000",
+                    "tilt": "45",
+                    "heading": "0"
+                  },
+                  "point": {"lat": 40.645222149386335, "lng": 0.55123720318079},
+                  "customData": {
+                    "seed": {
+                      "id": "-Mh5IQLgY3QeWbK6l1LK",
+                      "commonName": "Romero",
+                      "scientificName": "Rosmarinus",
+                      "icon": {
+                        "name": "tree-18_icon.png",
+                        "url": "assets/seedIcons/tree-18_icon.png"
+                      },
+                      "co2PerYear": 40.0,
+                      "germinativePotential": 80.0,
+                      "estimatedLongevity": 80,
+                      "estimatedFinalHeight": 1.5,
+                      "seedCost": 1.5,
+                      "establishmentCost": 25.0,
+                      "density": 200.0
+                    }
+                  },
+                  "type": "seedMarker"
+                },
+                {
+                  "id": "08aaacb0-fdf5-11eb-b9c3-4135120bb15e",
+                  "name": "Romero",
+                  "description": "Rosmarinus",
+                  "lookAt": {
+                    "lng": 0.5519114434719086,
+                    "lat": 40.64501583613956,
+                    "range": "10000",
+                    "tilt": "45",
+                    "heading": "0"
+                  },
+                  "point": {
+                    "lat": 40.64501583613956,
+                    "lng": 0.5519114434719086
+                  },
+                  "customData": {
+                    "seed": {
+                      "id": "-Mh5IQLgY3QeWbK6l1LK",
+                      "commonName": "Romero",
+                      "scientificName": "Rosmarinus",
+                      "icon": {
+                        "name": "tree-18_icon.png",
+                        "url": "assets/seedIcons/tree-18_icon.png"
+                      },
+                      "co2PerYear": 40.0,
+                      "germinativePotential": 80.0,
+                      "estimatedLongevity": 80,
+                      "estimatedFinalHeight": 1.5,
+                      "seedCost": 1.5,
+                      "establishmentCost": 25.0,
+                      "density": 200.0
+                    }
+                  },
+                  "type": "seedMarker"
+                },
+                {
+                  "id": "09578e80-fdf5-11eb-b9c3-4135120bb15e",
+                  "name": "Romero",
+                  "description": "Rosmarinus",
+                  "lookAt": {
+                    "lng": 0.5513686314225197,
+                    "lat": 40.644658665953074,
+                    "range": "10000",
+                    "tilt": "45",
+                    "heading": "0"
+                  },
+                  "point": {
+                    "lat": 40.644658665953074,
+                    "lng": 0.5513686314225197
+                  },
+                  "customData": {
+                    "seed": {
+                      "id": "-Mh5IQLgY3QeWbK6l1LK",
+                      "commonName": "Romero",
+                      "scientificName": "Rosmarinus",
+                      "icon": {
+                        "name": "tree-18_icon.png",
+                        "url": "assets/seedIcons/tree-18_icon.png"
+                      },
+                      "co2PerYear": 40.0,
+                      "germinativePotential": 80.0,
+                      "estimatedLongevity": 80,
+                      "estimatedFinalHeight": 1.5,
+                      "seedCost": 1.5,
+                      "establishmentCost": 25.0,
+                      "density": 200.0
+                    }
+                  },
+                  "type": "seedMarker"
+                },
+                {
+                  "id": "09cb5ef0-fdf5-11eb-b9c3-4135120bb15e",
+                  "name": "Romero",
+                  "description": "Rosmarinus",
+                  "lookAt": {
+                    "lng": 0.5508288368582726,
+                    "lat": 40.64394101267029,
+                    "range": "10000",
+                    "tilt": "45",
+                    "heading": "0"
+                  },
+                  "point": {
+                    "lat": 40.64394101267029,
+                    "lng": 0.5508288368582726
+                  },
+                  "customData": {
+                    "seed": {
+                      "id": "-Mh5IQLgY3QeWbK6l1LK",
+                      "commonName": "Romero",
+                      "scientificName": "Rosmarinus",
+                      "icon": {
+                        "name": "tree-18_icon.png",
+                        "url": "assets/seedIcons/tree-18_icon.png"
+                      },
+                      "co2PerYear": 40.0,
+                      "germinativePotential": 80.0,
+                      "estimatedLongevity": 80,
+                      "estimatedFinalHeight": 1.5,
+                      "seedCost": 1.5,
+                      "establishmentCost": 25.0,
+                      "density": 200.0
+                    }
+                  },
+                  "type": "seedMarker"
+                },
+                {
+                  "id": "0aad8190-fdf5-11eb-b9c3-4135120bb15e",
+                  "name": "Romero",
+                  "description": "Rosmarinus",
+                  "lookAt": {
+                    "lng": 0.5501851066946983,
+                    "lat": 40.643556107181034,
+                    "range": "10000",
+                    "tilt": "45",
+                    "heading": "0"
+                  },
+                  "point": {
+                    "lat": 40.643556107181034,
+                    "lng": 0.5501851066946983
+                  },
+                  "customData": {
+                    "seed": {
+                      "id": "-Mh5IQLgY3QeWbK6l1LK",
+                      "commonName": "Romero",
+                      "scientificName": "Rosmarinus",
+                      "icon": {
+                        "name": "tree-18_icon.png",
+                        "url": "assets/seedIcons/tree-18_icon.png"
+                      },
+                      "co2PerYear": 40.0,
+                      "germinativePotential": 80.0,
+                      "estimatedLongevity": 80,
+                      "estimatedFinalHeight": 1.5,
+                      "seedCost": 1.5,
+                      "establishmentCost": 25.0,
+                      "density": 200.0
+                    }
+                  },
+                  "type": "seedMarker"
+                },
+                {
+                  "id": "0b1fcb60-fdf5-11eb-b9c3-4135120bb15e",
+                  "name": "Romero",
+                  "description": "Rosmarinus",
+                  "lookAt": {
+                    "lng": 0.5497127026319504,
+                    "lat": 40.642913745092805,
+                    "range": "10000",
+                    "tilt": "45",
+                    "heading": "0"
+                  },
+                  "point": {
+                    "lat": 40.642913745092805,
+                    "lng": 0.5497127026319504
+                  },
+                  "customData": {
+                    "seed": {
+                      "id": "-Mh5IQLgY3QeWbK6l1LK",
+                      "commonName": "Romero",
+                      "scientificName": "Rosmarinus",
+                      "icon": {
+                        "name": "tree-18_icon.png",
+                        "url": "assets/seedIcons/tree-18_icon.png"
+                      },
+                      "co2PerYear": 40.0,
+                      "germinativePotential": 80.0,
+                      "estimatedLongevity": 80,
+                      "estimatedFinalHeight": 1.5,
+                      "seedCost": 1.5,
+                      "establishmentCost": 25.0,
+                      "density": 200.0
+                    }
+                  },
+                  "type": "seedMarker"
+                },
+                {
+                  "id": "0bfac210-fdf5-11eb-b9c3-4135120bb15e",
+                  "name": "Romero",
+                  "description": "Rosmarinus",
+                  "lookAt": {
+                    "lng": 0.5493184179067612,
+                    "lat": 40.642377209010434,
+                    "range": "10000",
+                    "tilt": "45",
+                    "heading": "0"
+                  },
+                  "point": {
+                    "lat": 40.642377209010434,
+                    "lng": 0.5493184179067612
+                  },
+                  "customData": {
+                    "seed": {
+                      "id": "-Mh5IQLgY3QeWbK6l1LK",
+                      "commonName": "Romero",
+                      "scientificName": "Rosmarinus",
+                      "icon": {
+                        "name": "tree-18_icon.png",
+                        "url": "assets/seedIcons/tree-18_icon.png"
+                      },
+                      "co2PerYear": 40.0,
+                      "germinativePotential": 80.0,
+                      "estimatedLongevity": 80,
+                      "estimatedFinalHeight": 1.5,
+                      "seedCost": 1.5,
+                      "establishmentCost": 25.0,
+                      "density": 200.0
+                    }
+                  },
+                  "type": "seedMarker"
+                },
+                {
+                  "id": "0c6cbdc0-fdf5-11eb-b9c3-4135120bb15e",
+                  "name": "Romero",
+                  "description": "Rosmarinus",
+                  "lookAt": {
+                    "lng": 0.5490223690867424,
+                    "lat": 40.641503070812256,
+                    "range": "10000",
+                    "tilt": "45",
+                    "heading": "0"
+                  },
+                  "point": {
+                    "lat": 40.641503070812256,
+                    "lng": 0.5490223690867424
+                  },
+                  "customData": {
+                    "seed": {
+                      "id": "-Mh5IQLgY3QeWbK6l1LK",
+                      "commonName": "Romero",
+                      "scientificName": "Rosmarinus",
+                      "icon": {
+                        "name": "tree-18_icon.png",
+                        "url": "assets/seedIcons/tree-18_icon.png"
+                      },
+                      "co2PerYear": 40.0,
+                      "germinativePotential": 80.0,
+                      "estimatedLongevity": 80,
+                      "estimatedFinalHeight": 1.5,
+                      "seedCost": 1.5,
+                      "establishmentCost": 25.0,
+                      "density": 200.0
+                    }
+                  },
+                  "type": "seedMarker"
+                },
+                {
+                  "id": "0d0ef130-fdf5-11eb-b9c3-4135120bb15e",
+                  "name": "Romero",
+                  "description": "Rosmarinus",
+                  "lookAt": {
+                    "lng": 0.5490384623408318,
+                    "lat": 40.64038875697751,
+                    "range": "10000",
+                    "tilt": "45",
+                    "heading": "0"
+                  },
+                  "point": {
+                    "lat": 40.64038875697751,
+                    "lng": 0.5490384623408318
+                  },
+                  "customData": {
+                    "seed": {
+                      "id": "-Mh5IQLgY3QeWbK6l1LK",
+                      "commonName": "Romero",
+                      "scientificName": "Rosmarinus",
+                      "icon": {
+                        "name": "tree-18_icon.png",
+                        "url": "assets/seedIcons/tree-18_icon.png"
+                      },
+                      "co2PerYear": 40.0,
+                      "germinativePotential": 80.0,
+                      "estimatedLongevity": 80,
+                      "estimatedFinalHeight": 1.5,
+                      "seedCost": 1.5,
+                      "establishmentCost": 25.0,
+                      "density": 200.0
+                    }
+                  },
+                  "type": "seedMarker"
+                },
+                {
+                  "id": "0dab5840-fdf5-11eb-b9c3-4135120bb15e",
+                  "name": "Romero",
+                  "description": "Rosmarinus",
+                  "lookAt": {
+                    "lng": 0.5494729802012444,
+                    "lat": 40.63978274561735,
+                    "range": "10000",
+                    "tilt": "45",
+                    "heading": "0"
+                  },
+                  "point": {
+                    "lat": 40.63978274561735,
+                    "lng": 0.5494729802012444
+                  },
+                  "customData": {
+                    "seed": {
+                      "id": "-Mh5IQLgY3QeWbK6l1LK",
+                      "commonName": "Romero",
+                      "scientificName": "Rosmarinus",
+                      "icon": {
+                        "name": "tree-18_icon.png",
+                        "url": "assets/seedIcons/tree-18_icon.png"
+                      },
+                      "co2PerYear": 40.0,
+                      "germinativePotential": 80.0,
+                      "estimatedLongevity": 80,
+                      "estimatedFinalHeight": 1.5,
+                      "seedCost": 1.5,
+                      "establishmentCost": 25.0,
+                      "density": 200.0
+                    }
+                  },
+                  "type": "seedMarker"
+                },
+                {
+                  "id": "11c21900-fdf5-11eb-b9c3-4135120bb15e",
+                  "name": "Common beech tree",
+                  "description": "Fagus sylvatica",
+                  "lookAt": {
+                    "lng": 0.549800880253315,
+                    "lat": 40.64078156744762,
+                    "range": "10000",
+                    "tilt": "45",
+                    "heading": "0"
+                  },
+                  "point": {"lat": 40.64078156744762, "lng": 0.549800880253315},
+                  "customData": {
+                    "seed": {
+                      "id": "-Mh5IQKc9nI24NadZ-xd",
+                      "commonName": "Common beech tree",
+                      "scientificName": "Fagus sylvatica",
+                      "icon": {
+                        "name": "palmtree.png",
+                        "url": "assets/seedIcons/palmtree.png"
+                      },
+                      "co2PerYear": 4.8,
+                      "germinativePotential": 98.0,
+                      "estimatedLongevity": 400,
+                      "estimatedFinalHeight": 40.0,
+                      "seedCost": 1.99,
+                      "establishmentCost": 90.0,
+                      "density": 400.0
+                    }
+                  },
+                  "type": "seedMarker"
+                },
+                {
+                  "id": "122a50b0-fdf5-11eb-b9c3-4135120bb15e",
+                  "name": "Common beech tree",
+                  "description": "Fagus sylvatica",
+                  "lookAt": {
+                    "lng": 0.5499722063541412,
+                    "lat": 40.64158219147541,
+                    "range": "10000",
+                    "tilt": "45",
+                    "heading": "0"
+                  },
+                  "point": {
+                    "lat": 40.64158219147541,
+                    "lng": 0.5499722063541412
+                  },
+                  "customData": {
+                    "seed": {
+                      "id": "-Mh5IQKc9nI24NadZ-xd",
+                      "commonName": "Common beech tree",
+                      "scientificName": "Fagus sylvatica",
+                      "icon": {
+                        "name": "palmtree.png",
+                        "url": "assets/seedIcons/palmtree.png"
+                      },
+                      "co2PerYear": 4.8,
+                      "germinativePotential": 98.0,
+                      "estimatedLongevity": 400,
+                      "estimatedFinalHeight": 40.0,
+                      "seedCost": 1.99,
+                      "establishmentCost": 90.0,
+                      "density": 400.0
+                    }
+                  },
+                  "type": "seedMarker"
+                },
+                {
+                  "id": "1273b5c0-fdf5-11eb-b9c3-4135120bb15e",
+                  "name": "Common beech tree",
+                  "description": "Fagus sylvatica",
+                  "lookAt": {
+                    "lng": 0.5501328036189079,
+                    "lat": 40.64245047734992,
+                    "range": "10000",
+                    "tilt": "45",
+                    "heading": "0"
+                  },
+                  "point": {
+                    "lat": 40.64245047734992,
+                    "lng": 0.5501328036189079
+                  },
+                  "customData": {
+                    "seed": {
+                      "id": "-Mh5IQKc9nI24NadZ-xd",
+                      "commonName": "Common beech tree",
+                      "scientificName": "Fagus sylvatica",
+                      "icon": {
+                        "name": "palmtree.png",
+                        "url": "assets/seedIcons/palmtree.png"
+                      },
+                      "co2PerYear": 4.8,
+                      "germinativePotential": 98.0,
+                      "estimatedLongevity": 400,
+                      "estimatedFinalHeight": 40.0,
+                      "seedCost": 1.99,
+                      "establishmentCost": 90.0,
+                      "density": 400.0
+                    }
+                  },
+                  "type": "seedMarker"
+                },
+                {
+                  "id": "12e00c20-fdf5-11eb-b9c3-4135120bb15e",
+                  "name": "Common beech tree",
+                  "description": "Fagus sylvatica",
+                  "lookAt": {
+                    "lng": 0.550616942346096,
+                    "lat": 40.643139399330785,
+                    "range": "10000",
+                    "tilt": "45",
+                    "heading": "0"
+                  },
+                  "point": {
+                    "lat": 40.643139399330785,
+                    "lng": 0.550616942346096
+                  },
+                  "customData": {
+                    "seed": {
+                      "id": "-Mh5IQKc9nI24NadZ-xd",
+                      "commonName": "Common beech tree",
+                      "scientificName": "Fagus sylvatica",
+                      "icon": {
+                        "name": "palmtree.png",
+                        "url": "assets/seedIcons/palmtree.png"
+                      },
+                      "co2PerYear": 4.8,
+                      "germinativePotential": 98.0,
+                      "estimatedLongevity": 400,
+                      "estimatedFinalHeight": 40.0,
+                      "seedCost": 1.99,
+                      "establishmentCost": 90.0,
+                      "density": 400.0
+                    }
+                  },
+                  "type": "seedMarker"
+                },
+                {
+                  "id": "1452d600-fdf5-11eb-b9c3-4135120bb15e",
+                  "name": "Common beech tree",
+                  "description": "Fagus sylvatica",
+                  "lookAt": {
+                    "lng": 0.5511849001049995,
+                    "lat": 40.643571879954536,
+                    "range": "10000",
+                    "tilt": "45",
+                    "heading": "0"
+                  },
+                  "point": {
+                    "lat": 40.643571879954536,
+                    "lng": 0.5511849001049995
+                  },
+                  "customData": {
+                    "seed": {
+                      "id": "-Mh5IQKc9nI24NadZ-xd",
+                      "commonName": "Common beech tree",
+                      "scientificName": "Fagus sylvatica",
+                      "icon": {
+                        "name": "palmtree.png",
+                        "url": "assets/seedIcons/palmtree.png"
+                      },
+                      "co2PerYear": 4.8,
+                      "germinativePotential": 98.0,
+                      "estimatedLongevity": 400,
+                      "estimatedFinalHeight": 40.0,
+                      "seedCost": 1.99,
+                      "establishmentCost": 90.0,
+                      "density": 400.0
+                    }
+                  },
+                  "type": "seedMarker"
+                },
+                {
+                  "id": "15097bd0-fdf5-11eb-b9c3-4135120bb15e",
+                  "name": "Common beech tree",
+                  "description": "Fagus sylvatica",
+                  "lookAt": {
+                    "lng": 0.5518470704555511,
+                    "lat": 40.64443530641779,
+                    "range": "10000",
+                    "tilt": "45",
+                    "heading": "0"
+                  },
+                  "point": {
+                    "lat": 40.64443530641779,
+                    "lng": 0.5518470704555511
+                  },
+                  "customData": {
+                    "seed": {
+                      "id": "-Mh5IQKc9nI24NadZ-xd",
+                      "commonName": "Common beech tree",
+                      "scientificName": "Fagus sylvatica",
+                      "icon": {
+                        "name": "palmtree.png",
+                        "url": "assets/seedIcons/palmtree.png"
+                      },
+                      "co2PerYear": 4.8,
+                      "germinativePotential": 98.0,
+                      "estimatedLongevity": 400,
+                      "estimatedFinalHeight": 40.0,
+                      "seedCost": 1.99,
+                      "establishmentCost": 90.0,
+                      "density": 400.0
+                    }
+                  },
+                  "type": "seedMarker"
+                },
+                {
+                  "id": "15770ab0-fdf5-11eb-b9c3-4135120bb15e",
+                  "name": "Common beech tree",
+                  "description": "Fagus sylvatica",
+                  "lookAt": {
+                    "lng": 0.5515614151954651,
+                    "lat": 40.64408144029352,
+                    "range": "10000",
+                    "tilt": "45",
+                    "heading": "0"
+                  },
+                  "point": {
+                    "lat": 40.64408144029352,
+                    "lng": 0.5515614151954651
+                  },
+                  "customData": {
+                    "seed": {
+                      "id": "-Mh5IQKc9nI24NadZ-xd",
+                      "commonName": "Common beech tree",
+                      "scientificName": "Fagus sylvatica",
+                      "icon": {
+                        "name": "palmtree.png",
+                        "url": "assets/seedIcons/palmtree.png"
+                      },
+                      "co2PerYear": 4.8,
+                      "germinativePotential": 98.0,
+                      "estimatedLongevity": 400,
+                      "estimatedFinalHeight": 40.0,
+                      "seedCost": 1.99,
+                      "establishmentCost": 90.0,
+                      "density": 400.0
+                    }
+                  },
+                  "type": "seedMarker"
+                },
+                {
+                  "id": "162d8970-fdf5-11eb-b9c3-4135120bb15e",
+                  "name": "Common beech tree",
+                  "description": "Fagus sylvatica",
+                  "lookAt": {
+                    "lng": 0.5523945763707161,
+                    "lat": 40.64480723270156,
+                    "range": "10000",
+                    "tilt": "45",
+                    "heading": "0"
+                  },
+                  "point": {
+                    "lat": 40.64480723270156,
+                    "lng": 0.5523945763707161
+                  },
+                  "customData": {
+                    "seed": {
+                      "id": "-Mh5IQKc9nI24NadZ-xd",
+                      "commonName": "Common beech tree",
+                      "scientificName": "Fagus sylvatica",
+                      "icon": {
+                        "name": "palmtree.png",
+                        "url": "assets/seedIcons/palmtree.png"
+                      },
+                      "co2PerYear": 4.8,
+                      "germinativePotential": 98.0,
+                      "estimatedLongevity": 400,
+                      "estimatedFinalHeight": 40.0,
+                      "seedCost": 1.99,
+                      "establishmentCost": 90.0,
+                      "density": 400.0
+                    }
+                  },
+                  "type": "seedMarker"
+                },
+                {
+                  "id": "16a1cf10-fdf5-11eb-b9c3-4135120bb15e",
+                  "name": "Common beech tree",
+                  "description": "Fagus sylvatica",
+                  "lookAt": {
+                    "lng": 0.5527731031179428,
+                    "lat": 40.644633480803705,
+                    "range": "10000",
+                    "tilt": "45",
+                    "heading": "0"
+                  },
+                  "point": {
+                    "lat": 40.644633480803705,
+                    "lng": 0.5527731031179428
+                  },
+                  "customData": {
+                    "seed": {
+                      "id": "-Mh5IQKc9nI24NadZ-xd",
+                      "commonName": "Common beech tree",
+                      "scientificName": "Fagus sylvatica",
+                      "icon": {
+                        "name": "palmtree.png",
+                        "url": "assets/seedIcons/palmtree.png"
+                      },
+                      "co2PerYear": 4.8,
+                      "germinativePotential": 98.0,
+                      "estimatedLongevity": 400,
+                      "estimatedFinalHeight": 40.0,
+                      "seedCost": 1.99,
+                      "establishmentCost": 90.0,
+                      "density": 400.0
+                    }
+                  },
+                  "type": "seedMarker"
+                },
+                {
+                  "id": "16e0faf0-fdf5-11eb-b9c3-4135120bb15e",
+                  "name": "Common beech tree",
+                  "description": "Fagus sylvatica",
+                  "lookAt": {
+                    "lng": 0.5523033812642097,
+                    "lat": 40.64423280669422,
+                    "range": "10000",
+                    "tilt": "45",
+                    "heading": "0"
+                  },
+                  "point": {
+                    "lat": 40.64423280669422,
+                    "lng": 0.5523033812642097
+                  },
+                  "customData": {
+                    "seed": {
+                      "id": "-Mh5IQKc9nI24NadZ-xd",
+                      "commonName": "Common beech tree",
+                      "scientificName": "Fagus sylvatica",
+                      "icon": {
+                        "name": "palmtree.png",
+                        "url": "assets/seedIcons/palmtree.png"
+                      },
+                      "co2PerYear": 4.8,
+                      "germinativePotential": 98.0,
+                      "estimatedLongevity": 400,
+                      "estimatedFinalHeight": 40.0,
+                      "seedCost": 1.99,
+                      "establishmentCost": 90.0,
+                      "density": 400.0
+                    }
+                  },
+                  "type": "seedMarker"
+                },
+                {
+                  "id": "179d1f00-fdf5-11eb-b9c3-4135120bb15e",
+                  "name": "Common beech tree",
+                  "description": "Fagus sylvatica",
+                  "lookAt": {
+                    "lng": 0.5520257726311684,
+                    "lat": 40.643982733951525,
+                    "range": "10000",
+                    "tilt": "45",
+                    "heading": "0"
+                  },
+                  "point": {
+                    "lat": 40.643982733951525,
+                    "lng": 0.5520257726311684
+                  },
+                  "customData": {
+                    "seed": {
+                      "id": "-Mh5IQKc9nI24NadZ-xd",
+                      "commonName": "Common beech tree",
+                      "scientificName": "Fagus sylvatica",
+                      "icon": {
+                        "name": "palmtree.png",
+                        "url": "assets/seedIcons/palmtree.png"
+                      },
+                      "co2PerYear": 4.8,
+                      "germinativePotential": 98.0,
+                      "estimatedLongevity": 400,
+                      "estimatedFinalHeight": 40.0,
+                      "seedCost": 1.99,
+                      "establishmentCost": 90.0,
+                      "density": 400.0
+                    }
+                  },
+                  "type": "seedMarker"
+                },
+                {
+                  "id": "17de46b0-fdf5-11eb-b9c3-4135120bb15e",
+                  "name": "Common beech tree",
+                  "description": "Fagus sylvatica",
+                  "lookAt": {
+                    "lng": 0.5516583099961281,
+                    "lat": 40.64358281913398,
+                    "range": "10000",
+                    "tilt": "45",
+                    "heading": "0"
+                  },
+                  "point": {
+                    "lat": 40.64358281913398,
+                    "lng": 0.5516583099961281
+                  },
+                  "customData": {
+                    "seed": {
+                      "id": "-Mh5IQKc9nI24NadZ-xd",
+                      "commonName": "Common beech tree",
+                      "scientificName": "Fagus sylvatica",
+                      "icon": {
+                        "name": "palmtree.png",
+                        "url": "assets/seedIcons/palmtree.png"
+                      },
+                      "co2PerYear": 4.8,
+                      "germinativePotential": 98.0,
+                      "estimatedLongevity": 400,
+                      "estimatedFinalHeight": 40.0,
+                      "seedCost": 1.99,
+                      "establishmentCost": 90.0,
+                      "density": 400.0
+                    }
+                  },
+                  "type": "seedMarker"
+                },
+                {
+                  "id": "18b015a0-fdf5-11eb-b9c3-4135120bb15e",
+                  "name": "Common beech tree",
+                  "description": "Fagus sylvatica",
+                  "lookAt": {
+                    "lng": 0.5512331798672676,
+                    "lat": 40.643202236395396,
+                    "range": "10000",
+                    "tilt": "45",
+                    "heading": "0"
+                  },
+                  "point": {
+                    "lat": 40.643202236395396,
+                    "lng": 0.5512331798672676
+                  },
+                  "customData": {
+                    "seed": {
+                      "id": "-Mh5IQKc9nI24NadZ-xd",
+                      "commonName": "Common beech tree",
+                      "scientificName": "Fagus sylvatica",
+                      "icon": {
+                        "name": "palmtree.png",
+                        "url": "assets/seedIcons/palmtree.png"
+                      },
+                      "co2PerYear": 4.8,
+                      "germinativePotential": 98.0,
+                      "estimatedLongevity": 400,
+                      "estimatedFinalHeight": 40.0,
+                      "seedCost": 1.99,
+                      "establishmentCost": 90.0,
+                      "density": 400.0
+                    }
+                  },
+                  "type": "seedMarker"
+                },
+                {
+                  "id": "18e55670-fdf5-11eb-b9c3-4135120bb15e",
+                  "name": "Common beech tree",
+                  "description": "Fagus sylvatica",
+                  "lookAt": {
+                    "lng": 0.5508757755160332,
+                    "lat": 40.642732864989334,
+                    "range": "10000",
+                    "tilt": "45",
+                    "heading": "0"
+                  },
+                  "point": {
+                    "lat": 40.642732864989334,
+                    "lng": 0.5508757755160332
+                  },
+                  "customData": {
+                    "seed": {
+                      "id": "-Mh5IQKc9nI24NadZ-xd",
+                      "commonName": "Common beech tree",
+                      "scientificName": "Fagus sylvatica",
+                      "icon": {
+                        "name": "palmtree.png",
+                        "url": "assets/seedIcons/palmtree.png"
+                      },
+                      "co2PerYear": 4.8,
+                      "germinativePotential": 98.0,
+                      "estimatedLongevity": 400,
+                      "estimatedFinalHeight": 40.0,
+                      "seedCost": 1.99,
+                      "establishmentCost": 90.0,
+                      "density": 400.0
+                    }
+                  },
+                  "type": "seedMarker"
+                },
+                {
+                  "id": "19c2e530-fdf5-11eb-b9c3-4135120bb15e",
+                  "name": "Common beech tree",
+                  "description": "Fagus sylvatica",
+                  "lookAt": {
+                    "lng": 0.550525076687336,
+                    "lat": 40.642336758746886,
+                    "range": "10000",
+                    "tilt": "45",
+                    "heading": "0"
+                  },
+                  "point": {
+                    "lat": 40.642336758746886,
+                    "lng": 0.550525076687336
+                  },
+                  "customData": {
+                    "seed": {
+                      "id": "-Mh5IQKc9nI24NadZ-xd",
+                      "commonName": "Common beech tree",
+                      "scientificName": "Fagus sylvatica",
+                      "icon": {
+                        "name": "palmtree.png",
+                        "url": "assets/seedIcons/palmtree.png"
+                      },
+                      "co2PerYear": 4.8,
+                      "germinativePotential": 98.0,
+                      "estimatedLongevity": 400,
+                      "estimatedFinalHeight": 40.0,
+                      "seedCost": 1.99,
+                      "establishmentCost": 90.0,
+                      "density": 400.0
+                    }
+                  },
+                  "type": "seedMarker"
+                },
+                {
+                  "id": "1a40eed0-fdf5-11eb-b9c3-4135120bb15e",
+                  "name": "Common beech tree",
+                  "description": "Fagus sylvatica",
+                  "lookAt": {
+                    "lng": 0.5499755591154099,
+                    "lat": 40.6420017075083,
+                    "range": "10000",
+                    "tilt": "45",
+                    "heading": "0"
+                  },
+                  "point": {"lat": 40.6420017075083, "lng": 0.5499755591154099},
+                  "customData": {
+                    "seed": {
+                      "id": "-Mh5IQKc9nI24NadZ-xd",
+                      "commonName": "Common beech tree",
+                      "scientificName": "Fagus sylvatica",
+                      "icon": {
+                        "name": "palmtree.png",
+                        "url": "assets/seedIcons/palmtree.png"
+                      },
+                      "co2PerYear": 4.8,
+                      "germinativePotential": 98.0,
+                      "estimatedLongevity": 400,
+                      "estimatedFinalHeight": 40.0,
+                      "seedCost": 1.99,
+                      "establishmentCost": 90.0,
+                      "density": 400.0
+                    }
+                  },
+                  "type": "seedMarker"
+                },
+                {
+                  "id": "1b05c570-fdf5-11eb-b9c3-4135120bb15e",
+                  "name": "Common beech tree",
+                  "description": "Fagus sylvatica",
+                  "lookAt": {
+                    "lng": 0.5505083128809929,
+                    "lat": 40.64180963105881,
+                    "range": "10000",
+                    "tilt": "45",
+                    "heading": "0"
+                  },
+                  "point": {
+                    "lat": 40.64180963105881,
+                    "lng": 0.5505083128809929
+                  },
+                  "customData": {
+                    "seed": {
+                      "id": "-Mh5IQKc9nI24NadZ-xd",
+                      "commonName": "Common beech tree",
+                      "scientificName": "Fagus sylvatica",
+                      "icon": {
+                        "name": "palmtree.png",
+                        "url": "assets/seedIcons/palmtree.png"
+                      },
+                      "co2PerYear": 4.8,
+                      "germinativePotential": 98.0,
+                      "estimatedLongevity": 400,
+                      "estimatedFinalHeight": 40.0,
+                      "seedCost": 1.99,
+                      "establishmentCost": 90.0,
+                      "density": 400.0
+                    }
+                  },
+                  "type": "seedMarker"
+                },
+                {
+                  "id": "1b40ab90-fdf5-11eb-b9c3-4135120bb15e",
+                  "name": "Common beech tree",
+                  "description": "Fagus sylvatica",
+                  "lookAt": {
+                    "lng": 0.5502893775701523,
+                    "lat": 40.64130743121354,
+                    "range": "10000",
+                    "tilt": "45",
+                    "heading": "0"
+                  },
+                  "point": {
+                    "lat": 40.64130743121354,
+                    "lng": 0.5502893775701523
+                  },
+                  "customData": {
+                    "seed": {
+                      "id": "-Mh5IQKc9nI24NadZ-xd",
+                      "commonName": "Common beech tree",
+                      "scientificName": "Fagus sylvatica",
+                      "icon": {
+                        "name": "palmtree.png",
+                        "url": "assets/seedIcons/palmtree.png"
+                      },
+                      "co2PerYear": 4.8,
+                      "germinativePotential": 98.0,
+                      "estimatedLongevity": 400,
+                      "estimatedFinalHeight": 40.0,
+                      "seedCost": 1.99,
+                      "establishmentCost": 90.0,
+                      "density": 400.0
+                    }
+                  },
+                  "type": "seedMarker"
+                },
+                {
+                  "id": "1c0003f0-fdf5-11eb-b9c3-4135120bb15e",
+                  "name": "Common beech tree",
+                  "description": "Fagus sylvatica",
+                  "lookAt": {
+                    "lng": 0.5494863912463188,
+                    "lat": 40.64137434052963,
+                    "range": "10000",
+                    "tilt": "45",
+                    "heading": "0"
+                  },
+                  "point": {
+                    "lat": 40.64137434052963,
+                    "lng": 0.5494863912463188
+                  },
+                  "customData": {
+                    "seed": {
+                      "id": "-Mh5IQKc9nI24NadZ-xd",
+                      "commonName": "Common beech tree",
+                      "scientificName": "Fagus sylvatica",
+                      "icon": {
+                        "name": "palmtree.png",
+                        "url": "assets/seedIcons/palmtree.png"
+                      },
+                      "co2PerYear": 4.8,
+                      "germinativePotential": 98.0,
+                      "estimatedLongevity": 400,
+                      "estimatedFinalHeight": 40.0,
+                      "seedCost": 1.99,
+                      "establishmentCost": 90.0,
+                      "density": 400.0
+                    }
+                  },
+                  "type": "seedMarker"
+                },
+                {
+                  "id": "1cb85770-fdf5-11eb-b9c3-4135120bb15e",
+                  "name": "Common beech tree",
+                  "description": "Fagus sylvatica",
+                  "lookAt": {
+                    "lng": 0.550357773900032,
+                    "lat": 40.64085636399796,
+                    "range": "10000",
+                    "tilt": "45",
+                    "heading": "0"
+                  },
+                  "point": {"lat": 40.64085636399796, "lng": 0.550357773900032},
+                  "customData": {
+                    "seed": {
+                      "id": "-Mh5IQKc9nI24NadZ-xd",
+                      "commonName": "Common beech tree",
+                      "scientificName": "Fagus sylvatica",
+                      "icon": {
+                        "name": "palmtree.png",
+                        "url": "assets/seedIcons/palmtree.png"
+                      },
+                      "co2PerYear": 4.8,
+                      "germinativePotential": 98.0,
+                      "estimatedLongevity": 400,
+                      "estimatedFinalHeight": 40.0,
+                      "seedCost": 1.99,
+                      "establishmentCost": 90.0,
+                      "density": 400.0
+                    }
+                  },
+                  "type": "seedMarker"
+                },
+                {
+                  "id": "1cee3480-fdf5-11eb-b9c3-4135120bb15e",
+                  "name": "Common beech tree",
+                  "description": "Fagus sylvatica",
+                  "lookAt": {
+                    "lng": 0.549963153898716,
+                    "lat": 40.640335330504406,
+                    "range": "10000",
+                    "tilt": "45",
+                    "heading": "0"
+                  },
+                  "point": {
+                    "lat": 40.640335330504406,
+                    "lng": 0.549963153898716
+                  },
+                  "customData": {
+                    "seed": {
+                      "id": "-Mh5IQKc9nI24NadZ-xd",
+                      "commonName": "Common beech tree",
+                      "scientificName": "Fagus sylvatica",
+                      "icon": {
+                        "name": "palmtree.png",
+                        "url": "assets/seedIcons/palmtree.png"
+                      },
+                      "co2PerYear": 4.8,
+                      "germinativePotential": 98.0,
+                      "estimatedLongevity": 400,
+                      "estimatedFinalHeight": 40.0,
+                      "seedCost": 1.99,
+                      "establishmentCost": 90.0,
+                      "density": 400.0
+                    }
+                  },
+                  "type": "seedMarker"
+                },
+                {
+                  "id": "1d684680-fdf5-11eb-b9c3-4135120bb15e",
+                  "name": "Common beech tree",
+                  "description": "Fagus sylvatica",
+                  "lookAt": {
+                    "lng": 0.549846813082695,
+                    "lat": 40.63996668667469,
+                    "range": "10000",
+                    "tilt": "45",
+                    "heading": "0"
+                  },
+                  "point": {"lat": 40.63996668667469, "lng": 0.549846813082695},
+                  "customData": {
+                    "seed": {
+                      "id": "-Mh5IQKc9nI24NadZ-xd",
+                      "commonName": "Common beech tree",
+                      "scientificName": "Fagus sylvatica",
+                      "icon": {
+                        "name": "palmtree.png",
+                        "url": "assets/seedIcons/palmtree.png"
+                      },
+                      "co2PerYear": 4.8,
+                      "germinativePotential": 98.0,
+                      "estimatedLongevity": 400,
+                      "estimatedFinalHeight": 40.0,
+                      "seedCost": 1.99,
+                      "establishmentCost": 90.0,
+                      "density": 400.0
+                    }
+                  },
+                  "type": "seedMarker"
+                },
+                {
+                  "id": "1e2d6b40-fdf5-11eb-b9c3-4135120bb15e",
+                  "name": "Common beech tree",
+                  "description": "Fagus sylvatica",
+                  "lookAt": {
+                    "lng": 0.5505545809864998,
+                    "lat": 40.64031752167055,
+                    "range": "10000",
+                    "tilt": "45",
+                    "heading": "0"
+                  },
+                  "point": {
+                    "lat": 40.64031752167055,
+                    "lng": 0.5505545809864998
+                  },
+                  "customData": {
+                    "seed": {
+                      "id": "-Mh5IQKc9nI24NadZ-xd",
+                      "commonName": "Common beech tree",
+                      "scientificName": "Fagus sylvatica",
+                      "icon": {
+                        "name": "palmtree.png",
+                        "url": "assets/seedIcons/palmtree.png"
+                      },
+                      "co2PerYear": 4.8,
+                      "germinativePotential": 98.0,
+                      "estimatedLongevity": 400,
+                      "estimatedFinalHeight": 40.0,
+                      "seedCost": 1.99,
+                      "establishmentCost": 90.0,
+                      "density": 400.0
+                    }
+                  },
+                  "type": "seedMarker"
+                },
+                {
+                  "id": "1e9d4410-fdf5-11eb-b9c3-4135120bb15e",
+                  "name": "Common beech tree",
+                  "description": "Fagus sylvatica",
+                  "lookAt": {
+                    "lng": 0.551089346408844,
+                    "lat": 40.64048110835159,
+                    "range": "10000",
+                    "tilt": "45",
+                    "heading": "0"
+                  },
+                  "point": {"lat": 40.64048110835159, "lng": 0.551089346408844},
+                  "customData": {
+                    "seed": {
+                      "id": "-Mh5IQKc9nI24NadZ-xd",
+                      "commonName": "Common beech tree",
+                      "scientificName": "Fagus sylvatica",
+                      "icon": {
+                        "name": "palmtree.png",
+                        "url": "assets/seedIcons/palmtree.png"
+                      },
+                      "co2PerYear": 4.8,
+                      "germinativePotential": 98.0,
+                      "estimatedLongevity": 400,
+                      "estimatedFinalHeight": 40.0,
+                      "seedCost": 1.99,
+                      "establishmentCost": 90.0,
+                      "density": 400.0
+                    }
+                  },
+                  "type": "seedMarker"
+                },
+                {
+                  "id": "1ed5b930-fdf5-11eb-b9c3-4135120bb15e",
+                  "name": "Common beech tree",
+                  "description": "Fagus sylvatica",
+                  "lookAt": {
+                    "lng": 0.5508388951420784,
+                    "lat": 40.6409059739086,
+                    "range": "10000",
+                    "tilt": "45",
+                    "heading": "0"
+                  },
+                  "point": {"lat": 40.6409059739086, "lng": 0.5508388951420784},
+                  "customData": {
+                    "seed": {
+                      "id": "-Mh5IQKc9nI24NadZ-xd",
+                      "commonName": "Common beech tree",
+                      "scientificName": "Fagus sylvatica",
+                      "icon": {
+                        "name": "palmtree.png",
+                        "url": "assets/seedIcons/palmtree.png"
+                      },
+                      "co2PerYear": 4.8,
+                      "germinativePotential": 98.0,
+                      "estimatedLongevity": 400,
+                      "estimatedFinalHeight": 40.0,
+                      "seedCost": 1.99,
+                      "establishmentCost": 90.0,
+                      "density": 400.0
+                    }
+                  },
+                  "type": "seedMarker"
+                },
+                {
+                  "id": "1f4b5e60-fdf5-11eb-b9c3-4135120bb15e",
+                  "name": "Common beech tree",
+                  "description": "Fagus sylvatica",
+                  "lookAt": {
+                    "lng": 0.5509619414806366,
+                    "lat": 40.641624423044995,
+                    "range": "10000",
+                    "tilt": "45",
+                    "heading": "0"
+                  },
+                  "point": {
+                    "lat": 40.641624423044995,
+                    "lng": 0.5509619414806366
+                  },
+                  "customData": {
+                    "seed": {
+                      "id": "-Mh5IQKc9nI24NadZ-xd",
+                      "commonName": "Common beech tree",
+                      "scientificName": "Fagus sylvatica",
+                      "icon": {
+                        "name": "palmtree.png",
+                        "url": "assets/seedIcons/palmtree.png"
+                      },
+                      "co2PerYear": 4.8,
+                      "germinativePotential": 98.0,
+                      "estimatedLongevity": 400,
+                      "estimatedFinalHeight": 40.0,
+                      "seedCost": 1.99,
+                      "establishmentCost": 90.0,
+                      "density": 400.0
+                    }
+                  },
+                  "type": "seedMarker"
+                },
+                {
+                  "id": "201f9e50-fdf5-11eb-b9c3-4135120bb15e",
+                  "name": "Common beech tree",
+                  "description": "Fagus sylvatica",
+                  "lookAt": {
+                    "lng": 0.5511463433504105,
+                    "lat": 40.642182335188295,
+                    "range": "10000",
+                    "tilt": "45",
+                    "heading": "0"
+                  },
+                  "point": {
+                    "lat": 40.642182335188295,
+                    "lng": 0.5511463433504105
+                  },
+                  "customData": {
+                    "seed": {
+                      "id": "-Mh5IQKc9nI24NadZ-xd",
+                      "commonName": "Common beech tree",
+                      "scientificName": "Fagus sylvatica",
+                      "icon": {
+                        "name": "palmtree.png",
+                        "url": "assets/seedIcons/palmtree.png"
+                      },
+                      "co2PerYear": 4.8,
+                      "germinativePotential": 98.0,
+                      "estimatedLongevity": 400,
+                      "estimatedFinalHeight": 40.0,
+                      "seedCost": 1.99,
+                      "establishmentCost": 90.0,
+                      "density": 400.0
+                    }
+                  },
+                  "type": "seedMarker"
+                },
+                {
+                  "id": "20fb0a30-fdf5-11eb-b9c3-4135120bb15e",
+                  "name": "Common beech tree",
+                  "description": "Fagus sylvatica",
+                  "lookAt": {
+                    "lng": 0.5517350882291794,
+                    "lat": 40.64315517220276,
+                    "range": "10000",
+                    "tilt": "45",
+                    "heading": "0"
+                  },
+                  "point": {
+                    "lat": 40.64315517220276,
+                    "lng": 0.5517350882291794
+                  },
+                  "customData": {
+                    "seed": {
+                      "id": "-Mh5IQKc9nI24NadZ-xd",
+                      "commonName": "Common beech tree",
+                      "scientificName": "Fagus sylvatica",
+                      "icon": {
+                        "name": "palmtree.png",
+                        "url": "assets/seedIcons/palmtree.png"
+                      },
+                      "co2PerYear": 4.8,
+                      "germinativePotential": 98.0,
+                      "estimatedLongevity": 400,
+                      "estimatedFinalHeight": 40.0,
+                      "seedCost": 1.99,
+                      "establishmentCost": 90.0,
+                      "density": 400.0
+                    }
+                  },
+                  "type": "seedMarker"
+                },
+                {
+                  "id": "21e89e80-fdf5-11eb-b9c3-4135120bb15e",
+                  "name": "Common beech tree",
+                  "description": "Fagus sylvatica",
+                  "lookAt": {
+                    "lng": 0.5514739081263542,
+                    "lat": 40.64272167126781,
+                    "range": "10000",
+                    "tilt": "45",
+                    "heading": "0"
+                  },
+                  "point": {
+                    "lat": 40.64272167126781,
+                    "lng": 0.5514739081263542
+                  },
+                  "customData": {
+                    "seed": {
+                      "id": "-Mh5IQKc9nI24NadZ-xd",
+                      "commonName": "Common beech tree",
+                      "scientificName": "Fagus sylvatica",
+                      "icon": {
+                        "name": "palmtree.png",
+                        "url": "assets/seedIcons/palmtree.png"
+                      },
+                      "co2PerYear": 4.8,
+                      "germinativePotential": 98.0,
+                      "estimatedLongevity": 400,
+                      "estimatedFinalHeight": 40.0,
+                      "seedCost": 1.99,
+                      "establishmentCost": 90.0,
+                      "density": 400.0
+                    }
+                  },
+                  "type": "seedMarker"
+                },
+                {
+                  "id": "22a055c0-fdf5-11eb-b9c3-4135120bb15e",
+                  "name": "Common beech tree",
+                  "description": "Fagus sylvatica",
+                  "lookAt": {
+                    "lng": 0.5523379147052765,
+                    "lat": 40.64351591203169,
+                    "range": "10000",
+                    "tilt": "45",
+                    "heading": "0"
+                  },
+                  "point": {
+                    "lat": 40.64351591203169,
+                    "lng": 0.5523379147052765
+                  },
+                  "customData": {
+                    "seed": {
+                      "id": "-Mh5IQKc9nI24NadZ-xd",
+                      "commonName": "Common beech tree",
+                      "scientificName": "Fagus sylvatica",
+                      "icon": {
+                        "name": "palmtree.png",
+                        "url": "assets/seedIcons/palmtree.png"
+                      },
+                      "co2PerYear": 4.8,
+                      "germinativePotential": 98.0,
+                      "estimatedLongevity": 400,
+                      "estimatedFinalHeight": 40.0,
+                      "seedCost": 1.99,
+                      "establishmentCost": 90.0,
+                      "density": 400.0
+                    }
+                  },
+                  "type": "seedMarker"
+                },
+                {
+                  "id": "23621f20-fdf5-11eb-b9c3-4135120bb15e",
+                  "name": "Common beech tree",
+                  "description": "Fagus sylvatica",
+                  "lookAt": {
+                    "lng": 0.5528364703059196,
+                    "lat": 40.64406108848239,
+                    "range": "10000",
+                    "tilt": "45",
+                    "heading": "0"
+                  },
+                  "point": {
+                    "lat": 40.64406108848239,
+                    "lng": 0.5528364703059196
+                  },
+                  "customData": {
+                    "seed": {
+                      "id": "-Mh5IQKc9nI24NadZ-xd",
+                      "commonName": "Common beech tree",
+                      "scientificName": "Fagus sylvatica",
+                      "icon": {
+                        "name": "palmtree.png",
+                        "url": "assets/seedIcons/palmtree.png"
+                      },
+                      "co2PerYear": 4.8,
+                      "germinativePotential": 98.0,
+                      "estimatedLongevity": 400,
+                      "estimatedFinalHeight": 40.0,
+                      "seedCost": 1.99,
+                      "establishmentCost": 90.0,
+                      "density": 400.0
+                    }
+                  },
+                  "type": "seedMarker"
+                },
+                {
+                  "id": "23d4de20-fdf5-11eb-b9c3-4135120bb15e",
+                  "name": "Common beech tree",
+                  "description": "Fagus sylvatica",
+                  "lookAt": {
+                    "lng": 0.5533645302057266,
+                    "lat": 40.64423662264945,
+                    "range": "10000",
+                    "tilt": "45",
+                    "heading": "0"
+                  },
+                  "point": {
+                    "lat": 40.64423662264945,
+                    "lng": 0.5533645302057266
+                  },
+                  "customData": {
+                    "seed": {
+                      "id": "-Mh5IQKc9nI24NadZ-xd",
+                      "commonName": "Common beech tree",
+                      "scientificName": "Fagus sylvatica",
+                      "icon": {
+                        "name": "palmtree.png",
+                        "url": "assets/seedIcons/palmtree.png"
+                      },
+                      "co2PerYear": 4.8,
+                      "germinativePotential": 98.0,
+                      "estimatedLongevity": 400,
+                      "estimatedFinalHeight": 40.0,
+                      "seedCost": 1.99,
+                      "establishmentCost": 90.0,
+                      "density": 400.0
+                    }
+                  },
+                  "type": "seedMarker"
+                },
+                {
+                  "id": "24602e30-fdf5-11eb-b9c3-4135120bb15e",
+                  "name": "Common beech tree",
+                  "description": "Fagus sylvatica",
+                  "lookAt": {
+                    "lng": 0.5529357120394707,
+                    "lat": 40.64364819977373,
+                    "range": "10000",
+                    "tilt": "45",
+                    "heading": "0"
+                  },
+                  "point": {
+                    "lat": 40.64364819977373,
+                    "lng": 0.5529357120394707
+                  },
+                  "customData": {
+                    "seed": {
+                      "id": "-Mh5IQKc9nI24NadZ-xd",
+                      "commonName": "Common beech tree",
+                      "scientificName": "Fagus sylvatica",
+                      "icon": {
+                        "name": "palmtree.png",
+                        "url": "assets/seedIcons/palmtree.png"
+                      },
+                      "co2PerYear": 4.8,
+                      "germinativePotential": 98.0,
+                      "estimatedLongevity": 400,
+                      "estimatedFinalHeight": 40.0,
+                      "seedCost": 1.99,
+                      "establishmentCost": 90.0,
+                      "density": 400.0
+                    }
+                  },
+                  "type": "seedMarker"
+                },
+                {
+                  "id": "2527eb00-fdf5-11eb-b9c3-4135120bb15e",
+                  "name": "Common beech tree",
+                  "description": "Fagus sylvatica",
+                  "lookAt": {
+                    "lng": 0.5525913834571838,
+                    "lat": 40.64315390019709,
+                    "range": "10000",
+                    "tilt": "45",
+                    "heading": "0"
+                  },
+                  "point": {
+                    "lat": 40.64315390019709,
+                    "lng": 0.5525913834571838
+                  },
+                  "customData": {
+                    "seed": {
+                      "id": "-Mh5IQKc9nI24NadZ-xd",
+                      "commonName": "Common beech tree",
+                      "scientificName": "Fagus sylvatica",
+                      "icon": {
+                        "name": "palmtree.png",
+                        "url": "assets/seedIcons/palmtree.png"
+                      },
+                      "co2PerYear": 4.8,
+                      "germinativePotential": 98.0,
+                      "estimatedLongevity": 400,
+                      "estimatedFinalHeight": 40.0,
+                      "seedCost": 1.99,
+                      "establishmentCost": 90.0,
+                      "density": 400.0
+                    }
+                  },
+                  "type": "seedMarker"
+                },
+                {
+                  "id": "2558e610-fdf5-11eb-b9c3-4135120bb15e",
+                  "name": "Common beech tree",
+                  "description": "Fagus sylvatica",
+                  "lookAt": {
+                    "lng": 0.5521528422832489,
+                    "lat": 40.64275728764797,
+                    "range": "10000",
+                    "tilt": "45",
+                    "heading": "0"
+                  },
+                  "point": {
+                    "lat": 40.64275728764797,
+                    "lng": 0.5521528422832489
+                  },
+                  "customData": {
+                    "seed": {
+                      "id": "-Mh5IQKc9nI24NadZ-xd",
+                      "commonName": "Common beech tree",
+                      "scientificName": "Fagus sylvatica",
+                      "icon": {
+                        "name": "palmtree.png",
+                        "url": "assets/seedIcons/palmtree.png"
+                      },
+                      "co2PerYear": 4.8,
+                      "germinativePotential": 98.0,
+                      "estimatedLongevity": 400,
+                      "estimatedFinalHeight": 40.0,
+                      "seedCost": 1.99,
+                      "establishmentCost": 90.0,
+                      "density": 400.0
+                    }
+                  },
+                  "type": "seedMarker"
+                },
+                {
+                  "id": "261fb880-fdf5-11eb-b9c3-4135120bb15e",
+                  "name": "Common beech tree",
+                  "description": "Fagus sylvatica",
+                  "lookAt": {
+                    "lng": 0.552048571407795,
+                    "lat": 40.64241257117043,
+                    "range": "10000",
+                    "tilt": "45",
+                    "heading": "0"
+                  },
+                  "point": {"lat": 40.64241257117043, "lng": 0.552048571407795},
+                  "customData": {
+                    "seed": {
+                      "id": "-Mh5IQKc9nI24NadZ-xd",
+                      "commonName": "Common beech tree",
+                      "scientificName": "Fagus sylvatica",
+                      "icon": {
+                        "name": "palmtree.png",
+                        "url": "assets/seedIcons/palmtree.png"
+                      },
+                      "co2PerYear": 4.8,
+                      "germinativePotential": 98.0,
+                      "estimatedLongevity": 400,
+                      "estimatedFinalHeight": 40.0,
+                      "seedCost": 1.99,
+                      "establishmentCost": 90.0,
+                      "density": 400.0
+                    }
+                  },
+                  "type": "seedMarker"
+                },
+                {
+                  "id": "2674dd60-fdf5-11eb-b9c3-4135120bb15e",
+                  "name": "Common beech tree",
+                  "description": "Fagus sylvatica",
+                  "lookAt": {
+                    "lng": 0.5517149716615677,
+                    "lat": 40.64187959274348,
+                    "range": "10000",
+                    "tilt": "45",
+                    "heading": "0"
+                  },
+                  "point": {
+                    "lat": 40.64187959274348,
+                    "lng": 0.5517149716615677
+                  },
+                  "customData": {
+                    "seed": {
+                      "id": "-Mh5IQKc9nI24NadZ-xd",
+                      "commonName": "Common beech tree",
+                      "scientificName": "Fagus sylvatica",
+                      "icon": {
+                        "name": "palmtree.png",
+                        "url": "assets/seedIcons/palmtree.png"
+                      },
+                      "co2PerYear": 4.8,
+                      "germinativePotential": 98.0,
+                      "estimatedLongevity": 400,
+                      "estimatedFinalHeight": 40.0,
+                      "seedCost": 1.99,
+                      "establishmentCost": 90.0,
+                      "density": 400.0
+                    }
+                  },
+                  "type": "seedMarker"
+                },
+                {
+                  "id": "27314f90-fdf5-11eb-b9c3-4135120bb15e",
+                  "name": "Common beech tree",
+                  "description": "Fagus sylvatica",
+                  "lookAt": {
+                    "lng": 0.5515899136662483,
+                    "lat": 40.64135653197297,
+                    "range": "10000",
+                    "tilt": "45",
+                    "heading": "0"
+                  },
+                  "point": {
+                    "lat": 40.64135653197297,
+                    "lng": 0.5515899136662483
+                  },
+                  "customData": {
+                    "seed": {
+                      "id": "-Mh5IQKc9nI24NadZ-xd",
+                      "commonName": "Common beech tree",
+                      "scientificName": "Fagus sylvatica",
+                      "icon": {
+                        "name": "palmtree.png",
+                        "url": "assets/seedIcons/palmtree.png"
+                      },
+                      "co2PerYear": 4.8,
+                      "germinativePotential": 98.0,
+                      "estimatedLongevity": 400,
+                      "estimatedFinalHeight": 40.0,
+                      "seedCost": 1.99,
+                      "establishmentCost": 90.0,
+                      "density": 400.0
+                    }
+                  },
+                  "type": "seedMarker"
+                },
+                {
+                  "id": "279d30c0-fdf5-11eb-b9c3-4135120bb15e",
+                  "name": "Common beech tree",
+                  "description": "Fagus sylvatica",
+                  "lookAt": {
+                    "lng": 0.5515681207180023,
+                    "lat": 40.64083982735288,
+                    "range": "10000",
+                    "tilt": "45",
+                    "heading": "0"
+                  },
+                  "point": {
+                    "lat": 40.64083982735288,
+                    "lng": 0.5515681207180023
+                  },
+                  "customData": {
+                    "seed": {
+                      "id": "-Mh5IQKc9nI24NadZ-xd",
+                      "commonName": "Common beech tree",
+                      "scientificName": "Fagus sylvatica",
+                      "icon": {
+                        "name": "palmtree.png",
+                        "url": "assets/seedIcons/palmtree.png"
+                      },
+                      "co2PerYear": 4.8,
+                      "germinativePotential": 98.0,
+                      "estimatedLongevity": 400,
+                      "estimatedFinalHeight": 40.0,
+                      "seedCost": 1.99,
+                      "establishmentCost": 90.0,
+                      "density": 400.0
+                    }
+                  },
+                  "type": "seedMarker"
+                },
+                {
+                  "id": "27dc5ca0-fdf5-11eb-b9c3-4135120bb15e",
+                  "name": "Common beech tree",
+                  "description": "Fagus sylvatica",
+                  "lookAt": {
+                    "lng": 0.5521240085363388,
+                    "lat": 40.64122805581623,
+                    "range": "10000",
+                    "tilt": "45",
+                    "heading": "0"
+                  },
+                  "point": {
+                    "lat": 40.64122805581623,
+                    "lng": 0.5521240085363388
+                  },
+                  "customData": {
+                    "seed": {
+                      "id": "-Mh5IQKc9nI24NadZ-xd",
+                      "commonName": "Common beech tree",
+                      "scientificName": "Fagus sylvatica",
+                      "icon": {
+                        "name": "palmtree.png",
+                        "url": "assets/seedIcons/palmtree.png"
+                      },
+                      "co2PerYear": 4.8,
+                      "germinativePotential": 98.0,
+                      "estimatedLongevity": 400,
+                      "estimatedFinalHeight": 40.0,
+                      "seedCost": 1.99,
+                      "establishmentCost": 90.0,
+                      "density": 400.0
+                    }
+                  },
+                  "type": "seedMarker"
+                },
+                {
+                  "id": "289e4d10-fdf5-11eb-b9c3-4135120bb15e",
+                  "name": "Common beech tree",
+                  "description": "Fagus sylvatica",
+                  "lookAt": {
+                    "lng": 0.5522500723600388,
+                    "lat": 40.641891804230006,
+                    "range": "10000",
+                    "tilt": "45",
+                    "heading": "0"
+                  },
+                  "point": {
+                    "lat": 40.641891804230006,
+                    "lng": 0.5522500723600388
+                  },
+                  "customData": {
+                    "seed": {
+                      "id": "-Mh5IQKc9nI24NadZ-xd",
+                      "commonName": "Common beech tree",
+                      "scientificName": "Fagus sylvatica",
+                      "icon": {
+                        "name": "palmtree.png",
+                        "url": "assets/seedIcons/palmtree.png"
+                      },
+                      "co2PerYear": 4.8,
+                      "germinativePotential": 98.0,
+                      "estimatedLongevity": 400,
+                      "estimatedFinalHeight": 40.0,
+                      "seedCost": 1.99,
+                      "establishmentCost": 90.0,
+                      "density": 400.0
+                    }
+                  },
+                  "type": "seedMarker"
+                }
+              ],
+              "areaPolygon": {
+                "id": "area",
+                "coord": [
+                  {"lat": 40.64318061231102, "long": 0.5467907711863518},
+                  {"lat": 40.63808272972699, "long": 0.5460095778107643},
+                  {"lat": 40.64093472219891, "long": 0.552978627383709},
+                  {"lat": 40.63988222141114, "long": 0.556119829416275},
+                  {"lat": 40.642212609357266, "long": 0.5566136911511421},
+                  {"lat": 40.64466528023316, "long": 0.5536572262644768},
+                  {"lat": 40.6456912488956, "long": 0.551476925611496},
+                  {"lat": 40.64515193681167, "long": 0.5480420216917992}
+                ]
+              },
+              "landingPoint": {
+                "id": "landingPoint",
+                "name": "Landing Point",
+                "description": "The place where the drone will take off",
+                "lookAt": {
+                  "lng": 0.5537443980574608,
+                  "lat": 40.63977867499347,
+                  "range": "10000",
+                  "tilt": "45",
+                  "heading": "0"
+                },
+                "point": {"lat": 40.63977867499347, "lng": 0.5537443980574608},
+                "customData": null,
+                "type": "landingPoint"
+              }
+            },
+            "minFlightHeight": 100.0,
+            "predation": 20.0
           }
         ]
       },
