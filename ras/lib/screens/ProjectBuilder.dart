@@ -198,7 +198,7 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                                         setState(() {
                                           if (value) {
                                             seeds.add(data[index]);
-                                            seeds[index].density = 0;
+                                            seeds[seeds.length - 1].density = 0;
                                           } else
                                             seeds.removeWhere((element) =>
                                                 element.id == data[index].id ||
