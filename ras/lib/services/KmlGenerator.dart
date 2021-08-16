@@ -11,7 +11,7 @@ class KMLGenerator {
     final downloadsDirectory =
             await DownloadsPathProvider.downloadsDirectory;
         var savePath = downloadsDirectory.path;
-        final file = File("$savePath/$filename.txt");
+        final file = File("$savePath/$filename.kml");
         await file.writeAsString(data);
         return Future.value(file);
     } catch (e) {
