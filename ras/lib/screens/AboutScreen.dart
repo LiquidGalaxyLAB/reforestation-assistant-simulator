@@ -103,7 +103,7 @@ class _AboutScreenState extends State<AboutScreen> {
               ),
               GestureDetector(
                 onTap: () {
-                  _launchURL('https://github.com/LiquidGalaxyLAB/reforestation-assistant');
+                  _launchURL('https://github.com/LiquidGalaxyLAB/reforestation-assistant-simulator');
                 },
                 child: Text(
                   'RAS Project GitHub\n',
@@ -119,6 +119,34 @@ class _AboutScreenState extends State<AboutScreen> {
                   'Dronecoria website',
                   textAlign: TextAlign.center,
                   style: TextStyle(fontSize: 17, color: Colors.blue),
+                ),
+              ),
+              Text(
+                '\nThank you for the authors of the icons used on this app. \n',
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 17),
+              ),
+              GestureDetector(
+                onTap: () {
+                  _launchURL('https://www.freepik.com/');
+                },
+                child: Text(
+                  'Icons by freepik',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(fontSize: 17, color: Colors.blue),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top:10.0),
+                child: GestureDetector(
+                  onTap: () {
+                    _launchURL('https://github.com/LiquidGalaxyLAB/reforestation-assistant/files/6994243/license-47124069.pdf/');
+                  },
+                  child: Text(
+                    'Icons License',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(fontSize: 17, color: Colors.blue),
+                  ),
                 ),
               ),
               Text(
