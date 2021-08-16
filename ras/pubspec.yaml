@@ -43,7 +43,6 @@ dependencies:
   downloads_path_provider: ^0.1.0
   http: ^0.13.3
   googleapis: ^4.0.0
-  xml: ^4.5.1
 
 dev_dependencies:
   flutter_test:

@@ -18,7 +18,7 @@ class Polygon {
   <Style id="$id">
     <LineStyle>
       <color>${style['lineStyle']['color']}</color>
-      <width>5</width>
+      <width>10</width>
     </LineStyle>
     <PolyStyle>
       <color>${style['polyStyle']['color']}</color>
@@ -28,10 +28,7 @@ class Polygon {
 		<name>AREA</name>
 		<styleUrl>$id</styleUrl>
     <Polygon>
-      <extrude>1</extrude>
       <tesselate>1</tesselate>
-      <altitudeMode>relativeToGround</altitudeMode>
-      <gx:drawOrder>1</gx:drawOrder>
       <outerBoundaryIs>
         <LinearRing>
           <coordinates>
@@ -66,14 +63,14 @@ class Polygon {
       stringPoints += element.longitude.toString() +
           ',' +
           element.latitude.toString() +
-          ',10' +
+          ',0' +
           '\n';
     });
 
     stringPoints += this.coord[0].longitude.toString() +
           ',' +
           this.coord[0].latitude.toString() +
-          ',10' +
+          ',0' +
           '\n';
 
     return stringPoints;
