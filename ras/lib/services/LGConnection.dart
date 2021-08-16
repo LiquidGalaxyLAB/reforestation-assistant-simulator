@@ -22,12 +22,12 @@ class LGConnection {
     try {
       await client.connect();
       await client.execute(
-          'sshpass -p lq ssh lg1 "sudo -S <<< "lq" sudo apt install feh -yq"');
+          'sshpass -p ${credencials['pass']} ssh lg1 "sudo -S <<< "${credencials['pass']}" sudo apt install feh -yq"');
       await client.execute(
-          'sshpass -p lq ssh lg4 "curl https://i.imgur.com/4iHKQpN.jpg?1 > /home/lg/raslogos.png"');
-      await client.execute('sshpass -p lq ssh lg4 "pkill feh"');
+          'sshpass -p ${credencials['pass']} ssh lg4 "curl https://i.imgur.com/4iHKQpN.jpg?1 > /home/lg/raslogos.png"');
+      await client.execute('sshpass -p ${credencials['pass']} ssh lg4 "pkill feh"');
       await client.execute(
-          'sshpass -p lq ssh lg4 "export DISPLAY=:0 && feh -x -g 700x700 /home/lg/raslogos.png --zoom fill"');
+          'sshpass -p ${credencials['pass']} ssh lg4 "export DISPLAY=:0 && feh -x -g 700x700 /home/lg/raslogos.png --zoom fill"');
     } catch (e) {}
   }
 
