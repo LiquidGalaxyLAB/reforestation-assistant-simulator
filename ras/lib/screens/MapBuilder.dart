@@ -584,33 +584,39 @@ class _MapBuilderState extends State<MapBuilder> {
               return Container(
                 width: 500,
                 height: 500,
-                child: ListView.builder(
-                    itemCount: args.seeds.length,
-                    itemBuilder: (context, index) {
-                      Seed seed = args.seeds[index];
-                      return ListTile(
-                        leading: Container(
-                          width: 40,
-                          height: 40,
-                          child: Image.asset(
-                            seed.icon['url'],
-                            scale: 1,
-                            fit: BoxFit.fill,
-                          ),
-                        ),
-                        title: Text('${seed.commonName}'),
-                        subtitle: Text('${seed.scientificName}'),
-                        onTap: () async {
-                          final icon = await getBitmapDescriptorFromAssetBytes(
-                              seed.icon['url'], 150);
-                          setState(() {
-                            currentSeedMarkerIcon = icon;
-                            currentSeedMarker = seed;
-                          });
-                          Navigator.pop(context);
-                        },
-                      );
-                    }),
+                child: args.seeds.length == 0
+                    ? Text(
+                        'Please add species to the project to select them here',
+                        style: TextStyle(color: Colors.grey),
+                      )
+                    : ListView.builder(
+                        itemCount: args.seeds.length,
+                        itemBuilder: (context, index) {
+                          Seed seed = args.seeds[index];
+                          return ListTile(
+                            leading: Container(
+                              width: 40,
+                              height: 40,
+                              child: Image.asset(
+                                seed.icon['url'],
+                                scale: 1,
+                                fit: BoxFit.fill,
+                              ),
+                            ),
+                            title: Text('${seed.commonName}'),
+                            subtitle: Text('${seed.scientificName}'),
+                            onTap: () async {
+                              final icon =
+                                  await getBitmapDescriptorFromAssetBytes(
+                                      seed.icon['url'], 150);
+                              setState(() {
+                                currentSeedMarkerIcon = icon;
+                                currentSeedMarker = seed;
+                              });
+                              Navigator.pop(context);
+                            },
+                          );
+                        }),
               );
             }),
           );
