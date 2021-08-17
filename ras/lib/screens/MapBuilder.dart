@@ -326,8 +326,8 @@ class _MapBuilderState extends State<MapBuilder> {
 
       // place polygon
       if (args.map.areaPolygon.coord.isNotEmpty) {
-        args.map.areaPolygon.coord.forEach((element) {
-          placePolygonVertex(LatLng(element.latitude, element.longitude));
+        Future.forEach(args.map.areaPolygon.coord, (LatLng element) async {
+          await placePolygonVertex(LatLng(element.latitude, element.longitude));
         });
       }
     }
