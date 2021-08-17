@@ -25,7 +25,8 @@ class LGConnection {
           'sshpass -p ${credencials['pass']} ssh lg1 "sudo -S <<< "${credencials['pass']}" sudo apt install feh -yq"');
       await client.execute(
           'sshpass -p ${credencials['pass']} ssh lg4 "curl https://i.imgur.com/4iHKQpN.jpg?1 > /home/lg/raslogos.png"');
-      await client.execute('sshpass -p ${credencials['pass']} ssh lg4 "pkill feh"');
+      await client
+          .execute('sshpass -p ${credencials['pass']} ssh lg4 "pkill feh"');
       await client.execute(
           'sshpass -p ${credencials['pass']} ssh lg4 "export DISPLAY=:0 && feh -x -g 700x700 /home/lg/raslogos.png --zoom fill"');
     } catch (e) {}
@@ -149,6 +150,61 @@ class LGConnection {
           'echo "http://lg1:81/${project.projectName}.kml" > /var/www/html/kmls.txt');
       return await client.execute(
           'echo "flytoview=${flyto.generateLinearString()}" > /tmp/query.txt');
+    } catch (e) {
+      print('Could not connect to host LG');
+      return Future.error(e);
+    }
+  }
+
+  buildOrbit(String content) async {
+    dynamic credencials = await _getCredentials();
+
+    String localPath = await _localPath;
+    File localFile = File('$localPath/Orbit.kml');
+    localFile.writeAsString(content);
+
+    String filePath = '$localPath/Orbit.kml';
+
+    SSHClient client = SSHClient(
+      host: '${credencials['ip']}',
+      port: 22,
+      username: "lg",
+      passwordOrKey: '${credencials['pass']}',
+    );
+
+    try {
+      await client.connect();
+
+      await client.connectSFTP();
+      await client.sftpUpload(
+        path: filePath,
+        toPath: '/var/www/html',
+        callback: (progress) {
+          print('Sent $progress');
+        },
+      );
+
+      return await client
+          .execute("echo >> '\n http://lg1:81/Orbit.kml' > /var/www/html/");
+    } catch (e) {
+      print('Could not connect to host LG');
+      return Future.error(e);
+    }
+  }
+
+  startOrbit() async {
+    dynamic credencials = await _getCredentials();
+
+    SSHClient client = SSHClient(
+      host: '${credencials['ip']}',
+      port: 22,
+      username: "lg",
+      passwordOrKey: '${credencials['pass']}',
+    );
+
+    try {
+      await client.connect();
+      return await client.execute('echo "playtour=Orbit" > /tmp/query.txt');
     } catch (e) {
       print('Could not connect to host LG');
       return Future.error(e);
