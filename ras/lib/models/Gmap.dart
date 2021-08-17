@@ -1,5 +1,4 @@
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:ras/models/Seed.dart';
 import 'package:ras/models/kml/LookAt.dart';
 import 'package:ras/models/kml/Placemark.dart';
 import 'package:ras/models/kml/Point.dart';

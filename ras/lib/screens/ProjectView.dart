@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:ras/models/Project.dart';
 import 'package:ras/models/kml/Kml.dart';
@@ -430,6 +428,8 @@ class _ProjectViewState extends State<ProjectView> {
                         ),
                       ),
                     ItemTitle('AREA INFORMATION'),
+                    Item('Area covered',
+                        args.project.areaCovered.toString() + 'm²'),
                     Item('Optimal surface',
                         args.project.validSurface.toString() + '%'),
                     Item('Invalid surface',

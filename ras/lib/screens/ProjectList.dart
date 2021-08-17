@@ -111,6 +111,7 @@ class _ProjectListState extends State<ProjectList> {
       model.geodata,
       model.minFlightHeight,
       model.predation,
+      model.areaCovered,
     );
     Future response = ProjectRepository().create(project);
     response.then((value) {
@@ -400,6 +401,26 @@ class _ProjectListState extends State<ProjectList> {
                                                 ),
                                                 Text(
                                                   '${data[index].dateOfProject.toString().substring(0, 10)}',
+                                                  style:
+                                                      TextStyle(fontSize: 18),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                           Padding(
+                                            padding: const EdgeInsets.only(
+                                                bottom: 5.0),
+                                            child: Row(
+                                              children: [
+                                                Text(
+                                                  'Area covered: ',
+                                                  style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      fontSize: 18),
+                                                ),
+                                                Text(
+                                                  '${data[index].areaCovered}m²',
                                                   style:
                                                       TextStyle(fontSize: 18),
                                                 ),

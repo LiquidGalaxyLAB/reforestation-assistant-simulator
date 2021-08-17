@@ -31,6 +31,7 @@ class Project {
   double maxAltTerrain;
   double maxDistance;
   double minFlightHeight;
+  double areaCovered;
 
   // SOIL ATTRIBUTES
   double depth;
@@ -71,6 +72,7 @@ class Project {
     this.geodata,
     this.minFlightHeight,
     this.predation,
+    this.areaCovered,
   );
 
   @override
@@ -112,6 +114,7 @@ class Project {
       "geodata": geodata.toMap(),
       "minFlightHeight": minFlightHeight,
       "predation": predation,
+      "areaCovered": areaCovered,
     };
   }
 
@@ -148,6 +151,7 @@ class Project {
         Gmap.fromMap(element.value['geodata']),
         element.value['minFlightHeight'],
         element.value['predation'],
+        element.value['areaCovered'],
       ));
     });
     return projects;
