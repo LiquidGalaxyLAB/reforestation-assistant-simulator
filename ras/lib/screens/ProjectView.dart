@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:ras/models/Project.dart';
 import 'package:ras/models/kml/Kml.dart';
+import 'package:ras/models/kml/LookAt.dart';
+import 'package:ras/models/kml/Orbit.dart';
 import 'package:ras/repositories/Project.dart';
 import 'package:ras/route-args/MapViewArgs.dart';
 import 'package:ras/route-args/ProjectBuilderArgs.dart';
@@ -22,6 +24,7 @@ class ProjectView extends StatefulWidget {
 
 class _ProjectViewState extends State<ProjectView> {
   bool isOpen = false;
+  bool isOrbiting = false;
 
   downloadKml(Project project) async {
     // create kml based on geodata attribute
@@ -97,6 +100,7 @@ class _ProjectViewState extends State<ProjectView> {
 
     // send to LG
     LGConnection().sendToLG(kml.mount(), p).then((value) {
+      buildOrbit(args);
       setState(() {
         isOpen = true;
       });
@@ -108,6 +112,43 @@ class _ProjectViewState extends State<ProjectView> {
       showAlertDialog('Error launching!',
           'An error occurred while trying to connect to LG');
     });
+  }
+
+  playOrbit() async {
+    await LGConnection().startOrbit();
+    setState(() {
+      isOrbiting = true;
+    });
+  }
+
+  stopOrbit() async {
+    await LGConnection().stopOrbit();
+    setState(() {
+      isOrbiting = false;
+    });
+  }
+
+  buildOrbit(ProjectViewArgs args) async {
+    Project? p = args.project;
+
+    String content = '';
+
+    if (p.geodata.landingPoint.name != 'none') {
+      content = Orbit.generateOrbitTag(p.geodata.landingPoint.lookAt);
+    } else if (p.geodata.areaPolygon.coord.length > 0) {
+      content = Orbit.generateOrbitTag(LookAt(
+          p.geodata.areaPolygon.coord[0].longitude,
+          p.geodata.areaPolygon.coord[0].latitude,
+          '1492.665945696469',
+          '0',
+          '0'));
+    } else {
+      content = Orbit.generateOrbitTag(p.geodata.markers[0].lookAt);
+    }
+
+    String kml = Orbit.buildOrbit(content);
+
+    await LGConnection().buildOrbit(kml);
   }
 
   cleanVisualization() {
@@ -231,70 +272,101 @@ class _ProjectViewState extends State<ProjectView> {
               ),
               Item('Region', '${args.project.region}'),
               Item('Sown mode', '${args.project.sownMode}'),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  !isOpen
-                      ? ElevatedButton.icon(
-                          style: ElevatedButton.styleFrom(
-                            primary: Colors.green,
-                          ),
-                          onPressed: () {
-                            launchToLG(args);
-                          },
-                          label: Text('Launch to Liquid Galaxy'),
-                          icon: Icon(Icons.play_circle_fill_outlined),
-                        )
-                      : ElevatedButton.icon(
+              isOpen
+                  ? Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        ElevatedButton.icon(
                           style: ElevatedButton.styleFrom(
                             primary: Colors.red,
                           ),
                           onPressed: () {
                             cleanVisualization();
                           },
-                          label: Text('Clean'),
+                          label: Text('Clean KML'),
                           icon: Icon(Icons.clear_rounded),
                         ),
-                  ElevatedButton.icon(
-                    style: ElevatedButton.styleFrom(
-                      primary: Colors.purple,
+                        !isOrbiting
+                            ? ElevatedButton.icon(
+                                style: ElevatedButton.styleFrom(
+                                  primary: Colors.blue,
+                                ),
+                                onPressed: () {
+                                  playOrbit();
+                                },
+                                label: Text('Orbit'),
+                                icon: Icon(Icons.rotate_left_outlined),
+                              )
+                            : ElevatedButton.icon(
+                                style: ElevatedButton.styleFrom(
+                                  primary: Colors.blue,
+                                ),
+                                onPressed: () {
+                                  stopOrbit();
+                                },
+                                label: Text('Stop orbiting'),
+                                icon: Icon(Icons.stop_circle_outlined),
+                              ),
+                      ],
+                    )
+                  : Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        !isOpen
+                            ? ElevatedButton.icon(
+                                style: ElevatedButton.styleFrom(
+                                  primary: Colors.green,
+                                ),
+                                onPressed: () {
+                                  launchToLG(args);
+                                },
+                                label: Text('Launch to Liquid Galaxy'),
+                                icon: Icon(Icons.play_circle_fill_outlined),
+                              )
+                            : SizedBox(),
+                        ElevatedButton.icon(
+                          style: ElevatedButton.styleFrom(
+                            primary: Colors.purple,
+                          ),
+                          onPressed: () {
+                            Navigator.pushNamed(context, '/map-view',
+                                arguments: MapViewArgs(args.project.geodata));
+                          },
+                          label: Text('See Map'),
+                          icon: Icon(Icons.place),
+                        ),
+                      ],
                     ),
-                    onPressed: () {
-                      Navigator.pushNamed(context, '/map-view',
-                          arguments: MapViewArgs(args.project.geodata));
-                    },
-                    label: Text('See Map'),
-                    icon: Icon(Icons.place),
-                  ),
-                ],
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  ElevatedButton.icon(
-                    style: ElevatedButton.styleFrom(
-                      primary: Colors.red.shade400,
-                      side: BorderSide(color: Colors.red.shade400, width: 1),
-                    ),
-                    onPressed: () {
-                      downloadPdf(args.project);
-                    },
-                    label: Text('Download PDF'),
-                    icon: Icon(Icons.download),
-                  ),
-                  ElevatedButton.icon(
-                    style: ElevatedButton.styleFrom(
-                      primary: Colors.blue,
-                      side: BorderSide(color: Colors.blue, width: 1),
-                    ),
-                    onPressed: () {
-                      downloadKml(args.project);
-                    },
-                    label: Text('Download KML'),
-                    icon: Icon(Icons.download),
-                  ),
-                ],
-              ),
+              !isOpen
+                  ? Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        ElevatedButton.icon(
+                          style: ElevatedButton.styleFrom(
+                            primary: Colors.red.shade400,
+                            side: BorderSide(
+                                color: Colors.red.shade400, width: 1),
+                          ),
+                          onPressed: () {
+                            downloadPdf(args.project);
+                          },
+                          label: Text('Download PDF'),
+                          icon: Icon(Icons.download),
+                        ),
+                        ElevatedButton.icon(
+                          style: ElevatedButton.styleFrom(
+                            primary: Colors.blue,
+                            side: BorderSide(color: Colors.blue, width: 1),
+                          ),
+                          onPressed: () {
+                            downloadKml(args.project);
+                          },
+                          label: Text('Download KML'),
+                          icon: Icon(Icons.download),
+                        ),
+                      ],
+                    )
+                  : SizedBox(),
               ListTile(
                 contentPadding:
                     EdgeInsets.symmetric(horizontal: 0, vertical: 10),

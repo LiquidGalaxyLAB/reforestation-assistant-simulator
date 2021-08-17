@@ -52,6 +52,7 @@ class LGConnection {
 
     try {
       await client.connect();
+      stopOrbit();
       return await client.execute('> /var/www/html/kmls.txt');
     } catch (e) {
       print('Could not connect to host LG');
@@ -185,7 +186,7 @@ class LGConnection {
       );
 
       return await client
-          .execute("echo >> '\n http://lg1:81/Orbit.kml' > /var/www/html/");
+          .execute("echo '\nhttp://lg1:81/Orbit.kml' >> /var/www/html/kmls.txt");
     } catch (e) {
       print('Could not connect to host LG');
       return Future.error(e);
@@ -205,6 +206,25 @@ class LGConnection {
     try {
       await client.connect();
       return await client.execute('echo "playtour=Orbit" > /tmp/query.txt');
+    } catch (e) {
+      print('Could not connect to host LG');
+      return Future.error(e);
+    }
+  }
+
+  stopOrbit() async {
+    dynamic credencials = await _getCredentials();
+
+    SSHClient client = SSHClient(
+      host: '${credencials['ip']}',
+      port: 22,
+      username: "lg",
+      passwordOrKey: '${credencials['pass']}',
+    );
+
+    try {
+      await client.connect();
+      return await client.execute('echo "exittour=true" > /tmp/query.txt');
     } catch (e) {
       print('Could not connect to host LG');
       return Future.error(e);
