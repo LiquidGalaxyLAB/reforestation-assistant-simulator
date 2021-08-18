@@ -19,17 +19,48 @@ class LGConnection {
       passwordOrKey: '${credencials['pass']}',
     );
 
+    // With feh image viewer
+    // try {
+    //   await client.connect();
+    //   await client.execute(
+    //       'sshpass -p ${credencials['pass']} ssh lg1 "sudo -S <<< "${credencials['pass']}" sudo apt install feh -yq"');
+    //   await client.execute(
+    //       'sshpass -p ${credencials['pass']} ssh lg4 "curl https://i.imgur.com/4iHKQpN.jpg?1 > /home/lg/raslogos.png"');
+    //   await client
+    //       .execute('sshpass -p ${credencials['pass']} ssh lg4 "pkill feh"');
+    //   await client.execute(
+    //       'sshpass -p ${credencials['pass']} ssh lg4 "export DISPLAY=:0 && feh -x -g 700x700 /home/lg/raslogos.png --zoom fill"');
+    // } catch (e) {}
+
+    // With KML on slave 4
+    String openLogoKML = '''
+<?xml version="1.0" encoding="UTF-8"?>
+  <kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:kml="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom">
+    <Document>
+      <name>Ras-logos</name>
+        <Folder>
+        <name>Logos</name>
+        <ScreenOverlay>
+        <name>Logo</name>
+        <Icon>
+        <href>https://i.imgur.com/4iHKQpN.jpg?1</href>
+        </Icon>
+        <overlayXY x="0" y="1" xunits="fraction" yunits="fraction"/>
+        <screenXY x="0.02" y="0.95" xunits="fraction" yunits="fraction"/>
+        <rotationXY x="0" y="0" xunits="fraction" yunits="fraction"/>
+        <size x="0.4" y="0.2" xunits="fraction" yunits="fraction"/>
+        </ScreenOverlay>
+        </Folder>
+    </Document>
+  </kml>
+    ''';
     try {
       await client.connect();
-      await client.execute(
-          'sshpass -p ${credencials['pass']} ssh lg1 "sudo -S <<< "${credencials['pass']}" sudo apt install feh -yq"');
-      await client.execute(
-          'sshpass -p ${credencials['pass']} ssh lg4 "curl https://i.imgur.com/4iHKQpN.jpg?1 > /home/lg/raslogos.png"');
-      await client
-          .execute('sshpass -p ${credencials['pass']} ssh lg4 "pkill feh"');
-      await client.execute(
-          'sshpass -p ${credencials['pass']} ssh lg4 "export DISPLAY=:0 && feh -x -g 700x700 /home/lg/raslogos.png --zoom fill"');
-    } catch (e) {}
+      await client.execute("echo '$openLogoKML' > /var/www/html/kml/slave_4.kml");
+
+    }catch (e) {
+      print(e);
+    }
   }
 
   Future sendToLG(String kml, Project project) async {
