@@ -1,4 +1,4 @@
-package com.example.ras
+package com.galaxy.ras
 
 import io.flutter.embedding.android.FlutterActivity
 
