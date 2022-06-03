@@ -41,11 +41,13 @@ class MyApp extends StatelessWidget {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     String ipAddress = preferences.getString('master_ip') ?? '';
     String password = preferences.getString('master_password') ?? '';
+    String portNumber = preferences.getString('master_portNumber') ?? '';
+    String username = preferences.getString('master_username') ?? '';
 
     SSHClient client = SSHClient(
       host: ipAddress,
-      port: 22,
-      username: "lg",
+      port: int.parse(portNumber),
+      username: username,
       passwordOrKey: password,
     );
 
