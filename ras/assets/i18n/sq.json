@@ -1,0 +1,37 @@
+{
+	"button": {
+		"cancel": "Anulo"
+	},
+	"language": {
+		"name": {
+			"en": "Anglisht (Shtetet e Bashkuara)",
+			"es": "Spanjisht",
+			"hi": "Hindi",
+			"ar": "Arabisht",
+			"ru": "Ruse",
+			"ja": "Japoneze",
+			"zh": "Kineze (e thjeshtuar)",
+			"sq": "Shqip",
+			"de": "Gjermanisht"
+		},
+		"flag": "🇦🇱",
+		"selected_message": "{language}",
+		"selection": {
+			"message": "Ju lutemi zgjidhni një gjuhë nga lista",
+			"title": "Përzgjedhja e gjuhës"
+		},
+		"About": {
+			"aboutpage": "Asistent dhe Simulator i Ripyllëzimit",
+			"message": "Ky projekt u krijua gjatë Verës së Kodit të Google 2021 së bashku me organizatat Liquid Galaxy dhe Dronecoria. \n\nI zhvilluar nga studentja braziliane Karine Pistili, ky projekt me burim të hapur përbëhet nga një aplikacion për të ndihmuar në planifikimin dhe monitorimin e projekteve të ripyllëzimit ose duke mbjellë dron ose me dorë. \n\nPërdoruesit mund të planifikojnë misionet e ripyllëzimit, duke përcaktuar zonat e mbjelljes, vendndodhjen specifike të farave/pemëve, pikat e uljes së dronëve, zonat e fluturimit dhe metrika të tjera të dobishme. I gjithë informacioni i mbledhur mund të shfaqet në mënyrë dinamike në grupin Liquid Galaxy duke përdorur KML-të dhe gjithashtu në aplikacion me ndihmën e grafikëve dhe tekstit për t'u sjellë përdoruesve një përmbledhje të mrekullueshme dhe gjithëpërfshirëse të panoramës së çdo projekti.\n",
+			"learn": "Mëso më shumë",
+			"check": "\nPër të mësuar më shumë rreth Projekteve Dronecoria dhe Liquid Galaxy, mund të shikoni faqet e tyre të internetit dhe github. \n",
+			"website": "Uebsajti i Liquid Galaxy \n",
+			"github": "Projekti RAS GitHub\n",
+			"drone": "Faqja e internetit e Dronecoria",
+			"icons": "\nFaleminderit për autorët e ikonave të përdorura në këtë aplikacion. \n",
+			"freepik": "Ikonat nga freepik",
+			"License": "Licenca e ikonave",
+			"partner": "\nPartnerët tanë"
+		}
+	}
+}

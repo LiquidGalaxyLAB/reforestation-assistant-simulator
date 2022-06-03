@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+// ignore: import_of_legacy_library_into_null_safe
+import 'package:flutter_translate/flutter_translate.dart';
 import 'package:ras/widgets/AppBar.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -65,7 +67,7 @@ class _AboutScreenState extends State<AboutScreen> {
                 padding:
                     const EdgeInsets.symmetric(horizontal: 20.0, vertical: 15),
                 child: Text(
-                  'Reforestation Assistant & Simulator',
+                  translate("About.aboutpage"),
                   textAlign: TextAlign.center,
                   style: TextStyle(
                       fontWeight: FontWeight.bold,
@@ -76,18 +78,18 @@ class _AboutScreenState extends State<AboutScreen> {
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 15.0),
                 child: Text(
-                  'This project was created during the Google Summer of Code 2021 alongside the Liquid Galaxy and Dronecoria organizations. \n\nDeveloped by brazilian student Karine Pistili, this open source project consists of an app to help plan and monitor reforestation projects either by sowning drones or manually. \n\nUsers can plan the reforesting missions, by defining areas of seeding, specific seed/tree location, drone landing points, fly zones and other helpful metrics. All the gathered information can be dynamically displayed on the Liquid Galaxy cluster using KMLs and also on the app with the help of charts and text to bring users a great and immersive overview of each projects\' panorama.\n',
+                  translate("About.message"),
                   style: TextStyle(fontSize: 17),
                   textAlign: TextAlign.center,
                 ),
               ),
               Text(
-                'Learn more',
+                translate("About.learn"),
                 textAlign: TextAlign.center,
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
               ),
               Text(
-                '\nTo get to know more about Dronecoria and Liquid Galaxy Projects you can check out their websites and github. \n',
+                translate("About.check"),
                 textAlign: TextAlign.center,
                 style: TextStyle(fontSize: 17),
               ),
@@ -96,17 +98,18 @@ class _AboutScreenState extends State<AboutScreen> {
                   _launchURL('https://www.liquidgalaxy.eu/');
                 },
                 child: Text(
-                  'Liquid Galaxy website \n',
+                  translate("About.website"),
                   textAlign: TextAlign.center,
                   style: TextStyle(fontSize: 17, color: Colors.blue),
                 ),
               ),
               GestureDetector(
                 onTap: () {
-                  _launchURL('https://github.com/LiquidGalaxyLAB/reforestation-assistant-simulator');
+                  _launchURL(
+                      'https://github.com/LiquidGalaxyLAB/reforestation-assistant-simulator');
                 },
                 child: Text(
-                  'RAS Project GitHub\n',
+                  translate("About.github"),
                   textAlign: TextAlign.center,
                   style: TextStyle(fontSize: 17, color: Colors.blue),
                 ),
@@ -116,13 +119,13 @@ class _AboutScreenState extends State<AboutScreen> {
                   _launchURL('https://dronecoria.org/en/main/');
                 },
                 child: Text(
-                  'Dronecoria website',
+                  translate("About.drone"),
                   textAlign: TextAlign.center,
                   style: TextStyle(fontSize: 17, color: Colors.blue),
                 ),
               ),
               Text(
-                '\nThank you for the authors of the icons used on this app. \n',
+                translate("About.icons"),
                 textAlign: TextAlign.center,
                 style: TextStyle(fontSize: 17),
               ),
@@ -131,26 +134,27 @@ class _AboutScreenState extends State<AboutScreen> {
                   _launchURL('https://www.freepik.com/');
                 },
                 child: Text(
-                  'Icons by freepik',
+                  translate("About.freepik"),
                   textAlign: TextAlign.center,
                   style: TextStyle(fontSize: 17, color: Colors.blue),
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(top:10.0),
+                padding: const EdgeInsets.only(top: 10.0),
                 child: GestureDetector(
                   onTap: () {
-                    _launchURL('https://github.com/LiquidGalaxyLAB/reforestation-assistant/files/6994243/license-47124069.pdf/');
+                    _launchURL(
+                        'https://github.com/LiquidGalaxyLAB/reforestation-assistant/files/6994243/license-47124069.pdf/');
                   },
                   child: Text(
-                    'Icons License',
+                    translate("About.License"),
                     textAlign: TextAlign.center,
                     style: TextStyle(fontSize: 17, color: Colors.blue),
                   ),
                 ),
               ),
               Text(
-                '\nOur partners',
+                translate("About.partner"),
                 textAlign: TextAlign.center,
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
               ),

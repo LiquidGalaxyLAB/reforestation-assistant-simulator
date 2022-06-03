@@ -14,11 +14,10 @@ class LGConnection {
 
     SSHClient client = SSHClient(
       host: '${credencials['ip']}',
-      port: 22,
-      username: "lg",
+      port: int.parse('${credencials['port']}'),
+      username: '${credencials['username']}',
       passwordOrKey: '${credencials['pass']}',
     );
-
     // With feh image viewer
     // try {
     //   await client.connect();
@@ -56,9 +55,9 @@ class LGConnection {
     ''';
     try {
       await client.connect();
-      await client.execute("echo '$openLogoKML' > /var/www/html/kml/slave_4.kml");
-
-    }catch (e) {
+      await client
+          .execute("echo '$openLogoKML' > /var/www/html/kml/slave_4.kml");
+    } catch (e) {
       print(e);
     }
   }
@@ -76,8 +75,8 @@ class LGConnection {
 
     SSHClient client = SSHClient(
       host: '${credencials['ip']}',
-      port: 22,
-      username: "lg",
+      port: int.parse('${credencials['port']}'),
+      username: '${credencials['username']}',
       passwordOrKey: '${credencials['pass']}',
     );
 
@@ -95,10 +94,14 @@ class LGConnection {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     String ipAddress = preferences.getString('master_ip') ?? '';
     String password = preferences.getString('master_password') ?? '';
+    String portNumber = preferences.getString('master_portNumber') ?? '';
+    String username = preferences.getString('master_username') ?? '';
 
     return {
       "ip": ipAddress,
       "pass": password,
+      "port": portNumber,
+      "username": username,
     };
   }
 
@@ -131,8 +134,8 @@ class LGConnection {
 
     SSHClient client = SSHClient(
       host: '${credencials['ip']}',
-      port: 22,
-      username: "lg",
+      port: int.parse('${credencials['port']}'),
+      username: '${credencials['username']}',
       passwordOrKey: '${credencials['pass']}',
     );
 
@@ -199,8 +202,8 @@ class LGConnection {
 
     SSHClient client = SSHClient(
       host: '${credencials['ip']}',
-      port: 22,
-      username: "lg",
+      port: int.parse('${credencials['port']}'),
+      username: '${credencials['username']}',
       passwordOrKey: '${credencials['pass']}',
     );
 
@@ -216,8 +219,8 @@ class LGConnection {
         },
       );
 
-      return await client
-          .execute("echo '\nhttp://lg1:81/Orbit.kml' >> /var/www/html/kmls.txt");
+      return await client.execute(
+          "echo '\nhttp://lg1:81/Orbit.kml' >> /var/www/html/kmls.txt");
     } catch (e) {
       print('Could not connect to host LG');
       return Future.error(e);
@@ -248,8 +251,8 @@ class LGConnection {
 
     SSHClient client = SSHClient(
       host: '${credencials['ip']}',
-      port: 22,
-      username: "lg",
+      port: int.parse('${credencials['port']}'),
+      username: '${credencials['username']}',
       passwordOrKey: '${credencials['pass']}',
     );
 

@@ -1,8 +1,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+// ignore: import_of_legacy_library_into_null_safe
+import 'package:flutter_translate/flutter_translate.dart';
 import 'package:ras/services/Authentication.dart';
 import 'package:ras/services/Database.dart';
 import 'package:ras/services/LGConnection.dart';
+import 'package:ras/services/Translate.dart';
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:ssh/ssh.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -18,8 +21,10 @@ class _SettingsState extends State<Settings> {
   bool isLoggedIn = false;
   bool obscurePassword = true;
   bool loaded = false;
+  TextEditingController username = TextEditingController();
   TextEditingController ipAddress = TextEditingController();
   TextEditingController password = TextEditingController();
+  TextEditingController portNumber = TextEditingController();
 
   bool _isSigningOut = false;
   User? currentUser = Authentication.currentUser();
@@ -28,12 +33,14 @@ class _SettingsState extends State<Settings> {
   connect() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     await preferences.setString('master_ip', ipAddress.text);
+    await preferences.setString('master_username', username.text);
     await preferences.setString('master_password', password.text);
+    await preferences.setString('master_portNumber', portNumber.text);
 
     SSHClient client = SSHClient(
       host: ipAddress.text,
-      port: 22,
-      username: "lg",
+      port: int.parse(portNumber.text),
+      username: username.text,
       passwordOrKey: password.text,
     );
 
@@ -59,11 +66,12 @@ class _SettingsState extends State<Settings> {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     await preferences.setString('master_ip', ipAddress.text);
     await preferences.setString('master_password', password.text);
+    await preferences.setString('master_portNumber', portNumber.text);
 
     SSHClient client = SSHClient(
       host: ipAddress.text,
-      port: 22,
-      username: "lg",
+      port: int.parse(portNumber.text),
+      username: username.text,
       passwordOrKey: password.text,
     );
 
@@ -138,8 +146,9 @@ class _SettingsState extends State<Settings> {
   init() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     ipAddress.text = preferences.getString('master_ip') ?? '';
+    username.text = preferences.getString('master_username') ?? '';
     password.text = preferences.getString('master_password') ?? '';
-
+    portNumber.text = preferences.getString('master_portNumber') ?? '';
     await checkConnectionStatus();
 
     loaded = true;
@@ -148,6 +157,7 @@ class _SettingsState extends State<Settings> {
   @override
   Widget build(BuildContext context) {
     if (!loaded) init();
+    var localizationDelegate = LocalizedApp.of(context).delegate;
 
     return Scaffold(
         appBar: PreferredSize(
@@ -303,6 +313,18 @@ class _SettingsState extends State<Settings> {
                   ),
                 ),
                 Padding(
+                  padding: EdgeInsets.only(bottom: 0.0),
+                  child: TextFormField(
+                    controller: username,
+                    keyboardType: TextInputType.text,
+                    decoration: InputDecoration(
+                      filled: true,
+                      hintText: translate("eg. lg"),
+                      labelText: translate("Master machine Username"),
+                    ),
+                  ),
+                ),
+                Padding(
                   padding: const EdgeInsets.symmetric(vertical: 20.0),
                   child: TextFormField(
                     controller: ipAddress,
@@ -311,6 +333,18 @@ class _SettingsState extends State<Settings> {
                       filled: true,
                       hintText: 'eg. 192.168.0.115',
                       labelText: 'Master machine IP Address',
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(bottom: 20.0),
+                  child: TextFormField(
+                    controller: portNumber,
+                    keyboardType: TextInputType.number,
+                    decoration: InputDecoration(
+                      filled: true,
+                      hintText: translate("eg. 22"),
+                      labelText: translate("Master machine Port Number"),
                     ),
                   ),
                 ),
@@ -350,12 +384,15 @@ class _SettingsState extends State<Settings> {
                 ),
                 ListTile(
                   leading: Text(
-                    '🇺🇸',
+                    translate('language.flag'),
                     style: TextStyle(fontSize: 20),
                   ),
-                  title: Text('English (US)'),
+                  title: Text(translate('language.selected_message', args: {
+                    'language': translate(
+                        'language.name.${localizationDelegate.currentLocale.languageCode}')
+                  })),
                   trailing: IconButton(
-                    onPressed: () {},
+                    onPressed: () => onActionSheetPress(context),
                     icon: Icon(
                       Icons.language,
                       color: Colors.grey,

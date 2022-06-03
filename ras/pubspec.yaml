@@ -23,7 +23,10 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
+  flutter_translate: ^2.0.0
+  flutter_localizations: 
+    sdk: flutter
+    version: 
 # Dependencies
   ssh: ^0.0.7
   shared_preferences: ^2.0.6
@@ -44,9 +47,11 @@ dependencies:
   http: ^0.13.3
   googleapis: ^4.0.0
 
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
+
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -65,7 +70,7 @@ flutter:
     - assets/seedIcons/
     - assets/logos/
     - assets/appIcons/
-
+    - assets/i18n/
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
 
