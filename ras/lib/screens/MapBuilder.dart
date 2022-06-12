@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
-
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:ras/models/Gmap.dart';
@@ -684,8 +683,9 @@ class _MapBuilderState extends State<MapBuilder> {
   }
 
   Future<LatLng> _determinePosition() async {
-    Position position = await GeolocatorPlatform.instance
-        .getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
+    Position position = await GeolocatorPlatform.instance.getCurrentPosition(
+      locationSettings: LocationSettings(accuracy: LocationAccuracy.high),
+    );
     CameraPosition cameraPosition = CameraPosition(
       target: LatLng(position.latitude, position.longitude),
       zoom: 15,
