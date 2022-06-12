@@ -52,29 +52,28 @@ class _SignInScreenState extends State<SignInScreen> {
                   ],
                 ),
               ),
-              OutlinedButton(
-                style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all(Colors.blue),
-                  shape: MaterialStateProperty.all(
-                    RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
+              SizedBox(
+                width: MediaQuery.of(context).size.width,
+                child: OutlinedButton(
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all(Colors.blue),
+                    shape: MaterialStateProperty.all(
+                      RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
                     ),
                   ),
-                ),
-                onPressed: () async {
-                  SharedPreferences preferences = await SharedPreferences.getInstance();
-                  preferences.setBool('unauthenticated', true);
-                  Navigator.of(context).pushNamed('/');
-                  
-                },
-                child: Padding(
-                  padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Padding(
-                        padding: const EdgeInsets.only(left: 10,top:5, bottom: 5),
+                  onPressed: () async {
+                    SharedPreferences preferences =
+                        await SharedPreferences.getInstance();
+                    preferences.setBool('unauthenticated', true);
+                    Navigator.of(context).pushNamed('/');
+                  },
+                  child: Padding(
+                      padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
+                      child: Padding(
+                        padding:
+                            const EdgeInsets.only(left: 10, top: 5, bottom: 5),
                         child: Text(
                           'Start unauthenticated',
                           style: TextStyle(
@@ -84,29 +83,84 @@ class _SignInScreenState extends State<SignInScreen> {
                           ),
                         ),
                       )
-                    ],
-                  ),
+                      // Row(
+                      //   mainAxisSize: MainAxisSize.max,
+                      //   mainAxisAlignment: MainAxisAlignment.center,
+                      //   children: <Widget>[
+                      //     Padding(
+                      //       padding: const EdgeInsets.only(left: 10,top:5, bottom: 5),
+                      //       child: Text(
+                      //         'Start unauthenticated',
+                      //         style: TextStyle(
+                      //           fontSize: 20,
+                      //           color: Colors.white,
+                      //           fontWeight: FontWeight.w600,
+                      //         ),
+                      //       ),
+                      //     )
+                      //   ],
+                      // ),
+                      ),
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(vertical:15.0),
-                child: Text('OR', style: TextStyle(fontWeight: FontWeight.w300, color: Colors.grey.shade600,),),
-              ),
+                  padding: const EdgeInsets.symmetric(vertical: 15.0),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: Divider(
+                          thickness: 1,
+                          indent: 50,
+                        ),
+                      ),
+                      Text("\t\tOR\t\t"),
+                      Expanded(
+                        child: Divider(
+                          thickness: 1,
+                          endIndent: 50,
+                        ),
+                      ),
+                    ],
+                  )
+                  // Text(
+                  //   'OR',
+                  //   style: TextStyle(
+                  //     fontWeight: FontWeight.w300,
+                  //     color: Colors.grey.shade600,
+                  //   ),
+                  // ),
+                  ),
               FutureBuilder(
                 future: Authentication.initializeFirebase(context: context),
                 builder: (context, snapshot) {
                   if (snapshot.hasError) {
                     return Text('Error initializing Firebase');
-                  } else if (snapshot.connectionState == ConnectionState.done) {
-                    return GoogleSignInButton();
                   }
-                  return Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      CircularProgressIndicator(),
-                      Text('Signing with Google...', style: TextStyle(color: Colors.grey),)
-                    ],
-                  );
+                  return snapshot.connectionState == ConnectionState.done
+                      ? GoogleSignInButton()
+                      : Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            CircularProgressIndicator(),
+                            Text(
+                              'Signing with Google...',
+                              style: TextStyle(color: Colors.grey),
+                            ),
+                          ],
+                        );
+                  // } else if (snapshot.connectionState == ConnectionState.done) {
+                  //   return GoogleSignInButton();
+                  // }
+                  // return Column(
+                  //   crossAxisAlignment: CrossAxisAlignment.center,
+                  //   children: [
+                  //     CircularProgressIndicator(),
+                  //     Text(
+                  //       'Signing with Google...',
+                  //       style: TextStyle(color: Colors.grey),
+                  //     ),
+                  //   ],
+                  // );
                 },
               ),
             ],
@@ -131,17 +185,20 @@ class _GoogleSignInButtonState extends State<GoogleSignInButton> {
       padding: const EdgeInsets.only(bottom: 16.0),
       child: _isSigningIn
           ? Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              CircularProgressIndicator(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                CircularProgressIndicator(
                   valueColor: AlwaysStoppedAnimation<Color>(Colors.blue),
                 ),
-              Padding(
-                padding: const EdgeInsets.only(top:15.0),
-                child: Text('Signing with Google...', style: TextStyle(color: Colors.grey),),
-              )
-            ],
-          )
+                Padding(
+                  padding: const EdgeInsets.only(top: 15.0),
+                  child: Text(
+                    'Signing with Google...',
+                    style: TextStyle(color: Colors.grey),
+                  ),
+                )
+              ],
+            )
           : OutlinedButton(
               style: ButtonStyle(
                 backgroundColor: MaterialStateProperty.all(Colors.white),

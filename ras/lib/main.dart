@@ -34,14 +34,12 @@ class MyApp extends StatelessWidget {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     String ipAddress = preferences.getString('master_ip') ?? '';
     String password = preferences.getString('master_password') ?? '';
-
     SSHClient client = SSHClient(
       host: ipAddress,
       port: 22,
       username: "lg",
       passwordOrKey: password,
     );
-
     try {
       await client.connect();
       // open logos
@@ -52,7 +50,6 @@ class MyApp extends StatelessWidget {
       print(e);
     }
   }
-
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {

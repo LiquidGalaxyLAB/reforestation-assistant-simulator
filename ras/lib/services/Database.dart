@@ -15,7 +15,6 @@ class DatabaseService {
 
   Future<String> get _localPath async {
     final directory = await getApplicationDocumentsDirectory();
-
     return directory.path;
   }
 
@@ -38,7 +37,6 @@ class DatabaseService {
     String path = (await _localPath) + '/$_dbName';
     Database db = await _dbFactory.openDatabase(path);
     var store = stringMapStoreFactory.store(storeName);
-
     return await store.record(key).get(db);
   }
 
