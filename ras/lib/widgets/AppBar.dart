@@ -64,13 +64,16 @@ class _MyAppBarState extends State<MyAppBar> {
                 } else
                   Navigator.of(context).pop();
               },
-              icon: Icon(Icons.chevron_left),
+              icon: Icon(
+                Icons.chevron_left,
+              ),
             )
           : IconButton(
               onPressed: () {
                 Navigator.pushNamed(context, '/about');
               },
-              icon: Icon(Icons.info)),
+              icon: Icon(Icons.info),
+            ),
       title: Text(
         'RAS',
         style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),

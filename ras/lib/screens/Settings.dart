@@ -150,6 +150,7 @@ class _SettingsState extends State<Settings> {
     if (!loaded) init();
 
     return Scaffold(
+       backgroundColor: Color(0xFFF4F8EC),
         appBar: PreferredSize(
           preferredSize: const Size.fromHeight(50),
           child: MyAppBar(
