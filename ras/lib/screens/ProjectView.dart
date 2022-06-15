@@ -13,6 +13,7 @@ import 'package:ras/services/PdfGenerator.dart';
 import 'package:ras/widgets/AppBar.dart';
 import 'package:ras/widgets/SurvivalInfoChart.dart';
 import 'package:ras/widgets/CO2Chart.dart';
+import 'package:ras/widgets/TotalCO2Chart.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 class ProjectView extends StatefulWidget {
@@ -549,6 +550,22 @@ class _ProjectViewState extends State<ProjectView> {
                             style: TextStyle(color: Colors.grey),
                           ),
                         ),
+                        Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 28.0),
+                    child: Text(
+                      'Potential CO2 Capture',
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
+                    ),
+                  ),
+                  args.project.seeds.length > 0
+                      ? TotalCO2Chart(args.project.seeds)
+                      : Center(
+                          child: Text(
+                            'No data',
+                            style: TextStyle(color: Colors.grey),
+                          ),
+                        ),
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 28.0),
                     child: Text(
@@ -590,6 +607,7 @@ class _ProjectViewState extends State<ProjectView> {
     );
   }
 }
+
 
 class ItemTitle extends StatelessWidget {
   final String title;
