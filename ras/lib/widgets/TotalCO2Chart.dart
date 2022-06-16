@@ -25,14 +25,14 @@ class _TotalCO2ChartState extends State<TotalCO2Chart> {
   }
 
   getCO2(int count) {
-    double totalDensity = 0;
+    double totalCO2 = 0;
     for(int i = 0; i < count; i++){
     seeds.forEach((element) {
-      totalDensity += element.co2PerYear;
+      totalCO2 += element.co2PerYear;
     });
     }
 
-    return totalDensity;
+    return totalCO2;
   }
 
     getYear(int count) {

@@ -235,6 +235,18 @@ class _ProjectViewState extends State<ProjectView> {
         });
   }
 
+   getCO2(int count, ProjectViewArgs args) {
+    Project? p = args.project;
+    double totalCO2 = 0;
+    for(int i = 0; i < count; i++){
+      p.seeds.forEach((element) {
+      totalCO2 += element.co2PerYear;
+    });
+    }
+
+    return totalCO2;
+  }
+
   @override
   Widget build(BuildContext context) {
     final args = ModalRoute.of(context)!.settings.arguments as ProjectViewArgs;
@@ -462,7 +474,7 @@ class _ProjectViewState extends State<ProjectView> {
                     Item('Total number of rain days',
                         args.project.totalNumberOfRains.toString()),
                     ItemTitle('SPECIES INFORMATION'),
-                    Item('Total CO2 capture', 'XXX'),
+                    Item('Total CO2 capture for this year', getCO2(1, args).toString()),
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 10.0),
                       child: Text('SEEDS',
@@ -493,7 +505,7 @@ class _ProjectViewState extends State<ProjectView> {
                                         .toString() +
                                     ' years'),
                             Item(
-                                'Estimated final heigth',
+                                'Estimated final height',
                                 args.project.seeds[i].estimatedFinalHeight
                                         .toString() +
                                     'm'),
