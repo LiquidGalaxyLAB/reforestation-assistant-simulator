@@ -597,6 +597,17 @@ class _ProjectViewState extends State<ProjectView> {
                             ),
                           ),
                         ),
+                    ElevatedButton.icon(
+                      style: ElevatedButton.styleFrom(
+                        primary: Colors.blue,
+                      ),
+                      onPressed: () {
+                        Navigator.pushNamed(context, '/mission-size',
+                                arguments: (args));
+                      },
+                      label: Text('Calculate size of the mission'),
+                      icon: Icon(Icons.calculate),
+                    ),
                   ElevatedButton.icon(
                     style: ElevatedButton.styleFrom(
                       primary: Colors.red,

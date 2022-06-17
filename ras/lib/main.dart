@@ -13,6 +13,7 @@ import 'package:ras/services/Database.dart';
 import 'package:ras/services/LGConnection.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:ras/screens/MapView.dart';
+import 'package:ras/screens/MissionSize.dart';
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:ssh/ssh.dart';
 
@@ -83,6 +84,7 @@ class MyApp extends StatelessWidget {
         '/seed-form': (context) => SeedForm(),
         '/project-view': (context) => ProjectView(),
         '/map-view': (context) => MapView(),
+        '/mission-size': (context) => MissionSize(),
       },
     );
   }
