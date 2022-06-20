@@ -653,6 +653,8 @@ class FakeDatabase {
             },
             "minFlightHeight": 96.5,
             "predation": 50.0,
+            "sizeOfDeposit": 1.0,
+            "sizeOfSeedballs": 1.0,
             "areaCovered": 400.0
           },
           {
@@ -1259,6 +1261,8 @@ class FakeDatabase {
             },
             "minFlightHeight": 0.0,
             "predation": 30.0,
+            "sizeOfDeposit": 1.0,
+            "sizeOfSeedballs": 1.0,
             "areaCovered": 500.0
           },
           {
@@ -2126,6 +2130,8 @@ class FakeDatabase {
             },
             "minFlightHeight": 100.0,
             "predation": 10.0,
+            "sizeOfDeposit": 1.0,
+            "sizeOfSeedballs": 1.0,
             "areaCovered": 100.0
           },
           {
@@ -5564,6 +5570,8 @@ class FakeDatabase {
             },
             "minFlightHeight": 100.0,
             "predation": 20.0,
+            "sizeOfDeposit": 1.0,
+            "sizeOfSeedballs": 1.0,
             "areaCovered": 400.0
           },
           {
@@ -6023,6 +6031,8 @@ class FakeDatabase {
             },
             "minFlightHeight": 0.0,
             "predation": 0.0,
+            "sizeOfDeposit": 1.0,
+            "sizeOfSeedballs": 1.0,
             "areaCovered": 200.0
           }
         ]

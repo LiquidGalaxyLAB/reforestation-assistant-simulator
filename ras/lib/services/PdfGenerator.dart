@@ -117,6 +117,8 @@ class PdfGenerator {
             attribute('Maximum distance', '${project.maxDistance} m'),
             attribute('Minimum flight height', '${project.minFlightHeight} m'),
             attribute('Predation', '${project.predation}%'),
+            attribute('Size of Deposit', '${project.sizeOfDeposit}%'),
+            attribute('Size of Seedballs', '${project.sizeOfSeedballs}%'),
             title('SOIL ATTRIBUTES'),
             attribute('Depth', '${project.depth} m'),
             attribute('PH', '${project.ph}'),

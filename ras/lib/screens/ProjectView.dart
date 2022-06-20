@@ -530,6 +530,8 @@ class _ProjectViewState extends State<ProjectView> {
                     Item('Maximum distance',
                         args.project.maxDistance.toString() + 'm'),
                     Item('Predation', args.project.predation.toString() + '%'),
+                    Item('Size of Deposit', args.project.sizeOfDeposit.toString()),
+                    Item('Size of Seedballs', args.project.sizeOfSeedballs.toString()),
                     ItemTitle('SOIL ATTRIBUTES'),
                     Item('Depth', args.project.depth.toString() + 'm'),
                     Item('PH', args.project.ph.toString()),
@@ -597,17 +599,6 @@ class _ProjectViewState extends State<ProjectView> {
                             ),
                           ),
                         ),
-                    ElevatedButton.icon(
-                      style: ElevatedButton.styleFrom(
-                        primary: Colors.blue,
-                      ),
-                      onPressed: () {
-                        Navigator.pushNamed(context, '/mission-size',
-                                arguments: (args));
-                      },
-                      label: Text('Calculate size of the mission'),
-                      icon: Icon(Icons.calculate),
-                    ),
                   ElevatedButton.icon(
                     style: ElevatedButton.styleFrom(
                       primary: Colors.red,

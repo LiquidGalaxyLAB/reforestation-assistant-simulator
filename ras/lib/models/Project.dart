@@ -40,6 +40,8 @@ class Project {
   int hummus;
   double inclination;
   double predation;
+  double sizeOfDeposit;
+  double sizeOfSeedballs;
 
   // GMAP - KML
   Gmap geodata;
@@ -72,6 +74,8 @@ class Project {
     this.geodata,
     this.minFlightHeight,
     this.predation,
+    this.sizeOfDeposit,
+    this.sizeOfSeedballs,
     this.areaCovered,
   );
 
@@ -114,6 +118,8 @@ class Project {
       "geodata": geodata.toMap(),
       "minFlightHeight": minFlightHeight,
       "predation": predation,
+      "sizeOfDeposit": sizeOfDeposit,
+      "sizeOfSeedballs": sizeOfSeedballs,
       "areaCovered": areaCovered,
     };
   }
@@ -151,6 +157,8 @@ class Project {
         Gmap.fromMap(element.value['geodata']),
         element.value['minFlightHeight'],
         element.value['predation'],
+        element.value['sizeOfDeposit'],
+        element.value['sizeOfSeedballs'],
         element.value['areaCovered'],
       ));
     });
