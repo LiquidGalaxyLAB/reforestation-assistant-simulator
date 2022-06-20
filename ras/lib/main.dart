@@ -16,6 +16,7 @@ import 'package:ras/screens/MapView.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:flutter_translate/flutter_translate.dart';
+import 'package:ras/screens/MissionSize.dart';
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:ssh/ssh.dart';
 
@@ -89,21 +90,22 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        debugShowCheckedModeBanner: false,
-        initialRoute: '/splash',
-        routes: {
-          '/': (context) => MyHomePage(),
-          '/login': (context) => SignInScreen(),
-          '/splash': (context) => SplashScreen(),
-          '/map': (context) => MapBuilder(),
-          '/settings': (context) => Settings(),
-          '/project-builder': (context) => ProjectBuilder(),
-          '/about': (context) => AboutScreen(),
-          '/seed-form': (context) => SeedForm(),
-          '/project-view': (context) => ProjectView(),
-          '/map-view': (context) => MapView(),
-        },
-      ),
+      
+      debugShowCheckedModeBanner: false,
+      initialRoute: '/splash',
+      routes: {
+        '/': (context) => MyHomePage(),
+        '/login': (context) => SignInScreen(),
+        '/splash': (context) => SplashScreen(),
+        '/map': (context) => MapBuilder(),
+        '/settings': (context) => Settings(),
+        '/project-builder': (context) => ProjectBuilder(),
+        '/about': (context) => AboutScreen(),
+        '/seed-form': (context) => SeedForm(),
+        '/project-view': (context) => ProjectView(),
+        '/map-view': (context) => MapView(),
+        '/mission-size': (context) => MissionSize(),
+      },
     );
   }
 }

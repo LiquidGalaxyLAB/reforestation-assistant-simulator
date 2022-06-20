@@ -421,12 +421,9 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
             children: [
               Expanded(
                 child: Stepper(
-                  // Source: https://stackoverflow.com/questions/68372526/why-cant-i-use-flutter-steppers-controlsbuilder
-                  // controlsBuilder: (BuildContext context,
-                  //     {VoidCallback? onStepContinue,
-                  //     VoidCallback? onStepCancel})
-                  controlsBuilder:
-                      (BuildContext context, ControlsDetails controls) {
+
+                  controlsBuilder: (BuildContext context, ControlsDetails controls) {
+
                     return Row(
                       children: <Widget>[],
                     );

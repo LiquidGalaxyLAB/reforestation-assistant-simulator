@@ -67,7 +67,7 @@ class _MapViewState extends State<MapView> {
         body: Stack(
       children: [
         GoogleMap(
-          mapType: MapType.satellite,
+          mapType: MapType.terrain,
           initialCameraPosition: initPosition,
           myLocationEnabled: true,
           myLocationButtonEnabled: false,

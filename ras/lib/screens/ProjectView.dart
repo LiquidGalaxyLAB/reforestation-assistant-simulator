@@ -13,6 +13,7 @@ import 'package:ras/services/PdfGenerator.dart';
 import 'package:ras/widgets/AppBar.dart';
 import 'package:ras/widgets/SurvivalInfoChart.dart';
 import 'package:ras/widgets/CO2Chart.dart';
+import 'package:ras/widgets/TotalCO2Chart.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 class ProjectView extends StatefulWidget {
@@ -232,6 +233,18 @@ class _ProjectViewState extends State<ProjectView> {
             ],
           );
         });
+  }
+
+   getCO2(int count, ProjectViewArgs args) {
+    Project? p = args.project;
+    double totalCO2 = 0;
+    for(int i = 0; i < count; i++){
+      p.seeds.forEach((element) {
+      totalCO2 += element.co2PerYear;
+    });
+    }
+
+    return totalCO2;
   }
 
   @override
@@ -461,7 +474,7 @@ class _ProjectViewState extends State<ProjectView> {
                     Item('Total number of rain days',
                         args.project.totalNumberOfRains.toString()),
                     ItemTitle('SPECIES INFORMATION'),
-                    Item('Total CO2 capture', 'XXX'),
+                    Item('Total CO2 capture for this year', getCO2(1, args).toString()),
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 10.0),
                       child: Text('SEEDS',
@@ -492,7 +505,7 @@ class _ProjectViewState extends State<ProjectView> {
                                         .toString() +
                                     ' years'),
                             Item(
-                                'Estimated final heigth',
+                                'Estimated final height',
                                 args.project.seeds[i].estimatedFinalHeight
                                         .toString() +
                                     'm'),
@@ -549,6 +562,22 @@ class _ProjectViewState extends State<ProjectView> {
                             style: TextStyle(color: Colors.grey),
                           ),
                         ),
+                        Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 28.0),
+                    child: Text(
+                      'Potential CO2 Capture',
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
+                    ),
+                  ),
+                  args.project.seeds.length > 0
+                      ? TotalCO2Chart(args.project.seeds)
+                      : Center(
+                          child: Text(
+                            'No data',
+                            style: TextStyle(color: Colors.grey),
+                          ),
+                        ),
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 28.0),
                     child: Text(
@@ -568,6 +597,17 @@ class _ProjectViewState extends State<ProjectView> {
                             ),
                           ),
                         ),
+                    ElevatedButton.icon(
+                      style: ElevatedButton.styleFrom(
+                        primary: Colors.blue,
+                      ),
+                      onPressed: () {
+                        Navigator.pushNamed(context, '/mission-size',
+                                arguments: (args));
+                      },
+                      label: Text('Calculate size of the mission'),
+                      icon: Icon(Icons.calculate),
+                    ),
                   ElevatedButton.icon(
                     style: ElevatedButton.styleFrom(
                       primary: Colors.red,
@@ -590,6 +630,7 @@ class _ProjectViewState extends State<ProjectView> {
     );
   }
 }
+
 
 class ItemTitle extends StatelessWidget {
   final String title;
