@@ -41,7 +41,6 @@ class Project {
   double inclination;
   double predation;
   double sizeOfDeposit;
-  double sizeOfSeedballs;
 
   // GMAP - KML
   Gmap geodata;
@@ -75,7 +74,6 @@ class Project {
     this.minFlightHeight,
     this.predation,
     this.sizeOfDeposit,
-    this.sizeOfSeedballs,
     this.areaCovered,
   );
 
@@ -119,7 +117,6 @@ class Project {
       "minFlightHeight": minFlightHeight,
       "predation": predation,
       "sizeOfDeposit": sizeOfDeposit,
-      "sizeOfSeedballs": sizeOfSeedballs,
       "areaCovered": areaCovered,
     };
   }
@@ -158,7 +155,6 @@ class Project {
         element.value['minFlightHeight'],
         element.value['predation'],
         element.value['sizeOfDeposit'],
-        element.value['sizeOfSeedballs'],
         element.value['areaCovered'],
       ));
     });

@@ -34,7 +34,7 @@ class _MapViewState extends State<MapView> {
   var uuid = Uuid();
   BitmapDescriptor currentSeedMarkerIcon =
       BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueRed);
-  Seed currentSeedMarker = Seed('', 'none', '', {}, 0, 0, 0, 0, 0, 0);
+  Seed currentSeedMarker = Seed('', 'none', '', {}, 0, 0, 0, 0, 0, 0, 0);
 
   // SEED MARKERS
   List<Placemark> seedMarkers = [];

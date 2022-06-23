@@ -112,7 +112,6 @@ class _ProjectListState extends State<ProjectList> {
       model.minFlightHeight,
       model.predation,
       model.sizeOfDeposit,
-      model.sizeOfSeedballs,
       model.areaCovered,
     );
     Future response = ProjectRepository().create(project);

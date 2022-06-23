@@ -509,6 +509,10 @@ class _ProjectViewState extends State<ProjectView> {
                                 args.project.seeds[i].estimatedFinalHeight
                                         .toString() +
                                     'm'),
+                            Item(
+                                'Seedball Diameter',
+                                args.project.seeds[i].seedballDiameter.toString() +
+                                    ' mm'),
                           ],
                         ),
                       ),
@@ -530,8 +534,7 @@ class _ProjectViewState extends State<ProjectView> {
                     Item('Maximum distance',
                         args.project.maxDistance.toString() + 'm'),
                     Item('Predation', args.project.predation.toString() + '%'),
-                    Item('Size of Deposit', args.project.sizeOfDeposit.toString()),
-                    Item('Size of Seedballs', args.project.sizeOfSeedballs.toString()),
+                    Item('Size of Deposit', args.project.sizeOfDeposit.toString() + ' liters'),
                     ItemTitle('SOIL ATTRIBUTES'),
                     Item('Depth', args.project.depth.toString() + 'm'),
                     Item('PH', args.project.ph.toString()),

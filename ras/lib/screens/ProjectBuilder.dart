@@ -82,7 +82,6 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
   TextEditingController inclination = TextEditingController();
   TextEditingController predation = TextEditingController();
   TextEditingController sizeOfDeposit = TextEditingController();
-  TextEditingController sizeOfSeedballs = TextEditingController();
 
   calculateAltitudeOfTerrain() async {
     final args =
@@ -201,6 +200,7 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                                           if (value) {
                                             seeds.add(data[index]);
                                             seeds[seeds.length - 1].density = 0;
+                                            seeds[seeds.length - 1].seedballDiameter = 0;
                                           } else
                                             seeds.removeWhere((element) =>
                                                 element.id == data[index].id ||
@@ -269,6 +269,7 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
   _saveProject(ProjectBuilderArgs args) {
     seeds.forEach((element) {
       if (element.density == null) element.density = 0;
+      if (element.seedballDiameter == null) element.seedballDiameter = 0;
     });
     if (args.isNew) {
       Project project = Project(
@@ -300,7 +301,6 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
         double.parse(minFlightHeight.text),
         double.parse(predation.text),
         double.parse(sizeOfDeposit.text),
-        double.parse(sizeOfSeedballs.text),
         double.parse(areaCovered.text),
       );
       Future response = ProjectRepository().create(project);
@@ -339,7 +339,6 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
         double.parse(minFlightHeight.text),
         double.parse(predation.text),
         double.parse(sizeOfDeposit.text),
-        double.parse(sizeOfSeedballs.text),
         double.parse(areaCovered.text),
       );
       Future response = ProjectRepository().update(project, args.project!.id);
@@ -379,7 +378,6 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
       minFlightHeight.text = args.project!.minFlightHeight.toString();
       predation.text = args.project!.predation.toString();
       sizeOfDeposit.text = args.project!.sizeOfDeposit.toString();
-      sizeOfSeedballs.text = args.project!.sizeOfSeedballs.toString();
       areaCovered.text = args.project!.areaCovered.toString();
 
       // map info
@@ -402,7 +400,6 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
       minFlightHeight.text = '0';
       predation.text = '0';
       sizeOfDeposit.text = '0';
-      sizeOfSeedballs.text = '0';
       areaCovered.text = '0';
     }
   }
@@ -942,6 +939,18 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                             icon: Icon(Icons.check_box),
                             label: Text('Select seed'),
                           ),
+                          Padding(
+                            padding:
+                                const EdgeInsets.only(top: 25.0, bottom: 15),
+                            child: Text(
+                              'Seed Density',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 16,
+                                color: Colors.black,
+                              ),
+                            ),
+                          ),
                           for (var i = 0; i < seeds.length; i++)
                             ListTile(
                               leading: SizedBox(
@@ -965,6 +974,57 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                                   },
                                   decoration: InputDecoration(
                                       filled: true, helperText: 'Density'),
+                                ),
+                              ),
+                              title: Text('${seeds[i].commonName}'),
+                              subtitle: Text('${seeds[i].scientificName}'),
+                              trailing: IconButton(
+                                onPressed: () {
+                                  setState(() {
+                                    seeds.removeAt(i);
+                                  });
+                                },
+                                icon: Icon(
+                                  Icons.clear,
+                                  color: Colors.red,
+                                ),
+                              ),
+                            ),
+                          Padding(
+                            padding:
+                                const EdgeInsets.only(top: 25.0, bottom: 15),
+                            child: Text(
+                              'Seedball Diameter (mm)',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 16,
+                                color: Colors.black,
+                              ),
+                            ),
+                          ),
+                          for (var i = 0; i < seeds.length; i++)
+                            ListTile(
+                              leading: SizedBox(
+                                width: 75,
+                                height: 75,
+                                child: TextFormField(
+                                  // controller: seedballDiameter,
+                                  initialValue: seeds[i].seedballDiameter == null
+                                      ? '0.0'
+                                      : seeds[i].seedballDiameter.toString(),
+                                  keyboardType: TextInputType.number,
+                                  onChanged: (value) {
+                                    if (seeds[i].seedballDiameter == null)
+                                      seeds[i].seedballDiameter = 0;
+                                    else {
+                                      if (value.length > 0)
+                                        seeds[i].seedballDiameter = double.parse(value);
+                                      else
+                                        seeds[i].seedballDiameter = 0;
+                                    }
+                                  },
+                                  decoration: InputDecoration(
+                                      filled: true, helperText: 'Seedball Diameter (mm)'),
                                 ),
                               ),
                               title: Text('${seeds[i].commonName}'),
@@ -1469,45 +1529,8 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                               ),
                               IconButton(
                                   onPressed: () {
-                                    showHelpDialog('Size of Deposit (centimeters)',
+                                    showHelpDialog('Size of Deposit (liters)',
                                         'Size of the Seed Deposit.');
-                                  },
-                                  icon: Icon(Icons.help))
-                            ],
-                          ),
-                          Padding(
-                            padding:
-                                const EdgeInsets.only(top: 25.0, bottom: 5),
-                            child: Text(
-                              'Size of Seedballs',
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 16,
-                                color: Colors.black54,
-                              ),
-                            ),
-                          ),
-                          Row(
-                            children: [
-                              Expanded(
-                                child: TextFormField(
-                                  controller: sizeOfSeedballs,
-                                  keyboardType: TextInputType.number,
-                                  decoration: InputDecoration(
-                                    filled: true,
-                                  ),
-                                  validator: (value) {
-                                    if (double.parse(value!) < 0) {
-                                      return 'Wrong range! Negative values are not allowed';
-                                    }
-                                    return null;
-                                  },
-                                ),
-                              ),
-                              IconButton(
-                                  onPressed: () {
-                                    showHelpDialog('Size of Seedballs (centimeters)',
-                                        'Average size of Seedballs.');
                                   },
                                   icon: Icon(Icons.help))
                             ],
