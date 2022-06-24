@@ -235,16 +235,15 @@ class _ProjectViewState extends State<ProjectView> {
         });
   }
 
-   getCO2(int count, ProjectViewArgs args) {
+   getCO2(ProjectViewArgs args) {
     Project? p = args.project;
     double totalCO2 = 0;
-    for(int i = 0; i < count; i++){
-      p.seeds.forEach((element) {
-      totalCO2 += element.co2PerYear;
+    final diff = DateTime.now().difference(DateTime.parse(p.dateOfProject.toString()));
+    p.seeds.forEach((element) {
+    totalCO2 += element.co2PerYear;
     });
-    }
-
-    return totalCO2;
+    double CO2 = diff.inDays*(totalCO2/365);
+    return CO2.toStringAsFixed(3);
   }
 
   @override
@@ -474,7 +473,7 @@ class _ProjectViewState extends State<ProjectView> {
                     Item('Total number of rain days',
                         args.project.totalNumberOfRains.toString()),
                     ItemTitle('SPECIES INFORMATION'),
-                    Item('Total CO2 capture for this year', getCO2(1, args).toString()),
+                    Item('Total CO2 capture until today', getCO2(args).toString()),
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 10.0),
                       child: Text('SEEDS',
