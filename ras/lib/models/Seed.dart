@@ -10,7 +10,7 @@ class Seed {
   double seedCost;
   double establishmentCost;
   double? density;
-  double? seedballDiameter;
+  double seedballDiameter;
 
   Seed(
       this.id,

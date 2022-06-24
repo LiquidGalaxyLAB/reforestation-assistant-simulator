@@ -269,7 +269,6 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
   _saveProject(ProjectBuilderArgs args) {
     seeds.forEach((element) {
       if (element.density == null) element.density = 0;
-      if (element.seedballDiameter == null) element.seedballDiameter = 0;
     });
     if (args.isNew) {
       Project project = Project(
@@ -1009,19 +1008,15 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                                 height: 75,
                                 child: TextFormField(
                                   // controller: seedballDiameter,
-                                  initialValue: seeds[i].seedballDiameter == null
+                                  initialValue: seeds[i].seedballDiameter == 0.0
                                       ? '0.0'
                                       : seeds[i].seedballDiameter.toString(),
                                   keyboardType: TextInputType.number,
                                   onChanged: (value) {
-                                    if (seeds[i].seedballDiameter == null)
-                                      seeds[i].seedballDiameter = 0;
-                                    else {
                                       if (value.length > 0)
                                         seeds[i].seedballDiameter = double.parse(value);
                                       else
                                         seeds[i].seedballDiameter = 0;
-                                    }
                                   },
                                   decoration: InputDecoration(
                                       filled: true, helperText: 'Seedball Diameter (mm)'),

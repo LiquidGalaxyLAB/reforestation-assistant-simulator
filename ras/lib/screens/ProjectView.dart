@@ -246,6 +246,27 @@ class _ProjectViewState extends State<ProjectView> {
     return CO2.toStringAsFixed(3);
   }
 
+  getSeedballs(double volume, double diameter) {
+    double seedballs = 0;
+    if(diameter <= 0 || volume <= 0){
+        return seedballs.toString();
+    }
+    double radius = diameter/20;
+    seedballs = (15136*(volume/100))/(radius*radius*radius);
+    return seedballs.toStringAsFixed(0);
+  }
+
+  getFlights(double volume, double diameter) {
+    double flights = 0;
+    if(diameter <= 0 || volume <= 0){
+        return flights.toString();
+    }
+    double radius = diameter/20;
+    flights = (15136*(volume/100))/(radius*radius*radius);
+    flights = 500000 / flights;
+    return flights.toStringAsFixed(2);
+  }
+
   @override
   Widget build(BuildContext context) {
     final args = ModalRoute.of(context)!.settings.arguments as ProjectViewArgs;
@@ -512,6 +533,8 @@ class _ProjectViewState extends State<ProjectView> {
                                 'Seedball Diameter',
                                 args.project.seeds[i].seedballDiameter.toString() +
                                     ' mm'),
+                            Item('Number of Seedballs', getSeedballs(args.project.sizeOfDeposit, args.project.seeds[i].seedballDiameter)),
+                            Item('Number of Flights', getFlights(args.project.sizeOfDeposit, args.project.seeds[i].seedballDiameter)),
                           ],
                         ),
                       ),
