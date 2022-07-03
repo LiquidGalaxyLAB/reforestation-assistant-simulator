@@ -100,6 +100,8 @@ class PdfGenerator {
                           '${project.seeds[index].estimatedLongevity} years'),
                       attribute('Estimated final height',
                           '${project.seeds[index].estimatedFinalHeight} m'),
+                      attribute(
+                          'Seedball Diameter', '${project.seeds[index].seedballDiameter} mm'),
                     ]),
                   );
                 },
@@ -117,6 +119,7 @@ class PdfGenerator {
             attribute('Maximum distance', '${project.maxDistance} m'),
             attribute('Minimum flight height', '${project.minFlightHeight} m'),
             attribute('Predation', '${project.predation}%'),
+            attribute('Size of Deposit', '${project.sizeOfDeposit}% liters'),
             title('SOIL ATTRIBUTES'),
             attribute('Depth', '${project.depth} m'),
             attribute('PH', '${project.ph}'),

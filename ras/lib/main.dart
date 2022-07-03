@@ -104,7 +104,6 @@ class MyApp extends StatelessWidget {
         '/seed-form': (context) => SeedForm(),
         '/project-view': (context) => ProjectView(),
         '/map-view': (context) => MapView(),
-        '/mission-size': (context) => MissionSize(),
       },
     );
   }

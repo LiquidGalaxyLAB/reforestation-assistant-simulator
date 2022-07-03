@@ -24,6 +24,7 @@ class _SeedFormState extends State<SeedForm> {
   TextEditingController estimatedFHeight = TextEditingController();
   TextEditingController seedCost = TextEditingController();
   TextEditingController establishmentCost = TextEditingController();
+  TextEditingController seedballDiameter = TextEditingController();
   dynamic seedIcon = SeedIcons.list[0];
 
   showHelpDialog(String title, String msg) {
@@ -64,6 +65,7 @@ class _SeedFormState extends State<SeedForm> {
         double.parse(estimatedFHeight.text),
         double.parse(seedCost.text),
         double.parse(establishmentCost.text),
+        double.parse(seedballDiameter.text),
       );
       Future response = SeedRepository().create(seed);
       response.then((value) {
@@ -83,6 +85,7 @@ class _SeedFormState extends State<SeedForm> {
         double.parse(estimatedFHeight.text),
         double.parse(seedCost.text),
         double.parse(establishmentCost.text),
+        double.parse(seedballDiameter.text),
       );
       Future response = SeedRepository().update(seed, seed.id);
       response.then((value) {

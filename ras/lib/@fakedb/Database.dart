@@ -40,7 +40,8 @@ class FakeDatabase {
                 "estimatedFinalHeight": 2.5,
                 "seedCost": 0.4,
                 "establishmentCost": 32.0,
-                "density": 100.0
+                "density": 100.0,
+                "seedballDiameter": 0.0
               },
               {
                 "id": "-Mh5IQKb85JM7-PxY3Dt",
@@ -56,7 +57,8 @@ class FakeDatabase {
                 "estimatedFinalHeight": 0.2,
                 "seedCost": 2.5,
                 "establishmentCost": 40.0,
-                "density": 200.0
+                "density": 200.0,
+                "seedballDiameter": 0.0
               },
               {
                 "id": "-Mh5IQKdwTdStxyt6zaW",
@@ -72,7 +74,8 @@ class FakeDatabase {
                 "estimatedFinalHeight": 4.0,
                 "seedCost": 1.55,
                 "establishmentCost": 100.0,
-                "density": 0.0
+                "density": 0.0,
+                "seedballDiameter": 0.0
               },
               {
                 "id": "-Mh5IQKc9nI24NadZ-xd",
@@ -88,7 +91,8 @@ class FakeDatabase {
                 "estimatedFinalHeight": 40.0,
                 "seedCost": 1.99,
                 "establishmentCost": 90.0,
-                "density": 500.0
+                "density": 500.0,
+                "seedballDiameter": 0.0
               }
             ],
             "validSurface": 85.0,
@@ -132,7 +136,8 @@ class FakeDatabase {
                       "estimatedFinalHeight": 2.5,
                       "seedCost": 0.4,
                       "establishmentCost": 32.0,
-                      "density": 100.0
+                      "density": 100.0,
+                      "seedballDiameter": 0.0
                     }
                   },
                   "type": "seedMarker"
@@ -167,7 +172,8 @@ class FakeDatabase {
                       "estimatedFinalHeight": 2.5,
                       "seedCost": 0.4,
                       "establishmentCost": 32.0,
-                      "density": 100.0
+                      "density": 100.0,
+                      "seedballDiameter": 0.0
                     }
                   },
                   "type": "seedMarker"
@@ -202,7 +208,8 @@ class FakeDatabase {
                       "estimatedFinalHeight": 2.5,
                       "seedCost": 0.4,
                       "establishmentCost": 32.0,
-                      "density": 100.0
+                      "density": 100.0,
+                      "seedballDiameter": 0.0
                     }
                   },
                   "type": "seedMarker"
@@ -237,7 +244,8 @@ class FakeDatabase {
                       "estimatedFinalHeight": 0.2,
                       "seedCost": 2.5,
                       "establishmentCost": 40.0,
-                      "density": 200.0
+                      "density": 200.0,
+                      "seedballDiameter": 0.0
                     }
                   },
                   "type": "seedMarker"
@@ -272,7 +280,8 @@ class FakeDatabase {
                       "estimatedFinalHeight": 0.2,
                       "seedCost": 2.5,
                       "establishmentCost": 40.0,
-                      "density": 200.0
+                      "density": 200.0,
+                      "seedballDiameter": 0.0
                     }
                   },
                   "type": "seedMarker"
@@ -307,7 +316,8 @@ class FakeDatabase {
                       "estimatedFinalHeight": 0.2,
                       "seedCost": 2.5,
                       "establishmentCost": 40.0,
-                      "density": 200.0
+                      "density": 200.0,
+                      "seedballDiameter": 0.0
                     }
                   },
                   "type": "seedMarker"
@@ -342,7 +352,8 @@ class FakeDatabase {
                       "estimatedFinalHeight": 4.0,
                       "seedCost": 1.55,
                       "establishmentCost": 100.0,
-                      "density": 0.0
+                      "density": 0.0,
+                      "seedballDiameter": 0.0
                     }
                   },
                   "type": "seedMarker"
@@ -377,7 +388,8 @@ class FakeDatabase {
                       "estimatedFinalHeight": 4.0,
                       "seedCost": 1.55,
                       "establishmentCost": 100.0,
-                      "density": 0.0
+                      "density": 0.0,
+                      "seedballDiameter": 0.0
                     }
                   },
                   "type": "seedMarker"
@@ -412,7 +424,8 @@ class FakeDatabase {
                       "estimatedFinalHeight": 4.0,
                       "seedCost": 1.55,
                       "establishmentCost": 100.0,
-                      "density": 0.0
+                      "density": 0.0,
+                      "seedballDiameter": 0.0
                     }
                   },
                   "type": "seedMarker"
@@ -447,7 +460,8 @@ class FakeDatabase {
                       "estimatedFinalHeight": 40.0,
                       "seedCost": 1.99,
                       "establishmentCost": 90.0,
-                      "density": 500.0
+                      "density": 500.0,
+                      "seedballDiameter": 0.0
                     }
                   },
                   "type": "seedMarker"
@@ -482,7 +496,8 @@ class FakeDatabase {
                       "estimatedFinalHeight": 40.0,
                       "seedCost": 1.99,
                       "establishmentCost": 90.0,
-                      "density": 500.0
+                      "density": 500.0,
+                      "seedballDiameter": 0.0
                     }
                   },
                   "type": "seedMarker"
@@ -517,7 +532,8 @@ class FakeDatabase {
                       "estimatedFinalHeight": 40.0,
                       "seedCost": 1.99,
                       "establishmentCost": 90.0,
-                      "density": 500.0
+                      "density": 500.0,
+                      "seedballDiameter": 0.0
                     }
                   },
                   "type": "seedMarker"
@@ -552,7 +568,8 @@ class FakeDatabase {
                       "estimatedFinalHeight": 40.0,
                       "seedCost": 1.99,
                       "establishmentCost": 90.0,
-                      "density": 500.0
+                      "density": 500.0,
+                      "seedballDiameter": 0.0
                     }
                   },
                   "type": "seedMarker"
@@ -587,7 +604,8 @@ class FakeDatabase {
                       "estimatedFinalHeight": 40.0,
                       "seedCost": 1.99,
                       "establishmentCost": 90.0,
-                      "density": 500.0
+                      "density": 500.0,
+                      "seedballDiameter": 0.0
                     }
                   },
                   "type": "seedMarker"
@@ -619,7 +637,8 @@ class FakeDatabase {
                       "estimatedFinalHeight": 40.0,
                       "seedCost": 1.99,
                       "establishmentCost": 90.0,
-                      "density": 500.0
+                      "density": 500.0,
+                      "seedballDiameter": 0.0
                     }
                   },
                   "type": "seedMarker"
@@ -653,6 +672,7 @@ class FakeDatabase {
             },
             "minFlightHeight": 96.5,
             "predation": 50.0,
+            "sizeOfDeposit": 1.0,
             "areaCovered": 400.0
           },
           {
@@ -682,7 +702,8 @@ class FakeDatabase {
                 "estimatedFinalHeight": 20.0,
                 "seedCost": 0.39,
                 "establishmentCost": 593.17,
-                "density": 400.0
+                "density": 400.0,
+                "seedballDiameter": 0.0
               },
               {
                 "id": "-Mh5IQL-6NtWQsrT6J4o",
@@ -698,7 +719,8 @@ class FakeDatabase {
                 "estimatedFinalHeight": 30.0,
                 "seedCost": 0.6,
                 "establishmentCost": 184.2,
-                "density": 300.0
+                "density": 300.0,
+                "seedballDiameter": 0.0
               },
               {
                 "id": "-Mh5IQL1AWe5l3gwXLMo",
@@ -714,7 +736,8 @@ class FakeDatabase {
                 "estimatedFinalHeight": 30.0,
                 "seedCost": 1.99,
                 "establishmentCost": 1.99,
-                "density": 100.0
+                "density": 100.0,
+                "seedballDiameter": 0.0
               },
               {
                 "id": "-Mh5IQLMchckczHAiI_B",
@@ -730,7 +753,8 @@ class FakeDatabase {
                 "estimatedFinalHeight": 10.0,
                 "seedCost": 1.1,
                 "establishmentCost": 41.2,
-                "density": 420.0
+                "density": 420.0,
+                "seedballDiameter": 0.0
               }
             ],
             "validSurface": 95.0,
@@ -777,7 +801,8 @@ class FakeDatabase {
                       "estimatedFinalHeight": 20.0,
                       "seedCost": 0.39,
                       "establishmentCost": 593.17,
-                      "density": 400.0
+                      "density": 400.0,
+                      "seedballDiameter": 0.0
                     }
                   },
                   "type": "seedMarker"
@@ -812,7 +837,8 @@ class FakeDatabase {
                       "estimatedFinalHeight": 20.0,
                       "seedCost": 0.39,
                       "establishmentCost": 593.17,
-                      "density": 400.0
+                      "density": 400.0,
+                      "seedballDiameter": 0.0
                     }
                   },
                   "type": "seedMarker"
@@ -847,7 +873,8 @@ class FakeDatabase {
                       "estimatedFinalHeight": 20.0,
                       "seedCost": 0.39,
                       "establishmentCost": 593.17,
-                      "density": 400.0
+                      "density": 400.0,
+                      "seedballDiameter": 0.0
                     }
                   },
                   "type": "seedMarker"
@@ -882,7 +909,8 @@ class FakeDatabase {
                       "estimatedFinalHeight": 30.0,
                       "seedCost": 0.6,
                       "establishmentCost": 184.2,
-                      "density": 300.0
+                      "density": 300.0,
+                      "seedballDiameter": 0.0
                     }
                   },
                   "type": "seedMarker"
@@ -917,7 +945,8 @@ class FakeDatabase {
                       "estimatedFinalHeight": 30.0,
                       "seedCost": 0.6,
                       "establishmentCost": 184.2,
-                      "density": 300.0
+                      "density": 300.0,
+                      "seedballDiameter": 0.0
                     }
                   },
                   "type": "seedMarker"
@@ -949,7 +978,8 @@ class FakeDatabase {
                       "estimatedFinalHeight": 30.0,
                       "seedCost": 0.6,
                       "establishmentCost": 184.2,
-                      "density": 300.0
+                      "density": 300.0,
+                      "seedballDiameter": 0.0
                     }
                   },
                   "type": "seedMarker"
@@ -981,7 +1011,8 @@ class FakeDatabase {
                       "estimatedFinalHeight": 30.0,
                       "seedCost": 1.99,
                       "establishmentCost": 1.99,
-                      "density": 100.0
+                      "density": 100.0,
+                      "seedballDiameter": 0.0
                     }
                   },
                   "type": "seedMarker"
@@ -1016,7 +1047,8 @@ class FakeDatabase {
                       "estimatedFinalHeight": 30.0,
                       "seedCost": 1.99,
                       "establishmentCost": 1.99,
-                      "density": 100.0
+                      "density": 100.0,
+                      "seedballDiameter": 0.0
                     }
                   },
                   "type": "seedMarker"
@@ -1051,7 +1083,8 @@ class FakeDatabase {
                       "estimatedFinalHeight": 30.0,
                       "seedCost": 1.99,
                       "establishmentCost": 1.99,
-                      "density": 100.0
+                      "density": 100.0,
+                      "seedballDiameter": 0.0
                     }
                   },
                   "type": "seedMarker"
@@ -1086,7 +1119,8 @@ class FakeDatabase {
                       "estimatedFinalHeight": 10.0,
                       "seedCost": 1.1,
                       "establishmentCost": 41.2,
-                      "density": 420.0
+                      "density": 420.0,
+                      "seedballDiameter": 0.0
                     }
                   },
                   "type": "seedMarker"
@@ -1121,7 +1155,8 @@ class FakeDatabase {
                       "estimatedFinalHeight": 10.0,
                       "seedCost": 1.1,
                       "establishmentCost": 41.2,
-                      "density": 420.0
+                      "density": 420.0,
+                      "seedballDiameter": 0.0
                     }
                   },
                   "type": "seedMarker"
@@ -1156,7 +1191,8 @@ class FakeDatabase {
                       "estimatedFinalHeight": 10.0,
                       "seedCost": 1.1,
                       "establishmentCost": 41.2,
-                      "density": 420.0
+                      "density": 420.0,
+                      "seedballDiameter": 0.0
                     }
                   },
                   "type": "seedMarker"
@@ -1191,7 +1227,8 @@ class FakeDatabase {
                       "estimatedFinalHeight": 30.0,
                       "seedCost": 0.6,
                       "establishmentCost": 184.2,
-                      "density": 300.0
+                      "density": 300.0,
+                      "seedballDiameter": 0.0
                     }
                   },
                   "type": "seedMarker"
@@ -1226,7 +1263,8 @@ class FakeDatabase {
                       "estimatedFinalHeight": 30.0,
                       "seedCost": 0.6,
                       "establishmentCost": 184.2,
-                      "density": 300.0
+                      "density": 300.0,
+                      "seedballDiameter": 0.0
                     }
                   },
                   "type": "seedMarker"
@@ -1259,6 +1297,7 @@ class FakeDatabase {
             },
             "minFlightHeight": 0.0,
             "predation": 30.0,
+            "sizeOfDeposit": 1.0,
             "areaCovered": 500.0
           },
           {
@@ -1288,7 +1327,8 @@ class FakeDatabase {
                 "estimatedFinalHeight": 30.0,
                 "seedCost": 12.8,
                 "establishmentCost": 62.0,
-                "density": 100.0
+                "density": 100.0,
+                "seedballDiameter": 0.0
               },
               {
                 "id": "-Mh5IQL31yGlkJFS5JzP",
@@ -1304,7 +1344,8 @@ class FakeDatabase {
                 "estimatedFinalHeight": 25.0,
                 "seedCost": 16.2,
                 "establishmentCost": 73.0,
-                "density": 200.0
+                "density": 200.0,
+                "seedballDiameter": 0.0
               },
               {
                 "id": "-Mh5IQLBVGy8hA9tDp4s",
@@ -1320,7 +1361,8 @@ class FakeDatabase {
                 "estimatedFinalHeight": 5.0,
                 "seedCost": 3.5,
                 "establishmentCost": 16.0,
-                "density": 300.0
+                "density": 300.0,
+                "seedballDiameter": 0.0
               },
               {
                 "id": "-Mh5IQL-6NtWQsrT6J4o",
@@ -1336,7 +1378,8 @@ class FakeDatabase {
                 "estimatedFinalHeight": 30.0,
                 "seedCost": 0.6,
                 "establishmentCost": 184.2,
-                "density": 400.0
+                "density": 400.0,
+                "seedballDiameter": 0.0
               }
             ],
             "validSurface": 85.0,
@@ -1383,7 +1426,8 @@ class FakeDatabase {
                       "estimatedFinalHeight": 30.0,
                       "seedCost": 12.8,
                       "establishmentCost": 62.0,
-                      "density": 100.0
+                      "density": 100.0,
+                      "seedballDiameter": 0.0
                     }
                   },
                   "type": "seedMarker"
@@ -1418,7 +1462,8 @@ class FakeDatabase {
                       "estimatedFinalHeight": 30.0,
                       "seedCost": 12.8,
                       "establishmentCost": 62.0,
-                      "density": 100.0
+                      "density": 100.0,
+                      "seedballDiameter": 0.0
                     }
                   },
                   "type": "seedMarker"
@@ -1453,7 +1498,8 @@ class FakeDatabase {
                       "estimatedFinalHeight": 30.0,
                       "seedCost": 12.8,
                       "establishmentCost": 62.0,
-                      "density": 100.0
+                      "density": 100.0,
+                      "seedballDiameter": 0.0
                     }
                   },
                   "type": "seedMarker"
@@ -1485,7 +1531,8 @@ class FakeDatabase {
                       "estimatedFinalHeight": 30.0,
                       "seedCost": 12.8,
                       "establishmentCost": 62.0,
-                      "density": 100.0
+                      "density": 100.0,
+                      "seedballDiameter": 0.0
                     }
                   },
                   "type": "seedMarker"
@@ -1520,7 +1567,8 @@ class FakeDatabase {
                       "estimatedFinalHeight": 30.0,
                       "seedCost": 12.8,
                       "establishmentCost": 62.0,
-                      "density": 100.0
+                      "density": 100.0,
+                      "seedballDiameter": 0.0
                     }
                   },
                   "type": "seedMarker"
@@ -1552,7 +1600,8 @@ class FakeDatabase {
                       "estimatedFinalHeight": 30.0,
                       "seedCost": 12.8,
                       "establishmentCost": 62.0,
-                      "density": 100.0
+                      "density": 100.0,
+                      "seedballDiameter": 0.0
                     }
                   },
                   "type": "seedMarker"
@@ -1587,7 +1636,8 @@ class FakeDatabase {
                       "estimatedFinalHeight": 25.0,
                       "seedCost": 16.2,
                       "establishmentCost": 73.0,
-                      "density": 200.0
+                      "density": 200.0,
+                      "seedballDiameter": 0.0
                     }
                   },
                   "type": "seedMarker"
@@ -1622,7 +1672,8 @@ class FakeDatabase {
                       "estimatedFinalHeight": 25.0,
                       "seedCost": 16.2,
                       "establishmentCost": 73.0,
-                      "density": 200.0
+                      "density": 200.0,
+                      "seedballDiameter": 0.0
                     }
                   },
                   "type": "seedMarker"
@@ -1654,7 +1705,8 @@ class FakeDatabase {
                       "estimatedFinalHeight": 25.0,
                       "seedCost": 16.2,
                       "establishmentCost": 73.0,
-                      "density": 200.0
+                      "density": 200.0,
+                      "seedballDiameter": 0.0
                     }
                   },
                   "type": "seedMarker"
@@ -1689,7 +1741,8 @@ class FakeDatabase {
                       "estimatedFinalHeight": 25.0,
                       "seedCost": 16.2,
                       "establishmentCost": 73.0,
-                      "density": 200.0
+                      "density": 200.0,
+                      "seedballDiameter": 0.0
                     }
                   },
                   "type": "seedMarker"
@@ -1721,7 +1774,8 @@ class FakeDatabase {
                       "estimatedFinalHeight": 25.0,
                       "seedCost": 16.2,
                       "establishmentCost": 73.0,
-                      "density": 200.0
+                      "density": 200.0,
+                      "seedballDiameter": 0.0
                     }
                   },
                   "type": "seedMarker"
@@ -1756,7 +1810,8 @@ class FakeDatabase {
                       "estimatedFinalHeight": 25.0,
                       "seedCost": 16.2,
                       "establishmentCost": 73.0,
-                      "density": 200.0
+                      "density": 200.0,
+                      "seedballDiameter": 0.0
                     }
                   },
                   "type": "seedMarker"
@@ -1791,7 +1846,8 @@ class FakeDatabase {
                       "estimatedFinalHeight": 5.0,
                       "seedCost": 3.5,
                       "establishmentCost": 16.0,
-                      "density": 300.0
+                      "density": 300.0,
+                      "seedballDiameter": 0.0
                     }
                   },
                   "type": "seedMarker"
@@ -1826,7 +1882,8 @@ class FakeDatabase {
                       "estimatedFinalHeight": 5.0,
                       "seedCost": 3.5,
                       "establishmentCost": 16.0,
-                      "density": 300.0
+                      "density": 300.0,
+                      "seedballDiameter": 0.0
                     }
                   },
                   "type": "seedMarker"
@@ -1858,7 +1915,8 @@ class FakeDatabase {
                       "estimatedFinalHeight": 5.0,
                       "seedCost": 3.5,
                       "establishmentCost": 16.0,
-                      "density": 300.0
+                      "density": 300.0,
+                      "seedballDiameter": 0.0
                     }
                   },
                   "type": "seedMarker"
@@ -1890,7 +1948,8 @@ class FakeDatabase {
                       "estimatedFinalHeight": 5.0,
                       "seedCost": 3.5,
                       "establishmentCost": 16.0,
-                      "density": 300.0
+                      "density": 300.0,
+                      "seedballDiameter": 0.0
                     }
                   },
                   "type": "seedMarker"
@@ -1925,7 +1984,8 @@ class FakeDatabase {
                       "estimatedFinalHeight": 5.0,
                       "seedCost": 3.5,
                       "establishmentCost": 16.0,
-                      "density": 300.0
+                      "density": 300.0,
+                      "seedballDiameter": 0.0
                     }
                   },
                   "type": "seedMarker"
@@ -1957,7 +2017,8 @@ class FakeDatabase {
                       "estimatedFinalHeight": 5.0,
                       "seedCost": 3.5,
                       "establishmentCost": 16.0,
-                      "density": 300.0
+                      "density": 300.0,
+                      "seedballDiameter": 0.0
                     }
                   },
                   "type": "seedMarker"
@@ -1992,7 +2053,8 @@ class FakeDatabase {
                       "estimatedFinalHeight": 30.0,
                       "seedCost": 0.6,
                       "establishmentCost": 184.2,
-                      "density": 400.0
+                      "density": 400.0,
+                      "seedballDiameter": 0.0
                     }
                   },
                   "type": "seedMarker"
@@ -2024,7 +2086,8 @@ class FakeDatabase {
                       "estimatedFinalHeight": 30.0,
                       "seedCost": 0.6,
                       "establishmentCost": 184.2,
-                      "density": 400.0
+                      "density": 400.0,
+                      "seedballDiameter": 0.0
                     }
                   },
                   "type": "seedMarker"
@@ -2059,7 +2122,8 @@ class FakeDatabase {
                       "estimatedFinalHeight": 30.0,
                       "seedCost": 0.6,
                       "establishmentCost": 184.2,
-                      "density": 400.0
+                      "density": 400.0,
+                      "seedballDiameter": 0.0
                     }
                   },
                   "type": "seedMarker"
@@ -2091,7 +2155,8 @@ class FakeDatabase {
                       "estimatedFinalHeight": 30.0,
                       "seedCost": 0.6,
                       "establishmentCost": 184.2,
-                      "density": 400.0
+                      "density": 400.0,
+                      "seedballDiameter": 0.0
                     }
                   },
                   "type": "seedMarker"
@@ -2126,6 +2191,7 @@ class FakeDatabase {
             },
             "minFlightHeight": 100.0,
             "predation": 10.0,
+            "sizeOfDeposit": 1.0,
             "areaCovered": 100.0
           },
           {
@@ -2155,7 +2221,8 @@ class FakeDatabase {
                 "estimatedFinalHeight": 30.0,
                 "seedCost": 18.38,
                 "establishmentCost": 150.0,
-                "density": 100.0
+                "density": 100.0,
+                "seedballDiameter": 0.0
               },
               {
                 "id": "-Mh5IQMIWLC_aPsiJMbM",
@@ -2171,7 +2238,8 @@ class FakeDatabase {
                 "estimatedFinalHeight": 3.0,
                 "seedCost": 1.9,
                 "establishmentCost": 30.0,
-                "density": 100.0
+                "density": 100.0,
+                "seedballDiameter": 0.0
               },
               {
                 "id": "-Mh5IQLgY3QeWbK6l1LK",
@@ -2187,7 +2255,8 @@ class FakeDatabase {
                 "estimatedFinalHeight": 1.5,
                 "seedCost": 1.5,
                 "establishmentCost": 25.0,
-                "density": 200.0
+                "density": 200.0,
+                "seedballDiameter": 0.0
               },
               {
                 "id": "-Mh5IQLey88pdA1AldFJ",
@@ -2203,7 +2272,8 @@ class FakeDatabase {
                 "estimatedFinalHeight": 35.0,
                 "seedCost": 3.0,
                 "establishmentCost": 90.0,
-                "density": 100.0
+                "density": 100.0,
+                "seedballDiameter": 0.0
               },
               {
                 "id": "-Mh5IQKb85JM7-PxY3Dt",
@@ -2219,7 +2289,8 @@ class FakeDatabase {
                 "estimatedFinalHeight": 0.2,
                 "seedCost": 2.5,
                 "establishmentCost": 40.0,
-                "density": 300.0
+                "density": 300.0,
+                "seedballDiameter": 0.0
               },
               {
                 "id": "-Mh5IQKc9nI24NadZ-xd",
@@ -2235,7 +2306,8 @@ class FakeDatabase {
                 "estimatedFinalHeight": 40.0,
                 "seedCost": 1.99,
                 "establishmentCost": 90.0,
-                "density": 400.0
+                "density": 400.0,
+                "seedballDiameter": 0.0
               }
             ],
             "validSurface": 85.0,
@@ -2282,7 +2354,8 @@ class FakeDatabase {
                       "estimatedFinalHeight": 30.0,
                       "seedCost": 18.38,
                       "establishmentCost": 150.0,
-                      "density": 100.0
+                      "density": 100.0,
+                      "seedballDiameter": 0.0
                     }
                   },
                   "type": "seedMarker"
@@ -2314,7 +2387,8 @@ class FakeDatabase {
                       "estimatedFinalHeight": 30.0,
                       "seedCost": 18.38,
                       "establishmentCost": 150.0,
-                      "density": 100.0
+                      "density": 100.0,
+                      "seedballDiameter": 0.0
                     }
                   },
                   "type": "seedMarker"
@@ -2349,7 +2423,8 @@ class FakeDatabase {
                       "estimatedFinalHeight": 30.0,
                       "seedCost": 18.38,
                       "establishmentCost": 150.0,
-                      "density": 100.0
+                      "density": 100.0,
+                      "seedballDiameter": 0.0
                     }
                   },
                   "type": "seedMarker"
@@ -2384,7 +2459,8 @@ class FakeDatabase {
                       "estimatedFinalHeight": 30.0,
                       "seedCost": 18.38,
                       "establishmentCost": 150.0,
-                      "density": 100.0
+                      "density": 100.0,
+                      "seedballDiameter": 0.0
                     }
                   },
                   "type": "seedMarker"
@@ -2419,7 +2495,8 @@ class FakeDatabase {
                       "estimatedFinalHeight": 30.0,
                       "seedCost": 18.38,
                       "establishmentCost": 150.0,
-                      "density": 100.0
+                      "density": 100.0,
+                      "seedballDiameter": 0.0
                     }
                   },
                   "type": "seedMarker"
@@ -2454,7 +2531,8 @@ class FakeDatabase {
                       "estimatedFinalHeight": 30.0,
                       "seedCost": 18.38,
                       "establishmentCost": 150.0,
-                      "density": 100.0
+                      "density": 100.0,
+                      "seedballDiameter": 0.0
                     }
                   },
                   "type": "seedMarker"
@@ -2489,7 +2567,8 @@ class FakeDatabase {
                       "estimatedFinalHeight": 30.0,
                       "seedCost": 18.38,
                       "establishmentCost": 150.0,
-                      "density": 100.0
+                      "density": 100.0,
+                      "seedballDiameter": 0.0
                     }
                   },
                   "type": "seedMarker"
@@ -2521,7 +2600,8 @@ class FakeDatabase {
                       "estimatedFinalHeight": 30.0,
                       "seedCost": 18.38,
                       "establishmentCost": 150.0,
-                      "density": 100.0
+                      "density": 100.0,
+                      "seedballDiameter": 0.0
                     }
                   },
                   "type": "seedMarker"
@@ -2556,7 +2636,8 @@ class FakeDatabase {
                       "estimatedFinalHeight": 30.0,
                       "seedCost": 18.38,
                       "establishmentCost": 150.0,
-                      "density": 100.0
+                      "density": 100.0,
+                      "seedballDiameter": 0.0
                     }
                   },
                   "type": "seedMarker"
@@ -2591,7 +2672,8 @@ class FakeDatabase {
                       "estimatedFinalHeight": 30.0,
                       "seedCost": 18.38,
                       "establishmentCost": 150.0,
-                      "density": 100.0
+                      "density": 100.0,
+                      "seedballDiameter": 0.0
                     }
                   },
                   "type": "seedMarker"
@@ -2626,7 +2708,8 @@ class FakeDatabase {
                       "estimatedFinalHeight": 3.0,
                       "seedCost": 1.9,
                       "establishmentCost": 30.0,
-                      "density": 100.0
+                      "density": 100.0,
+                      "seedballDiameter": 0.0
                     }
                   },
                   "type": "seedMarker"
@@ -2661,7 +2744,8 @@ class FakeDatabase {
                       "estimatedFinalHeight": 3.0,
                       "seedCost": 1.9,
                       "establishmentCost": 30.0,
-                      "density": 100.0
+                      "density": 100.0,
+                      "seedballDiameter": 0.0
                     }
                   },
                   "type": "seedMarker"
@@ -2696,7 +2780,8 @@ class FakeDatabase {
                       "estimatedFinalHeight": 3.0,
                       "seedCost": 1.9,
                       "establishmentCost": 30.0,
-                      "density": 100.0
+                      "density": 100.0,
+                      "seedballDiameter": 0.0
                     }
                   },
                   "type": "seedMarker"
@@ -2731,7 +2816,8 @@ class FakeDatabase {
                       "estimatedFinalHeight": 3.0,
                       "seedCost": 1.9,
                       "establishmentCost": 30.0,
-                      "density": 100.0
+                      "density": 100.0,
+                      "seedballDiameter": 0.0
                     }
                   },
                   "type": "seedMarker"
@@ -2766,7 +2852,8 @@ class FakeDatabase {
                       "estimatedFinalHeight": 3.0,
                       "seedCost": 1.9,
                       "establishmentCost": 30.0,
-                      "density": 100.0
+                      "density": 100.0,
+                      "seedballDiameter": 0.0
                     }
                   },
                   "type": "seedMarker"
@@ -2801,7 +2888,8 @@ class FakeDatabase {
                       "estimatedFinalHeight": 3.0,
                       "seedCost": 1.9,
                       "establishmentCost": 30.0,
-                      "density": 100.0
+                      "density": 100.0,
+                      "seedballDiameter": 0.0
                     }
                   },
                   "type": "seedMarker"
@@ -2836,7 +2924,8 @@ class FakeDatabase {
                       "estimatedFinalHeight": 3.0,
                       "seedCost": 1.9,
                       "establishmentCost": 30.0,
-                      "density": 100.0
+                      "density": 100.0,
+                      "seedballDiameter": 0.0
                     }
                   },
                   "type": "seedMarker"
@@ -2871,7 +2960,8 @@ class FakeDatabase {
                       "estimatedFinalHeight": 3.0,
                       "seedCost": 1.9,
                       "establishmentCost": 30.0,
-                      "density": 100.0
+                      "density": 100.0,
+                      "seedballDiameter": 0.0
                     }
                   },
                   "type": "seedMarker"
@@ -2906,7 +2996,8 @@ class FakeDatabase {
                       "estimatedFinalHeight": 35.0,
                       "seedCost": 3.0,
                       "establishmentCost": 90.0,
-                      "density": 100.0
+                      "density": 100.0,
+                      "seedballDiameter": 0.0
                     }
                   },
                   "type": "seedMarker"
@@ -2941,7 +3032,8 @@ class FakeDatabase {
                       "estimatedFinalHeight": 35.0,
                       "seedCost": 3.0,
                       "establishmentCost": 90.0,
-                      "density": 100.0
+                      "density": 100.0,
+                      "seedballDiameter": 0.0
                     }
                   },
                   "type": "seedMarker"
@@ -2976,7 +3068,8 @@ class FakeDatabase {
                       "estimatedFinalHeight": 35.0,
                       "seedCost": 3.0,
                       "establishmentCost": 90.0,
-                      "density": 100.0
+                      "density": 100.0,
+                      "seedballDiameter": 0.0
                     }
                   },
                   "type": "seedMarker"
@@ -3011,7 +3104,8 @@ class FakeDatabase {
                       "estimatedFinalHeight": 35.0,
                       "seedCost": 3.0,
                       "establishmentCost": 90.0,
-                      "density": 100.0
+                      "density": 100.0,
+                      "seedballDiameter": 0.0
                     }
                   },
                   "type": "seedMarker"
@@ -3046,7 +3140,8 @@ class FakeDatabase {
                       "estimatedFinalHeight": 35.0,
                       "seedCost": 3.0,
                       "establishmentCost": 90.0,
-                      "density": 100.0
+                      "density": 100.0,
+                      "seedballDiameter": 0.0
                     }
                   },
                   "type": "seedMarker"
@@ -3081,7 +3176,8 @@ class FakeDatabase {
                       "estimatedFinalHeight": 35.0,
                       "seedCost": 3.0,
                       "establishmentCost": 90.0,
-                      "density": 100.0
+                      "density": 100.0,
+                      "seedballDiameter": 0.0
                     }
                   },
                   "type": "seedMarker"
@@ -3116,7 +3212,8 @@ class FakeDatabase {
                       "estimatedFinalHeight": 35.0,
                       "seedCost": 3.0,
                       "establishmentCost": 90.0,
-                      "density": 100.0
+                      "density": 100.0,
+                      "seedballDiameter": 0.0
                     }
                   },
                   "type": "seedMarker"
@@ -3148,7 +3245,8 @@ class FakeDatabase {
                       "estimatedFinalHeight": 35.0,
                       "seedCost": 3.0,
                       "establishmentCost": 90.0,
-                      "density": 100.0
+                      "density": 100.0,
+                      "seedballDiameter": 0.0
                     }
                   },
                   "type": "seedMarker"
@@ -3183,7 +3281,8 @@ class FakeDatabase {
                       "estimatedFinalHeight": 35.0,
                       "seedCost": 3.0,
                       "establishmentCost": 90.0,
-                      "density": 100.0
+                      "density": 100.0,
+                      "seedballDiameter": 0.0
                     }
                   },
                   "type": "seedMarker"
@@ -3218,7 +3317,8 @@ class FakeDatabase {
                       "estimatedFinalHeight": 35.0,
                       "seedCost": 3.0,
                       "establishmentCost": 90.0,
-                      "density": 100.0
+                      "density": 100.0,
+                      "seedballDiameter": 0.0
                     }
                   },
                   "type": "seedMarker"
@@ -3253,7 +3353,8 @@ class FakeDatabase {
                       "estimatedFinalHeight": 0.2,
                       "seedCost": 2.5,
                       "establishmentCost": 40.0,
-                      "density": 300.0
+                      "density": 300.0,
+                      "seedballDiameter": 0.0
                     }
                   },
                   "type": "seedMarker"
@@ -3288,7 +3389,8 @@ class FakeDatabase {
                       "estimatedFinalHeight": 0.2,
                       "seedCost": 2.5,
                       "establishmentCost": 40.0,
-                      "density": 300.0
+                      "density": 300.0,
+                      "seedballDiameter": 0.0
                     }
                   },
                   "type": "seedMarker"
@@ -3323,7 +3425,8 @@ class FakeDatabase {
                       "estimatedFinalHeight": 0.2,
                       "seedCost": 2.5,
                       "establishmentCost": 40.0,
-                      "density": 300.0
+                      "density": 300.0,
+                      "seedballDiameter": 0.0
                     }
                   },
                   "type": "seedMarker"
@@ -3355,7 +3458,8 @@ class FakeDatabase {
                       "estimatedFinalHeight": 0.2,
                       "seedCost": 2.5,
                       "establishmentCost": 40.0,
-                      "density": 300.0
+                      "density": 300.0,
+                      "seedballDiameter": 0.0
                     }
                   },
                   "type": "seedMarker"
@@ -3390,7 +3494,8 @@ class FakeDatabase {
                       "estimatedFinalHeight": 0.2,
                       "seedCost": 2.5,
                       "establishmentCost": 40.0,
-                      "density": 300.0
+                      "density": 300.0,
+                      "seedballDiameter": 0.0
                     }
                   },
                   "type": "seedMarker"
@@ -3425,7 +3530,8 @@ class FakeDatabase {
                       "estimatedFinalHeight": 0.2,
                       "seedCost": 2.5,
                       "establishmentCost": 40.0,
-                      "density": 300.0
+                      "density": 300.0,
+                      "seedballDiameter": 0.0
                     }
                   },
                   "type": "seedMarker"
@@ -3460,7 +3566,8 @@ class FakeDatabase {
                       "estimatedFinalHeight": 0.2,
                       "seedCost": 2.5,
                       "establishmentCost": 40.0,
-                      "density": 300.0
+                      "density": 300.0,
+                      "seedballDiameter": 0.0
                     }
                   },
                   "type": "seedMarker"
@@ -3492,7 +3599,8 @@ class FakeDatabase {
                       "estimatedFinalHeight": 0.2,
                       "seedCost": 2.5,
                       "establishmentCost": 40.0,
-                      "density": 300.0
+                      "density": 300.0,
+                      "seedballDiameter": 0.0
                     }
                   },
                   "type": "seedMarker"
@@ -3527,7 +3635,8 @@ class FakeDatabase {
                       "estimatedFinalHeight": 0.2,
                       "seedCost": 2.5,
                       "establishmentCost": 40.0,
-                      "density": 300.0
+                      "density": 300.0,
+                      "seedballDiameter": 0.0
                     }
                   },
                   "type": "seedMarker"
@@ -3562,7 +3671,8 @@ class FakeDatabase {
                       "estimatedFinalHeight": 0.2,
                       "seedCost": 2.5,
                       "establishmentCost": 40.0,
-                      "density": 300.0
+                      "density": 300.0,
+                      "seedballDiameter": 0.0
                     }
                   },
                   "type": "seedMarker"
@@ -3597,7 +3707,8 @@ class FakeDatabase {
                       "estimatedFinalHeight": 1.5,
                       "seedCost": 1.5,
                       "establishmentCost": 25.0,
-                      "density": 200.0
+                      "density": 200.0,
+                      "seedballDiameter": 0.0
                     }
                   },
                   "type": "seedMarker"
@@ -3629,7 +3740,8 @@ class FakeDatabase {
                       "estimatedFinalHeight": 1.5,
                       "seedCost": 1.5,
                       "establishmentCost": 25.0,
-                      "density": 200.0
+                      "density": 200.0,
+                      "seedballDiameter": 0.0
                     }
                   },
                   "type": "seedMarker"
@@ -3664,7 +3776,8 @@ class FakeDatabase {
                       "estimatedFinalHeight": 1.5,
                       "seedCost": 1.5,
                       "establishmentCost": 25.0,
-                      "density": 200.0
+                      "density": 200.0,
+                      "seedballDiameter": 0.0
                     }
                   },
                   "type": "seedMarker"
@@ -3699,7 +3812,8 @@ class FakeDatabase {
                       "estimatedFinalHeight": 1.5,
                       "seedCost": 1.5,
                       "establishmentCost": 25.0,
-                      "density": 200.0
+                      "density": 200.0,
+                      "seedballDiameter": 0.0
                     }
                   },
                   "type": "seedMarker"
@@ -3734,7 +3848,8 @@ class FakeDatabase {
                       "estimatedFinalHeight": 1.5,
                       "seedCost": 1.5,
                       "establishmentCost": 25.0,
-                      "density": 200.0
+                      "density": 200.0,
+                      "seedballDiameter": 0.0
                     }
                   },
                   "type": "seedMarker"
@@ -3766,7 +3881,8 @@ class FakeDatabase {
                       "estimatedFinalHeight": 1.5,
                       "seedCost": 1.5,
                       "establishmentCost": 25.0,
-                      "density": 200.0
+                      "density": 200.0,
+                      "seedballDiameter": 0.0
                     }
                   },
                   "type": "seedMarker"
@@ -3798,7 +3914,8 @@ class FakeDatabase {
                       "estimatedFinalHeight": 1.5,
                       "seedCost": 1.5,
                       "establishmentCost": 25.0,
-                      "density": 200.0
+                      "density": 200.0,
+                      "seedballDiameter": 0.0
                     }
                   },
                   "type": "seedMarker"
@@ -3833,7 +3950,8 @@ class FakeDatabase {
                       "estimatedFinalHeight": 1.5,
                       "seedCost": 1.5,
                       "establishmentCost": 25.0,
-                      "density": 200.0
+                      "density": 200.0,
+                      "seedballDiameter": 0.0
                     }
                   },
                   "type": "seedMarker"
@@ -3868,7 +3986,8 @@ class FakeDatabase {
                       "estimatedFinalHeight": 1.5,
                       "seedCost": 1.5,
                       "establishmentCost": 25.0,
-                      "density": 200.0
+                      "density": 200.0,
+                      "seedballDiameter": 0.0
                     }
                   },
                   "type": "seedMarker"
@@ -3903,7 +4022,8 @@ class FakeDatabase {
                       "estimatedFinalHeight": 1.5,
                       "seedCost": 1.5,
                       "establishmentCost": 25.0,
-                      "density": 200.0
+                      "density": 200.0,
+                      "seedballDiameter": 0.0
                     }
                   },
                   "type": "seedMarker"
@@ -3938,7 +4058,8 @@ class FakeDatabase {
                       "estimatedFinalHeight": 1.5,
                       "seedCost": 1.5,
                       "establishmentCost": 25.0,
-                      "density": 200.0
+                      "density": 200.0,
+                      "seedballDiameter": 0.0
                     }
                   },
                   "type": "seedMarker"
@@ -3973,7 +4094,8 @@ class FakeDatabase {
                       "estimatedFinalHeight": 1.5,
                       "seedCost": 1.5,
                       "establishmentCost": 25.0,
-                      "density": 200.0
+                      "density": 200.0,
+                      "seedballDiameter": 0.0
                     }
                   },
                   "type": "seedMarker"
@@ -4008,7 +4130,8 @@ class FakeDatabase {
                       "estimatedFinalHeight": 1.5,
                       "seedCost": 1.5,
                       "establishmentCost": 25.0,
-                      "density": 200.0
+                      "density": 200.0,
+                      "seedballDiameter": 0.0
                     }
                   },
                   "type": "seedMarker"
@@ -4043,7 +4166,8 @@ class FakeDatabase {
                       "estimatedFinalHeight": 1.5,
                       "seedCost": 1.5,
                       "establishmentCost": 25.0,
-                      "density": 200.0
+                      "density": 200.0,
+                      "seedballDiameter": 0.0
                     }
                   },
                   "type": "seedMarker"
@@ -4078,7 +4202,8 @@ class FakeDatabase {
                       "estimatedFinalHeight": 1.5,
                       "seedCost": 1.5,
                       "establishmentCost": 25.0,
-                      "density": 200.0
+                      "density": 200.0,
+                      "seedballDiameter": 0.0
                     }
                   },
                   "type": "seedMarker"
@@ -4113,7 +4238,8 @@ class FakeDatabase {
                       "estimatedFinalHeight": 1.5,
                       "seedCost": 1.5,
                       "establishmentCost": 25.0,
-                      "density": 200.0
+                      "density": 200.0,
+                      "seedballDiameter": 0.0
                     }
                   },
                   "type": "seedMarker"
@@ -4145,7 +4271,8 @@ class FakeDatabase {
                       "estimatedFinalHeight": 40.0,
                       "seedCost": 1.99,
                       "establishmentCost": 90.0,
-                      "density": 400.0
+                      "density": 400.0,
+                      "seedballDiameter": 0.0
                     }
                   },
                   "type": "seedMarker"
@@ -4180,7 +4307,8 @@ class FakeDatabase {
                       "estimatedFinalHeight": 40.0,
                       "seedCost": 1.99,
                       "establishmentCost": 90.0,
-                      "density": 400.0
+                      "density": 400.0,
+                      "seedballDiameter": 0.0
                     }
                   },
                   "type": "seedMarker"
@@ -4215,7 +4343,8 @@ class FakeDatabase {
                       "estimatedFinalHeight": 40.0,
                       "seedCost": 1.99,
                       "establishmentCost": 90.0,
-                      "density": 400.0
+                      "density": 400.0,
+                      "seedballDiameter": 0.0
                     }
                   },
                   "type": "seedMarker"
@@ -4250,7 +4379,8 @@ class FakeDatabase {
                       "estimatedFinalHeight": 40.0,
                       "seedCost": 1.99,
                       "establishmentCost": 90.0,
-                      "density": 400.0
+                      "density": 400.0,
+                      "seedballDiameter": 0.0
                     }
                   },
                   "type": "seedMarker"
@@ -4285,7 +4415,8 @@ class FakeDatabase {
                       "estimatedFinalHeight": 40.0,
                       "seedCost": 1.99,
                       "establishmentCost": 90.0,
-                      "density": 400.0
+                      "density": 400.0,
+                      "seedballDiameter": 0.0
                     }
                   },
                   "type": "seedMarker"
@@ -4320,7 +4451,8 @@ class FakeDatabase {
                       "estimatedFinalHeight": 40.0,
                       "seedCost": 1.99,
                       "establishmentCost": 90.0,
-                      "density": 400.0
+                      "density": 400.0,
+                      "seedballDiameter": 0.0
                     }
                   },
                   "type": "seedMarker"
@@ -4355,7 +4487,8 @@ class FakeDatabase {
                       "estimatedFinalHeight": 40.0,
                       "seedCost": 1.99,
                       "establishmentCost": 90.0,
-                      "density": 400.0
+                      "density": 400.0,
+                      "seedballDiameter": 0.0
                     }
                   },
                   "type": "seedMarker"
@@ -4390,7 +4523,8 @@ class FakeDatabase {
                       "estimatedFinalHeight": 40.0,
                       "seedCost": 1.99,
                       "establishmentCost": 90.0,
-                      "density": 400.0
+                      "density": 400.0,
+                      "seedballDiameter": 0.0
                     }
                   },
                   "type": "seedMarker"
@@ -4425,7 +4559,8 @@ class FakeDatabase {
                       "estimatedFinalHeight": 40.0,
                       "seedCost": 1.99,
                       "establishmentCost": 90.0,
-                      "density": 400.0
+                      "density": 400.0,
+                      "seedballDiameter": 0.0
                     }
                   },
                   "type": "seedMarker"
@@ -4460,7 +4595,8 @@ class FakeDatabase {
                       "estimatedFinalHeight": 40.0,
                       "seedCost": 1.99,
                       "establishmentCost": 90.0,
-                      "density": 400.0
+                      "density": 400.0,
+                      "seedballDiameter": 0.0
                     }
                   },
                   "type": "seedMarker"
@@ -4495,7 +4631,8 @@ class FakeDatabase {
                       "estimatedFinalHeight": 40.0,
                       "seedCost": 1.99,
                       "establishmentCost": 90.0,
-                      "density": 400.0
+                      "density": 400.0,
+                      "seedballDiameter": 0.0
                     }
                   },
                   "type": "seedMarker"
@@ -4530,7 +4667,8 @@ class FakeDatabase {
                       "estimatedFinalHeight": 40.0,
                       "seedCost": 1.99,
                       "establishmentCost": 90.0,
-                      "density": 400.0
+                      "density": 400.0,
+                      "seedballDiameter": 0.0
                     }
                   },
                   "type": "seedMarker"
@@ -4565,7 +4703,8 @@ class FakeDatabase {
                       "estimatedFinalHeight": 40.0,
                       "seedCost": 1.99,
                       "establishmentCost": 90.0,
-                      "density": 400.0
+                      "density": 400.0,
+                      "seedballDiameter": 0.0
                     }
                   },
                   "type": "seedMarker"
@@ -4600,7 +4739,8 @@ class FakeDatabase {
                       "estimatedFinalHeight": 40.0,
                       "seedCost": 1.99,
                       "establishmentCost": 90.0,
-                      "density": 400.0
+                      "density": 400.0,
+                      "seedballDiameter": 0.0
                     }
                   },
                   "type": "seedMarker"
@@ -4635,7 +4775,8 @@ class FakeDatabase {
                       "estimatedFinalHeight": 40.0,
                       "seedCost": 1.99,
                       "establishmentCost": 90.0,
-                      "density": 400.0
+                      "density": 400.0,
+                      "seedballDiameter": 0.0
                     }
                   },
                   "type": "seedMarker"
@@ -4667,7 +4808,8 @@ class FakeDatabase {
                       "estimatedFinalHeight": 40.0,
                       "seedCost": 1.99,
                       "establishmentCost": 90.0,
-                      "density": 400.0
+                      "density": 400.0,
+                      "seedballDiameter": 0.0
                     }
                   },
                   "type": "seedMarker"
@@ -4702,7 +4844,8 @@ class FakeDatabase {
                       "estimatedFinalHeight": 40.0,
                       "seedCost": 1.99,
                       "establishmentCost": 90.0,
-                      "density": 400.0
+                      "density": 400.0,
+                      "seedballDiameter": 0.0
                     }
                   },
                   "type": "seedMarker"
@@ -4737,7 +4880,8 @@ class FakeDatabase {
                       "estimatedFinalHeight": 40.0,
                       "seedCost": 1.99,
                       "establishmentCost": 90.0,
-                      "density": 400.0
+                      "density": 400.0,
+                      "seedballDiameter": 0.0
                     }
                   },
                   "type": "seedMarker"
@@ -4772,7 +4916,8 @@ class FakeDatabase {
                       "estimatedFinalHeight": 40.0,
                       "seedCost": 1.99,
                       "establishmentCost": 90.0,
-                      "density": 400.0
+                      "density": 400.0,
+                      "seedballDiameter": 0.0
                     }
                   },
                   "type": "seedMarker"
@@ -4804,7 +4949,8 @@ class FakeDatabase {
                       "estimatedFinalHeight": 40.0,
                       "seedCost": 1.99,
                       "establishmentCost": 90.0,
-                      "density": 400.0
+                      "density": 400.0,
+                      "seedballDiameter": 0.0
                     }
                   },
                   "type": "seedMarker"
@@ -4839,7 +4985,8 @@ class FakeDatabase {
                       "estimatedFinalHeight": 40.0,
                       "seedCost": 1.99,
                       "establishmentCost": 90.0,
-                      "density": 400.0
+                      "density": 400.0,
+                      "seedballDiameter": 0.0
                     }
                   },
                   "type": "seedMarker"
@@ -4871,7 +5018,8 @@ class FakeDatabase {
                       "estimatedFinalHeight": 40.0,
                       "seedCost": 1.99,
                       "establishmentCost": 90.0,
-                      "density": 400.0
+                      "density": 400.0,
+                      "seedballDiameter": 0.0
                     }
                   },
                   "type": "seedMarker"
@@ -4906,7 +5054,8 @@ class FakeDatabase {
                       "estimatedFinalHeight": 40.0,
                       "seedCost": 1.99,
                       "establishmentCost": 90.0,
-                      "density": 400.0
+                      "density": 400.0,
+                      "seedballDiameter": 0.0
                     }
                   },
                   "type": "seedMarker"
@@ -4938,7 +5087,8 @@ class FakeDatabase {
                       "estimatedFinalHeight": 40.0,
                       "seedCost": 1.99,
                       "establishmentCost": 90.0,
-                      "density": 400.0
+                      "density": 400.0,
+                      "seedballDiameter": 0.0
                     }
                   },
                   "type": "seedMarker"
@@ -4970,7 +5120,8 @@ class FakeDatabase {
                       "estimatedFinalHeight": 40.0,
                       "seedCost": 1.99,
                       "establishmentCost": 90.0,
-                      "density": 400.0
+                      "density": 400.0,
+                      "seedballDiameter": 0.0
                     }
                   },
                   "type": "seedMarker"
@@ -5005,7 +5156,8 @@ class FakeDatabase {
                       "estimatedFinalHeight": 40.0,
                       "seedCost": 1.99,
                       "establishmentCost": 90.0,
-                      "density": 400.0
+                      "density": 400.0,
+                      "seedballDiameter": 0.0
                     }
                   },
                   "type": "seedMarker"
@@ -5040,7 +5192,8 @@ class FakeDatabase {
                       "estimatedFinalHeight": 40.0,
                       "seedCost": 1.99,
                       "establishmentCost": 90.0,
-                      "density": 400.0
+                      "density": 400.0,
+                      "seedballDiameter": 0.0
                     }
                   },
                   "type": "seedMarker"
@@ -5075,7 +5228,8 @@ class FakeDatabase {
                       "estimatedFinalHeight": 40.0,
                       "seedCost": 1.99,
                       "establishmentCost": 90.0,
-                      "density": 400.0
+                      "density": 400.0,
+                      "seedballDiameter": 0.0
                     }
                   },
                   "type": "seedMarker"
@@ -5110,7 +5264,8 @@ class FakeDatabase {
                       "estimatedFinalHeight": 40.0,
                       "seedCost": 1.99,
                       "establishmentCost": 90.0,
-                      "density": 400.0
+                      "density": 400.0,
+                      "seedballDiameter": 0.0
                     }
                   },
                   "type": "seedMarker"
@@ -5145,7 +5300,8 @@ class FakeDatabase {
                       "estimatedFinalHeight": 40.0,
                       "seedCost": 1.99,
                       "establishmentCost": 90.0,
-                      "density": 400.0
+                      "density": 400.0,
+                      "seedballDiameter": 0.0
                     }
                   },
                   "type": "seedMarker"
@@ -5180,7 +5336,8 @@ class FakeDatabase {
                       "estimatedFinalHeight": 40.0,
                       "seedCost": 1.99,
                       "establishmentCost": 90.0,
-                      "density": 400.0
+                      "density": 400.0,
+                      "seedballDiameter": 0.0
                     }
                   },
                   "type": "seedMarker"
@@ -5215,7 +5372,8 @@ class FakeDatabase {
                       "estimatedFinalHeight": 40.0,
                       "seedCost": 1.99,
                       "establishmentCost": 90.0,
-                      "density": 400.0
+                      "density": 400.0,
+                      "seedballDiameter": 0.0
                     }
                   },
                   "type": "seedMarker"
@@ -5250,7 +5408,8 @@ class FakeDatabase {
                       "estimatedFinalHeight": 40.0,
                       "seedCost": 1.99,
                       "establishmentCost": 90.0,
-                      "density": 400.0
+                      "density": 400.0,
+                      "seedballDiameter": 0.0
                     }
                   },
                   "type": "seedMarker"
@@ -5285,7 +5444,8 @@ class FakeDatabase {
                       "estimatedFinalHeight": 40.0,
                       "seedCost": 1.99,
                       "establishmentCost": 90.0,
-                      "density": 400.0
+                      "density": 400.0,
+                      "seedballDiameter": 0.0
                     }
                   },
                   "type": "seedMarker"
@@ -5320,7 +5480,8 @@ class FakeDatabase {
                       "estimatedFinalHeight": 40.0,
                       "seedCost": 1.99,
                       "establishmentCost": 90.0,
-                      "density": 400.0
+                      "density": 400.0,
+                      "seedballDiameter": 0.0
                     }
                   },
                   "type": "seedMarker"
@@ -5352,7 +5513,8 @@ class FakeDatabase {
                       "estimatedFinalHeight": 40.0,
                       "seedCost": 1.99,
                       "establishmentCost": 90.0,
-                      "density": 400.0
+                      "density": 400.0,
+                      "seedballDiameter": 0.0
                     }
                   },
                   "type": "seedMarker"
@@ -5387,7 +5549,8 @@ class FakeDatabase {
                       "estimatedFinalHeight": 40.0,
                       "seedCost": 1.99,
                       "establishmentCost": 90.0,
-                      "density": 400.0
+                      "density": 400.0,
+                      "seedballDiameter": 0.0
                     }
                   },
                   "type": "seedMarker"
@@ -5422,7 +5585,8 @@ class FakeDatabase {
                       "estimatedFinalHeight": 40.0,
                       "seedCost": 1.99,
                       "establishmentCost": 90.0,
-                      "density": 400.0
+                      "density": 400.0,
+                      "seedballDiameter": 0.0
                     }
                   },
                   "type": "seedMarker"
@@ -5457,7 +5621,8 @@ class FakeDatabase {
                       "estimatedFinalHeight": 40.0,
                       "seedCost": 1.99,
                       "establishmentCost": 90.0,
-                      "density": 400.0
+                      "density": 400.0,
+                      "seedballDiameter": 0.0
                     }
                   },
                   "type": "seedMarker"
@@ -5492,7 +5657,8 @@ class FakeDatabase {
                       "estimatedFinalHeight": 40.0,
                       "seedCost": 1.99,
                       "establishmentCost": 90.0,
-                      "density": 400.0
+                      "density": 400.0,
+                      "seedballDiameter": 0.0
                     }
                   },
                   "type": "seedMarker"
@@ -5527,7 +5693,8 @@ class FakeDatabase {
                       "estimatedFinalHeight": 40.0,
                       "seedCost": 1.99,
                       "establishmentCost": 90.0,
-                      "density": 400.0
+                      "density": 400.0,
+                      "seedballDiameter": 0.0
                     }
                   },
                   "type": "seedMarker"
@@ -5564,6 +5731,7 @@ class FakeDatabase {
             },
             "minFlightHeight": 100.0,
             "predation": 20.0,
+            "sizeOfDeposit": 1.0,
             "areaCovered": 400.0
           },
           {
@@ -5593,7 +5761,8 @@ class FakeDatabase {
                 "estimatedFinalHeight": 2.5,
                 "seedCost": 0.4,
                 "establishmentCost": 32.0,
-                "density": 100.0
+                "density": 100.0,
+                "seedballDiameter": 0.0
               }
             ],
             "validSurface": 0.0,
@@ -5640,7 +5809,8 @@ class FakeDatabase {
                       "estimatedFinalHeight": 2.5,
                       "seedCost": 0.4,
                       "establishmentCost": 32.0,
-                      "density": 100.0
+                      "density": 100.0,
+                      "seedballDiameter": 0.0
                     }
                   },
                   "type": "seedMarker"
@@ -5675,7 +5845,8 @@ class FakeDatabase {
                       "estimatedFinalHeight": 2.5,
                       "seedCost": 0.4,
                       "establishmentCost": 32.0,
-                      "density": 100.0
+                      "density": 100.0,
+                      "seedballDiameter": 0.0
                     }
                   },
                   "type": "seedMarker"
@@ -5710,7 +5881,8 @@ class FakeDatabase {
                       "estimatedFinalHeight": 2.5,
                       "seedCost": 0.4,
                       "establishmentCost": 32.0,
-                      "density": 100.0
+                      "density": 100.0,
+                      "seedballDiameter": 0.0
                     }
                   },
                   "type": "seedMarker"
@@ -5745,7 +5917,8 @@ class FakeDatabase {
                       "estimatedFinalHeight": 2.5,
                       "seedCost": 0.4,
                       "establishmentCost": 32.0,
-                      "density": 100.0
+                      "density": 100.0,
+                      "seedballDiameter": 0.0
                     }
                   },
                   "type": "seedMarker"
@@ -5780,7 +5953,8 @@ class FakeDatabase {
                       "estimatedFinalHeight": 2.5,
                       "seedCost": 0.4,
                       "establishmentCost": 32.0,
-                      "density": 100.0
+                      "density": 100.0,
+                      "seedballDiameter": 0.0
                     }
                   },
                   "type": "seedMarker"
@@ -5815,7 +5989,8 @@ class FakeDatabase {
                       "estimatedFinalHeight": 2.5,
                       "seedCost": 0.4,
                       "establishmentCost": 32.0,
-                      "density": 100.0
+                      "density": 100.0,
+                      "seedballDiameter": 0.0
                     }
                   },
                   "type": "seedMarker"
@@ -5850,7 +6025,8 @@ class FakeDatabase {
                       "estimatedFinalHeight": 2.5,
                       "seedCost": 0.4,
                       "establishmentCost": 32.0,
-                      "density": 100.0
+                      "density": 100.0,
+                      "seedballDiameter": 0.0
                     }
                   },
                   "type": "seedMarker"
@@ -5885,7 +6061,8 @@ class FakeDatabase {
                       "estimatedFinalHeight": 2.5,
                       "seedCost": 0.4,
                       "establishmentCost": 32.0,
-                      "density": 100.0
+                      "density": 100.0,
+                      "seedballDiameter": 0.0
                     }
                   },
                   "type": "seedMarker"
@@ -5920,7 +6097,8 @@ class FakeDatabase {
                       "estimatedFinalHeight": 2.5,
                       "seedCost": 0.4,
                       "establishmentCost": 32.0,
-                      "density": 100.0
+                      "density": 100.0,
+                      "seedballDiameter": 0.0
                     }
                   },
                   "type": "seedMarker"
@@ -5955,7 +6133,8 @@ class FakeDatabase {
                       "estimatedFinalHeight": 2.5,
                       "seedCost": 0.4,
                       "establishmentCost": 32.0,
-                      "density": 100.0
+                      "density": 100.0,
+                      "seedballDiameter": 0.0
                     }
                   },
                   "type": "seedMarker"
@@ -5990,7 +6169,8 @@ class FakeDatabase {
                       "estimatedFinalHeight": 2.5,
                       "seedCost": 0.4,
                       "establishmentCost": 32.0,
-                      "density": 100.0
+                      "density": 100.0,
+                      "seedballDiameter": 0.0
                     }
                   },
                   "type": "seedMarker"
@@ -6023,6 +6203,7 @@ class FakeDatabase {
             },
             "minFlightHeight": 0.0,
             "predation": 0.0,
+            "sizeOfDeposit": 1.0,
             "areaCovered": 200.0
           }
         ]
@@ -6146,7 +6327,8 @@ class FakeDatabase {
             "estimatedFinalHeight": 2.5,
             "seedCost": 0.4,
             "establishmentCost": 32.0,
-            "density": null
+            "density": null,
+            "seedballDiameter": 0.0
           },
           {
             "id": "",
@@ -6162,7 +6344,8 @@ class FakeDatabase {
             "estimatedFinalHeight": 0.2,
             "seedCost": 2.5,
             "establishmentCost": 40.0,
-            "density": null
+            "density": null,
+            "seedballDiameter": 0.0
           },
           {
             "id": "",
@@ -6178,7 +6361,8 @@ class FakeDatabase {
             "estimatedFinalHeight": 40.0,
             "seedCost": 1.99,
             "establishmentCost": 90.0,
-            "density": null
+            "density": null,
+            "seedballDiameter": 0.0
           },
           {
             "id": "",
@@ -6194,7 +6378,8 @@ class FakeDatabase {
             "estimatedFinalHeight": 4.0,
             "seedCost": 1.55,
             "establishmentCost": 100.0,
-            "density": null
+            "density": null,
+            "seedballDiameter": 0.0
           },
           {
             "id": "",
@@ -6210,7 +6395,8 @@ class FakeDatabase {
             "estimatedFinalHeight": 20.0,
             "seedCost": 0.39,
             "establishmentCost": 593.17,
-            "density": null
+            "density": null,
+            "seedballDiameter": 0.0
           },
           {
             "id": "",
@@ -6226,7 +6412,8 @@ class FakeDatabase {
             "estimatedFinalHeight": 30.0,
             "seedCost": 0.6,
             "establishmentCost": 184.2,
-            "density": null
+            "density": null,
+            "seedballDiameter": 0.0
           },
           {
             "id": "",
@@ -6242,7 +6429,8 @@ class FakeDatabase {
             "estimatedFinalHeight": 30.0,
             "seedCost": 1.99,
             "establishmentCost": 1.99,
-            "density": null
+            "density": null,
+            "seedballDiameter": 0.0
           },
           {
             "id": "",
@@ -6258,7 +6446,8 @@ class FakeDatabase {
             "estimatedFinalHeight": 30.0,
             "seedCost": 12.8,
             "establishmentCost": 62.0,
-            "density": null
+            "density": null,
+            "seedballDiameter": 0.0
           },
           {
             "id": "",
@@ -6274,7 +6463,8 @@ class FakeDatabase {
             "estimatedFinalHeight": 25.0,
             "seedCost": 16.2,
             "establishmentCost": 73.0,
-            "density": null
+            "density": null,
+            "seedballDiameter": 0.0
           },
           {
             "id": "",
@@ -6290,7 +6480,8 @@ class FakeDatabase {
             "estimatedFinalHeight": 5.0,
             "seedCost": 3.5,
             "establishmentCost": 16.0,
-            "density": null
+            "density": null,
+            "seedballDiameter": 0.0
           },
           {
             "id": "",
@@ -6306,7 +6497,8 @@ class FakeDatabase {
             "estimatedFinalHeight": 25.0,
             "seedCost": 0.9,
             "establishmentCost": 39.9,
-            "density": null
+            "density": null,
+            "seedballDiameter": 0.0
           },
           {
             "id": "",
@@ -6319,7 +6511,8 @@ class FakeDatabase {
             "estimatedFinalHeight": 15.0,
             "seedCost": 0.21,
             "establishmentCost": 58.3,
-            "density": null
+            "density": null,
+            "seedballDiameter": 0.0
           },
           {
             "id": "",
@@ -6335,7 +6528,8 @@ class FakeDatabase {
             "estimatedFinalHeight": 10.0,
             "seedCost": 1.1,
             "establishmentCost": 41.2,
-            "density": null
+            "density": null,
+            "seedballDiameter": 0.0
           },
           {
             "id": "",
@@ -6351,7 +6545,8 @@ class FakeDatabase {
             "estimatedFinalHeight": 35.0,
             "seedCost": 2.63,
             "establishmentCost": 120.0,
-            "density": null
+            "density": null,
+            "seedballDiameter": 0.0
           },
           {
             "id": "",
@@ -6367,7 +6562,8 @@ class FakeDatabase {
             "estimatedFinalHeight": 7.0,
             "seedCost": 4.5,
             "establishmentCost": 60.0,
-            "density": null
+            "density": null,
+            "seedballDiameter": 0.0
           },
           {
             "id": "",
@@ -6383,7 +6579,8 @@ class FakeDatabase {
             "estimatedFinalHeight": 35.0,
             "seedCost": 3.0,
             "establishmentCost": 90.0,
-            "density": null
+            "density": null,
+            "seedballDiameter": 0.0
           },
           {
             "id": "",
@@ -6399,7 +6596,8 @@ class FakeDatabase {
             "estimatedFinalHeight": 1.5,
             "seedCost": 1.5,
             "establishmentCost": 25.0,
-            "density": null
+            "density": null,
+            "seedballDiameter": 0.0
           },
           {
             "id": "",
@@ -6415,7 +6613,8 @@ class FakeDatabase {
             "estimatedFinalHeight": 3.0,
             "seedCost": 1.9,
             "establishmentCost": 30.0,
-            "density": null
+            "density": null,
+            "seedballDiameter": 0.0
           },
           {
             "id": "",
@@ -6431,7 +6630,8 @@ class FakeDatabase {
             "estimatedFinalHeight": 11.0,
             "seedCost": 3.95,
             "establishmentCost": 100.0,
-            "density": null
+            "density": null,
+            "seedballDiameter": 0.0
           },
           {
             "id": "",
@@ -6447,7 +6647,8 @@ class FakeDatabase {
             "estimatedFinalHeight": 0.0,
             "seedCost": 0.0,
             "establishmentCost": 0.0,
-            "density": null
+            "density": null,
+            "seedballDiameter": 0.0
           },
           {
             "id": "",
@@ -6463,7 +6664,8 @@ class FakeDatabase {
             "estimatedFinalHeight": 0.0,
             "seedCost": 0.0,
             "establishmentCost": 0.0,
-            "density": null
+            "density": null,
+            "seedballDiameter": 0.0
           },
           {
             "id": "",
@@ -6479,7 +6681,8 @@ class FakeDatabase {
             "estimatedFinalHeight": 0.0,
             "seedCost": 0.0,
             "establishmentCost": 0.0,
-            "density": null
+            "density": null,
+            "seedballDiameter": 0.0
           },
           {
             "id": "",
@@ -6495,7 +6698,8 @@ class FakeDatabase {
             "estimatedFinalHeight": 0.0,
             "seedCost": 0.0,
             "establishmentCost": 0.0,
-            "density": null
+            "density": null,
+            "seedballDiameter": 0.0
           },
           {
             "id": "",
@@ -6511,7 +6715,8 @@ class FakeDatabase {
             "estimatedFinalHeight": 0.0,
             "seedCost": 0.0,
             "establishmentCost": 0.0,
-            "density": null
+            "density": null,
+            "seedballDiameter": 0.0
           },
           {
             "id": "",
@@ -6527,7 +6732,8 @@ class FakeDatabase {
             "estimatedFinalHeight": 0.0,
             "seedCost": 0.0,
             "establishmentCost": 0.0,
-            "density": null
+            "density": null,
+            "seedballDiameter": 0.0
           },
           {
             "id": "",
@@ -6543,7 +6749,8 @@ class FakeDatabase {
             "estimatedFinalHeight": 0.0,
             "seedCost": 0.0,
             "establishmentCost": 0.0,
-            "density": null
+            "density": null,
+            "seedballDiameter": 0.0
           },
           {
             "id": "",
@@ -6559,7 +6766,8 @@ class FakeDatabase {
             "estimatedFinalHeight": 0.0,
             "seedCost": 0.0,
             "establishmentCost": 0.0,
-            "density": null
+            "density": null,
+            "seedballDiameter": 0.0
           },
           {
             "id": "",
@@ -6575,7 +6783,8 @@ class FakeDatabase {
             "estimatedFinalHeight": 0.0,
             "seedCost": 0.0,
             "establishmentCost": 0.0,
-            "density": null
+            "density": null,
+            "seedballDiameter": 0.0
           },
           {
             "id": "",
@@ -6591,7 +6800,8 @@ class FakeDatabase {
             "estimatedFinalHeight": 0.0,
             "seedCost": 0.0,
             "establishmentCost": 0.0,
-            "density": null
+            "density": null,
+            "seedballDiameter": 0.0
           },
           {
             "id": "",
@@ -6607,7 +6817,8 @@ class FakeDatabase {
             "estimatedFinalHeight": 0.0,
             "seedCost": 0.0,
             "establishmentCost": 0.0,
-            "density": null
+            "density": null,
+            "seedballDiameter": 0.0
           },
           {
             "id": "",
@@ -6623,7 +6834,8 @@ class FakeDatabase {
             "estimatedFinalHeight": 0.0,
             "seedCost": 0.0,
             "establishmentCost": 0.0,
-            "density": null
+            "density": null,
+            "seedballDiameter": 0.0
           },
           {
             "id": "",
@@ -6639,7 +6851,8 @@ class FakeDatabase {
             "estimatedFinalHeight": 0.0,
             "seedCost": 0.0,
             "establishmentCost": 0.0,
-            "density": null
+            "density": null,
+            "seedballDiameter": 0.0
           },
           {
             "id": "",
@@ -6652,7 +6865,8 @@ class FakeDatabase {
             "estimatedFinalHeight": 0.0,
             "seedCost": 0.0,
             "establishmentCost": 0.0,
-            "density": null
+            "density": null,
+            "seedballDiameter": 0.0
           },
           {
             "id": "",
@@ -6668,7 +6882,8 @@ class FakeDatabase {
             "estimatedFinalHeight": 0.0,
             "seedCost": 0.0,
             "establishmentCost": 0.0,
-            "density": null
+            "density": null,
+            "seedballDiameter": 0.0
           },
           {
             "id": "",
@@ -6684,7 +6899,8 @@ class FakeDatabase {
             "estimatedFinalHeight": 0.0,
             "seedCost": 0.0,
             "establishmentCost": 0.0,
-            "density": null
+            "density": null,
+            "seedballDiameter": 0.0
           },
           {
             "id": "",
@@ -6700,7 +6916,8 @@ class FakeDatabase {
             "estimatedFinalHeight": 0.0,
             "seedCost": 0.0,
             "establishmentCost": 0.0,
-            "density": null
+            "density": null,
+            "seedballDiameter": 0.0
           },
           {
             "id": "",
@@ -6716,7 +6933,8 @@ class FakeDatabase {
             "estimatedFinalHeight": 0.0,
             "seedCost": 0.0,
             "establishmentCost": 0.0,
-            "density": null
+            "density": null,
+            "seedballDiameter": 0.0
           },
           {
             "id": "",
@@ -6732,7 +6950,8 @@ class FakeDatabase {
             "estimatedFinalHeight": 0.0,
             "seedCost": 0.0,
             "establishmentCost": 0.0,
-            "density": null
+            "density": null,
+            "seedballDiameter": 0.0
           },
           {
             "id": "",
@@ -6748,7 +6967,8 @@ class FakeDatabase {
             "estimatedFinalHeight": 0.0,
             "seedCost": 0.0,
             "establishmentCost": 0.0,
-            "density": null
+            "density": null,
+            "seedballDiameter": 0.0
           },
           {
             "id": "",
@@ -6764,7 +6984,8 @@ class FakeDatabase {
             "estimatedFinalHeight": 30.0,
             "seedCost": 18.38,
             "establishmentCost": 150.0,
-            "density": null
+            "density": null,
+            "seedballDiameter": 0.0
           },
           {
             "id": "",
@@ -6780,7 +7001,8 @@ class FakeDatabase {
             "estimatedFinalHeight": 0.0,
             "seedCost": 0.0,
             "establishmentCost": 0.0,
-            "density": null
+            "density": null,
+            "seedballDiameter": 0.0
           },
           {
             "id": "",
@@ -6796,7 +7018,8 @@ class FakeDatabase {
             "estimatedFinalHeight": 0.0,
             "seedCost": 0.0,
             "establishmentCost": 0.0,
-            "density": null
+            "density": null,
+            "seedballDiameter": 0.0
           },
           {
             "id": "",
@@ -6812,7 +7035,8 @@ class FakeDatabase {
             "estimatedFinalHeight": 0.0,
             "seedCost": 0.0,
             "establishmentCost": 0.0,
-            "density": null
+            "density": null,
+            "seedballDiameter": 0.0
           },
           {
             "id": "",
@@ -6828,7 +7052,8 @@ class FakeDatabase {
             "estimatedFinalHeight": 0.0,
             "seedCost": 0.0,
             "establishmentCost": 0.0,
-            "density": null
+            "density": null,
+            "seedballDiameter": 0.0
           },
           {
             "id": "",
@@ -6844,7 +7069,8 @@ class FakeDatabase {
             "estimatedFinalHeight": 0.0,
             "seedCost": 0.0,
             "establishmentCost": 0.0,
-            "density": null
+            "density": null,
+            "seedballDiameter": 0.0
           },
           {
             "id": "",
@@ -6860,7 +7086,8 @@ class FakeDatabase {
             "estimatedFinalHeight": 0.0,
             "seedCost": 0.0,
             "establishmentCost": 0.0,
-            "density": null
+            "density": null,
+            "seedballDiameter": 0.0
           },
           {
             "id": "",
@@ -6876,7 +7103,8 @@ class FakeDatabase {
             "estimatedFinalHeight": 0.0,
             "seedCost": 0.0,
             "establishmentCost": 0.0,
-            "density": null
+            "density": null,
+            "seedballDiameter": 0.0
           },
           {
             "id": "",
@@ -6889,7 +7117,8 @@ class FakeDatabase {
             "estimatedFinalHeight": 0.0,
             "seedCost": 0.0,
             "establishmentCost": 0.0,
-            "density": null
+            "density": null,
+            "seedballDiameter": 0.0
           },
           {
             "id": "",
@@ -6905,7 +7134,8 @@ class FakeDatabase {
             "estimatedFinalHeight": 0.0,
             "seedCost": 0.0,
             "establishmentCost": 0.0,
-            "density": null
+            "density": null,
+            "seedballDiameter": 0.0
           },
           {
             "id": "",
@@ -6921,7 +7151,8 @@ class FakeDatabase {
             "estimatedFinalHeight": 0.0,
             "seedCost": 0.0,
             "establishmentCost": 0.0,
-            "density": null
+            "density": null,
+            "seedballDiameter": 0.0
           },
           {
             "id": "",
@@ -6937,7 +7168,8 @@ class FakeDatabase {
             "estimatedFinalHeight": 0.0,
             "seedCost": 0.0,
             "establishmentCost": 0.0,
-            "density": null
+            "density": null,
+            "seedballDiameter": 0.0
           },
           {
             "id": "",
@@ -6953,7 +7185,8 @@ class FakeDatabase {
             "estimatedFinalHeight": 0.0,
             "seedCost": 0.0,
             "establishmentCost": 0.0,
-            "density": null
+            "density": null,
+            "seedballDiameter": 0.0
           },
           {
             "id": "",
@@ -6969,7 +7202,8 @@ class FakeDatabase {
             "estimatedFinalHeight": 0.0,
             "seedCost": 0.0,
             "establishmentCost": 0.0,
-            "density": null
+            "density": null,
+            "seedballDiameter": 0.0
           },
           {
             "id": "",
@@ -6985,7 +7219,8 @@ class FakeDatabase {
             "estimatedFinalHeight": 0.0,
             "seedCost": 0.0,
             "establishmentCost": 0.0,
-            "density": null
+            "density": null,
+            "seedballDiameter": 0.0
           },
           {
             "id": "-MhA7gzj6vaYNyOF1Mw4",
@@ -7001,7 +7236,8 @@ class FakeDatabase {
             "estimatedFinalHeight": 0.0,
             "seedCost": 0.0,
             "establishmentCost": 0.0,
-            "density": null
+            "density": null,
+            "seedballDiameter": 0.0
           },
           {
             "id": "-MhA7m_btqgAn26wxguj",
@@ -7017,7 +7253,8 @@ class FakeDatabase {
             "estimatedFinalHeight": 0.0,
             "seedCost": 0.0,
             "establishmentCost": 0.0,
-            "density": null
+            "density": null,
+            "seedballDiameter": 0.0
           },
           {
             "id": "",
@@ -7033,7 +7270,8 @@ class FakeDatabase {
             "estimatedFinalHeight": 0.0,
             "seedCost": 0.0,
             "establishmentCost": 0.0,
-            "density": null
+            "density": null,
+            "seedballDiameter": 0.0
           },
           {
             "id": "",
@@ -7049,7 +7287,8 @@ class FakeDatabase {
             "estimatedFinalHeight": 0.0,
             "seedCost": 0.0,
             "establishmentCost": 0.0,
-            "density": null
+            "density": null,
+            "seedballDiameter": 0.0
           },
           {
             "id": "",
@@ -7065,7 +7304,8 @@ class FakeDatabase {
             "estimatedFinalHeight": 0.0,
             "seedCost": 0.0,
             "establishmentCost": 0.0,
-            "density": null
+            "density": null,
+            "seedballDiameter": 0.0
           },
           {
             "id": "",
@@ -7078,7 +7318,8 @@ class FakeDatabase {
             "estimatedFinalHeight": 0.0,
             "seedCost": 0.0,
             "establishmentCost": 0.0,
-            "density": null
+            "density": null,
+            "seedballDiameter": 0.0
           },
           {
             "id": "",
@@ -7094,7 +7335,8 @@ class FakeDatabase {
             "estimatedFinalHeight": 0.0,
             "seedCost": 0.0,
             "establishmentCost": 0.0,
-            "density": null
+            "density": null,
+            "seedballDiameter": 0.0
           },
           {
             "id": "",
@@ -7110,7 +7352,8 @@ class FakeDatabase {
             "estimatedFinalHeight": 0.0,
             "seedCost": 0.0,
             "establishmentCost": 0.0,
-            "density": null
+            "density": null,
+            "seedballDiameter": 0.0
           },
           {
             "id": "",
@@ -7126,7 +7369,8 @@ class FakeDatabase {
             "estimatedFinalHeight": 0.0,
             "seedCost": 0.0,
             "establishmentCost": 0.0,
-            "density": null
+            "density": null,
+            "seedballDiameter": 0.0
           },
           {
             "id": "",
@@ -7142,7 +7386,8 @@ class FakeDatabase {
             "estimatedFinalHeight": 0.0,
             "seedCost": 0.0,
             "establishmentCost": 0.0,
-            "density": null
+            "density": null,
+            "seedballDiameter": 0.0
           },
           {
             "id": "",
@@ -7158,7 +7403,8 @@ class FakeDatabase {
             "estimatedFinalHeight": 0.0,
             "seedCost": 0.0,
             "establishmentCost": 0.0,
-            "density": null
+            "density": null,
+            "seedballDiameter": 0.0
           },
           {
             "id": "",
@@ -7174,7 +7420,8 @@ class FakeDatabase {
             "estimatedFinalHeight": 0.0,
             "seedCost": 0.0,
             "establishmentCost": 0.0,
-            "density": null
+            "density": null,
+            "seedballDiameter": 0.0
           },
           {
             "id": "",
@@ -7190,7 +7437,8 @@ class FakeDatabase {
             "estimatedFinalHeight": 0.0,
             "seedCost": 0.0,
             "establishmentCost": 0.0,
-            "density": null
+            "density": null,
+            "seedballDiameter": 0.0
           },
           {
             "id": "",
@@ -7206,7 +7454,8 @@ class FakeDatabase {
             "estimatedFinalHeight": 0.0,
             "seedCost": 0.0,
             "establishmentCost": 0.0,
-            "density": null
+            "density": null,
+            "seedballDiameter": 0.0
           },
           {
             "id": "",
@@ -7222,7 +7471,8 @@ class FakeDatabase {
             "estimatedFinalHeight": 0.0,
             "seedCost": 0.0,
             "establishmentCost": 0.0,
-            "density": null
+            "density": null,
+            "seedballDiameter": 0.0
           },
           {
             "id": "",
@@ -7238,7 +7488,8 @@ class FakeDatabase {
             "estimatedFinalHeight": 0.0,
             "seedCost": 0.0,
             "establishmentCost": 0.0,
-            "density": null
+            "density": null,
+            "seedballDiameter": 0.0
           },
           {
             "id": "",
@@ -7254,7 +7505,8 @@ class FakeDatabase {
             "estimatedFinalHeight": 0.0,
             "seedCost": 0.0,
             "establishmentCost": 0.0,
-            "density": null
+            "density": null,
+            "seedballDiameter": 0.0
           },
           {
             "id": "",
@@ -7270,7 +7522,8 @@ class FakeDatabase {
             "estimatedFinalHeight": 0.0,
             "seedCost": 0.0,
             "establishmentCost": 0.0,
-            "density": null
+            "density": null,
+            "seedballDiameter": 0.0
           },
           {
             "id": "",
@@ -7286,7 +7539,8 @@ class FakeDatabase {
             "estimatedFinalHeight": 0.0,
             "seedCost": 0.0,
             "establishmentCost": 0.0,
-            "density": null
+            "density": null,
+            "seedballDiameter": 0.0
           },
           {
             "id": "",
@@ -7302,7 +7556,8 @@ class FakeDatabase {
             "estimatedFinalHeight": 0.0,
             "seedCost": 0.0,
             "establishmentCost": 0.0,
-            "density": null
+            "density": null,
+            "seedballDiameter": 0.0
           },
           {
             "id": "",
@@ -7318,7 +7573,8 @@ class FakeDatabase {
             "estimatedFinalHeight": 0.0,
             "seedCost": 0.0,
             "establishmentCost": 0.0,
-            "density": null
+            "density": null,
+            "seedballDiameter": 0.0
           },
           {
             "id": "",
@@ -7334,7 +7590,8 @@ class FakeDatabase {
             "estimatedFinalHeight": 0.0,
             "seedCost": 0.0,
             "establishmentCost": 0.0,
-            "density": null
+            "density": null,
+            "seedballDiameter": 0.0
           },
           {
             "id": "",
@@ -7350,7 +7607,8 @@ class FakeDatabase {
             "estimatedFinalHeight": 0.0,
             "seedCost": 0.0,
             "establishmentCost": 0.0,
-            "density": null
+            "density": null,
+            "seedballDiameter": 0.0
           },
           {
             "id": "",
@@ -7366,7 +7624,8 @@ class FakeDatabase {
             "estimatedFinalHeight": 0.0,
             "seedCost": 0.0,
             "establishmentCost": 0.0,
-            "density": null
+            "density": null,
+            "seedballDiameter": 0.0
           },
           {
             "id": "",
@@ -7382,7 +7641,8 @@ class FakeDatabase {
             "estimatedFinalHeight": 0.0,
             "seedCost": 0.0,
             "establishmentCost": 0.0,
-            "density": null
+            "density": null,
+            "seedballDiameter": 0.0
           },
           {
             "id": "",
@@ -7398,7 +7658,8 @@ class FakeDatabase {
             "estimatedFinalHeight": 0.0,
             "seedCost": 0.0,
             "establishmentCost": 0.0,
-            "density": null
+            "density": null,
+            "seedballDiameter": 0.0
           },
           {
             "id": "",
@@ -7414,7 +7675,8 @@ class FakeDatabase {
             "estimatedFinalHeight": 0.0,
             "seedCost": 0.0,
             "establishmentCost": 0.0,
-            "density": null
+            "density": null,
+            "seedballDiameter": 0.0
           },
           {
             "id": "",
@@ -7430,7 +7692,8 @@ class FakeDatabase {
             "estimatedFinalHeight": 0.0,
             "seedCost": 0.0,
             "establishmentCost": 0.0,
-            "density": null
+            "density": null,
+            "seedballDiameter": 0.0
           },
           {
             "id": "",
@@ -7443,7 +7706,8 @@ class FakeDatabase {
             "estimatedFinalHeight": 0.0,
             "seedCost": 0.0,
             "establishmentCost": 0.0,
-            "density": null
+            "density": null,
+            "seedballDiameter": 0.0
           },
           {
             "id": "",
@@ -7459,7 +7723,8 @@ class FakeDatabase {
             "estimatedFinalHeight": 0.0,
             "seedCost": 0.0,
             "establishmentCost": 0.0,
-            "density": null
+            "density": null,
+            "seedballDiameter": 0.0
           },
           {
             "id": "",
@@ -7475,7 +7740,8 @@ class FakeDatabase {
             "estimatedFinalHeight": 0.0,
             "seedCost": 0.0,
             "establishmentCost": 0.0,
-            "density": null
+            "density": null,
+            "seedballDiameter": 0.0
           },
           {
             "id": "",
@@ -7491,7 +7757,8 @@ class FakeDatabase {
             "estimatedFinalHeight": 0.0,
             "seedCost": 0.0,
             "establishmentCost": 0.0,
-            "density": null
+            "density": null,
+            "seedballDiameter": 0.0
           },
           {
             "id": "",
@@ -7507,7 +7774,8 @@ class FakeDatabase {
             "estimatedFinalHeight": 0.0,
             "seedCost": 0.0,
             "establishmentCost": 0.0,
-            "density": null
+            "density": null,
+            "seedballDiameter": 0.0
           },
           {
             "id": "",
@@ -7523,7 +7791,8 @@ class FakeDatabase {
             "estimatedFinalHeight": 0.0,
             "seedCost": 0.0,
             "establishmentCost": 0.0,
-            "density": null
+            "density": null,
+            "seedballDiameter": 0.0
           },
           {
             "id": "",
@@ -7539,7 +7808,8 @@ class FakeDatabase {
             "estimatedFinalHeight": 0.0,
             "seedCost": 0.0,
             "establishmentCost": 0.0,
-            "density": null
+            "density": null,
+            "seedballDiameter": 0.0
           },
           {
             "id": "",
@@ -7555,7 +7825,8 @@ class FakeDatabase {
             "estimatedFinalHeight": 0.0,
             "seedCost": 0.0,
             "establishmentCost": 0.0,
-            "density": null
+            "density": null,
+            "seedballDiameter": 0.0
           },
           {
             "id": "",
@@ -7571,7 +7842,8 @@ class FakeDatabase {
             "estimatedFinalHeight": 0.0,
             "seedCost": 0.0,
             "establishmentCost": 0.0,
-            "density": null
+            "density": null,
+            "seedballDiameter": 0.0
           },
           {
             "id": "",
@@ -7587,7 +7859,8 @@ class FakeDatabase {
             "estimatedFinalHeight": 0.0,
             "seedCost": 0.0,
             "establishmentCost": 0.0,
-            "density": null
+            "density": null,
+            "seedballDiameter": 0.0
           },
           {
             "id": "",
@@ -7603,7 +7876,8 @@ class FakeDatabase {
             "estimatedFinalHeight": 0.0,
             "seedCost": 0.0,
             "establishmentCost": 0.0,
-            "density": null
+            "density": null,
+            "seedballDiameter": 0.0
           },
           {
             "id": "",
@@ -7616,7 +7890,8 @@ class FakeDatabase {
             "estimatedFinalHeight": 0.0,
             "seedCost": 0.0,
             "establishmentCost": 0.0,
-            "density": null
+            "density": null,
+            "seedballDiameter": 0.0
           },
           {
             "id": "",
@@ -7632,7 +7907,8 @@ class FakeDatabase {
             "estimatedFinalHeight": 0.0,
             "seedCost": 0.0,
             "establishmentCost": 0.0,
-            "density": null
+            "density": null,
+            "seedballDiameter": 0.0
           },
           {
             "id": "",
@@ -7648,7 +7924,8 @@ class FakeDatabase {
             "estimatedFinalHeight": 0.0,
             "seedCost": 0.0,
             "establishmentCost": 0.0,
-            "density": null
+            "density": null,
+            "seedballDiameter": 0.0
           },
           {
             "id": "",
@@ -7664,7 +7941,8 @@ class FakeDatabase {
             "estimatedFinalHeight": 0.0,
             "seedCost": 0.0,
             "establishmentCost": 0.0,
-            "density": null
+            "density": null,
+            "seedballDiameter": 0.0
           },
           {
             "id": "",
@@ -7680,7 +7958,8 @@ class FakeDatabase {
             "estimatedFinalHeight": 0.0,
             "seedCost": 0.0,
             "establishmentCost": 0.0,
-            "density": null
+            "density": null,
+            "seedballDiameter": 0.0
           },
           {
             "id": "",
@@ -7696,7 +7975,8 @@ class FakeDatabase {
             "estimatedFinalHeight": 0.0,
             "seedCost": 0.0,
             "establishmentCost": 0.0,
-            "density": null
+            "density": null,
+            "seedballDiameter": 0.0
           },
           {
             "id": "",
@@ -7712,7 +7992,8 @@ class FakeDatabase {
             "estimatedFinalHeight": 0.0,
             "seedCost": 0.0,
             "establishmentCost": 0.0,
-            "density": null
+            "density": null,
+            "seedballDiameter": 0.0
           },
           {
             "id": "",
@@ -7728,7 +8009,8 @@ class FakeDatabase {
             "estimatedFinalHeight": 0.0,
             "seedCost": 0.0,
             "establishmentCost": 0.0,
-            "density": null
+            "density": null,
+            "seedballDiameter": 0.0
           },
           {
             "id": "",
@@ -7744,7 +8026,8 @@ class FakeDatabase {
             "estimatedFinalHeight": 0.0,
             "seedCost": 0.0,
             "establishmentCost": 0.0,
-            "density": null
+            "density": null,
+            "seedballDiameter": 0.0
           },
           {
             "id": "",
@@ -7757,7 +8040,8 @@ class FakeDatabase {
             "estimatedFinalHeight": 0.0,
             "seedCost": 0.0,
             "establishmentCost": 0.0,
-            "density": null
+            "density": null,
+            "seedballDiameter": 0.0
           }
         ]
       }

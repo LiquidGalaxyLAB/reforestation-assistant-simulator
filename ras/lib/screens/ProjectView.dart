@@ -13,7 +13,7 @@ import 'package:ras/services/PdfGenerator.dart';
 import 'package:ras/widgets/AppBar.dart';
 import 'package:ras/widgets/SurvivalInfoChart.dart';
 import 'package:ras/widgets/CO2Chart.dart';
-import 'package:ras/widgets/TotalCO2Chart.dart';
+import 'package:ras/widgets/PotentialCapture.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 class ProjectView extends StatefulWidget {
@@ -235,16 +235,36 @@ class _ProjectViewState extends State<ProjectView> {
         });
   }
 
-   getCO2(int count, ProjectViewArgs args) {
+   getCO2(ProjectViewArgs args) {
     Project? p = args.project;
     double totalCO2 = 0;
-    for(int i = 0; i < count; i++){
-      p.seeds.forEach((element) {
-      totalCO2 += element.co2PerYear;
+    final diff = DateTime.now().difference(DateTime.parse(p.dateOfProject.toString()));
+    p.seeds.forEach((element) {
+    totalCO2 += element.co2PerYear;
     });
-    }
+    double CO2 = diff.inDays*(totalCO2/365);
+    return CO2.toStringAsFixed(3);
+  }
 
-    return totalCO2;
+  getSeedballs(double volume, double diameter) {
+    double seedballs = 0;
+    if(diameter <= 0 || volume <= 0){
+        return seedballs.toString();
+    }
+    double radius = diameter/20;
+    seedballs = (15136*(volume/100))/(radius*radius*radius);
+    return seedballs.toStringAsFixed(0);
+  }
+
+  getFlights(double volume, double diameter) {
+    double flights = 0;
+    if(diameter <= 0 || volume <= 0){
+        return flights.toString();
+    }
+    double radius = diameter/20;
+    flights = (15136*(volume/100))/(radius*radius*radius);
+    flights = 500000 / flights;
+    return flights.toStringAsFixed(2);
   }
 
   @override
@@ -474,7 +494,7 @@ class _ProjectViewState extends State<ProjectView> {
                     Item('Total number of rain days',
                         args.project.totalNumberOfRains.toString()),
                     ItemTitle('SPECIES INFORMATION'),
-                    Item('Total CO2 capture for this year', getCO2(1, args).toString()),
+                    Item('Total CO2 capture until today', getCO2(args).toString()),
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 10.0),
                       child: Text('SEEDS',
@@ -509,6 +529,12 @@ class _ProjectViewState extends State<ProjectView> {
                                 args.project.seeds[i].estimatedFinalHeight
                                         .toString() +
                                     'm'),
+                            Item(
+                                'Seedball Diameter',
+                                args.project.seeds[i].seedballDiameter.toString() +
+                                    ' mm'),
+                            Item('Number of Seedballs', getSeedballs(args.project.sizeOfDeposit, args.project.seeds[i].seedballDiameter)),
+                            Item('Number of Flights', getFlights(args.project.sizeOfDeposit, args.project.seeds[i].seedballDiameter)),
                           ],
                         ),
                       ),
@@ -530,6 +556,7 @@ class _ProjectViewState extends State<ProjectView> {
                     Item('Maximum distance',
                         args.project.maxDistance.toString() + 'm'),
                     Item('Predation', args.project.predation.toString() + '%'),
+                    Item('Size of Deposit', args.project.sizeOfDeposit.toString() + ' liters'),
                     ItemTitle('SOIL ATTRIBUTES'),
                     Item('Depth', args.project.depth.toString() + 'm'),
                     Item('PH', args.project.ph.toString()),
@@ -562,7 +589,7 @@ class _ProjectViewState extends State<ProjectView> {
                             style: TextStyle(color: Colors.grey),
                           ),
                         ),
-                        Padding(
+                    Padding(
                     padding: const EdgeInsets.symmetric(vertical: 28.0),
                     child: Text(
                       'Potential CO2 Capture',
@@ -571,7 +598,7 @@ class _ProjectViewState extends State<ProjectView> {
                     ),
                   ),
                   args.project.seeds.length > 0
-                      ? TotalCO2Chart(args.project.seeds)
+                      ? PotentialCapture(args.project.seeds)
                       : Center(
                           child: Text(
                             'No data',
@@ -597,17 +624,6 @@ class _ProjectViewState extends State<ProjectView> {
                             ),
                           ),
                         ),
-                    ElevatedButton.icon(
-                      style: ElevatedButton.styleFrom(
-                        primary: Colors.blue,
-                      ),
-                      onPressed: () {
-                        Navigator.pushNamed(context, '/mission-size',
-                                arguments: (args));
-                      },
-                      label: Text('Calculate size of the mission'),
-                      icon: Icon(Icons.calculate),
-                    ),
                   ElevatedButton.icon(
                     style: ElevatedButton.styleFrom(
                       primary: Colors.red,

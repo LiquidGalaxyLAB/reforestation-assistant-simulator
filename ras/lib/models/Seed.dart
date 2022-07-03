@@ -10,6 +10,7 @@ class Seed {
   double seedCost;
   double establishmentCost;
   double? density;
+  double seedballDiameter;
 
   Seed(
       this.id,
@@ -22,6 +23,7 @@ class Seed {
       this.estimatedFinalHeight,
       this.seedCost,
       this.establishmentCost,
+      this.seedballDiameter,
       {this.density});
 
   static fromMap(dynamic data) {
@@ -35,7 +37,8 @@ class Seed {
         data['estimatedLongevity'],
         data['estimatedFinalHeight'],
         data['seedCost'],
-        data['establishmentCost']);
+        data['establishmentCost'],
+        data['seedballDiameter']);
     return seed;
   }
 
@@ -52,6 +55,7 @@ class Seed {
       "seedCost": seedCost,
       "establishmentCost": establishmentCost,
       "density": density,
+      "seedballDiameter": seedballDiameter,
     };
   }
 
@@ -69,6 +73,7 @@ class Seed {
         element.value['estimatedFinalHeight'],
         element.value['seedCost'],
         element.value['establishmentCost'],
+        element.value['seedballDiameter'],
         density: element.value['density'],
       ));
     });
@@ -89,6 +94,7 @@ class Seed {
         element['estimatedFinalHeight'],
         element['seedCost'],
         element['establishmentCost'],
+        element['seedballDiameter'],
         density: element['density'],
       ));
     });

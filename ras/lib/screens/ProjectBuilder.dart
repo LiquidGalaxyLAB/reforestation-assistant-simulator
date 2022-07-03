@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ras/models/Gmap.dart';
 import 'package:ras/models/Project.dart';
@@ -82,6 +81,7 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
   TextEditingController hummus = TextEditingController();
   TextEditingController inclination = TextEditingController();
   TextEditingController predation = TextEditingController();
+  TextEditingController sizeOfDeposit = TextEditingController();
 
   calculateAltitudeOfTerrain() async {
     final args =
@@ -200,6 +200,7 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                                           if (value) {
                                             seeds.add(data[index]);
                                             seeds[seeds.length - 1].density = 0;
+                                            seeds[seeds.length - 1].seedballDiameter = 0;
                                           } else
                                             seeds.removeWhere((element) =>
                                                 element.id == data[index].id ||
@@ -298,6 +299,7 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
         geodata,
         double.parse(minFlightHeight.text),
         double.parse(predation.text),
+        double.parse(sizeOfDeposit.text),
         double.parse(areaCovered.text),
       );
       Future response = ProjectRepository().create(project);
@@ -335,6 +337,7 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
         geodata,
         double.parse(minFlightHeight.text),
         double.parse(predation.text),
+        double.parse(sizeOfDeposit.text),
         double.parse(areaCovered.text),
       );
       Future response = ProjectRepository().update(project, args.project!.id);
@@ -373,6 +376,7 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
       inclination.text = args.project!.inclination.toString();
       minFlightHeight.text = args.project!.minFlightHeight.toString();
       predation.text = args.project!.predation.toString();
+      sizeOfDeposit.text = args.project!.sizeOfDeposit.toString();
       areaCovered.text = args.project!.areaCovered.toString();
 
       // map info
@@ -394,6 +398,7 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
       inclination.text = '0';
       minFlightHeight.text = '0';
       predation.text = '0';
+      sizeOfDeposit.text = '0';
       areaCovered.text = '0';
     }
   }
@@ -935,6 +940,18 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                             icon: Icon(Icons.check_box),
                             label: Text('Select seed'),
                           ),
+                          Padding(
+                            padding:
+                                const EdgeInsets.only(top: 25.0, bottom: 15),
+                            child: Text(
+                              'Seed Density',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 16,
+                                color: Colors.black,
+                              ),
+                            ),
+                          ),
                           for (var i = 0; i < seeds.length; i++)
                             ListTile(
                               leading: SizedBox(
@@ -958,6 +975,53 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                                   },
                                   decoration: InputDecoration(
                                       filled: true, helperText: 'Density'),
+                                ),
+                              ),
+                              title: Text('${seeds[i].commonName}'),
+                              subtitle: Text('${seeds[i].scientificName}'),
+                              trailing: IconButton(
+                                onPressed: () {
+                                  setState(() {
+                                    seeds.removeAt(i);
+                                  });
+                                },
+                                icon: Icon(
+                                  Icons.clear,
+                                  color: Colors.red,
+                                ),
+                              ),
+                            ),
+                          Padding(
+                            padding:
+                                const EdgeInsets.only(top: 25.0, bottom: 15),
+                            child: Text(
+                              'Seedball Diameter (mm)',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 16,
+                                color: Colors.black,
+                              ),
+                            ),
+                          ),
+                          for (var i = 0; i < seeds.length; i++)
+                            ListTile(
+                              leading: SizedBox(
+                                width: 75,
+                                height: 75,
+                                child: TextFormField(
+                                  // controller: seedballDiameter,
+                                  initialValue: seeds[i].seedballDiameter == 0.0
+                                      ? '0.0'
+                                      : seeds[i].seedballDiameter.toString(),
+                                  keyboardType: TextInputType.number,
+                                  onChanged: (value) {
+                                      if (value.length > 0)
+                                        seeds[i].seedballDiameter = double.parse(value);
+                                      else
+                                        seeds[i].seedballDiameter = 0;
+                                  },
+                                  decoration: InputDecoration(
+                                      filled: true, helperText: 'Seedball Diameter (mm)'),
                                 ),
                               ),
                               title: Text('${seeds[i].commonName}'),
@@ -1427,6 +1491,43 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                                   onPressed: () {
                                     showHelpDialog('Predation (%, 0 - 100)',
                                         'Predation in the area.');
+                                  },
+                                  icon: Icon(Icons.help))
+                            ],
+                          ),
+                          Padding(
+                            padding:
+                                const EdgeInsets.only(top: 25.0, bottom: 5),
+                            child: Text(
+                              'Size of Deposit',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 16,
+                                color: Colors.black54,
+                              ),
+                            ),
+                          ),
+                          Row(
+                            children: [
+                              Expanded(
+                                child: TextFormField(
+                                  controller: sizeOfDeposit,
+                                  keyboardType: TextInputType.number,
+                                  decoration: InputDecoration(
+                                    filled: true,
+                                  ),
+                                  validator: (value) {
+                                    if (double.parse(value!) < 0) {
+                                      return 'Wrong range! Negative values are not allowed';
+                                    }
+                                    return null;
+                                  },
+                                ),
+                              ),
+                              IconButton(
+                                  onPressed: () {
+                                    showHelpDialog('Size of Deposit (liters)',
+                                        'Size of the Seed Deposit.');
                                   },
                                   icon: Icon(Icons.help))
                             ],
