@@ -1,0 +1,37 @@
+{
+	"button": {
+		"cancel": "Cancelar"
+	},
+	"language": {
+		"name": {
+			"en": "Inglés (Estados Unidos)",
+			"es": "Español",
+			"hi": "Hindi",
+			"ar": "Arábica",
+			"ru": "Ruso",
+			"ja": "Japonés",
+			"zh": "Chino (Simplificado)",
+			"sq": "Albanés",
+			"de": "Alemán"
+		},
+		"flag": "🇪🇸",
+		"selected_message": "{language}",
+		"selection": {
+			"message": "Por favor seleccione un idioma de la lista",
+			"title": "Selección de idioma"
+		},
+		"About": {
+			"aboutpage": "Asistente y Simulador de Reforestación",
+			"message": "Este proyecto se creó durante el Google Summer of Code 2021 junto con las organizaciones Liquid Galaxy y Dronecoria. \n\nDesarrollado por la estudiante brasileña Karine Pistili, este proyecto de código abierto consiste en una aplicación para ayudar a planificar y monitorear proyectos de reforestación, ya sea mediante la siembra de drones o manualmente. \n\nLos usuarios pueden planificar las misiones de reforestación definiendo áreas de siembra, ubicación específica de semillas/árboles, puntos de aterrizaje de drones, zonas de vuelo y otras métricas útiles. Toda la información recopilada se puede mostrar dinámicamente en el clúster de Liquid Galaxy usando KML y también en la aplicación con la ayuda de gráficos y texto para brindar a los usuarios una excelente visión general inmersiva del panorama de cada proyecto.\n",
+			"learn": "Aprende más",
+			"check": "\nPara obtener más información sobre Dronecoria y Liquid Galaxy Projects, puede consultar sus sitios web y github. \norte",
+			"website": "Sitio web de Liquid Galaxy \n",
+			"github": "Proyecto RAS GitHub\n",
+			"drone": "Sitio web de Dronecoria",
+			"icons": "\nGracias por los autores de los íconos usados ​​en esta aplicación. \norte",
+			"freepik": "Iconos de freepik",
+			"License": "Iconos Licencia",
+			"partner": "\nNuestros socios"
+		}
+	}
+}

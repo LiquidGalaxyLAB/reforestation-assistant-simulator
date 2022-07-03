@@ -426,7 +426,9 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
             children: [
               Expanded(
                 child: Stepper(
+
                   controlsBuilder: (BuildContext context, ControlsDetails controls) {
+
                     return Row(
                       children: <Widget>[],
                     );

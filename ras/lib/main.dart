@@ -13,11 +13,19 @@ import 'package:ras/services/Database.dart';
 import 'package:ras/services/LGConnection.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:ras/screens/MapView.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+// ignore: import_of_legacy_library_into_null_safe
+import 'package:flutter_translate/flutter_translate.dart';
+import 'package:ras/screens/MissionSize.dart';
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:ssh/ssh.dart';
 
-void main() {
-  runApp(MyApp());
+main() async {
+  var delegate = await LocalizationDelegate.create(
+      fallbackLocale: 'en_US',
+      supportedLocales: ['en_US', 'es', 'hi', 'de', 'sq']);
+
+  runApp(LocalizedApp(delegate, MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -34,11 +42,13 @@ class MyApp extends StatelessWidget {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     String ipAddress = preferences.getString('master_ip') ?? '';
     String password = preferences.getString('master_password') ?? '';
+    String portNumber = preferences.getString('master_portNumber') ?? '';
+    String username = preferences.getString('master_username') ?? '';
 
     SSHClient client = SSHClient(
       host: ipAddress,
-      port: 22,
-      username: "lg",
+      port: int.parse(portNumber),
+      username: username,
       passwordOrKey: password,
     );
 
@@ -56,6 +66,7 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    var localizationDelegate = LocalizedApp.of(context).delegate;
     // Fix orientation
     SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
 
@@ -65,11 +76,21 @@ class MyApp extends StatelessWidget {
     //openLogos
     openLogos();
 
-    return MaterialApp(
-      title: 'RAS',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+    return LocalizationProvider(
+      state: LocalizationProvider.of(context).state,
+      child: MaterialApp(
+        title: 'RAS',
+        localizationsDelegates: [
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          localizationDelegate
+        ],
+        supportedLocales: localizationDelegate.supportedLocales,
+        locale: localizationDelegate.currentLocale,
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+      
       debugShowCheckedModeBanner: false,
       initialRoute: '/splash',
       routes: {
