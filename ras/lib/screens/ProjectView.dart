@@ -248,7 +248,7 @@ class _ProjectViewState extends State<ProjectView> {
 
   getSeedballs(double volume, double diameter) {
     double seedballs = 0;
-    if(diameter <= 0 || volume <= 0){
+    if(diameter == null || volume == null){
         return seedballs.toString();
     }
     double radius = diameter/20;
@@ -258,7 +258,7 @@ class _ProjectViewState extends State<ProjectView> {
 
   getFlights(double volume, double diameter) {
     double flights = 0;
-    if(diameter <= 0 || volume <= 0){
+    if(diameter == null || volume == null){
         return flights.toString();
     }
     double radius = diameter/20;
