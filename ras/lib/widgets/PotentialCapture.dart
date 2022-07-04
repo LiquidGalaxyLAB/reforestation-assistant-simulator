@@ -6,63 +6,50 @@ class PotentialCapture extends StatefulWidget {
   final List<Seed> seeds;
   PotentialCapture(this.seeds);
   @override
-  _PotentialCaptureState createState() => _PotentialCaptureState();
+  _PotentialCaptureState createState() => _PotentialCaptureState(this.seeds);
+}
+
+getYear(int count){
+  DateTime cur = DateTime.now();
+  int yr = cur.year;
+  for(int i = 1; i < count; i++){
+        yr = yr + 1;
+  }
+    return yr;
+}
+
+getCO2(double co2, int count){
+  double result = co2;
+  for(int i = 1; i < count; i++){
+    result = result + co2;
+  }
+    return result;
 }
 
 class _PotentialCaptureState extends State<PotentialCapture> {
 
-              final List<ChartData> chartData = <ChartData>[
-            ChartData(2010, 10.53, 3.3, 2.2),
-            ChartData(2011, 9.5, 5.4, 3.2),
-            ChartData(2012, 10, 2.65, 8.2),
-            ChartData(2013, 9.4, 2.62, 9.8),
-            ChartData(2014, 5.8, 1.99, 7.3),
-            ChartData(2015, 4.9, 1.44, 8.4),
-            ChartData(2016, 4.5, 2, 1),
-            ChartData(2017, 3.6, 1.56, 8.1),
-            ChartData(2018, 3.43, 2.1, 9.0),
-            ];
+  late List<ChartData> chartData;
+  final List<Seed> seeds;
+  _PotentialCaptureState(this.seeds);
 
 @override
     Widget build(BuildContext context) {
          return Container(
                     child: SfCartesianChart(
-                        primaryXAxis: CategoryAxis(),
+                        primaryXAxis: NumericAxis(),
+                        primaryYAxis: NumericAxis(rangePadding: ChartRangePadding.auto),
                         legend: Legend(
                 isVisible: true,
                 overflowMode: LegendItemOverflowMode.wrap,
                 position: LegendPosition.bottom
                         ),
                         series: <ChartSeries>[
+                          for (var i = 0; i < seeds.length; i++)
                             StackedAreaSeries<ChartData, int>(
-                                  dataLabelSettings: DataLabelSettings(
-                                    isVisible: true,
-                                    useSeriesColor: true
-                                ),
-                                name:'species1',
-                                dataSource: chartData,
+                                name:seeds[i].commonName,
+                                dataSource: [ChartData(getYear(1), getCO2(seeds[i].co2PerYear, 1)), ChartData(getYear(2), getCO2(seeds[i].co2PerYear, 2)), ChartData(getYear(3), getCO2(seeds[i].co2PerYear, 3)), ChartData(getYear(4), getCO2(seeds[i].co2PerYear, 4)), ChartData(getYear(5), getCO2(seeds[i].co2PerYear, 5)), ChartData(getYear(6), getCO2(seeds[i].co2PerYear, 6)), ChartData(getYear(7), getCO2(seeds[i].co2PerYear, 7))],
                                 xValueMapper: (ChartData data, _) => data.x,
-                                yValueMapper: (ChartData data, _) => data.y
-                            ),
-                            StackedAreaSeries<ChartData, int>(
-                                  dataLabelSettings: DataLabelSettings(
-                                    isVisible: true,
-                                    useSeriesColor: true
-                                ),
-                                name:'species2',
-                                dataSource: chartData,
-                                xValueMapper: (ChartData data, _) => data.x,
-                                yValueMapper: (ChartData data, _) => data.y1
-                            ),
-                            StackedAreaSeries<ChartData, int>(
-                                  dataLabelSettings: DataLabelSettings(
-                                    isVisible: true,
-                                    useSeriesColor: true
-                                ),
-                                name:'species3',
-                                dataSource: chartData,
-                                xValueMapper: (ChartData data, _) => data.x,
-                                yValueMapper: (ChartData data, _) => data.y2
+                                yValueMapper: (ChartData data, _) => data.y,
                             ),
                         ]
                     )
@@ -71,9 +58,7 @@ class _PotentialCaptureState extends State<PotentialCapture> {
 }
 
     class ChartData {
-      ChartData(this.x, this.y, this.y1, this.y2);
+      ChartData(this.x, this.y);
       final int x;
       final double y;
-      final double y1;
-      final double y2;
     }
