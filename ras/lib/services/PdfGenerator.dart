@@ -82,7 +82,7 @@ class PdfGenerator {
             attribute(
                 'Total number of ran days', '${project.totalNumberOfRains}'),
             title('SPECIES INFORMATION'),
-            attribute('Total CO2 capture', '${getTotalCO2()}'),
+            attribute('Total CO2 capture', '${getTotalCO2()}' + ' kg'),
             subtitle('SEEDS'),
             pw.ListView.builder(
                 itemBuilder: (pw.Context context, int index) {
@@ -95,7 +95,7 @@ class PdfGenerator {
                           'Density', '${project.seeds[index].density} plants per hectare'),
                       attribute('Survival probability', 'XX'),
                       attribute('Estimated CO2 capture',
-                          '${project.seeds[index].co2PerYear} per year'),
+                          '${project.seeds[index].co2PerYear} kg per year'),
                       attribute('Estimated longevity',
                           '${project.seeds[index].estimatedLongevity} years'),
                       attribute('Estimated final height',

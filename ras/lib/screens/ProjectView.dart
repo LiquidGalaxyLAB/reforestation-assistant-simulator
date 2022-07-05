@@ -494,7 +494,7 @@ class _ProjectViewState extends State<ProjectView> {
                     Item('Total number of rain days',
                         args.project.totalNumberOfRains.toString()),
                     ItemTitle('SPECIES INFORMATION'),
-                    Item('Total CO2 capture until today', getCO2(args).toString()),
+                    Item('Total CO2 capture until today', getCO2(args).toString() + ' kg'),
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 10.0),
                       child: Text('SEEDS',
@@ -518,7 +518,7 @@ class _ProjectViewState extends State<ProjectView> {
                             Item(
                                 'Estimated CO2 capture',
                                 args.project.seeds[i].co2PerYear.toString() +
-                                    ' per year'),
+                                    ' kg per year'),
                             Item(
                                 'Estimated longevity',
                                 args.project.seeds[i].estimatedLongevity
