@@ -169,6 +169,7 @@ class _SeedFormState extends State<SeedForm> {
       estimatedFHeight.text = args.seed!.estimatedFinalHeight.toString();
       seedCost.text = args.seed!.seedCost.toString();
       establishmentCost.text = args.seed!.establishmentCost.toString();
+      seedballDiameter.text = args.seed!.seedballDiameter.toString();
       seedIcon = args.seed!.icon;
     } else {
       co2PerYear.text = "0";
@@ -177,6 +178,7 @@ class _SeedFormState extends State<SeedForm> {
       estimatedFHeight.text = "0";
       seedCost.text = "0";
       establishmentCost.text = "0";
+      seedballDiameter.text = "0";
       commonName.text = "";
     }
   }
@@ -493,6 +495,37 @@ class _SeedFormState extends State<SeedForm> {
                           showHelpDialog(
                               'Establishment cost per plant. (number, euros)',
                               'Plant establishment cost (Still alive after 2 years after the sowing)');
+                        },
+                        icon: Icon(Icons.help))
+                  ],
+                ),
+                  Padding(
+                  padding: const EdgeInsets.only(top: 25.0, bottom: 5),
+                  child: Text(
+                    'Seedball Diameter. (number, mm)',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16,
+                      color: Colors.black54,
+                    ),
+                  ),
+                ),
+                Row(
+                  children: [
+                    Expanded(
+                      child: TextFormField(
+                        controller: seedballDiameter,
+                        keyboardType: TextInputType.number,
+                        decoration: InputDecoration(
+                          filled: true,
+                        ),
+                      ),
+                    ),
+                    IconButton(
+                        onPressed: () {
+                          showHelpDialog(
+                              'Seedball Diameter. (number, mm)',
+                              'Size of the Seedball');
                         },
                         icon: Icon(Icons.help))
                   ],

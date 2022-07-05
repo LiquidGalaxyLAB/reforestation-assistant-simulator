@@ -297,6 +297,14 @@ class _SeedListState extends State<SeedList> {
                                     subtitle: Text('Establishment cost'),
                                   ),
                                 ),
+                                  Padding(
+                                  padding: const EdgeInsets.symmetric(horizontal:10.0),
+                                  child: ListTile(
+                                    title:
+                                        Text('${data[index].seedballDiameter}'),
+                                    subtitle: Text('Seedball Diameter (mm)'),
+                                  ),
+                                ),
                               ],
                             );
                           });
