@@ -37,7 +37,7 @@ class _SurvivalInfoChartState extends State<SurvivalInfoChart> {
   List<ChartData> getChartData() {
     final List<ChartData> chartData = [
       ChartData(
-        'Germinative potential',
+        'Seeds Sown',
         (0.9 * getTotalItems()),
       ),
       ChartData(
@@ -72,7 +72,7 @@ class _SurvivalInfoChartState extends State<SurvivalInfoChart> {
 
   List<LineChartData> getLineChartData() {
     final List<LineChartData> lineChartData = [
-      LineChartData((0.9 * getTotalItems()), 'Germinative potential'),
+      LineChartData((0.9 * getTotalItems()), 'Seeds Sown'),
       LineChartData((0.2 * (0.9 * getTotalItems())), 'Predation'),
       LineChartData((0.2 * (0.2 * (0.9 * getTotalItems()))), 'Hydric stress'),
       LineChartData(
@@ -115,7 +115,7 @@ class _SurvivalInfoChartState extends State<SurvivalInfoChart> {
         ),
         primaryYAxis: NumericAxis(
             title: AxisTitle(
-                text: 'Total of seeds sown',
+                text: 'Total Plants',
                 textStyle: TextStyle(color: Colors.blueGrey)),
             edgeLabelPlacement: EdgeLabelPlacement.shift,
             visibleMaximum: getTotalItems()),

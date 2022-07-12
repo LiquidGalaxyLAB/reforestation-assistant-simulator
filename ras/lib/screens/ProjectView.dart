@@ -441,68 +441,32 @@ class _ProjectViewState extends State<ProjectView> {
                         args.project.dateOfProject.toString().substring(0, 10)),
                     Item('Sown mode', args.project.sownMode),
                     ItemTitle('SOWING WINDOW TIME'),
-                    Text('DATES',
-                        style: TextStyle(
-                            fontWeight: FontWeight.w600,
-                            fontSize: 18,
-                            fontStyle: FontStyle.italic)),
                     Row(
                       children: [
-                        Item(
-                            'Min',
+                        Expanded(
+                        child: Item(
+                            'From',
                             args.project.minSwtDate
                                 .toString()
                                 .substring(0, 10)),
-                        Text(
-                          ' | ',
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 20),
                         ),
-                        Item(
-                            'Max',
+                        Expanded(
+                        child: Item(
+                            'To',
                             args.project.maxSwtDate
                                 .toString()
                                 .substring(0, 10)),
+                        ),
                       ],
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 8.0),
-                      child: Text('TEMPERATURE',
-                          style: TextStyle(
-                              fontWeight: FontWeight.w600,
-                              fontSize: 18,
-                              fontStyle: FontStyle.italic)),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(bottom: 8.0),
-                      child: Row(
-                        children: [
-                          Item(
-                              'Min', args.project.minSwtTemp.toString() + '°C'),
-                          Text(
-                            ' | ',
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 20),
-                          ),
-                          Item(
-                              'Max', args.project.maxSwtTemp.toString() + '°C'),
-                        ],
-                      ),
-                    ),
+                    Item('Min Temp', args.project.minSwtTemp.toString() + '°C'),
+                    Item('Max Temp', args.project.maxSwtTemp.toString() + '°C'),
                     Item('Average number of rain days',
                         args.project.avgNumberOfRains.toString()),
                     Item('Total number of rain days',
                         args.project.totalNumberOfRains.toString()),
                     ItemTitle('SPECIES INFORMATION'),
-                    Item('Total CO2 capture until today', getCO2(args).toString() + ' kg'),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 10.0),
-                      child: Text('SEEDS',
-                          style: TextStyle(
-                              fontWeight: FontWeight.w600,
-                              fontSize: 18,
-                              fontStyle: FontStyle.italic)),
-                    ),
+                    Item('CO2 capture until today', getCO2(args).toString() + ' kg'),
                     for (var i = 0; i < args.project.seeds.length; i++)
                       Padding(
                         padding: const EdgeInsets.only(bottom: 10.0),
@@ -540,25 +504,25 @@ class _ProjectViewState extends State<ProjectView> {
                       ),
                     ItemTitle('AREA INFORMATION'),
                     Item('Area covered',
-                        args.project.areaCovered.toString() + 'm²'),
+                        args.project.areaCovered.toStringAsFixed(2).replaceAll(RegExp(r'([.]*00)(?!.*\d)'), '') + 'm²'),
                     Item('Optimal surface',
                         args.project.validSurface.toString() + '%'),
                     Item('Invalid surface',
                         args.project.notValidSurface.toString() + '%'),
                     Item('Empty land', args.project.emptyLand.toString() + '%'),
                     Item('Orientation', args.project.orientation),
-                    Item('Minimun altitude of the terrain',
-                        args.project.minAltTerrain.toString() + 'm'),
-                    Item('Maximum altitude of the terrain',
-                        args.project.maxAltTerrain.toString() + 'm'),
+                    Item('Min. terrain altitude',
+                        args.project.minAltTerrain.toStringAsFixed(2).replaceAll(RegExp(r'([.]*00)(?!.*\d)'), '') + 'm'),
+                    Item('Max. terrain altitude',
+                        args.project.maxAltTerrain.toStringAsFixed(2).replaceAll(RegExp(r'([.]*00)(?!.*\d)'), '') + 'm'),
                     Item('Minimum flight height',
                         '~' + args.project.minFlightHeight.toString() + 'm'),
                     Item('Maximum distance',
-                        args.project.maxDistance.toString() + 'm'),
+                        args.project.maxDistance.toStringAsFixed(2).replaceAll(RegExp(r'([.]*00)(?!.*\d)'), '') + 'm'),
                     Item('Predation', args.project.predation.toString() + '%'),
                     Item('Size of Deposit', args.project.sizeOfDeposit.toString() + ' liters'),
                     ItemTitle('SOIL ATTRIBUTES'),
-                    Item('Depth', args.project.depth.toString() + 'm'),
+                    Item('Depth', args.project.depth.toStringAsFixed(5).replaceAll(RegExp(r'([.]*00000)(?!.*\d)'), '') + 'm'),
                     Item('PH', args.project.ph.toString()),
                     Item('Fractured', args.project.fractured ? 'Yes' : 'No'),
                     Item('Hummus presence', args.project.hummus.toString()),
@@ -566,7 +530,7 @@ class _ProjectViewState extends State<ProjectView> {
                         'Inclination',
                         args.project.inclination.toString() +
                             '%' +
-                            ' | ${(args.project.inclination / 100) * 360}°'),
+                            ' | ${((args.project.inclination / 100) * 360).toStringAsFixed(2)}°'),
                   ],
                 ),
               ),

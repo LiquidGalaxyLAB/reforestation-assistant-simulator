@@ -11,8 +11,8 @@ class PotentialCapture extends StatefulWidget {
 
 getYear(int count){
   DateTime cur = DateTime.now();
-  int yr = cur.year;
-  for(int i = 1; i < count; i++){
+  int yr = cur.year-1;
+  for(int i = 0; i < count; i++){
         yr = yr + 1;
   }
     return yr;
@@ -36,18 +36,25 @@ class _PotentialCaptureState extends State<PotentialCapture> {
     Widget build(BuildContext context) {
          return Container(
                     child: SfCartesianChart(
-                        primaryXAxis: NumericAxis(),
-                        primaryYAxis: NumericAxis(rangePadding: ChartRangePadding.auto),
-                        legend: Legend(
-                isVisible: true,
-                overflowMode: LegendItemOverflowMode.wrap,
-                position: LegendPosition.bottom
+                        primaryXAxis: NumericAxis(title: AxisTitle(text: 'Year',
+                                textStyle: TextStyle(color: Colors.black,
+                                    fontFamily: 'Roboto',
+                                    fontSize: 12,
+                                    fontStyle: FontStyle.italic,
+                                    fontWeight: FontWeight.w300))),
+                        primaryYAxis: NumericAxis(rangePadding: ChartRangePadding.auto,title: AxisTitle(text: 'CO2 Capture (kg)',
+                                textStyle: TextStyle(color: Colors.black,
+                                    fontFamily: 'Roboto',
+                                    fontSize: 12,
+                                    fontStyle: FontStyle.italic,
+                                    fontWeight: FontWeight.w300))),
+                        legend: Legend(isVisible: true,overflowMode: LegendItemOverflowMode.wrap,position: LegendPosition.bottom
                         ),
                         series: <ChartSeries>[
                           for (var i = 0; i < seeds.length; i++)
                             StackedAreaSeries<ChartData, int>(
                                 name:seeds[i].commonName,
-                                dataSource: [ChartData(getYear(1), getCO2(seeds[i].co2PerYear, 1)), ChartData(getYear(2), getCO2(seeds[i].co2PerYear, 2)), ChartData(getYear(3), getCO2(seeds[i].co2PerYear, 3)), ChartData(getYear(4), getCO2(seeds[i].co2PerYear, 4)), ChartData(getYear(5), getCO2(seeds[i].co2PerYear, 5)), ChartData(getYear(6), getCO2(seeds[i].co2PerYear, 6)), ChartData(getYear(7), getCO2(seeds[i].co2PerYear, 7))],
+                                dataSource: [ChartData(getYear(0), getCO2(0, 1)), ChartData(getYear(1), getCO2(seeds[i].co2PerYear, 1)), ChartData(getYear(2), getCO2(seeds[i].co2PerYear, 2)), ChartData(getYear(3), getCO2(seeds[i].co2PerYear, 3)), ChartData(getYear(4), getCO2(seeds[i].co2PerYear, 4)), ChartData(getYear(5), getCO2(seeds[i].co2PerYear, 5)), ChartData(getYear(6), getCO2(seeds[i].co2PerYear, 6)), ChartData(getYear(7), getCO2(seeds[i].co2PerYear, 7)), ChartData(getYear(8), getCO2(seeds[i].co2PerYear, 8))],
                                 xValueMapper: (ChartData data, _) => data.x,
                                 yValueMapper: (ChartData data, _) => data.y,
                             ),
