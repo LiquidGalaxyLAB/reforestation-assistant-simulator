@@ -80,7 +80,7 @@ class PdfGenerator {
             attribute('Maximum', '${project.maxSwtTemp}°C'),
             attribute('Average number of rains', '${project.avgNumberOfRains}'),
             attribute(
-                'Total number of ran days', '${project.totalNumberOfRains}'),
+                'Total number of rainy days', '${project.totalNumberOfRains}'),
             title('SPECIES INFORMATION'),
             attribute('Total CO2 capture', '${getTotalCO2()}' + ' kg'),
             subtitle('SEEDS'),
