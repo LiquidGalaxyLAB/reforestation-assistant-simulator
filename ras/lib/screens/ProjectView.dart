@@ -11,7 +11,7 @@ import 'package:ras/services/KmlGenerator.dart';
 import 'package:ras/services/LGConnection.dart';
 import 'package:ras/services/PdfGenerator.dart';
 import 'package:ras/widgets/AppBar.dart';
-import 'package:ras/widgets/SurvivalInfoChart.dart';
+import 'package:ras/widgets/SurvivalStackedChart.dart';
 import 'package:ras/widgets/CO2Chart.dart';
 import 'package:ras/widgets/PotentialCapture.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -246,6 +246,18 @@ class _ProjectViewState extends State<ProjectView> {
     return CO2.toStringAsFixed(3);
   }
 
+    getCO2Planned(ProjectViewArgs args) {
+    Project? p = args.project;
+    double totalCO2 = 0;
+    final diff = DateTime.now().difference(DateTime.parse(p.dateOfProject.toString()));
+    p.seeds.forEach((element) {
+    totalCO2 += element.co2PerYear;
+    });
+    double days = diff.inDays + (365.3*8);
+    double CO2 = days*(totalCO2/365);
+    return CO2.toStringAsFixed(3);
+  }
+
   getSeedballs(double volume, double diameter) {
     double seedballs = 0;
     if(diameter == null || volume == null){
@@ -264,6 +276,16 @@ class _ProjectViewState extends State<ProjectView> {
     double radius = diameter/20;
     flights = (15136*(volume/100))/(radius*radius*radius);
     flights = 500000 / flights;
+    return flights.toStringAsFixed(2);
+  }
+
+    getTotalFlights(ProjectViewArgs args) {
+    double flights = 0;
+    args.project.seeds.forEach((element) {
+      double vol = args.project.sizeOfDeposit;
+      double diameter = element.seedballDiameter;
+      flights += double.parse(getFlights(vol, diameter));
+    });
     return flights.toStringAsFixed(2);
   }
 
@@ -440,6 +462,11 @@ class _ProjectViewState extends State<ProjectView> {
                     Item('Date',
                         args.project.dateOfProject.toString().substring(0, 10)),
                     Item('Sown mode', args.project.sownMode),
+                    ItemTitle('PROJECT INFORMATION'),
+                    Item('Total Flights', getTotalFlights(args)),
+                    Item('CO2 capture until today', getCO2(args).toString() + ' kg'),
+                    Item('CO2 capture planned', getCO2Planned(args).toString() + ' kg'),
+                    Item('Size of Deposit', args.project.sizeOfDeposit.toString() + ' liters'),
                     ItemTitle('SOWING WINDOW TIME'),
                     Row(
                       children: [
@@ -466,7 +493,6 @@ class _ProjectViewState extends State<ProjectView> {
                     Item('Total number of rain days',
                         args.project.totalNumberOfRains.toString()),
                     ItemTitle('SPECIES INFORMATION'),
-                    Item('CO2 capture until today', getCO2(args).toString() + ' kg'),
                     for (var i = 0; i < args.project.seeds.length; i++)
                       Padding(
                         padding: const EdgeInsets.only(bottom: 10.0),
@@ -520,7 +546,6 @@ class _ProjectViewState extends State<ProjectView> {
                     Item('Maximum distance',
                         args.project.maxDistance.toStringAsFixed(2).replaceAll(RegExp(r'([.]*00)(?!.*\d)'), '') + 'm'),
                     Item('Predation', args.project.predation.toString() + '%'),
-                    Item('Size of Deposit', args.project.sizeOfDeposit.toString() + ' liters'),
                     ItemTitle('SOIL ATTRIBUTES'),
                     Item('Depth', args.project.depth.toStringAsFixed(5).replaceAll(RegExp(r'([.]*00000)(?!.*\d)'), '') + 'm'),
                     Item('PH', args.project.ph.toString()),
@@ -546,7 +571,7 @@ class _ProjectViewState extends State<ProjectView> {
                     ),
                   ),
                   args.project.seeds.length > 0
-                      ? SurvivalInfoChart(args.project.seeds)
+                      ? SurvivalStackedChart(args.project.seeds)
                       : Center(
                           child: Text(
                             'No data',

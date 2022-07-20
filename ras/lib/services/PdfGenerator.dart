@@ -69,6 +69,7 @@ class PdfGenerator {
             attribute('Area covered', 'XX'),
             attribute('Region', '${project.region}'),
             attribute('Sown mode', '${project.sownMode}'),
+            title('PROJECT INFORMATION'),
             title('SOWING WINDOW TIME'),
             subtitle('DATES'),
             attribute(
