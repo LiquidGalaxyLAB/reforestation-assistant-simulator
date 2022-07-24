@@ -42,13 +42,47 @@ class PdfGenerator {
       ]);
     }
 
-    getTotalCO2() {
-      double qt = 0;
-      project.seeds.forEach((element) {
-        qt += element.co2PerYear;
-      });
-      return qt;
+   getCO2() {
+    double totalCO2 = 0;
+    final diff = DateTime.now().difference(DateTime.parse(project.dateOfProject.toString()));
+    project.seeds.forEach((element) {
+    totalCO2 += element.co2PerYear;
+    });
+    double CO2 = diff.inDays*(totalCO2/365);
+    return CO2.toStringAsFixed(3);
+  }
+
+    getCO2Planned() {
+    double totalCO2 = 0;
+    final diff = DateTime.now().difference(DateTime.parse(project.dateOfProject.toString()));
+    project.seeds.forEach((element) {
+    totalCO2 += element.co2PerYear;
+    });
+    double days = diff.inDays + (365.3*8);
+    double CO2 = days*(totalCO2/365);
+    return CO2.toStringAsFixed(3);
+  }
+
+    getFlights(double volume, double diameter) {
+    double flights = 0;
+    if(diameter == null || volume == null){
+        return flights.toString();
     }
+    double radius = diameter/20;
+    flights = (15136*(volume/100))/(radius*radius*radius);
+    flights = 500000 / flights;
+    return flights.toStringAsFixed(2);
+  }
+
+    getTotalFlights() {
+    double flights = 0;
+    project.seeds.forEach((element) {
+      double vol = project.sizeOfDeposit;
+      double diameter = element.seedballDiameter;
+      flights += double.parse(getFlights(vol, diameter));
+    });
+    return flights.toStringAsFixed(2);
+  }
 
     final pdf = pw.Document();
     final downloadsDirectory = await DownloadsPathProvider.downloadsDirectory;
@@ -70,6 +104,10 @@ class PdfGenerator {
             attribute('Region', '${project.region}'),
             attribute('Sown mode', '${project.sownMode}'),
             title('PROJECT INFORMATION'),
+            attribute('Total Flights', '${getTotalFlights()}'),
+            attribute('CO2 capture until today', '${getCO2()}' + ' kg'),
+            attribute('Planned CO2 capture', '${getCO2Planned()}' + ' kg'),
+            attribute('Size of Deposit', '${project.sizeOfDeposit}% liters'),
             title('SOWING WINDOW TIME'),
             subtitle('DATES'),
             attribute(
@@ -83,7 +121,6 @@ class PdfGenerator {
             attribute(
                 'Total number of rainy days', '${project.totalNumberOfRains}'),
             title('SPECIES INFORMATION'),
-            attribute('Total CO2 capture', '${getTotalCO2()}' + ' kg'),
             subtitle('SEEDS'),
             pw.ListView.builder(
                 itemBuilder: (pw.Context context, int index) {
@@ -120,7 +157,6 @@ class PdfGenerator {
             attribute('Maximum distance', '${project.maxDistance} m'),
             attribute('Minimum flight height', '${project.minFlightHeight} m'),
             attribute('Predation', '${project.predation}%'),
-            attribute('Size of Deposit', '${project.sizeOfDeposit}% liters'),
             title('SOIL ATTRIBUTES'),
             attribute('Depth', '${project.depth} m'),
             attribute('PH', '${project.ph}'),
