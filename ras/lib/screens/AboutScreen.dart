@@ -74,6 +74,19 @@ class _AboutScreenState extends State<AboutScreen> {
                 ),
               ),
               Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 10.0),
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.blue,
+                      side: BorderSide(color: Colors.blue, width: 1),
+                    ),
+                    onPressed: () {
+                    _launchURL('https://github.com/LiquidGalaxyLAB/reforestation-assistant-simulator/blob/main/PrivacyPolicy.md');
+                    },
+                    child: Text('View Privacy Policy'),
+                  ),
+                ),
+              Padding(
                 padding: const EdgeInsets.symmetric(vertical: 15.0),
                 child: Text(
                   'This project was created during the Google Summer of Code 2021 alongside the Liquid Galaxy and Dronecoria organizations. \n\nThis open source project consists of an app to help plan and monitor reforestation projects either by sowning drones or manually. \n\nUsers can plan the reforesting missions, by defining areas of seeding, specific seed/tree location, drone landing points, fly zones and other helpful metrics. All the gathered information can be dynamically displayed on the Liquid Galaxy cluster using KMLs and also on the app with the help of charts and text to bring users a great and immersive overview of each projects\' panorama.\n',
