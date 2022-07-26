@@ -730,10 +730,9 @@ class _MapBuilderState extends State<MapBuilder> {
             actions: <Widget>[
               Padding(
                 padding: EdgeInsets.only(right: 20),
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    primary: Colors.red, // background
-                    onPrimary: Colors.white, // foreground
+                child: TextButton(
+                  style: TextButton.styleFrom(
+                    primary: Colors.black,
                   ),
                   child: Text("NO"),
                   onPressed: () {
@@ -743,10 +742,9 @@ class _MapBuilderState extends State<MapBuilder> {
               ),
               Padding(
                 padding: EdgeInsets.only(right: 20),
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    primary: Colors.green, // background
-                    onPrimary: Colors.white, // foreground
+                child: TextButton(
+                  style: TextButton.styleFrom(
+                    primary: Colors.black,
                   ),
                   child: Text("YES"),
                   onPressed: () {
