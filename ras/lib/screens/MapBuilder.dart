@@ -675,7 +675,7 @@ class _MapBuilderState extends State<MapBuilder> {
           _determinePosition();
         } else {
           _showAlertDialog(
-              'Ops!', 'You need to enable device location to use this feature');
+              'Oops!', 'You need to enable device location to use this feature');
         }
       }
     }
@@ -769,7 +769,7 @@ class _MapBuilderState extends State<MapBuilder> {
           handleTap(position);
         } else {
           _showAlertDialog(
-              'Ops!', 'You need to enable device location to use this feature');
+              'Oops!', 'You need to enable device location to use this feature');
         }
       }
     }

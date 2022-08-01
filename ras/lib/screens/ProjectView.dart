@@ -375,7 +375,7 @@ class _ProjectViewState extends State<ProjectView> {
                                 onPressed: () {
                                   launchToLG(args);
                                 },
-                                label: Text('Launch to Liquid Galaxy'),
+                                label: Text('Launch to LG'),
                                 icon: Icon(Icons.play_circle_fill_outlined),
                               )
                             : SizedBox(),
@@ -508,7 +508,7 @@ class _ProjectViewState extends State<ProjectView> {
                             Item(
                                 'Estimated CO2 capture',
                                 args.project.seeds[i].co2PerYear.toString() +
-                                    ' kg per year'),
+                                    ' kg/year'),
                             Item(
                                 'Estimated longevity',
                                 args.project.seeds[i].estimatedLongevity
@@ -648,7 +648,7 @@ class ItemTitle extends StatelessWidget {
       child: Text(
         '$title',
         style: TextStyle(
-            fontWeight: FontWeight.bold, fontSize: 16, color: Colors.blue),
+            fontWeight: FontWeight.bold, fontSize: 14, color: Colors.blue),
       ),
     );
   }
@@ -668,11 +668,11 @@ class Item extends StatelessWidget {
         children: [
           Text(
             '$label: ',
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
           ),
           Text(
             '$content',
-            style: TextStyle(fontSize: 18),
+            style: TextStyle(fontSize: 16),
           ),
         ],
       ),
