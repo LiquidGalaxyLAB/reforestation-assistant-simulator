@@ -6,6 +6,8 @@ import 'package:pdf/pdf.dart';
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:pdf/widgets.dart' as pw;
 import 'package:ras/models/Project.dart';
+import 'dart:math';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class PdfGenerator {
   static Future generatePdf(Project project) async {
@@ -84,6 +86,27 @@ class PdfGenerator {
     return flights.toStringAsFixed(2);
   }
 
+  getRadians(double input){
+      return input * pi / 180;
+  }
+
+    getArea(Project args){
+    Project? p = args;
+    List<LatLng> coord = p.geodata.areaPolygon.coord;
+    coord.add(p.geodata.areaPolygon.coord[0]);
+    double area = 0;
+    if(coord.length > 2){
+      for(int i = 0; i < coord.length - 1; i++){
+          var p1 = coord[i];
+          var p2 = coord[i+1];
+          area += getRadians(p2.longitude-p1.longitude) * (2 + sin(getRadians(p1.latitude)) + sin(getRadians(p2.latitude)));
+      }
+      area = area * 6378137 * 6378137 / 2;
+      area = area * 0.0001;//convert to hectares
+    }
+    return area.abs();
+  }
+
     final pdf = pw.Document();
     final downloadsDirectory = await DownloadsPathProvider.downloadsDirectory;
 
@@ -145,7 +168,7 @@ class PdfGenerator {
                 },
                 itemCount: project.seeds.length),
             title('AREA INFORMATION'),
-            attribute('Area covered', '${project.areaCovered}m²'),
+            attribute('Area covered', '${getArea(project).toStringAsFixed(2)} hectares'),
             attribute('Optimal surface', '${project.validSurface}%'),
             attribute('Invalid surface', '${project.notValidSurface}%'),
             attribute('Empty land', '${project.emptyLand}%'),

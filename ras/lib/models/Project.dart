@@ -31,7 +31,6 @@ class Project {
   double maxAltTerrain;
   double maxDistance;
   double minFlightHeight;
-  double areaCovered;
 
   // SOIL ATTRIBUTES
   double depth;
@@ -74,7 +73,6 @@ class Project {
     this.minFlightHeight,
     this.predation,
     this.sizeOfDeposit,
-    this.areaCovered,
   );
 
   @override
@@ -117,7 +115,6 @@ class Project {
       "minFlightHeight": minFlightHeight,
       "predation": predation,
       "sizeOfDeposit": sizeOfDeposit,
-      "areaCovered": areaCovered,
     };
   }
 
@@ -155,7 +152,6 @@ class Project {
         element.value['minFlightHeight'],
         element.value['predation'],
         element.value['sizeOfDeposit'],
-        element.value['areaCovered'],
       ));
     });
     return projects;

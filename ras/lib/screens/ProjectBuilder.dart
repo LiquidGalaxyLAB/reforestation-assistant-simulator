@@ -72,7 +72,6 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
   TextEditingController maxAltTerrain = TextEditingController();
   TextEditingController maxDistance = TextEditingController();
   TextEditingController minFlightHeight = TextEditingController();
-  TextEditingController areaCovered = TextEditingController();
 
   // SOIL ATTRIBUTES
   TextEditingController depth = TextEditingController();
@@ -300,7 +299,6 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
         double.parse(minFlightHeight.text),
         double.parse(predation.text),
         double.parse(sizeOfDeposit.text),
-        double.parse(areaCovered.text),
       );
       Future response = ProjectRepository().create(project);
       response.then((value) {
@@ -338,7 +336,6 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
         double.parse(minFlightHeight.text),
         double.parse(predation.text),
         double.parse(sizeOfDeposit.text),
-        double.parse(areaCovered.text),
       );
       Future response = ProjectRepository().update(project, args.project!.id);
       response.then((value) {
@@ -377,7 +374,6 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
       minFlightHeight.text = args.project!.minFlightHeight.toString();
       predation.text = args.project!.predation.toString();
       sizeOfDeposit.text = args.project!.sizeOfDeposit.toString();
-      areaCovered.text = args.project!.areaCovered.toString();
 
       // map info
       geodata = args.project!.geodata;
@@ -399,7 +395,6 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
       minFlightHeight.text = '0';
       predation.text = '0';
       sizeOfDeposit.text = '0';
-      areaCovered.text = '0';
     }
   }
 
@@ -1114,25 +1109,6 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                                 color: Colors.black54,
                               ),
                             ),
-                          ),
-                          Row(
-                            children: [
-                              Expanded(
-                                child: TextFormField(
-                                  controller: areaCovered,
-                                  keyboardType: TextInputType.number,
-                                  decoration: InputDecoration(
-                                    filled: true,
-                                  ),
-                                ),
-                              ),
-                              IconButton(
-                                  onPressed: () {
-                                    showHelpDialog('Area covered (m²)',
-                                        'The area covered by the project in square meters');
-                                  },
-                                  icon: Icon(Icons.help))
-                            ],
                           ),
                           Padding(
                             padding:
