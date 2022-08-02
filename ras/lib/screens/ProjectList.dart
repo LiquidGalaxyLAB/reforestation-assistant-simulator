@@ -7,6 +7,8 @@ import 'package:ras/route-args/ProjectViewArgs.dart';
 import 'package:ras/services/Authentication.dart';
 import 'package:ras/services/Drive.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'dart:math';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class ProjectList extends StatefulWidget {
   const ProjectList({Key? key}) : super(key: key);
@@ -22,6 +24,27 @@ class _ProjectListState extends State<ProjectList> {
   bool filterByNewest = false;
   bool filterByOldest = false;
   User? currentUser = Authentication.currentUser();
+
+    getArea(Project args){
+    Project? p = args;
+    List<LatLng> coord = p.geodata.areaPolygon.coord;
+    coord.add(p.geodata.areaPolygon.coord[0]);
+    double area = 0;
+    if(coord.length > 2){
+      for(int i = 0; i < coord.length - 1; i++){
+          var p1 = coord[i];
+          var p2 = coord[i+1];
+          area += getRadians(p2.longitude-p1.longitude) * (2 + sin(getRadians(p1.latitude)) + sin(getRadians(p2.latitude)));
+      }
+      area = area * 6378137 * 6378137 / 2;
+      area = area * 0.0001;//convert to hectares
+    }
+    return area.abs();
+  }
+
+  getRadians(double input){
+      return input * pi / 180;
+  }
 
   init() async {
     _listProjects.then((value) {
@@ -421,7 +444,7 @@ class _ProjectListState extends State<ProjectList> {
                                                       fontSize: 18),
                                                 ),
                                                 Text(
-                                                  '${data[index].areaCovered}m²',
+                                                  '${getArea(data[index]).toStringAsFixed(2)} hectares',
                                                   style:
                                                       TextStyle(fontSize: 18),
                                                 ),
