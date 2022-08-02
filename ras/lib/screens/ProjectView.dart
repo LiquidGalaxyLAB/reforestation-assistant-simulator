@@ -15,6 +15,8 @@ import 'package:ras/widgets/SurvivalStackedChart.dart';
 import 'package:ras/widgets/CO2Chart.dart';
 import 'package:ras/widgets/PotentialCapture.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'dart:math';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class ProjectView extends StatefulWidget {
   const ProjectView({Key? key}) : super(key: key);
@@ -264,6 +266,9 @@ class _ProjectViewState extends State<ProjectView> {
         return seedballs.toString();
     }
     double radius = diameter/20;
+    if(radius <= 0){
+      return seedballs.toString();
+    }
     seedballs = (15136*(volume/100))/(radius*radius*radius);
     return seedballs.toStringAsFixed(0);
   }
@@ -274,6 +279,9 @@ class _ProjectViewState extends State<ProjectView> {
         return flights.toString();
     }
     double radius = diameter/20;
+    if(radius <= 0){
+      return flights.toString();
+    }
     flights = (15136*(volume/100))/(radius*radius*radius);
     flights = 500000 / flights;
     return flights.toStringAsFixed(2);
@@ -287,6 +295,27 @@ class _ProjectViewState extends State<ProjectView> {
       flights += double.parse(getFlights(vol, diameter));
     });
     return flights.toStringAsFixed(2);
+  }
+
+  getArea(ProjectViewArgs args){
+    Project? p = args.project;
+    List<LatLng> coord = p.geodata.areaPolygon.coord;
+    coord.add(p.geodata.areaPolygon.coord[0]);
+    double area = 0;
+    if(coord.length > 2){
+      for(int i = 0; i < coord.length - 1; i++){
+          var p1 = coord[i];
+          var p2 = coord[i+1];
+          area += getRadians(p2.longitude-p1.longitude) * (2 + sin(getRadians(p1.latitude)) + sin(getRadians(p2.latitude)));
+      }
+      area = area * 6378137 * 6378137 / 2;
+      area = area * 0.0001;//convert to hectares
+    }
+    return area.abs();
+  }
+
+  getRadians(double input){
+      return input * pi / 180;
   }
 
   @override
@@ -529,8 +558,7 @@ class _ProjectViewState extends State<ProjectView> {
                         ),
                       ),
                     ItemTitle('AREA INFORMATION'),
-                    Item('Area covered',
-                        args.project.areaCovered.toStringAsFixed(2).replaceAll(RegExp(r'([.]*00)(?!.*\d)'), '') + 'm²'),
+                    Item('Area Covered', getArea(args).toStringAsFixed(2) + ' hectares'),
                     Item('Optimal surface',
                         args.project.validSurface.toString() + '%'),
                     Item('Invalid surface',
