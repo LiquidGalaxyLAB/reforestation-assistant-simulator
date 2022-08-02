@@ -32,7 +32,6 @@ class _MapBuilderState extends State<MapBuilder> {
   Set<Marker> markers = Set<Marker>();
 
   // HELPERS
-  bool isLocationAccessAccepted = false;
   bool loaded = false;
   bool editing = false;
   String shapeType = 'none';
@@ -624,52 +623,10 @@ class _MapBuilderState extends State<MapBuilder> {
         });
   }
 
-  checkAccessLocationModal(success) async {
-    showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            title: Text(
-                'This app collects data to enable "Get my current position" and "Place seed in my position" even when the app is closed and not used'),
-            content: Text(''),
-            actions: <Widget>[
-              OutlinedButton(
-                child: Text("DENY"),
-                onPressed: () {
-                  setState(() {
-                    isLocationAccessAccepted = true;
-                  });
-                  Navigator.of(context).pop();
-                },
-                style: OutlinedButton.styleFrom(
-                  primary: Colors.blue,
-                  side: BorderSide(color: Colors.blue, width: 1),
-                ),
-              ),
-              OutlinedButton(
-                child: Text("ACCEPT"),
-                onPressed: () {
-                  setState(() {
-                    isLocationAccessAccepted = true;
-                  });
-                  success();
-                  Navigator.of(context).pop();
-                },
-                style: OutlinedButton.styleFrom(
-                  primary: Colors.blue,
-                  side: BorderSide(color: Colors.blue, width: 1),
-                ),
-              ),
-            ],
-          );
-        });
-  }
 
   // SEED ON USER LOCATION
   _setUserLocation() async {
     // Check if user allows to access location
-    success() async {
-      if (isLocationAccessAccepted) {
         if (await Permission.location.request().isGranted) {
           // Either the permission was already granted before or the user just granted it.
           _determinePosition();
@@ -677,10 +634,6 @@ class _MapBuilderState extends State<MapBuilder> {
           _showAlertDialog(
               'Oops!', 'You need to enable device location to use this feature');
         }
-      }
-    }
-
-    await checkAccessLocationModal(success);
   }
 
   Future<LatLng> _determinePosition() async {
@@ -761,8 +714,6 @@ class _MapBuilderState extends State<MapBuilder> {
 // PLACE SEED IN MY POSITION
   placeSeedInMyPosition() async {
     // Check if user allows to access location
-    success() async {
-      if (isLocationAccessAccepted) {
         if (await Permission.location.request().isGranted) {
           // Either the permission was already granted before or the user just granted it.
           LatLng position = await _determinePosition();
@@ -771,9 +722,5 @@ class _MapBuilderState extends State<MapBuilder> {
           _showAlertDialog(
               'Oops!', 'You need to enable device location to use this feature');
         }
-      }
-    }
-
-    await checkAccessLocationModal(success);
   }
 }
