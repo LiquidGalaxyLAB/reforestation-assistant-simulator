@@ -5,13 +5,15 @@ import 'package:ras/models/Seed.dart';
 import 'package:ras/models/kml/LookAt.dart';
 import 'package:ras/models/kml/Placemark.dart';
 import 'package:ras/models/kml/Point.dart';
-import 'package:ras/models/kml/Polygon.dart';
+import 'package:ras/models/kml/Polygon.dart' as Poly;
 import 'package:ras/repositories/Project.dart';
 import 'package:ras/repositories/Seed.dart';
 import 'package:ras/route-args/MapBuilderArgs.dart';
 import 'package:ras/route-args/ProjectBuilderArgs.dart';
 import 'package:ras/services/ElevationApi.dart';
 import 'package:ras/widgets/AppBar.dart';
+import 'dart:math';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class ProjectBuilder extends StatefulWidget {
   const ProjectBuilder({Key? key}) : super(key: key);
@@ -47,7 +49,7 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
   // MAP INFO
   Gmap geodata = Gmap(
     [],
-    Polygon('', []),
+    Poly.Polygon('', []),
     Placemark(
         '',
         '',
@@ -303,7 +305,7 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
       Future response = ProjectRepository().create(project);
       response.then((value) {
         print('Success!!!! $value');
-        Navigator.of(context).pop({"reload": true});
+        Navigator.of(context).pop();
       });
       response.catchError((onError) => print('Error $onError'));
     } else {
@@ -340,7 +342,7 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
       Future response = ProjectRepository().update(project, args.project!.id);
       response.then((value) {
         print('Success!!!! $value');
-        Navigator.of(context).pop({"reload": true});
+        Navigator.of(context).pop();
       });
       response.catchError((onError) => print('Error $onError'));
     }
@@ -396,6 +398,28 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
       predation.text = '0';
       sizeOfDeposit.text = '0';
     }
+  }
+
+  getArea(ProjectBuilderArgs args){
+    double area = 0;
+    List<LatLng> coord = args.project!.geodata.areaPolygon.coord;
+    if(coord.isNotEmpty){
+    coord.add(args.project!.geodata.areaPolygon.coord[0]);
+    if(coord.length > 2){
+      for(int i = 0; i < coord.length - 1; i++){
+          var p1 = coord[i];
+          var p2 = coord[i+1];
+          area += getRadians(p2.longitude-p1.longitude) * (2 + sin(getRadians(p1.latitude)) + sin(getRadians(p2.latitude)));
+      }
+    }
+      area = area * 6378137 * 6378137 / 2;
+      area = area * 0.0001;//convert to hectares
+    }
+    return area.abs();
+  }
+
+  getRadians(double input){
+      return input * pi / 180;
   }
 
   @override
@@ -1102,7 +1126,19 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                             padding:
                                 const EdgeInsets.only(top: 25.0, bottom: 5),
                             child: Text(
-                              'Area covered (m²)',
+                              'Area covered (hectares)',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 16,
+                                color: Colors.black54,
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding:
+                                const EdgeInsets.only(top: 25.0, bottom: 5),
+                            child: Text(
+                                '${getArea(args).toStringAsFixed(2)} hectares',
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: 16,

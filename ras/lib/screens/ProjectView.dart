@@ -486,11 +486,6 @@ class _ProjectViewState extends State<ProjectView> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    ItemTitle('BASIC INFORMATION'),
-                    Item('Project name', args.project.projectName),
-                    Item('Date',
-                        args.project.dateOfProject.toString().substring(0, 10)),
-                    Item('Sown mode', args.project.sownMode),
                     ItemTitle('PROJECT INFORMATION'),
                     Item('Total Flights', getTotalFlights(args)),
                     Item('CO2 capture until today', getCO2(args).toString() + ' kg'),

@@ -25,7 +25,7 @@ class _ProjectListState extends State<ProjectList> {
   bool filterByOldest = false;
   User? currentUser = Authentication.currentUser();
 
-    getArea(Project args){
+  getArea(Project args){
     Project? p = args;
     List<LatLng> coord = p.geodata.areaPolygon.coord;
     double area = 0;
