@@ -1,3 +1,4 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:ras/screens/ProjectList.dart';
 import 'package:ras/screens/SeedList.dart';
@@ -20,7 +21,7 @@ class _MyHomePageState extends State<MyHomePage> {
           preferredSize: const Size.fromHeight(120),
           child: MyAppBar(isHome: true),
         ),
-        body: TabBarView(children: [
+        body: TabBarView(dragStartBehavior: DragStartBehavior.down, children: [
           Tab(
             child: ProjectList(),
           ),
