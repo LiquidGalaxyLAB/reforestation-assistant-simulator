@@ -40,6 +40,7 @@ class Project {
   double inclination;
   double predation;
   double sizeOfDeposit;
+  double timeOfFlight;
 
   // GMAP - KML
   Gmap geodata;
@@ -73,6 +74,7 @@ class Project {
     this.minFlightHeight,
     this.predation,
     this.sizeOfDeposit,
+    this.timeOfFlight
   );
 
   @override
@@ -115,6 +117,7 @@ class Project {
       "minFlightHeight": minFlightHeight,
       "predation": predation,
       "sizeOfDeposit": sizeOfDeposit,
+      "timeOfFlight" : timeOfFlight
     };
   }
 
@@ -152,6 +155,7 @@ class Project {
         element.value['minFlightHeight'],
         element.value['predation'],
         element.value['sizeOfDeposit'],
+        element.value['timeOfFlight']
       ));
     });
     return projects;

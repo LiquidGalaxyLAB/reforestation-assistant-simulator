@@ -673,6 +673,7 @@ class FakeDatabase {
             "minFlightHeight": 96.5,
             "predation": 50.0,
             "sizeOfDeposit": 22.0,
+            "timeOfFlight" : 10.0
           },
           {
             "id": "-Mh5WH4DguJd33jANk9z",
@@ -1297,6 +1298,7 @@ class FakeDatabase {
             "minFlightHeight": 0.0,
             "predation": 30.0,
             "sizeOfDeposit": 22.0,
+            "timeOfFlight" : 10.0
           },
           {
             "id": "-Mh5_2FXo4ATBARDpZqh",
@@ -2190,6 +2192,7 @@ class FakeDatabase {
             "minFlightHeight": 100.0,
             "predation": 10.0,
             "sizeOfDeposit": 22.0,
+            "timeOfFlight" : 10.0
           },
           {
             "id": "-MhA-Tn4lzTzv6zBx-At",
@@ -5729,6 +5732,7 @@ class FakeDatabase {
             "minFlightHeight": 100.0,
             "predation": 20.0,
             "sizeOfDeposit": 22.0,
+            "timeOfFlight" : 10.0
           },
           {
             "id": "-MhA3KRMkgpeBER30T3d",
@@ -6200,6 +6204,7 @@ class FakeDatabase {
             "minFlightHeight": 0.0,
             "predation": 0.0,
             "sizeOfDeposit": 22.0,
+            "timeOfFlight" : 10.0
           }
         ]
       },

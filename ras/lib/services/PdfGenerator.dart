@@ -131,6 +131,7 @@ class PdfGenerator {
             attribute('CO2 capture until today', '${getCO2()}' + ' kg'),
             attribute('Planned CO2 capture', '${getCO2Planned()}' + ' kg'),
             attribute('Size of Deposit', '${project.sizeOfDeposit}% liters'),
+            attribute('Time of Flight', '${project.timeOfFlight}' + 'min/hectare'),
             title('SOWING WINDOW TIME'),
             subtitle('DATES'),
             attribute(

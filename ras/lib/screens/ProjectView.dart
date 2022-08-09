@@ -510,6 +510,7 @@ class _ProjectViewState extends State<ProjectView> {
                     Item('CO2 capture until today', getCO2(args).toString() + ' kg'),
                     Item('CO2 capture planned', getCO2Planned(args).toString() + ' kg'),
                     Item('Size of Deposit', args.project.sizeOfDeposit.toString() + ' liters'),
+                    Item('Time by hectare', args.project.timeOfFlight.toString() + 'min'),
                     ItemTitle('SOWING WINDOW TIME'),
                     Row(
                       children: [

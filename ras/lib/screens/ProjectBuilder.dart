@@ -83,6 +83,7 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
   TextEditingController inclination = TextEditingController();
   TextEditingController predation = TextEditingController();
   TextEditingController sizeOfDeposit = TextEditingController();
+  TextEditingController timeOfFlight = TextEditingController();
 
   calculateAltitudeOfTerrain() async {
     final args =
@@ -301,6 +302,7 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
         double.parse(minFlightHeight.text),
         double.parse(predation.text),
         double.parse(sizeOfDeposit.text),
+        double.parse(timeOfFlight.text)
       );
       Future response = ProjectRepository().create(project);
       response.then((value) {
@@ -338,6 +340,7 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
         double.parse(minFlightHeight.text),
         double.parse(predation.text),
         double.parse(sizeOfDeposit.text),
+        double.parse(timeOfFlight.text)
       );
       Future response = ProjectRepository().update(project, args.project!.id);
       response.then((value) {
@@ -376,6 +379,7 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
       minFlightHeight.text = args.project!.minFlightHeight.toString();
       predation.text = args.project!.predation.toString();
       sizeOfDeposit.text = args.project!.sizeOfDeposit.toString();
+      timeOfFlight.text = args.project!.timeOfFlight.toString();
 
       // map info
       geodata = args.project!.geodata;
@@ -397,6 +401,7 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
       minFlightHeight.text = '0';
       predation.text = '0';
       sizeOfDeposit.text = '0';
+      timeOfFlight.text = '0';
     }
   }
 
@@ -660,6 +665,80 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                                   onPressed: () {
                                     showHelpDialog('Region',
                                         'The region or zone of the project');
+                                  },
+                                  icon: Icon(Icons.help))
+                            ],
+                          ),
+                                                    Padding(
+                            padding:
+                                const EdgeInsets.only(top: 25.0, bottom: 5),
+                            child: Text(
+                              'Size of Deposit',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 16,
+                                color: Colors.black54,
+                              ),
+                            ),
+                          ),
+                          Row(
+                            children: [
+                              Expanded(
+                                child: TextFormField(
+                                  controller: sizeOfDeposit,
+                                  keyboardType: TextInputType.number,
+                                  decoration: InputDecoration(
+                                    filled: true,
+                                  ),
+                                  validator: (value) {
+                                    if (double.parse(value!) < 0) {
+                                      return 'Wrong range! Negative values are not allowed';
+                                    }
+                                    return null;
+                                  },
+                                ),
+                              ),
+                              IconButton(
+                                  onPressed: () {
+                                    showHelpDialog('Size of Deposit (liters)',
+                                        'Size of the Seed Deposit.');
+                                  },
+                                  icon: Icon(Icons.help))
+                            ],
+                          ),
+                                                    Padding(
+                            padding:
+                                const EdgeInsets.only(top: 25.0, bottom: 5),
+                            child: Text(
+                              'Time by Hectare',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 16,
+                                color: Colors.black54,
+                              ),
+                            ),
+                          ),
+                          Row(
+                            children: [
+                              Expanded(
+                                child: TextFormField(
+                                  controller: timeOfFlight,
+                                  keyboardType: TextInputType.number,
+                                  decoration: InputDecoration(
+                                    filled: true,
+                                  ),
+                                  validator: (value) {
+                                    if (double.parse(value!) < 0) {
+                                      return 'Wrong range! Negative values are not allowed';
+                                    }
+                                    return null;
+                                  },
+                                ),
+                              ),
+                              IconButton(
+                                  onPressed: () {
+                                    showHelpDialog('Time of Flight (minutes)',
+                                        'Time of Flight (minutes/hectare)');
                                   },
                                   icon: Icon(Icons.help))
                             ],
@@ -1501,43 +1580,6 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                                   onPressed: () {
                                     showHelpDialog('Predation (%, 0 - 100)',
                                         'Predation in the area.');
-                                  },
-                                  icon: Icon(Icons.help))
-                            ],
-                          ),
-                          Padding(
-                            padding:
-                                const EdgeInsets.only(top: 25.0, bottom: 5),
-                            child: Text(
-                              'Size of Deposit',
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 16,
-                                color: Colors.black54,
-                              ),
-                            ),
-                          ),
-                          Row(
-                            children: [
-                              Expanded(
-                                child: TextFormField(
-                                  controller: sizeOfDeposit,
-                                  keyboardType: TextInputType.number,
-                                  decoration: InputDecoration(
-                                    filled: true,
-                                  ),
-                                  validator: (value) {
-                                    if (double.parse(value!) < 0) {
-                                      return 'Wrong range! Negative values are not allowed';
-                                    }
-                                    return null;
-                                  },
-                                ),
-                              ),
-                              IconButton(
-                                  onPressed: () {
-                                    showHelpDialog('Size of Deposit (liters)',
-                                        'Size of the Seed Deposit.');
                                   },
                                   icon: Icon(Icons.help))
                             ],
