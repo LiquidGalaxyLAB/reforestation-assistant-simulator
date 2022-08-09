@@ -5,12 +5,11 @@ import 'package:ras/models/kml/LookAt.dart';
 import 'package:ras/models/kml/Orbit.dart';
 import 'package:ras/repositories/Project.dart';
 import 'package:ras/route-args/MapViewArgs.dart';
-import 'package:ras/route-args/ProjectBuilderArgs.dart';
 import 'package:ras/route-args/ProjectViewArgs.dart';
 import 'package:ras/services/KmlGenerator.dart';
 import 'package:ras/services/LGConnection.dart';
 import 'package:ras/services/PdfGenerator.dart';
-import 'package:ras/widgets/AppBar.dart';
+import 'package:ras/widgets/ViewAppBar.dart';
 import 'package:ras/widgets/SurvivalStackedChart.dart';
 import 'package:ras/widgets/CO2Chart.dart';
 import 'package:ras/widgets/PotentialCapture.dart';
@@ -325,7 +324,7 @@ class _ProjectViewState extends State<ProjectView> {
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(50),
-        child: MyAppBar(
+        child: ViewMyAppBar(
           isHome: false,
         ),
       ),
@@ -470,32 +469,6 @@ class _ProjectViewState extends State<ProjectView> {
                       ],
                     )
                   : SizedBox(),
-              ListTile(
-                contentPadding:
-                    EdgeInsets.symmetric(horizontal: 0, vertical: 10),
-                title: Text(
-                  'Summary',
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
-                ),
-                trailing: IconButton(
-                    onPressed: () async {
-                      dynamic response = await Navigator.pushNamed(
-                        context,
-                        '/project-builder',
-                        arguments:
-                            ProjectBuilderArgs(false, project: args.project),
-                      );
-
-                      if (response != null) {
-                        if (response['reload'])
-                          Navigator.of(context).pop({"reload": true});
-                      }
-                    },
-                    icon: Icon(
-                      Icons.edit,
-                      color: Colors.black,
-                    )),
-              ),
               Container(
                 padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
                 width: double.maxFinite,
