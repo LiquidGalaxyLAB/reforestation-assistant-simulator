@@ -11,6 +11,7 @@ import 'package:ras/services/LGConnection.dart';
 import 'package:ras/services/PdfGenerator.dart';
 import 'package:ras/widgets/ViewAppBar.dart';
 import 'package:ras/widgets/SurvivalStackedChart.dart';
+import 'package:ras/widgets/SurvivalEstChart.dart';
 import 'package:ras/widgets/CO2Chart.dart';
 import 'package:ras/widgets/PotentialCapture.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -27,6 +28,10 @@ class ProjectView extends StatefulWidget {
 class _ProjectViewState extends State<ProjectView> {
   bool isOpen = false;
   bool isOrbiting = false;
+  double _seedballs = 10;
+  double _flights = 10;
+  double _deposit = 10;
+  
 
   downloadKml(Project project) async {
     // create kml based on geodata attribute
@@ -286,7 +291,7 @@ class _ProjectViewState extends State<ProjectView> {
     return flights.toStringAsFixed(2);
   }
 
-    getTotalFlights(ProjectViewArgs args) {
+  getTotalFlights(ProjectViewArgs args) {
     double flights = 0;
     args.project.seeds.forEach((element) {
       double vol = args.project.sizeOfDeposit;
@@ -315,6 +320,16 @@ class _ProjectViewState extends State<ProjectView> {
 
   getRadians(double input){
       return input * pi / 180;
+  }
+
+  getTotalPlants(ProjectViewArgs args){
+    double total = 0;
+    double area = getArea(args);
+    args.project.seeds.forEach((element) {
+    double density = element.density ?? 0;
+    total += density * area;
+    });
+    return total.ceil().toString();
   }
 
   @override
@@ -484,6 +499,7 @@ class _ProjectViewState extends State<ProjectView> {
                     Item('CO2 capture planned', getCO2Planned(args).toString() + ' kg'),
                     Item('Size of Deposit', args.project.sizeOfDeposit.toString() + ' liters'),
                     Item('Time by hectare', args.project.timeOfFlight.toString() + 'min'),
+                    Item('Number of Plants', getTotalPlants(args)),
                     ItemTitle('SOWING WINDOW TIME'),
                     Row(
                       children: [
@@ -572,12 +588,65 @@ class _ProjectViewState extends State<ProjectView> {
                         args.project.inclination.toString() +
                             '%' +
                             ' | ${((args.project.inclination / 100) * 360).toStringAsFixed(2)}°'),
+                    ItemTitle('Drone Mission'),
+                    Item('Number of Seedballs', _seedballs.round().toString()),
+                    Slider(
+                      min: 0.0,
+                      max: 100.0,
+                      divisions: 100,
+                      value: _seedballs,
+                      onChanged: (value) {
+                        setState(() {
+                          _seedballs = value;
+                        });
+                      },
+                    ),
+                    Item('Number of Flights', _flights.round().toString()),
+                    Slider(
+                      min: 0.0,
+                      max: 100.0,
+                      divisions: 100,
+                      value: _flights,
+                      onChanged: (value) {
+                        setState(() {
+                          _flights = value;
+                        });
+                      },
+                    ),
+                    Item('Size of Deposit', _deposit.round().toString()),
+                    Slider(
+                      min: 0.0,
+                      max: 100.0,
+                      divisions: 100,
+                      value: _deposit,
+                      onChanged: (value) {
+                        setState(() {
+                          _deposit = value;
+                        });
+                      },
+                    ),
                   ],
                 ),
               ),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 28.0),
+                    child: Text(
+                      'Estimated Information',
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
+                    ),
+                  ),
+                  _seedballs > 0 && _flights > 0 && _deposit > 0
+                      ? SurvivalEstChart(args.project.seeds)
+                      : Center(
+                          child: Text(
+                            'Invalid Data',
+                            style: TextStyle(color: Colors.grey),
+                          ),
+                        ),
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 28.0),
                     child: Text(
