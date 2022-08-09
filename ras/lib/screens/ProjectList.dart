@@ -17,12 +17,19 @@ class ProjectList extends StatefulWidget {
   _ProjectListState createState() => _ProjectListState();
 }
 
+enum currentSelection {filterByNewest, filterByOldest, filterNameAz, filterNameZa, filterSizeHL, filterSizeLH}  
+
 class _ProjectListState extends State<ProjectList> {
   Future<List<Project>> _listProjects = ProjectRepository().getAll();
+  currentSelection _value = currentSelection.filterByNewest;
   bool isSearching = false;
   List<Project> toBeFiltered = [];
   bool filterByNewest = false;
   bool filterByOldest = false;
+  bool filterNameAz = false;
+  bool filterNameZa = false;
+  bool filterSizeHL = false;
+  bool filterSizeLH = false;
   User? currentUser = Authentication.currentUser();
 
   getArea(Project args){
@@ -168,6 +175,10 @@ class _ProjectListState extends State<ProjectList> {
         _listProjects = ProjectRepository().getAll();
         filterByNewest = false;
         filterByOldest = false;
+        filterNameAz = false;
+        filterNameZa = false;
+        filterSizeHL = false;
+        filterSizeLH = false;
       });
     }
   }
@@ -191,10 +202,93 @@ class _ProjectListState extends State<ProjectList> {
         toBeFiltered.clear();
         toBeFiltered.addAll(dummySearchList);
       });
+    } else if (filterNameAz) {
+      dummySearchList.sort((a, b) {
+        return a.projectName.compareTo(b.projectName);
+      });
+      setState(() {
+        toBeFiltered.clear();
+        toBeFiltered.addAll(dummySearchList);
+      });
+    } else if (filterNameZa) {
+      dummySearchList.sort((a, b) {
+        return b.projectName.compareTo(a.projectName);
+      });
+      setState(() {
+        toBeFiltered.clear();
+        toBeFiltered.addAll(dummySearchList);
+      });
+    } else if (filterSizeHL) {
+      dummySearchList.sort((a, b) {
+        return getArea(b).compareTo(getArea(a));
+      });
+      setState(() {
+        toBeFiltered.clear();
+        toBeFiltered.addAll(dummySearchList);
+      });
+    } else if (filterSizeLH) {
+      dummySearchList.sort((a, b) {
+        return getArea(a).compareTo(getArea(b));
+      });
+      setState(() {
+        toBeFiltered.clear();
+        toBeFiltered.addAll(dummySearchList);
+      });
     } else {
       setState(() {
         _listProjects = ProjectRepository().getAll();
       });
+    }
+  }
+
+  void setSelection(currentSelection selection){
+    if(selection == currentSelection.filterByNewest){
+          filterByNewest = true;
+          filterByOldest = false;
+          filterNameAz = false;
+          filterNameZa = false;
+          filterSizeHL = false;
+          filterSizeLH = false;
+    }
+    if(selection == currentSelection.filterByOldest){
+          filterByOldest = true;
+          filterByNewest = false;
+          filterNameAz = false;
+          filterNameZa = false;
+          filterSizeHL = false;
+          filterSizeLH = false;
+    }
+    if(selection == currentSelection.filterNameAz){
+          filterNameAz = true;
+          filterByNewest = false;
+          filterByOldest = false;
+          filterNameZa = false;
+          filterSizeHL = false;
+          filterSizeLH = false;
+    }
+    if(selection == currentSelection.filterNameZa){
+          filterNameZa = true;
+          filterByNewest = false;
+          filterByOldest = false;
+          filterNameAz = false;
+          filterSizeHL = false;
+          filterSizeLH = false;
+    }
+    if(selection == currentSelection.filterSizeHL){
+          filterSizeHL = true;
+          filterByNewest = false;
+          filterByOldest = false;
+          filterNameAz = false;
+          filterNameZa = false;
+          filterSizeLH = false;
+    }
+    if(selection == currentSelection.filterSizeLH){
+          filterSizeLH = true;
+          filterByNewest = false;
+          filterByOldest = false;
+          filterNameAz = false;
+          filterNameZa = false;
+          filterSizeHL = false;
     }
   }
 
@@ -209,7 +303,7 @@ class _ProjectListState extends State<ProjectList> {
               children: [
                 Container(
                   width: double.infinity,
-                  height: 60,
+                  height: 50,
                   decoration: BoxDecoration(
                     color: Colors.blue.shade900,
                   ),
@@ -219,8 +313,8 @@ class _ProjectListState extends State<ProjectList> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          'Filter by',
-                          style: TextStyle(color: Colors.white, fontSize: 25),
+                          'Order by',
+                          style: TextStyle(color: Colors.white, fontSize: 18),
                         ),
                         IconButton(
                           onPressed: () {
@@ -235,31 +329,84 @@ class _ProjectListState extends State<ProjectList> {
                     ),
                   ),
                 ),
-                CheckboxListTile(
+                ListTile(
                     title: Text('Newest'),
-                    value: filterByNewest,
+                    leading: Radio(  
+                    value: currentSelection.filterByNewest,
+                    groupValue: _value,
                     onChanged: (value) {
                       setState(() {
-                        if (value != null) {
-                          filterByNewest = !filterByNewest;
-                          if (value) filterByOldest = false;
-                        }
+                        _value = value as currentSelection;
+                        setSelection(_value);
                       });
-
                       bottomState(() {});
                     }),
-                CheckboxListTile(
+                ),
+                ListTile(
                     title: Text('Oldest'),
-                    value: filterByOldest,
+                    leading: Radio(  
+                    value: currentSelection.filterByOldest,
+                    groupValue: _value,
                     onChanged: (value) {
                       setState(() {
-                        if (value != null) {
-                          filterByOldest = !filterByOldest;
-                          if (value) filterByNewest = false;
-                        }
+                        _value = value as currentSelection;
+                        setSelection(_value);
                       });
                       bottomState(() {});
                     }),
+                ),
+                ListTile(
+                    title: Text('Name (A-Z)'),
+                    leading: Radio(  
+                    value: currentSelection.filterNameAz,
+                    groupValue: _value,
+                    onChanged: (value) {
+                      setState(() {
+                        _value = value as currentSelection;
+                        setSelection(_value);
+                      });
+                      bottomState(() {});
+                    }),
+                ),
+                ListTile(
+                    title: Text('Name (Z-A)'),
+                    leading: Radio(  
+                    value: currentSelection.filterNameZa,
+                    groupValue: _value,
+                    onChanged: (value) {
+                      setState(() {
+                        _value = value as currentSelection;
+                        setSelection(_value);
+                      });
+                      bottomState(() {});
+                    }),
+                ),
+                ListTile(
+                    title: Text('Area (Highest to Lowest)'),
+                    leading: Radio(  
+                    value: currentSelection.filterSizeHL,
+                    groupValue: _value,
+                    onChanged: (value) {
+                      setState(() {
+                        _value = value as currentSelection;
+                        setSelection(_value);
+                      });
+                      bottomState(() {});
+                    }),
+                ),
+                ListTile(
+                    title: Text('Area (Lowest to Highest)'),
+                    leading: Radio(  
+                    value: currentSelection.filterSizeLH,
+                    groupValue: _value,
+                    onChanged: (value) {
+                      setState(() {
+                        _value = value as currentSelection;
+                        setSelection(_value);
+                      });
+                      bottomState(() {});
+                    }),
+                ),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 15.0),
                   child: ElevatedButton(
