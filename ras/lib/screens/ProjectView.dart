@@ -351,11 +351,30 @@ class _ProjectViewState extends State<ProjectView> {
                   '${args.project.projectName}',
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
                 ),
-                subtitle: Text(
-                    '${args.project.dateOfProject.toString().substring(0, 10)}'),
+              ),
+              Stack(
+                children:[
+                    Align(
+                      alignment: Alignment.centerRight,
+                      child: Container(
+                        child: Text(
+                          'Sown ${args.project.sownMode}',
+                          style: TextStyle(fontSize: 16),
+                        ),
+                      ),
+                    ),
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Container(
+                        child: Text(
+                          '${args.project.dateOfProject.toString().substring(0, 10)}',
+                          style: TextStyle(fontSize: 16),
+                        ),
+                      ),
+                    ),
+                ],
               ),
               Item('Region', '${args.project.region}'),
-              Item('Sown mode', '${args.project.sownMode}'),
               isOpen
                   ? Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
