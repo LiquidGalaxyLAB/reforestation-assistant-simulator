@@ -12,7 +12,7 @@ final List<String> images = [
   'assets/logos/logoLgEu.png',
   'assets/logos/logoTic.png', 
   'assets/logos/logoPcital.jpg',
-  'assets/logos/logoFacens.png', 
+  'assets/logos/logoAera.jpeg', 
   'assets/logos/logoDronecoria.png', 
 ];
 
@@ -63,7 +63,7 @@ class _SplashScreenState extends State<SplashScreen> {
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal:20.0),
-                child: Text('Reforestation Assistant & Simulator', textAlign: TextAlign.center, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30, color: Colors.grey.shade700),),
+                child: Text('Reforestation Assistant & Simulator', textAlign: TextAlign.center, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20, color: Colors.grey.shade700),),
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -81,32 +81,6 @@ class _SplashScreenState extends State<SplashScreen> {
                       width: screenSize.width / 5,
                     ),
                   ),
-                  Padding(
-                    padding: EdgeInsets.symmetric(
-                        horizontal: screenSize.width * 0.05),
-                    child: Container(
-                      child: Center(
-                        child: Image.asset(
-                          images[2],
-                          fit: BoxFit.contain,
-                        ),
-                      ),
-                      width: screenSize.width / 5,
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.symmetric(
-                        horizontal: screenSize.width * 0.05),
-                    child: Container(
-                      child: Center(
-                        child: Image.asset(
-                          images[3],
-                          fit: BoxFit.contain,
-                        ),
-                      ),
-                      width: screenSize.width / 5,
-                    ),
-                  ),
                 ],
               ),
               Row(
@@ -115,11 +89,20 @@ class _SplashScreenState extends State<SplashScreen> {
                   Container(
                     child: Center(
                       child: Image.asset(
+                        images[2],
+                        fit: BoxFit.contain,
+                      ),
+                    ),
+                    width: screenSize.width / 6,
+                  ),
+                  Container(
+                    child: Center(
+                      child: Image.asset(
                         images[4],
                         fit: BoxFit.contain,
                       ),
                     ),
-                    width: screenSize.width / 5,
+                    width: screenSize.width / 6,
                   ),
                   Container(
                     child: Center(
@@ -128,7 +111,7 @@ class _SplashScreenState extends State<SplashScreen> {
                         fit: BoxFit.contain,
                       ),
                     ),
-                    width: screenSize.width / 5,
+                    width: screenSize.width / 6,
                   ),
                   Container(
                     child: Center(
@@ -137,7 +120,7 @@ class _SplashScreenState extends State<SplashScreen> {
                         fit: BoxFit.contain,
                       ),
                     ),
-                    width: screenSize.width / 5,
+                    width: screenSize.width / 6,
                   ),
                   Container(
                     child: Center(
@@ -146,7 +129,7 @@ class _SplashScreenState extends State<SplashScreen> {
                         fit: BoxFit.contain,
                       ),
                     ),
-                    width: screenSize.width / 5,
+                    width: screenSize.width / 6,
                   ),
                 ],
               ),
