@@ -25,9 +25,9 @@ class Placemark {
     }
   };
 
-  Placemark(this.id,this.name, this.description, this.lookAt, this.point, this.type, {this.customData});
+  Placemark(this.id, this.name, this.description, this.lookAt, this.point, this.type, {this.customData});
 
-  generateTag(String filename) {
+  generateTag(String filename, double density, double co2, int estimatedLongevity, double estimatedFinalHeight, double seedballDiameter) {
     return '''
     <Style id="high-$id">
       <IconStyle>
@@ -69,7 +69,66 @@ class Placemark {
     </StyleMap>
     <Placemark>
       <name>$name</name>
-      <description>$description</description>
+      <description><![CDATA[
+          <p><b>Scientific Name:</b> $description</p>
+          <p><b>Density:</b> $density</p>
+          <p><b>CO2 Capture:</b> $co2 kg/year</p>
+          <p><b>Estimated Longevity:</b> $estimatedLongevity</p>
+          <p><b>Estimated Final Height:</b> $estimatedFinalHeight</p>
+          <p><b>Seedball Diameter:</b> $seedballDiameter</p>
+          ]]></description>
+      ${this.lookAt.generateTag()}
+      <styleUrl>$id</styleUrl>
+      ${this.point.generateTag()}
+    </Placemark>
+    ''';
+  }
+
+  generateLandTag(String filename) {
+    return '''
+    <Style id="high-$id">
+      <IconStyle>
+        <scale>${style['high']['scale']}</scale>
+        <Icon>
+          <href>http://lg1:81/$filename</href>
+        </Icon>
+        <hotSpot 
+          x="${style['hotSpot']['x']}" 
+          y="${style['hotSpot']['y']}" 
+          xunits="${style['hotSpot']['xunits']}" 
+          yunits="${style['hotSpot']['yunits']}"
+        />
+      </IconStyle>
+    </Style>
+    <Style id="normal-$id">
+      <IconStyle>
+        <scale>${style['normal']['scale']}</scale>
+        <Icon>
+          <href>http://lg1:81/$filename</href>
+        </Icon>
+        <hotSpot 
+          x="${style['hotSpot']['x']}" 
+          y="${style['hotSpot']['y']}" 
+          xunits="${style['hotSpot']['xunits']}" 
+          yunits="${style['hotSpot']['yunits']}"
+        />
+      </IconStyle>
+    </Style>
+    <StyleMap id="$id">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>normal-$id</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>high-$id</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Placemark>
+      <name>$name</name>
+      <description><![CDATA[
+          <p>$description</p>
+          ]]></description>
       ${this.lookAt.generateTag()}
       <styleUrl>$id</styleUrl>
       ${this.point.generateTag()}

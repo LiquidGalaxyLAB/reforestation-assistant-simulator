@@ -44,7 +44,7 @@ class PdfGenerator {
       ]);
     }
 
-   getCO2() {
+  getCO2() {
     double totalCO2 = 0;
     final diff = DateTime.now().difference(DateTime.parse(project.dateOfProject.toString()));
     project.seeds.forEach((element) {
@@ -54,7 +54,7 @@ class PdfGenerator {
     return CO2.toStringAsFixed(3);
   }
 
-    getCO2Planned() {
+  getCO2Planned() {
     double totalCO2 = 0;
     final diff = DateTime.now().difference(DateTime.parse(project.dateOfProject.toString()));
     project.seeds.forEach((element) {
@@ -65,7 +65,7 @@ class PdfGenerator {
     return CO2.toStringAsFixed(3);
   }
 
-    getFlights(double volume, double diameter) {
+  getFlights(double volume, double diameter) {
     double flights = 0;
     if(diameter == null || volume == null){
         return flights.toString();
@@ -76,7 +76,7 @@ class PdfGenerator {
     return flights.toStringAsFixed(2);
   }
 
-    getTotalFlights() {
+  getTotalFlights() {
     double flights = 0;
     project.seeds.forEach((element) {
       double vol = project.sizeOfDeposit;
@@ -90,7 +90,7 @@ class PdfGenerator {
       return input * pi / 180;
   }
 
-    getArea(Project args){
+  getArea(Project args){
     Project? p = args;
     List<LatLng> coord = p.geodata.areaPolygon.coord;
     coord.add(p.geodata.areaPolygon.coord[0]);

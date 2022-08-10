@@ -7,8 +7,7 @@ class KML {
 
   KML(this.name, this.content);
 
-  static buildKMLContent(
-      List<Placemark> placemarks, Polygon polygon, Placemark landingPoint) {
+  static buildKMLContent(List<Placemark> placemarks, Polygon polygon, Placemark landingPoint) {
     String kmlContent = '';
     if (polygon.coord.length > 0) kmlContent += '\n ${polygon.generateTag()}';
     placemarks.forEach((element) {
@@ -17,12 +16,12 @@ class KML {
             'http://maps.google.com/mapfiles/kml/paddle/red-circle.png');
       } else {
         kmlContent +=
-            '\n ${element.generateTag(element.customData['seed']['icon']['name'])}';
+            '\n ${element.generateTag(element.customData['seed']['icon']['name'], element.customData['seed']['density'], element.customData['seed']['co2PerYear'], element.customData['seed']['estimatedLongevity'], element.customData['seed']['estimatedFinalHeight'], element.customData['seed']['seedballDiameter'])}';
       }
     });
 
     if (landingPoint.name != 'none') {
-      kmlContent += '\n ${landingPoint.generateTag('landpoint.png')}';
+      kmlContent += '\n ${landingPoint.generateLandTag('landpoint.png')}';
     }
 
     return kmlContent;
