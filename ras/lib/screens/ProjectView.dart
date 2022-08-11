@@ -200,7 +200,7 @@ class _ProjectViewState extends State<ProjectView> {
         });
   }
 
-  SaveCapturedWidget(BuildContext context, Uint8List capturedImage) async{
+  SaveCapturedWidget(Uint8List capturedImage) async{
 
     var status = await Permission.storage.status;
 
@@ -210,8 +210,6 @@ class _ProjectViewState extends State<ProjectView> {
         var savePath = downloadsDirectory.path;
         final file = File("$savePath/graphs.png");
         await file.writeAsBytes(capturedImage);
-        showAlertDialog('Success!',
-            'File Exported');
       } catch (e) {
         print('error $e');
         showAlertDialog('Oops!',
@@ -225,8 +223,6 @@ class _ProjectViewState extends State<ProjectView> {
         var savePath = downloadsDirectory.path;
         final file = File("$savePath/graphs.png");
         await file.writeAsBytes(capturedImage);
-          showAlertDialog('Success!',
-              'File exported');
         } catch (e) {
           print('error $e');
           showAlertDialog('Oops!',
@@ -478,6 +474,13 @@ class _ProjectViewState extends State<ProjectView> {
                                   primary: Colors.green,
                                 ),
                                 onPressed: () {
+                                  screenshotController
+                                        .capture(delay: Duration(milliseconds: 10))
+                                        .then((capturedImage) async {
+                                      SaveCapturedWidget(capturedImage!);
+                                    }).catchError((onError) {
+                                      print(onError);
+                                    });
                                   launchToLG(args);
                                 },
                                 label: Text('Launch to LG'),
@@ -750,20 +753,6 @@ class _ProjectViewState extends State<ProjectView> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                ElevatedButton(
-                    child: Text(
-                      'Add Graphs to KML',
-                    ),              
-                    onPressed: () {
-                      screenshotController
-                          .capture(delay: Duration(milliseconds: 10))
-                          .then((capturedImage) async {
-                        SaveCapturedWidget(context, capturedImage!);
-                      }).catchError((onError) {
-                        print(onError);
-                      });
-                    },
-                    ),
                   ElevatedButton.icon(
                     style: ElevatedButton.styleFrom(
                       primary: Colors.red,

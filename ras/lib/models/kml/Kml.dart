@@ -21,7 +21,7 @@ class KML {
     });
 
     if (landingPoint.name != 'none') {
-      kmlContent += '\n ${landingPoint.generateLandTag('landpoint.png', placemarks[0].customData['projectName'], placemarks[0].customData['dateOfProject'].toString().substring(0,10), placemarks[0].customData['sownMode'], placemarks[0].customData['region'], placemarks[0].customData['minSwtDate'].toString().substring(0,10), placemarks[0].customData['maxSwtDate'].toString().substring(0,10), placemarks[0].customData['minSwtTemp'].toString(), placemarks[0].customData['maxSwtTemp'].toString(), placemarks[0].customData['avgNumberOfRains'].toString(), placemarks[0].customData['totalNumberOfRains'].toString(), placemarks[0].customData['ph'].toString())}';
+      kmlContent += '\n ${landingPoint.generateLandTag('landpoint.png')}';
     }
 
     return kmlContent;
