@@ -17,6 +17,10 @@ import 'package:ras/widgets/PotentialCapture.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'dart:math';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:screenshot/screenshot.dart';
+import 'dart:typed_data';
+import 'dart:io';
+import 'package:path_provider/path_provider.dart';
 
 class ProjectView extends StatefulWidget {
   const ProjectView({Key? key}) : super(key: key);
@@ -31,6 +35,7 @@ class _ProjectViewState extends State<ProjectView> {
   double _seedballs = 10;
   double _flights = 10;
   double _deposit = 10;
+  ScreenshotController screenshotController = ScreenshotController();
   
 
   downloadKml(Project project) async {
@@ -193,6 +198,44 @@ class _ProjectViewState extends State<ProjectView> {
             content: Text('$msg'),
           );
         });
+  }
+
+  SaveCapturedWidget(BuildContext context, Uint8List capturedImage) async{
+
+    var status = await Permission.storage.status;
+
+    if (status.isGranted) {
+      try {
+        final downloadsDirectory = await getApplicationDocumentsDirectory();
+        var savePath = downloadsDirectory.path;
+        final file = File("$savePath/graphs.png");
+        await file.writeAsBytes(capturedImage);
+        showAlertDialog('Success!',
+            'File Exported');
+      } catch (e) {
+        print('error $e');
+        showAlertDialog('Oops!',
+            'You have to enable storage managing permissions');
+      }
+    } else {
+      var isGranted = await Permission.storage.request().isGranted;
+      if (isGranted) {
+        try {
+        final downloadsDirectory = await getApplicationDocumentsDirectory();
+        var savePath = downloadsDirectory.path;
+        final file = File("$savePath/graphs.png");
+        await file.writeAsBytes(capturedImage);
+          showAlertDialog('Success!',
+              'File exported');
+        } catch (e) {
+          print('error $e');
+          showAlertDialog('Oops!',
+              'You have to enable storage managing permissions');
+        }
+      } else
+        showAlertDialog('Oops!',
+            'You have to enable storage managing permissions');
+    }
   }
 
   showDeleteDialog(String title, String msg, String id) {
@@ -628,7 +671,9 @@ class _ProjectViewState extends State<ProjectView> {
                   ],
                 ),
               ),
-              Column(
+            Screenshot(
+              controller: screenshotController,
+              child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   Padding(
@@ -698,6 +743,27 @@ class _ProjectViewState extends State<ProjectView> {
                             ),
                           ),
                         ),
+                ],
+              ),
+            ),
+            Container(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                ElevatedButton(
+                    child: Text(
+                      'Add Graphs to KML',
+                    ),              
+                    onPressed: () {
+                      screenshotController
+                          .capture(delay: Duration(milliseconds: 10))
+                          .then((capturedImage) async {
+                        SaveCapturedWidget(context, capturedImage!);
+                      }).catchError((onError) {
+                        print(onError);
+                      });
+                    },
+                    ),
                   ElevatedButton.icon(
                     style: ElevatedButton.styleFrom(
                       primary: Colors.red,
@@ -713,6 +779,7 @@ class _ProjectViewState extends State<ProjectView> {
                   ),
                 ],
               ),
+            ),
             ],
           ),
         ),
@@ -720,7 +787,6 @@ class _ProjectViewState extends State<ProjectView> {
     );
   }
 }
-
 
 class ItemTitle extends StatelessWidget {
   final String title;

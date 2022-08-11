@@ -59,7 +59,7 @@ class _PotentialCaptureState extends State<PotentialCapture> {
                                 yValueMapper: (ChartData data, _) => data.y,
                             ),
                         ]
-                    )
+                    ),
         );
     }
 }
