@@ -27,7 +27,7 @@ class Placemark {
 
   Placemark(this.id, this.name, this.description, this.lookAt, this.point, this.type, {this.customData});
 
-  generateTag(String filename, double density, double co2, int estimatedLongevity, double estimatedFinalHeight, double seedballDiameter) {
+  generateTag(String filename, String density, String co2, String estimatedLongevity, String estimatedFinalHeight, String seedballDiameter) {
     return '''
     <Style id="high-$id">
       <IconStyle>
@@ -84,7 +84,7 @@ class Placemark {
     ''';
   }
 
-  generateLandTag(String filename) {
+  generateLandTag(String filename, String projectName, String dateOfProject, String sownMode, String region, String minSwtDate, String maxSwtDate, String minSwtTemp, String maxSwtTemp, String avgNumberOfRains, String totalNumberOfRains, String ph) {
     return '''
     <Style id="high-$id">
       <IconStyle>
@@ -128,6 +128,18 @@ class Placemark {
       <name>$name</name>
       <description><![CDATA[
           <p>$description</p>
+          <p><b>Project Name:</b> $projectName</p>
+          <p><b>Date of Project:</b> $dateOfProject</p>
+          <p><b>Sown Mode:</b> $sownMode</p>
+          <p><b>Region:</b> $region</p>
+          <p><b>Sowing Window Time:</b>
+          <b>From: $minSwtDate</b>
+          <b>To: $maxSwtDate</b></p>
+          <p><b>Min Sowing Temp:</b> $minSwtTemp
+          <b>Max Sowing Temp:</b> $maxSwtTemp</p>
+          <p><b>Avg No. Of Rains:</b> $avgNumberOfRains
+          <b>Total No. of Rains:</b> $totalNumberOfRains</p>
+          <p><b>pH:</b> $ph</p>
           ]]></description>
       ${this.lookAt.generateTag()}
       <styleUrl>$id</styleUrl>

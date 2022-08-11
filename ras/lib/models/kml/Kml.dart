@@ -16,12 +16,12 @@ class KML {
             'http://maps.google.com/mapfiles/kml/paddle/red-circle.png');
       } else {
         kmlContent +=
-            '\n ${element.generateTag(element.customData['seed']['icon']['name'], element.customData['seed']['density'], element.customData['seed']['co2PerYear'], element.customData['seed']['estimatedLongevity'], element.customData['seed']['estimatedFinalHeight'], element.customData['seed']['seedballDiameter'])}';
+            '\n ${element.generateTag(element.customData['seed']['icon']['name'], element.customData['seed']['density'].toString(), element.customData['seed']['co2PerYear'].toString(), element.customData['seed']['estimatedLongevity'].toString(), element.customData['seed']['estimatedFinalHeight'].toString(), element.customData['seed']['seedballDiameter'].toString())}';
       }
     });
 
     if (landingPoint.name != 'none') {
-      kmlContent += '\n ${landingPoint.generateLandTag('landpoint.png')}';
+      kmlContent += '\n ${landingPoint.generateLandTag('landpoint.png', placemarks[0].customData['projectName'], placemarks[0].customData['dateOfProject'].toString().substring(0,10), placemarks[0].customData['sownMode'], placemarks[0].customData['region'], placemarks[0].customData['minSwtDate'].toString().substring(0,10), placemarks[0].customData['maxSwtDate'].toString().substring(0,10), placemarks[0].customData['minSwtTemp'].toString(), placemarks[0].customData['maxSwtTemp'].toString(), placemarks[0].customData['avgNumberOfRains'].toString(), placemarks[0].customData['totalNumberOfRains'].toString(), placemarks[0].customData['ph'].toString())}';
     }
 
     return kmlContent;
