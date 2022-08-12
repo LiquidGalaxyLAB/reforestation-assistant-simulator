@@ -32,9 +32,6 @@ class ProjectView extends StatefulWidget {
 class _ProjectViewState extends State<ProjectView> {
   bool isOpen = false;
   bool isOrbiting = false;
-  double _seedballs = 10;
-  double _flights = 10;
-  double _deposit = 10;
   ScreenshotController screenshotController = ScreenshotController();
   
 
@@ -634,52 +631,10 @@ class _ProjectViewState extends State<ProjectView> {
                         args.project.inclination.toString() +
                             '%' +
                             ' | ${((args.project.inclination / 100) * 360).toStringAsFixed(2)}°'),
-                    ItemTitle('Drone Mission'),
-                    Item('Number of Seedballs', _seedballs.round().toString()),
-                    Slider(
-                      min: 0.0,
-                      max: 100.0,
-                      divisions: 100,
-                      value: _seedballs,
-                      onChanged: (value) {
-                        setState(() {
-                          _seedballs = value;
-                        });
-                      },
-                    ),
-                    Item('Number of Flights', _flights.round().toString()),
-                    Slider(
-                      min: 0.0,
-                      max: 100.0,
-                      divisions: 100,
-                      value: _flights,
-                      onChanged: (value) {
-                        setState(() {
-                          _flights = value;
-                        });
-                      },
-                    ),
-                    Item('Size of Deposit', _deposit.round().toString()),
-                    Slider(
-                      min: 0.0,
-                      max: 100.0,
-                      divisions: 100,
-                      value: _deposit,
-                      onChanged: (value) {
-                        setState(() {
-                          _deposit = value;
-                        });
-                      },
-                    ),
                   ],
                 ),
               ),
-            Screenshot(
-              controller: screenshotController,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  Padding(
+              Padding(
                     padding: const EdgeInsets.symmetric(vertical: 28.0),
                     child: Text(
                       'Estimated Information',
@@ -687,7 +642,7 @@ class _ProjectViewState extends State<ProjectView> {
                           TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
                     ),
                   ),
-                  _seedballs > 0 && _flights > 0 && _deposit > 0
+                  args.project.seeds.length > 0
                       ? SurvivalEstChart(args.project.seeds)
                       : Center(
                           child: Text(
@@ -695,6 +650,11 @@ class _ProjectViewState extends State<ProjectView> {
                             style: TextStyle(color: Colors.grey),
                           ),
                         ),
+            Screenshot(
+              controller: screenshotController,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 28.0),
                     child: Text(
