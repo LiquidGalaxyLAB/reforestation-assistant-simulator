@@ -21,7 +21,7 @@ class _MyHomePageState extends State<MyHomePage> {
           preferredSize: const Size.fromHeight(120),
           child: MyAppBar(isHome: true),
         ),
-        body: TabBarView(dragStartBehavior: DragStartBehavior.down, children: [
+        body: TabBarView(physics: NeverScrollableScrollPhysics(), dragStartBehavior: DragStartBehavior.down, children: [
           Tab(
             child: ProjectList(),
           ),
