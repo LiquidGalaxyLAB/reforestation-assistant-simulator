@@ -10,7 +10,6 @@ import 'package:ras/services/KmlGenerator.dart';
 import 'package:ras/services/LGConnection.dart';
 import 'package:ras/services/PdfGenerator.dart';
 import 'package:ras/widgets/ViewAppBar.dart';
-import 'package:ras/widgets/SurvivalStackedChart.dart';
 import 'package:ras/widgets/SurvivalEstChart.dart';
 import 'package:ras/widgets/CO2Chart.dart';
 import 'package:ras/widgets/PotentialCapture.dart';
@@ -634,22 +633,6 @@ class _ProjectViewState extends State<ProjectView> {
                   ],
                 ),
               ),
-              Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 28.0),
-                    child: Text(
-                      'Estimated Information',
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
-                    ),
-                  ),
-                  args.project.seeds.length > 0
-                      ? SurvivalEstChart(args.project.seeds)
-                      : Center(
-                          child: Text(
-                            'Invalid Data',
-                            style: TextStyle(color: Colors.grey),
-                          ),
-                        ),
             Screenshot(
               controller: screenshotController,
               child: Column(
@@ -664,7 +647,7 @@ class _ProjectViewState extends State<ProjectView> {
                     ),
                   ),
                   args.project.seeds.length > 0
-                      ? SurvivalStackedChart(args.project.seeds)
+                      ? SurvivalEstChart(args.project.seeds)
                       : Center(
                           child: Text(
                             'No data',
