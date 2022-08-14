@@ -27,9 +27,11 @@ class _SurvivalEstChartState extends State<SurvivalEstChart> {
 
   getArea(ProjectViewArgs args){
     Project? p = args.project;
-    List<LatLng> coord = p.geodata.areaPolygon.coord;
-    coord.add(p.geodata.areaPolygon.coord[0]);
     double area = 0;
+    if(args.project.geodata != null){
+    List<LatLng> coord = p.geodata.areaPolygon.coord;
+    if(coord.isNotEmpty){
+    coord.add(p.geodata.areaPolygon.coord[0]);
     if(coord.length > 2){
       for(int i = 0; i < coord.length - 1; i++){
           var p1 = coord[i];
@@ -38,6 +40,8 @@ class _SurvivalEstChartState extends State<SurvivalEstChart> {
       }
       area = area * 6378137 * 6378137 / 2;
       area = area * 0.0001;//convert to hectares
+    }
+    }
     }
     return area.abs();
   }

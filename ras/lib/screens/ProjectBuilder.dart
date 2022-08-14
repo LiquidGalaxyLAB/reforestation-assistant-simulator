@@ -203,7 +203,7 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                                           if (value) {
                                             seeds.add(data[index]);
                                             seeds[seeds.length - 1].density = 0;
-                                            seeds[seeds.length - 1].seedballDiameter = 0;
+                                            //seeds[seeds.length - 1].seedballDiameter = data[index].seedballDiameter;
                                           } else
                                             seeds.removeWhere((element) =>
                                                 element.id == data[index].id ||
@@ -1078,53 +1078,6 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                                   },
                                   decoration: InputDecoration(
                                       filled: true, helperText: 'Density'),
-                                ),
-                              ),
-                              title: Text('${seeds[i].commonName}'),
-                              subtitle: Text('${seeds[i].scientificName}'),
-                              trailing: IconButton(
-                                onPressed: () {
-                                  setState(() {
-                                    seeds.removeAt(i);
-                                  });
-                                },
-                                icon: Icon(
-                                  Icons.clear,
-                                  color: Colors.red,
-                                ),
-                              ),
-                            ),
-                          Padding(
-                            padding:
-                                const EdgeInsets.only(top: 25.0, bottom: 15),
-                            child: Text(
-                              'Seedball Diameter (mm)',
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 16,
-                                color: Colors.black,
-                              ),
-                            ),
-                          ),
-                          for (var i = 0; i < seeds.length; i++)
-                            ListTile(
-                              leading: SizedBox(
-                                width: 75,
-                                height: 75,
-                                child: TextFormField(
-                                  // controller: seedballDiameter,
-                                  initialValue: seeds[i].seedballDiameter == 0.0
-                                      ? '0.0'
-                                      : seeds[i].seedballDiameter.toString(),
-                                  keyboardType: TextInputType.number,
-                                  onChanged: (value) {
-                                      if (value.length > 0)
-                                        seeds[i].seedballDiameter = double.parse(value);
-                                      else
-                                        seeds[i].seedballDiameter = 0;
-                                  },
-                                  decoration: InputDecoration(
-                                      filled: true, helperText: 'Seedball Diameter (mm)'),
                                 ),
                               ),
                               title: Text('${seeds[i].commonName}'),

@@ -34,8 +34,9 @@ class _ProjectListState extends State<ProjectList> {
 
   getArea(Project args){
     Project? p = args;
-    List<LatLng> coord = p.geodata.areaPolygon.coord;
     double area = 0;
+    if(p.geodata != null){
+    List<LatLng> coord = p.geodata.areaPolygon.coord;
     if(coord.isNotEmpty){
     coord.add(p.geodata.areaPolygon.coord[0]);
     if(coord.length > 2){
@@ -47,6 +48,7 @@ class _ProjectListState extends State<ProjectList> {
     }
       area = area * 6378137 * 6378137 / 2;
       area = area * 0.0001;//convert to hectares
+    }
     }
     return area.abs();
   }
