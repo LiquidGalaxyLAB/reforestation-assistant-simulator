@@ -31,7 +31,8 @@ class ProjectView extends StatefulWidget {
 class _ProjectViewState extends State<ProjectView> {
   bool isOpen = false;
   bool isOrbiting = false;
-  ScreenshotController screenshotController = ScreenshotController();
+  ScreenshotController screenshotControllerGraphs = ScreenshotController();
+  ScreenshotController screenshotControllerInfo = ScreenshotController();
   
 
   downloadKml(Project project) async {
@@ -196,7 +197,7 @@ class _ProjectViewState extends State<ProjectView> {
         });
   }
 
-  SaveCapturedWidget(Uint8List capturedImage) async{
+  SaveCapturedWidgetGraphs(Uint8List capturedImage) async{
 
     var status = await Permission.storage.status;
 
@@ -218,6 +219,40 @@ class _ProjectViewState extends State<ProjectView> {
         final downloadsDirectory = await getApplicationDocumentsDirectory();
         var savePath = downloadsDirectory.path;
         final file = File("$savePath/graphs.png");
+        await file.writeAsBytes(capturedImage);
+        } catch (e) {
+          print('error $e');
+          showAlertDialog('Oops!',
+              'You have to enable storage managing permissions');
+        }
+      } else
+        showAlertDialog('Oops!',
+            'You have to enable storage managing permissions');
+    }
+  }
+
+    SaveCapturedWidgetInfo(Uint8List capturedImage) async{
+
+    var status = await Permission.storage.status;
+
+    if (status.isGranted) {
+      try {
+        final downloadsDirectory = await getApplicationDocumentsDirectory();
+        var savePath = downloadsDirectory.path;
+        final file = File("$savePath/info.png");
+        await file.writeAsBytes(capturedImage);
+      } catch (e) {
+        print('error $e');
+        showAlertDialog('Oops!',
+            'You have to enable storage managing permissions');
+      }
+    } else {
+      var isGranted = await Permission.storage.request().isGranted;
+      if (isGranted) {
+        try {
+        final downloadsDirectory = await getApplicationDocumentsDirectory();
+        var savePath = downloadsDirectory.path;
+        final file = File("$savePath/info.png");
         await file.writeAsBytes(capturedImage);
         } catch (e) {
           print('error $e');
@@ -470,10 +505,17 @@ class _ProjectViewState extends State<ProjectView> {
                                   primary: Colors.green,
                                 ),
                                 onPressed: () {
-                                  screenshotController
+                                  screenshotControllerGraphs
                                         .capture(delay: Duration(milliseconds: 10))
                                         .then((capturedImage) async {
-                                      SaveCapturedWidget(capturedImage!);
+                                      SaveCapturedWidgetGraphs(capturedImage!);
+                                    }).catchError((onError) {
+                                      print(onError);
+                                    });
+                                    screenshotControllerInfo
+                                        .capture(delay: Duration(milliseconds: 10))
+                                        .then((capturedImage) async {
+                                      SaveCapturedWidgetInfo(capturedImage!);
                                     }).catchError((onError) {
                                       print(onError);
                                     });
@@ -526,7 +568,9 @@ class _ProjectViewState extends State<ProjectView> {
                       ],
                     )
                   : SizedBox(),
-              Container(
+                Screenshot(
+                    controller: screenshotControllerInfo,
+              child: Container(
                 padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
                 width: double.maxFinite,
                 decoration: BoxDecoration(
@@ -535,38 +579,51 @@ class _ProjectViewState extends State<ProjectView> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    ItemTitle('PROJECT INFORMATION'),
-                    Item('Total Flights', getTotalFlights(args)),
-                    Item('CO2 capture until today', getCO2(args).toString() + ' kg'),
-                    Item('CO2 capture planned', getCO2Planned(args).toString() + ' kg'),
-                    Item('Size of Deposit', args.project.sizeOfDeposit.toString() + ' liters'),
-                    Item('Time by hectare', args.project.timeOfFlight.toString() + 'min'),
-                    Item('Number of Plants', getTotalPlants(args)),
-                    ItemTitle('SOWING WINDOW TIME'),
-                    Row(
-                      children: [
-                        Expanded(
-                        child: Item(
-                            'From',
-                            args.project.minSwtDate
-                                .toString()
-                                .substring(0, 10)),
-                        ),
-                        Expanded(
-                        child: Item(
-                            'To',
-                            args.project.maxSwtDate
-                                .toString()
-                                .substring(0, 10)),
-                        ),
-                      ],
-                    ),
-                    Item('Min Temp', args.project.minSwtTemp.toString() + '°C'),
-                    Item('Max Temp', args.project.maxSwtTemp.toString() + '°C'),
-                    Item('Average number of rain days',
-                        args.project.avgNumberOfRains.toString()),
-                    Item('Total number of rain days',
-                        args.project.totalNumberOfRains.toString()),
+                          ItemTitle('PROJECT INFORMATION'),
+                          Item('Total Flights', getTotalFlights(args)),
+                          Item('CO2 capture until today', getCO2(args).toString() + ' kg'),
+                          Item('CO2 capture planned', getCO2Planned(args).toString() + ' kg'),
+                          Item('Size of Deposit', args.project.sizeOfDeposit.toString() + ' liters'),
+                          Item('Time by hectare', args.project.timeOfFlight.toString() + 'min'),
+                          Item('Number of Plants', getTotalPlants(args)),
+                          ItemTitle('SOWING WINDOW TIME'),
+                          Row(
+                            children: [
+                              Expanded(
+                              child: Item(
+                                  'From',
+                                  args.project.minSwtDate
+                                      .toString()
+                                      .substring(0, 10)),
+                              ),
+                              Expanded(
+                              child: Item(
+                                  'To',
+                                  args.project.maxSwtDate
+                                      .toString()
+                                      .substring(0, 10)),
+                              ),
+                            ],
+                          ),
+                          Item('Min Temp', args.project.minSwtTemp.toString() + '°C'),
+                          Item('Max Temp', args.project.maxSwtTemp.toString() + '°C'),
+                          Item('Average number of rain days',
+                              args.project.avgNumberOfRains.toString()),
+                          Item('Total number of rain days',
+                              args.project.totalNumberOfRains.toString()),
+                       ],
+                      ),
+                     ),
+                ),
+                Container(
+                padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                width: double.maxFinite,
+                decoration: BoxDecoration(
+                  color: Colors.grey.shade100,
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
                     ItemTitle('SPECIES INFORMATION'),
                     for (var i = 0; i < args.project.seeds.length; i++)
                       Padding(
@@ -634,10 +691,16 @@ class _ProjectViewState extends State<ProjectView> {
                 ),
               ),
             Screenshot(
-              controller: screenshotController,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
+              controller: screenshotControllerGraphs,
+              child: Container(
+                padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                width: double.maxFinite,
+                decoration: BoxDecoration(
+                  color: Colors.grey.shade100,
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 28.0),
                     child: Text(
@@ -691,6 +754,7 @@ class _ProjectViewState extends State<ProjectView> {
                         ),
                 ],
               ),
+            ),
             ),
             Container(
               child: Column(
