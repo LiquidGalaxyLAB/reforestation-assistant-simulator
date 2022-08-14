@@ -58,13 +58,7 @@ class _ViewMyAppBarState extends State<ViewMyAppBar> {
       leading: !widget.isHome
           ? IconButton(
               onPressed: () {
-                if (ModalRoute.of(context)!.settings.name ==
-                        '/project-builder' ||
-                    ModalRoute.of(context)!.settings.name == '/seed-form') {
-                  showReturnDialog('Are you sure you want to go back?',
-                      'All the changes you made will be lost');
-                } else
-                  Navigator.of(context).pop();
+                Navigator.of(context).pop({"reload": true});
               },
               icon: Icon(Icons.chevron_left),
             )

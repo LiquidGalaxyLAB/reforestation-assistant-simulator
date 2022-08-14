@@ -69,7 +69,7 @@ class LGConnection {
         <overlayXY x="1" y="1" xunits="fraction" yunits="fraction"/>
         <screenXY x="0.98" y="0.98" xunits="fraction" yunits="fraction"/>
         <rotationXY x="0" y="0" xunits="fraction" yunits="fraction"/>
-        <size x="0.4" y="0.2" xunits="fraction" yunits="fraction"/>
+        <size x="0.2" y="0.2" xunits="fraction" yunits="fraction"/>
         </ScreenOverlay>
         </Folder>
     </Document>
@@ -90,7 +90,7 @@ class LGConnection {
         <overlayXY x="1" y="1" xunits="fraction" yunits="fraction"/>
         <screenXY x="0.98" y="0.98" xunits="fraction" yunits="fraction"/>
         <rotationXY x="0" y="0" xunits="fraction" yunits="fraction"/>
-        <size x="0.4" y="0.2" xunits="fraction" yunits="fraction"/>
+        <size x="0.2" y="0.2" xunits="fraction" yunits="fraction"/>
         </ScreenOverlay>
         </Folder>
     </Document>

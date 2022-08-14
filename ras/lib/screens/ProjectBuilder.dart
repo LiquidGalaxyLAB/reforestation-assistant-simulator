@@ -14,6 +14,7 @@ import 'package:ras/services/ElevationApi.dart';
 import 'package:ras/widgets/AppBar.dart';
 import 'dart:math';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:ras/route-args/ProjectViewArgs.dart';
 
 class ProjectBuilder extends StatefulWidget {
   const ProjectBuilder({Key? key}) : super(key: key);
@@ -343,9 +344,13 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
         double.parse(timeOfFlight.text)
       );
       Future response = ProjectRepository().update(project, args.project!.id);
-      response.then((value) {
+      response.then((value) async{
         print('Success!!!! $value');
         Navigator.of(context).pop();
+        Navigator.of(context).pop();
+        await Navigator.pushNamed(
+                                    context, '/project-view',
+                                    arguments: ProjectViewArgs(project));
       });
       response.catchError((onError) => print('Error $onError'));
     }
@@ -407,6 +412,7 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
 
   getArea(ProjectBuilderArgs args){
     double area = 0;
+    if(args.project?.geodata != null){
     List<LatLng> coord = args.project!.geodata.areaPolygon.coord;
     if(coord.isNotEmpty){
     coord.add(args.project!.geodata.areaPolygon.coord[0]);
@@ -420,6 +426,7 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
       area = area * 6378137 * 6378137 / 2;
       area = area * 0.0001;//convert to hectares
     }
+   }
     return area.abs();
   }
 
