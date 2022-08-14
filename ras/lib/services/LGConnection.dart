@@ -67,7 +67,28 @@ class LGConnection {
         <href>/var/www/html/graphs.png</href>
         </Icon>
         <overlayXY x="1" y="1" xunits="fraction" yunits="fraction"/>
-        <screenXY x="0.02" y="0.95" xunits="fraction" yunits="fraction"/>
+        <screenXY x="0.98" y="0.98" xunits="fraction" yunits="fraction"/>
+        <rotationXY x="0" y="0" xunits="fraction" yunits="fraction"/>
+        <size x="0.4" y="0.2" xunits="fraction" yunits="fraction"/>
+        </ScreenOverlay>
+        </Folder>
+    </Document>
+  </kml>
+    ''';
+    String infoKML = '''
+<?xml version="1.0" encoding="UTF-8"?>
+  <kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:kml="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom">
+    <Document>
+      <name>Ras-logos</name>
+        <Folder>
+        <name>Logos</name>
+        <ScreenOverlay>
+        <name>Logo</name>
+        <Icon>
+        <href>/var/www/html/info.png</href>
+        </Icon>
+        <overlayXY x="1" y="1" xunits="fraction" yunits="fraction"/>
+        <screenXY x="0.98" y="0.98" xunits="fraction" yunits="fraction"/>
         <rotationXY x="0" y="0" xunits="fraction" yunits="fraction"/>
         <size x="0.4" y="0.2" xunits="fraction" yunits="fraction"/>
         </ScreenOverlay>
@@ -76,14 +97,20 @@ class LGConnection {
   </kml>
     ''';
     String localPath = await _localPath;
-    String imgPath = '$localPath/graphs.png';
+    String graphPath = '$localPath/graphs.png';
+    String infoPath = '$localPath/info.png';
     try {
       await client.connect();
       await client.execute("echo '$openLogoKML' > /var/www/html/kml/slave_4.kml");
-      if(File(imgPath).existsSync()){
+      if(File(graphPath).existsSync()){
       await client.connectSFTP();
-      await client.sftpUpload(path: imgPath, toPath: '/var/www/html');
+      await client.sftpUpload(path: graphPath, toPath: '/var/www/html');
       await client.execute("echo '$graphKML' > /var/www/html/kml/slave_3.kml");
+      }
+      if(File(infoPath).existsSync()){
+      await client.connectSFTP();
+      await client.sftpUpload(path: infoPath, toPath: '/var/www/html');
+      await client.execute("echo '$infoKML' > /var/www/html/kml/slave_1.kml");
       }
 
     }catch (e) {
