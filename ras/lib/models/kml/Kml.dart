@@ -21,9 +21,8 @@ class KML {
     });
 
     if (landingPoint.name != 'none') {
-      kmlContent += '\n ${landingPoint.generateLandTag('landpoint.png')}';
+      kmlContent += '\n ${landingPoint.generateLandTag('landpoint.png', placemarks)}';
     }
-
     return kmlContent;
   }
 
