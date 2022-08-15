@@ -8,6 +8,7 @@ import 'package:pdf/widgets.dart' as pw;
 import 'package:ras/models/Project.dart';
 import 'dart:math';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:path_provider/path_provider.dart';
 
 class PdfGenerator {
   static Future generatePdf(Project project) async {
@@ -109,6 +110,9 @@ class PdfGenerator {
 
     final pdf = pw.Document();
     final downloadsDirectory = await DownloadsPathProvider.downloadsDirectory;
+    final tempDirectory = await getTemporaryDirectory();
+    var savePath = tempDirectory.path;
+    final image = pw.MemoryImage(File("$savePath/graphs.png").readAsBytesSync(),);
 
     pdf.addPage(
       pw.MultiPage(
@@ -192,6 +196,12 @@ class PdfGenerator {
         },
       ),
     );
+
+    pdf.addPage(pw.Page(build: (pw.Context context) {
+      return pw.Center(
+        child: pw.Image(image),
+      );
+    })); 
 
     var path = downloadsDirectory.path;
     final file = File("$path/${project.projectName}.pdf");

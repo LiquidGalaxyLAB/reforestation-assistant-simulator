@@ -99,6 +99,40 @@ class _ProjectViewState extends State<ProjectView> {
     }
   }
 
+ SaveGraphs(Uint8List capturedImage) async{
+
+    var status = await Permission.storage.status;
+
+    if (status.isGranted) {
+      try {
+        final downloadsDirectory = await getTemporaryDirectory();
+        var savePath = downloadsDirectory.path;
+        final file = File("$savePath/graphs.png");
+        await file.writeAsBytes(capturedImage);
+      } catch (e) {
+        print('error $e');
+        showAlertDialog('Oops!',
+            'You have to enable storage managing permissions');
+      }
+    } else {
+      var isGranted = await Permission.storage.request().isGranted;
+      if (isGranted) {
+        try {
+        final downloadsDirectory = await getTemporaryDirectory();
+        var savePath = downloadsDirectory.path;
+        final file = File("$savePath/graphs.png");
+        await file.writeAsBytes(capturedImage);
+        } catch (e) {
+          print('error $e');
+          showAlertDialog('Oops!',
+              'You have to enable storage managing permissions');
+        }
+      } else
+        showAlertDialog('Oops!',
+            'You have to enable storage managing permissions');
+    }
+  }
+
   launchToLG(ProjectViewArgs args) {
     Project? p = args.project;
 
@@ -231,7 +265,7 @@ class _ProjectViewState extends State<ProjectView> {
     }
   }
 
-    SaveCapturedWidgetInfo(Uint8List capturedImage) async{
+  SaveCapturedWidgetInfo(Uint8List capturedImage) async{
 
     var status = await Permission.storage.status;
 
@@ -553,6 +587,13 @@ class _ProjectViewState extends State<ProjectView> {
                                 color: Colors.red.shade400, width: 1),
                           ),
                           onPressed: () {
+                            screenshotControllerGraphs
+                              .capture(delay: Duration(milliseconds: 10))
+                              .then((capturedImage) async {
+                              SaveGraphs(capturedImage!);
+                                    }).catchError((onError) {
+                                      print(onError);
+                                    });
                             downloadPdf(args.project);
                           },
                           label: Text('Download PDF'),
