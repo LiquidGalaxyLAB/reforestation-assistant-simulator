@@ -45,6 +45,7 @@ dependencies:
   googleapis: ^4.0.0
   platform: ^3.1.0
   screenshot: ^1.2.3
+  volume_regulator: ^2.1.0
 
 dev_dependencies:
   flutter_test:

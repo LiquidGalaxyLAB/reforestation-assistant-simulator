@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
-
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:ras/models/Gmap.dart';
@@ -14,6 +13,7 @@ import 'package:ras/services/ImageProcessing.dart';
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:uuid/uuid.dart';
 import 'package:ras/models/kml/Polygon.dart' as poly;
+import 'package:volume_regulator/volume_regulator.dart';
 
 class MapBuilder extends StatefulWidget {
   const MapBuilder({Key? key}) : super(key: key);
@@ -334,6 +334,14 @@ class _MapBuilderState extends State<MapBuilder> {
 
     setState(() {
       loaded = true;
+    });
+
+    // Listening to volume change events.
+    VolumeRegulator.volumeStream.listen((value) {
+      setState(() {
+          shapeType = 'seedMarker';
+          placeSeedInMyPosition();
+      });
     });
   }
 
