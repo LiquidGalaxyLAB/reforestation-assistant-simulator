@@ -82,7 +82,7 @@ class _SurvivalEstChartState extends State<SurvivalEstChart> {
                                 dataLabelSettings: DataLabelSettings(
                                     isVisible: true,
                                     showCumulativeValues: true,
-                                    useSeriesColor: true
+                                    useSeriesColor: true,
                                 ),
                             ),
                         ]
