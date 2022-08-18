@@ -70,7 +70,7 @@ class _MyAppBarState extends State<MyAppBar> {
               },
               icon: Icon(Icons.info)),
       title: Text(
-        'RAS',
+        'RAS 2',
         style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
       ),
       centerTitle: true,
