@@ -54,13 +54,30 @@ class LGConnection {
     </Document>
   </kml>
     ''';
+    try {
+      await client.connect();
+      await client.execute("echo '$openLogoKML' > /var/www/html/kml/slave_4.kml");
+    }catch (e) {
+      print(e);
+    }
+  }
+
+  infoGraphsUpload() async {
+    dynamic credencials = await _getCredentials();
+
+    SSHClient client = SSHClient(
+      host: '${credencials['ip']}',
+      port: 22,
+      username: "lg",
+      passwordOrKey: '${credencials['pass']}',
+    );
         String graphKML = '''
 <?xml version="1.0" encoding="UTF-8"?>
   <kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:kml="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom">
     <Document>
-      <name>Ras-logos</name>
+      <name>Ras Graphs</name>
         <Folder>
-        <name>Logos</name>
+        <name>Graphs</name>
         <ScreenOverlay>
         <name>Logo</name>
         <Icon>
@@ -79,9 +96,9 @@ class LGConnection {
 <?xml version="1.0" encoding="UTF-8"?>
   <kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:kml="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom">
     <Document>
-      <name>Ras-logos</name>
+      <name>Ras Project Info</name>
         <Folder>
-        <name>Logos</name>
+        <name>Project Info</name>
         <ScreenOverlay>
         <name>Logo</name>
         <Icon>
@@ -101,18 +118,11 @@ class LGConnection {
     String infoPath = '$localPath/info.png';
     try {
       await client.connect();
-      await client.execute("echo '$openLogoKML' > /var/www/html/kml/slave_4.kml");
-      if(File(graphPath).existsSync()){
       await client.connectSFTP();
       await client.sftpUpload(path: graphPath, toPath: '/var/www/html');
       await client.execute("echo '$graphKML' > /var/www/html/kml/slave_3.kml");
-      }
-      if(File(infoPath).existsSync()){
-      await client.connectSFTP();
       await client.sftpUpload(path: infoPath, toPath: '/var/www/html');
       await client.execute("echo '$infoKML' > /var/www/html/kml/slave_1.kml");
-      }
-
     }catch (e) {
       print(e);
     }
@@ -139,6 +149,8 @@ class LGConnection {
     try {
       await client.connect();
       stopOrbit();
+      await client.execute('> /var/www/html/kml/slave_3.kml');
+      await client.execute('> /var/www/html/kml/slave_1.kml');
       return await client.execute('> /var/www/html/kmls.txt');
     } catch (e) {
       print('Could not connect to host LG');
@@ -243,6 +255,82 @@ class LGConnection {
     }
   }
 
+  cleanLogos() async {
+    dynamic credencials = await _getCredentials();
+
+    SSHClient client = SSHClient(
+      host: '${credencials['ip']}',
+      port: 22,
+      username: "lg",
+      passwordOrKey: '${credencials['pass']}',
+    );
+
+    try {
+      await client.connect();
+      return await client.execute("echo '' > /var/www/html/kml/slave_4.kml");
+    } catch (e) {
+      print('Could not connect to host LG');
+      return Future.error(e);
+    }
+  }
+
+  relaunchLg() async {
+    dynamic credencials = await _getCredentials();
+
+    SSHClient client = SSHClient(
+      host: '${credencials['ip']}',
+      port: 22,
+      username: "lg",
+      passwordOrKey: '${credencials['pass']}',
+    );
+
+    try {
+      await client.connect();
+      return await client.execute("'/home/lg/bin/lg-relaunch' > /home/lg/log.txt");
+    } catch (e) {
+      print('Could not connect to host LG');
+      return Future.error(e);
+    }
+  }
+
+  rebootLg() async {
+    dynamic credencials = await _getCredentials();
+
+    SSHClient client = SSHClient(
+      host: '${credencials['ip']}',
+      port: 22,
+      username: "lg",
+      passwordOrKey: '${credencials['pass']}',
+    );
+
+    try {
+      await client.connect();
+      return await client.execute("'/home/lg/bin/lg-reboot' > /home/lg/log.txt");
+    } catch (e) {
+      print('Could not connect to host LG');
+      return Future.error(e);
+    }
+  }
+
+  shutdownLg() async {
+    dynamic credencials = await _getCredentials();
+
+    SSHClient client = SSHClient(
+      host: '${credencials['ip']}',
+      port: 22,
+      username: "lg",
+      passwordOrKey: '${credencials['pass']}',
+    );
+
+    try {
+      await client.connect();
+      return await client.execute("'/home/lg/bin/lg-poweroff' > /home/lg/log.txt");
+    } catch (e) {
+      print('Could not connect to host LG');
+      return Future.error(e);
+    }
+  }
+
   buildOrbit(String content) async {
     dynamic credencials = await _getCredentials();
 
@@ -261,7 +349,6 @@ class LGConnection {
 
     try {
       await client.connect();
-
       await client.connectSFTP();
       await client.sftpUpload(
         path: filePath,

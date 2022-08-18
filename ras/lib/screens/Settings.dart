@@ -82,6 +82,22 @@ class _SettingsState extends State<Settings> {
     }
   }
 
+  clearLogos() async {
+    await LGConnection().cleanLogos();
+  }
+
+  relaunchLG() async {
+    await LGConnection().relaunchLg();
+  }
+
+  rebootLG() async {
+    await LGConnection().rebootLg();
+  }
+
+  shutdownLG() async {
+    await LGConnection().shutdownLg();
+  }
+
   showAlertDialog(String title, String msg) {
     showDialog(
         context: context,
@@ -302,6 +318,65 @@ class _SettingsState extends State<Settings> {
                     ],
                   ),
                 ),
+                connectionStatus
+                  ? Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        ElevatedButton.icon(
+                          style: ElevatedButton.styleFrom(
+                            primary: Colors.red.shade400,
+                            side: BorderSide(
+                                color: Colors.red.shade400, width: 1),
+                          ),
+                          onPressed: () {
+                            clearLogos();
+                          },
+                          label: Text('Clean Logos'),
+                          icon: Icon(Icons.clear_rounded),
+                        ),
+                        ElevatedButton.icon(
+                          style: ElevatedButton.styleFrom(
+                            primary: Colors.blue,
+                            side: BorderSide(color: Colors.blue, width: 1),
+                          ),
+                          onPressed: () {
+                            relaunchLG();
+                          },
+                          label: Text('Relaunch'),
+                          icon: Icon(Icons.play_circle_fill_outlined),
+                        ),
+                      ],
+                    )
+                  : SizedBox(),
+                  connectionStatus
+                  ? Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        ElevatedButton.icon(
+                          style: ElevatedButton.styleFrom(
+                            primary: Colors.blue,
+                            side: BorderSide(color: Colors.blue, width: 1),
+                          ),
+                          onPressed: () {
+                            rebootLG();
+                          },
+                          label: Text('Reboot'),
+                          icon: Icon(Icons.play_circle_fill_outlined),
+                        ),
+                        ElevatedButton.icon(
+                          style: ElevatedButton.styleFrom(
+                            primary: Colors.blue,
+                            side: BorderSide(color: Colors.blue, width: 1),
+                          ),
+                          onPressed: () {
+                            shutdownLG();
+                          },
+                          label: Text('Power Off'),
+                          icon: Icon(Icons.play_circle_fill_outlined),
+                        ),
+                      ],
+                    )
+                  : SizedBox(),
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 20.0),
                   child: TextFormField(
