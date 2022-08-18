@@ -66,7 +66,7 @@ class MyApp extends StatelessWidget {
     openLogos();
 
     return MaterialApp(
-      title: 'RAS',
+      title: 'RAS 2',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
