@@ -21,7 +21,7 @@ enum currentSelection {filterByNewest, filterByOldest, filterNameAz, filterNameZ
 
 class _ProjectListState extends State<ProjectList> {
   Future<List<Project>> _listProjects = ProjectRepository().getAll();
-  currentSelection _value = currentSelection.filterByNewest;
+  currentSelection _value = currentSelection.filterByOldest;
   bool isSearching = false;
   List<Project> toBeFiltered = [];
   bool filterByNewest = false;
@@ -333,9 +333,9 @@ class _ProjectListState extends State<ProjectList> {
                   ),
                 ),
                 ListTile(
-                    title: Text('Newest'),
+                    title: Text('Oldest'),
                     leading: Radio(  
-                    value: currentSelection.filterByNewest,
+                    value: currentSelection.filterByOldest,
                     groupValue: _value,
                     onChanged: (value) {
                       setState(() {
@@ -346,9 +346,9 @@ class _ProjectListState extends State<ProjectList> {
                     }),
                 ),
                 ListTile(
-                    title: Text('Oldest'),
+                    title: Text('Newest'),
                     leading: Radio(  
-                    value: currentSelection.filterByOldest,
+                    value: currentSelection.filterByNewest,
                     groupValue: _value,
                     onChanged: (value) {
                       setState(() {
