@@ -157,6 +157,10 @@ class _ProjectViewState extends State<ProjectView> {
     });
   }
 
+  infographs() async {
+    await LGConnection().infoGraphsUpload();
+  }
+
   playOrbit() async {
     await LGConnection().startOrbit();
     setState(() {
@@ -558,6 +562,7 @@ class _ProjectViewState extends State<ProjectView> {
                                       print(onError);
                                     });
                                   launchToLG(args);
+                                  infographs();
                                 },
                                 label: Text('Launch to LG'),
                                 icon: Icon(Icons.play_circle_fill_outlined),
