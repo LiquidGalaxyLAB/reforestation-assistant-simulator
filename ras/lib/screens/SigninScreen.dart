@@ -44,7 +44,7 @@ class _SignInScreenState extends State<SignInScreen> {
                       ),
                     ),
                     Text(
-                      'RAS offers integration with Google Drive, sign in with Google to integrate or start without authentication. \n\nYou can choose to signin with Google at any time by going to the settings page',
+                      'RAS 2 offers integration with Google Drive, sign in with Google to integrate or start without authentication. \n\nYou can choose to signin with Google at any time by going to the settings page',
                       textAlign: TextAlign.center,
                       style:
                           TextStyle(fontSize: 20, fontWeight: FontWeight.w300),
