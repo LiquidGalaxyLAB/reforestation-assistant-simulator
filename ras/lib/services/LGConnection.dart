@@ -9,6 +9,9 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:ssh/ssh.dart';
 
 class LGConnection {
+
+  int screenAmount = 5;
+
   openDemoLogos() async {
     dynamic credencials = await _getCredentials();
 
@@ -62,7 +65,7 @@ class LGConnection {
     }
   }
 
-  infoGraphsUpload() async {
+  Future infoGraphsUpload() async {
     dynamic credencials = await _getCredentials();
 
     SSHClient client = SSHClient(
@@ -255,7 +258,7 @@ class LGConnection {
     }
   }
 
-  cleanLogos() async {
+  Future cleanLogos() async {
     dynamic credencials = await _getCredentials();
 
     SSHClient client = SSHClient(
@@ -274,7 +277,7 @@ class LGConnection {
     }
   }
 
-  relaunchLg() async {
+  Future<void> rebootLg() async {
     dynamic credencials = await _getCredentials();
 
     SSHClient client = SSHClient(
@@ -284,16 +287,22 @@ class LGConnection {
       passwordOrKey: '${credencials['pass']}',
     );
 
+    final pw = client.passwordOrKey;
+
+  for (var i = screenAmount; i >= 1; i--) {
+
     try {
       await client.connect();
-      return await client.execute("'/home/lg/bin/lg-relaunch' > /home/lg/log.txt");
+      await client
+            .execute('sshpass -p $pw ssh -t lg$i "echo $pw | sudo -S reboot"');
     } catch (e) {
       print('Could not connect to host LG');
       return Future.error(e);
     }
   }
+  }
 
-  rebootLg() async {
+  Future<void> relaunchLg() async {
     dynamic credencials = await _getCredentials();
 
     SSHClient client = SSHClient(
@@ -303,16 +312,35 @@ class LGConnection {
       passwordOrKey: '${credencials['pass']}',
     );
 
+    final pw = client.passwordOrKey;
+
+  for (var i = screenAmount; i >= 1; i--) {
+
     try {
       await client.connect();
-      return await client.execute("'/home/lg/bin/lg-reboot' > /home/lg/log.txt");
+      final relaunchCommand = """RELAUNCH_CMD="\\
+if [ -f /etc/init/lxdm.conf ]; then
+  export SERVICE=lxdm
+elif [ -f /etc/init/lightdm.conf ]; then
+  export SERVICE=lightdm
+else
+  exit 1
+fi
+if  [[ \\\$(service \\\$SERVICE status) =~ 'stop' ]]; then
+  service \\\${SERVICE} start
+else
+  echo lq | sudo -S service \\\${SERVICE} restart
+fi
+" && sshpass -p $pw ssh -x -t lg@lg$i "\$RELAUNCH_CMD\"""";
+        await client.execute(relaunchCommand);
     } catch (e) {
       print('Could not connect to host LG');
       return Future.error(e);
     }
   }
+  }
 
-  shutdownLg() async {
+  Future<void> shutdownLg() async {
     dynamic credencials = await _getCredentials();
 
     SSHClient client = SSHClient(
@@ -322,13 +350,30 @@ class LGConnection {
       passwordOrKey: '${credencials['pass']}',
     );
 
+    final pw = client.passwordOrKey;
+
+  for (var i = screenAmount; i >= 1; i--) {
     try {
       await client.connect();
-      return await client.execute("'/home/lg/bin/lg-poweroff' > /home/lg/log.txt");
+      await client.execute(
+            'sshpass -p $pw ssh -t lg$i "echo $pw | sudo -S poweroff"');
     } catch (e) {
       print('Could not connect to host LG');
       return Future.error(e);
     }
+    }
+  }
+
+  Future<String?> getScreenAmount() async {
+    dynamic credencials = await _getCredentials();
+
+    SSHClient client = SSHClient(
+      host: '${credencials['ip']}',
+      port: 22,
+      username: "lg",
+      passwordOrKey: '${credencials['pass']}',
+    );
+    return client.execute("grep -oP '(?<=DHCP_LG_FRAMES_MAX=).*' personavars.txt");
   }
 
   buildOrbit(String content) async {

@@ -85,12 +85,12 @@ class Placemark {
   } 
 
   generateLandTag(String filename, List<Placemark> placemarks) {
-    String des = "";
+    /*String des = "";
     placemarks.forEach((element) {
       if(!des.contains(element.name)){
       des += "<p><b>Plant Name:</b> ${element.name}</br><b>Density:</b> ${element.customData['seed']['density'].toString()}</br><b>CO2 Capture:</b> ${element.customData['seed']['co2PerYear'].toString()} kg/year</br><b>Seedball Diameter:</b> ${element.customData['seed']['seedballDiameter'].toString()}</p>";
       }
-    });
+    });*/
     return '''
     <Style id="high-$id">
       <IconStyle>
@@ -133,7 +133,7 @@ class Placemark {
     <Placemark>
       <name>$name</name>
       <description><![CDATA[
-        $des
+        This is the landing point
           ]]></description>
       <gx:balloonVisibility>1</gx:balloonVisibility>
       ${this.lookAt.generateTag()}
