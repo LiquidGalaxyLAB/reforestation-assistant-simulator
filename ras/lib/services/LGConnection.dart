@@ -78,13 +78,13 @@ class LGConnection {
 <?xml version="1.0" encoding="UTF-8"?>
   <kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:kml="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom">
     <Document>
-      <name>Ras Graphs</name>
+      <name>Ras-graphs</name>
         <Folder>
         <name>Graphs</name>
         <ScreenOverlay>
         <name>Logo</name>
         <Icon>
-        <href>/var/www/html/graphs.png</href>
+        <href>http://lg1:81/graphs.png</href>
         </Icon>
         <overlayXY x="1" y="1" xunits="fraction" yunits="fraction"/>
         <screenXY x="0.98" y="0.98" xunits="fraction" yunits="fraction"/>
@@ -99,13 +99,13 @@ class LGConnection {
 <?xml version="1.0" encoding="UTF-8"?>
   <kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:kml="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom">
     <Document>
-      <name>Ras Project Info</name>
+      <name>Ras-Project-Info</name>
         <Folder>
-        <name>Project Info</name>
+        <name>Project-Info</name>
         <ScreenOverlay>
         <name>Logo</name>
         <Icon>
-        <href>/var/www/html/info.png</href>
+        <href>http://lg1:81/info.png</href>
         </Icon>
         <overlayXY x="1" y="1" xunits="fraction" yunits="fraction"/>
         <screenXY x="0.98" y="0.98" xunits="fraction" yunits="fraction"/>
@@ -258,7 +258,7 @@ class LGConnection {
     }
   }
 
-  Future cleanLogos() async {
+  Future<void> cleanLogos() async {
     dynamic credencials = await _getCredentials();
 
     SSHClient client = SSHClient(
@@ -270,7 +270,9 @@ class LGConnection {
 
     try {
       await client.connect();
-      return await client.execute("echo '' > /var/www/html/kml/slave_4.kml");
+      await client.execute("echo '' > /var/www/html/kml/slave_4.kml");
+      await client.execute("echo '' > /var/www/html/kml/slave_1.kml");
+      await client.execute("echo '' > /var/www/html/kml/slave_3.kml");
     } catch (e) {
       print('Could not connect to host LG');
       return Future.error(e);
@@ -287,14 +289,12 @@ class LGConnection {
       passwordOrKey: '${credencials['pass']}',
     );
 
-    final pw = client.passwordOrKey;
-
   for (var i = screenAmount; i >= 1; i--) {
 
     try {
       await client.connect();
       await client
-            .execute('sshpass -p $pw ssh -t lg$i "echo $pw | sudo -S reboot"');
+            .execute('sshpass -p ${credencials['pass']} ssh -t lg$i "echo ${credencials['pass']} | sudo -S reboot"');
     } catch (e) {
       print('Could not connect to host LG');
       return Future.error(e);
@@ -311,8 +311,6 @@ class LGConnection {
       username: "lg",
       passwordOrKey: '${credencials['pass']}',
     );
-
-    final pw = client.passwordOrKey;
 
   for (var i = screenAmount; i >= 1; i--) {
 
@@ -331,7 +329,7 @@ if  [[ \\\$(service \\\$SERVICE status) =~ 'stop' ]]; then
 else
   echo lq | sudo -S service \\\${SERVICE} restart
 fi
-" && sshpass -p $pw ssh -x -t lg@lg$i "\$RELAUNCH_CMD\"""";
+" && sshpass -p ${credencials['pass']} ssh -x -t lg@lg$i "\$RELAUNCH_CMD\"""";
         await client.execute(relaunchCommand);
     } catch (e) {
       print('Could not connect to host LG');
@@ -350,13 +348,11 @@ fi
       passwordOrKey: '${credencials['pass']}',
     );
 
-    final pw = client.passwordOrKey;
-
   for (var i = screenAmount; i >= 1; i--) {
     try {
       await client.connect();
       await client.execute(
-            'sshpass -p $pw ssh -t lg$i "echo $pw | sudo -S poweroff"');
+            'sshpass -p ${credencials['pass']} ssh -t lg$i "echo ${credencials['pass']} | sudo -S poweroff"');
     } catch (e) {
       print('Could not connect to host LG');
       return Future.error(e);
