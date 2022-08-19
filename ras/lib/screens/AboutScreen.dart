@@ -320,6 +320,16 @@ class _AboutScreenState extends State<AboutScreen> {
                   ),
                 ),
               ),
+              Text(
+                '\nLleida Liquid Galaxy LAB support',
+                textAlign: TextAlign.center,
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
+              ),
+              Text(
+                '\n Pau Francino',
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 17),
+              ),
                 ],
               ),
             ],

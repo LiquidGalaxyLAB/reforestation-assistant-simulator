@@ -31,6 +31,7 @@ class ProjectView extends StatefulWidget {
 class _ProjectViewState extends State<ProjectView> {
   bool isOpen = false;
   bool isOrbiting = false;
+  bool graph = true;
   ScreenshotController screenshotControllerGraphs = ScreenshotController();
   ScreenshotController screenshotControllerInfo = ScreenshotController();
   
@@ -157,8 +158,28 @@ class _ProjectViewState extends State<ProjectView> {
     });
   }
 
-  infographs() async {
-    await LGConnection().infoGraphsUpload();
+  infographs() {
+    LGConnection().infoGraphsUpload().then((value) {
+      setState(() {
+        graph = false;
+      });
+    }).catchError((onError) {
+      print('oh no $onError');
+      showAlertDialog('Error launching!',
+          'An error occurred while trying to connect to LG');
+    });
+  }
+
+  cleanGraph() {
+    LGConnection().cleanGraphs().then((value) {
+      setState(() {
+        graph = true;
+      });
+    }).catchError((onError) {
+      print('oh no $onError');
+      showAlertDialog('Error launching!',
+          'An error occurred while trying to connect to LG');
+    });
   }
 
   playOrbit() async {
@@ -562,7 +583,6 @@ class _ProjectViewState extends State<ProjectView> {
                                       print(onError);
                                     });
                                   launchToLG(args);
-                                  infographs();
                                 },
                                 label: Text('Launch to LG'),
                                 icon: Icon(Icons.play_circle_fill_outlined),
@@ -740,6 +760,42 @@ class _ProjectViewState extends State<ProjectView> {
                     Item('Size of Deposit', args.project.sizeOfDeposit.toString() + ' liters'),
                   ],
                 ),
+              ),
+              Container(
+                padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                width: double.maxFinite,
+                decoration: BoxDecoration(
+                  color: Colors.grey.shade100,
+                ),
+              child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                        graph
+                            ? ElevatedButton.icon(
+                                style: ElevatedButton.styleFrom(
+                                  primary: Colors.green,
+                                ),
+                                onPressed: () {
+                                  infographs();
+                                },
+                                label: Text('Add Graphs to LG'),
+                                icon: Icon(Icons.play_circle_fill_outlined),
+                              )
+                            : SizedBox(),
+                        !graph
+                            ? ElevatedButton.icon(
+                                style: ElevatedButton.styleFrom(
+                                  primary: Colors.red,
+                                ),
+                                onPressed: () {
+                                  cleanGraph();
+                                },
+                                label: Text('Remove Graphs'),
+                                icon: Icon(Icons.play_circle_fill_outlined),
+                              )
+                            : SizedBox(),
+                 ],
+              ),
               ),
             Screenshot(
               controller: screenshotControllerGraphs,

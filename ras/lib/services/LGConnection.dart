@@ -62,6 +62,7 @@ class LGConnection {
       await client.execute("echo '$openLogoKML' > /var/www/html/kml/slave_4.kml");
     }catch (e) {
       print(e);
+      return Future.error(e);
     }
   }
 
@@ -128,6 +129,7 @@ class LGConnection {
       await client.execute("echo '$infoKML' > /var/www/html/kml/slave_1.kml");
     }catch (e) {
       print(e);
+      return Future.error(e);
     }
   }
 
@@ -271,6 +273,26 @@ class LGConnection {
     try {
       await client.connect();
       await client.execute("echo '' > /var/www/html/kml/slave_4.kml");
+      await client.execute("echo '' > /var/www/html/kml/slave_1.kml");
+      await client.execute("echo '' > /var/www/html/kml/slave_3.kml");
+    } catch (e) {
+      print('Could not connect to host LG');
+      return Future.error(e);
+    }
+  }
+
+  Future<void> cleanGraphs() async {
+    dynamic credencials = await _getCredentials();
+
+    SSHClient client = SSHClient(
+      host: '${credencials['ip']}',
+      port: 22,
+      username: "lg",
+      passwordOrKey: '${credencials['pass']}',
+    );
+
+    try {
+      await client.connect();
       await client.execute("echo '' > /var/www/html/kml/slave_1.kml");
       await client.execute("echo '' > /var/www/html/kml/slave_3.kml");
     } catch (e) {
