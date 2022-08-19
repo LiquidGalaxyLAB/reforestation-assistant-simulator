@@ -30,7 +30,7 @@ class LGConnection {
     return (screenAmount / 2).floor() + 1;
   }
 
-  openDemoLogos() async {
+  Future openDemoLogos() async {
     dynamic credencials = await _getCredentials();
 
     SSHClient client = SSHClient(
@@ -39,6 +39,15 @@ class LGConnection {
       username: "lg",
       passwordOrKey: '${credencials['pass']}',
     );
+
+    try{
+      final screen = await getScreenAmount();
+      if(screen != null){
+        screenAmount = int.parse(screen);
+      }
+    } catch(e){
+      print(e);
+    }
 
     // With feh image viewer
     // try {
@@ -77,14 +86,9 @@ class LGConnection {
     ''';   
     try {
       await client.connect();
-      final result = await getScreenAmount();
-      if (result != null) {
-        screenAmount = int.parse(result);
-      }
       await client.execute("echo '$openLogoKML' > /var/www/html/kml/slave_$leftScreen.kml");
     }catch (e) {
       print(e);
-      return Future.error(e);
     }
   }
 

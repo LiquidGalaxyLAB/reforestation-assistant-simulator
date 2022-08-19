@@ -46,7 +46,6 @@ class MyApp extends StatelessWidget {
       await client.connect();
       // open logos
       await LGConnection().openDemoLogos();
-
       await client.disconnect();
     } catch (e) {
       print(e);
