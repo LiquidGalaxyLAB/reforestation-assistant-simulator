@@ -12,6 +12,24 @@ class LGConnection {
 
   int screenAmount = 5;
 
+  int get leftScreen {
+
+    if (screenAmount == 1) {
+      return 1;
+    }
+
+    return (screenAmount / 2).floor() + 2;
+  }
+
+  int get rightScreen {
+
+    if (screenAmount == 1) {
+      return 1;
+    }
+
+    return (screenAmount / 2).floor() + 1;
+  }
+
   openDemoLogos() async {
     dynamic credencials = await _getCredentials();
 
@@ -56,10 +74,14 @@ class LGConnection {
         </Folder>
     </Document>
   </kml>
-    ''';
+    ''';   
     try {
       await client.connect();
-      await client.execute("echo '$openLogoKML' > /var/www/html/kml/slave_4.kml");
+      final result = await getScreenAmount();
+      if (result != null) {
+        screenAmount = int.parse(result);
+      }
+      await client.execute("echo '$openLogoKML' > /var/www/html/kml/slave_$leftScreen.kml");
     }catch (e) {
       print(e);
       return Future.error(e);
@@ -82,36 +104,25 @@ class LGConnection {
       <name>Ras-graphs</name>
         <Folder>
         <name>Graphs</name>
-        <ScreenOverlay>
-        <name>Logo</name>
+        <ScreenOverlay id="graphs">
+        <name>Graphs</name>
         <Icon>
         <href>http://lg1:81/graphs.png</href>
         </Icon>
         <overlayXY x="1" y="1" xunits="fraction" yunits="fraction"/>
         <screenXY x="0.98" y="0.98" xunits="fraction" yunits="fraction"/>
         <rotationXY x="0" y="0" xunits="fraction" yunits="fraction"/>
-        <size x="0.2" y="0.2" xunits="fraction" yunits="fraction"/>
+        <size x="1" y="1" xunits="fraction" yunits="fraction"/>
         </ScreenOverlay>
-        </Folder>
-    </Document>
-  </kml>
-    ''';
-    String infoKML = '''
-<?xml version="1.0" encoding="UTF-8"?>
-  <kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:kml="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom">
-    <Document>
-      <name>Ras-Project-Info</name>
-        <Folder>
-        <name>Project-Info</name>
-        <ScreenOverlay>
-        <name>Logo</name>
+        <ScreenOverlay id="info">
+        <name>Info</name>
         <Icon>
         <href>http://lg1:81/info.png</href>
         </Icon>
-        <overlayXY x="1" y="1" xunits="fraction" yunits="fraction"/>
-        <screenXY x="0.98" y="0.98" xunits="fraction" yunits="fraction"/>
+        <overlayXY x="0" y="1" xunits="fraction" yunits="fraction"/>
+        <screenXY x="0.02" y="0.98" xunits="fraction" yunits="fraction"/>
         <rotationXY x="0" y="0" xunits="fraction" yunits="fraction"/>
-        <size x="0.2" y="0.2" xunits="fraction" yunits="fraction"/>
+        <size x="1" y="1" xunits="fraction" yunits="fraction"/>
         </ScreenOverlay>
         </Folder>
     </Document>
@@ -124,9 +135,8 @@ class LGConnection {
       await client.connect();
       await client.connectSFTP();
       await client.sftpUpload(path: graphPath, toPath: '/var/www/html');
-      await client.execute("echo '$graphKML' > /var/www/html/kml/slave_3.kml");
       await client.sftpUpload(path: infoPath, toPath: '/var/www/html');
-      await client.execute("echo '$infoKML' > /var/www/html/kml/slave_1.kml");
+      await client.execute("echo '$graphKML' > /var/www/html/kml/slave_$rightScreen.kml");
     }catch (e) {
       print(e);
       return Future.error(e);
@@ -154,8 +164,7 @@ class LGConnection {
     try {
       await client.connect();
       stopOrbit();
-      await client.execute('> /var/www/html/kml/slave_3.kml');
-      await client.execute('> /var/www/html/kml/slave_1.kml');
+      await client.execute('> /var/www/html/kml/slave_$rightScreen.kml');
       return await client.execute('> /var/www/html/kmls.txt');
     } catch (e) {
       print('Could not connect to host LG');
@@ -272,9 +281,8 @@ class LGConnection {
 
     try {
       await client.connect();
-      await client.execute("echo '' > /var/www/html/kml/slave_4.kml");
-      await client.execute("echo '' > /var/www/html/kml/slave_1.kml");
-      await client.execute("echo '' > /var/www/html/kml/slave_3.kml");
+      await client.execute("echo '' > /var/www/html/kml/slave_$leftScreen.kml");
+      await client.execute("echo '' > /var/www/html/kml/slave_$rightScreen.kml");
     } catch (e) {
       print('Could not connect to host LG');
       return Future.error(e);
@@ -293,8 +301,7 @@ class LGConnection {
 
     try {
       await client.connect();
-      await client.execute("echo '' > /var/www/html/kml/slave_1.kml");
-      await client.execute("echo '' > /var/www/html/kml/slave_3.kml");
+      await client.execute("echo '' > /var/www/html/kml/slave_$rightScreen.kml");
     } catch (e) {
       print('Could not connect to host LG');
       return Future.error(e);
