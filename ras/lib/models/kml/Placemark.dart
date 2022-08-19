@@ -135,7 +135,7 @@ class Placemark {
       <description><![CDATA[
         This is the landing point
           ]]></description>
-      <gx:balloonVisibility>1</gx:balloonVisibility>
+      <gx:balloonVisibility>0</gx:balloonVisibility>
       ${this.lookAt.generateTag()}
       <styleUrl>$id</styleUrl>
       ${this.point.generateTag()}
