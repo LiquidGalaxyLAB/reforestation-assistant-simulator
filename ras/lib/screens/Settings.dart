@@ -82,6 +82,14 @@ class _SettingsState extends State<Settings> {
     }
   }
 
+  setRefresh() async {
+    await LGConnection().setRefresh();
+  }
+
+  resetRefresh() async {
+    await LGConnection().resetRefresh();
+  }
+
   clearLogos() async {
     await LGConnection().cleanLogos();
   }
@@ -318,6 +326,36 @@ class _SettingsState extends State<Settings> {
                     ],
                   ),
                 ),
+                connectionStatus
+                  ? Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        ElevatedButton.icon(
+                          style: ElevatedButton.styleFrom(
+                            primary: Colors.blue,
+                            side: BorderSide(
+                                color: Colors.blue, width: 1),
+                          ),
+                          onPressed: () {
+                            setRefresh();
+                          },
+                          label: Text('Set Refresh'),
+                          icon: Icon(Icons.clear_rounded),
+                        ),
+                        ElevatedButton.icon(
+                          style: ElevatedButton.styleFrom(
+                            primary: Colors.red.shade400,
+                            side: BorderSide(color: Colors.red.shade400, width: 1),
+                          ),
+                          onPressed: () {
+                            resetRefresh();
+                          },
+                          label: Text('Reset Refresh'),
+                          icon: Icon(Icons.play_circle_fill_outlined),
+                        ),
+                      ],
+                    )
+                  : SizedBox(),
                 connectionStatus
                   ? Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
