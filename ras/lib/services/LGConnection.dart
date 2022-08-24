@@ -66,7 +66,7 @@ class LGConnection {
     String openLogoKML = '''
 <?xml version="1.0" encoding="UTF-8"?>
   <kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:kml="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom">
-    <Document>
+    <Document id ="logo">
       <name>Ras-logos</name>
         <Folder>
         <name>Logos</name>
@@ -92,7 +92,7 @@ class LGConnection {
     }
   }
 
-  Future infoGraphsUpload() async {
+  Future infoGraphsUpload(bool first, bool second, bool third) async {
     dynamic credencials = await _getCredentials();
 
     SSHClient client = SSHClient(
@@ -104,20 +104,55 @@ class LGConnection {
         String graphKML = '''
 <?xml version="1.0" encoding="UTF-8"?>
   <kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:kml="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom">
-    <Document>
+    <Document id="graphs">
       <name>Ras-graphs</name>
         <Folder>
         <name>Graphs</name>
-        <ScreenOverlay id="graphs">
+    ''';
+    if(first){
+      graphKML += '''
+        <ScreenOverlay id="graphs1">
         <name>Graphs</name>
         <Icon>
-        <href>http://lg1:81/graphs.png</href>
+        <href>http://lg1:81/graph1.png</href>
         </Icon>
         <overlayXY x="1" y="1" xunits="fraction" yunits="fraction"/>
         <screenXY x="0.98" y="0.98" xunits="fraction" yunits="fraction"/>
         <rotationXY x="0" y="0" xunits="fraction" yunits="fraction"/>
         <size x="0.2" y="1" xunits="fraction" yunits="fraction"/>
         </ScreenOverlay>
+    ''';
+    }
+    if(second){
+      graphKML += '''
+        <ScreenOverlay id="graphs2">
+        <name>Graphs</name>
+        <Icon>
+        <href>http://lg1:81/graph2.png</href>
+        </Icon>
+        <overlayXY x="1" y="1" xunits="fraction" yunits="fraction"/>
+        <screenXY x="0.98" y="0.98" xunits="fraction" yunits="fraction"/>
+        <rotationXY x="0" y="0" xunits="fraction" yunits="fraction"/>
+        <size x="0.2" y="1" xunits="fraction" yunits="fraction"/>
+        </ScreenOverlay>
+    ''';
+    }
+    if(third){
+      graphKML += '''
+        <ScreenOverlay id="graphs3">
+        <name>Graphs</name>
+        <Icon>
+        <href>http://lg1:81/graph3.png</href>
+        </Icon>
+        <overlayXY x="1" y="1" xunits="fraction" yunits="fraction"/>
+        <screenXY x="0.98" y="0.98" xunits="fraction" yunits="fraction"/>
+        <rotationXY x="0" y="0" xunits="fraction" yunits="fraction"/>
+        <size x="0.2" y="1" xunits="fraction" yunits="fraction"/>
+        </ScreenOverlay>
+    ''';
+    }
+    if(first || second || third){
+      graphKML += '''
         <ScreenOverlay id="info">
         <name>Info</name>
         <Icon>
@@ -128,18 +163,33 @@ class LGConnection {
         <rotationXY x="0" y="0" xunits="fraction" yunits="fraction"/>
         <size x="0.3" y="0.3" xunits="fraction" yunits="fraction"/>
         </ScreenOverlay>
+    ''';
+    }
+    graphKML += '''
         </Folder>
     </Document>
   </kml>
     ''';
     try {
       String localPath = await _localPath;
-      String graphPath = '$localPath/graphs.png';
+      String graph1Path = '$localPath/graph1.png';
+      String graph2Path = '$localPath/graph2.png';
+      String graph3Path = '$localPath/graph3.png';
       String infoPath = '$localPath/info.png';
       await client.connect();
       await client.connectSFTP();
-      await client.sftpUpload(path: graphPath, toPath: '/var/www/html');
-      await client.sftpUpload(path: infoPath, toPath: '/var/www/html');
+      if(first){
+        await client.sftpUpload(path: graph1Path, toPath: '/var/www/html');
+      }
+      if(second){
+        await client.sftpUpload(path: graph2Path, toPath: '/var/www/html');
+      }
+      if(third){
+        await client.sftpUpload(path: graph3Path, toPath: '/var/www/html');
+      }
+      if(first || second || third){
+        await client.sftpUpload(path: infoPath, toPath: '/var/www/html');
+      }
       await client.execute("echo '$graphKML' > /var/www/html/kml/slave_$rightScreen.kml");
     }catch (e) {
       print(e);
@@ -167,8 +217,7 @@ class LGConnection {
 
     try {
       await client.connect();
-      await client.execute('> /var/www/html/kml/slave_$leftScreen.kml');
-      await client.execute('> /var/www/html/kml/slave_$rightScreen.kml');
+      await infoGraphsUpload(false, false, false);
       return await client.execute('echo "exittour=true" > /tmp/query.txt && > /var/www/html/kmls.txt');
     } catch (e) {
       print('Could not connect to host LG');
@@ -351,17 +400,24 @@ class LGConnection {
       passwordOrKey: '${credencials['pass']}',
     );
 
+    String logoKML = '''
+<?xml version="1.0" encoding="UTF-8"?>
+  <kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:kml="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom">
+    <Document id ="logo">
+    </Document>
+  </kml>
+    '''; 
+
     try {
       await client.connect();
-      await client.execute("echo '' > /var/www/html/kml/slave_$leftScreen.kml");
-      await client.execute("echo '' > /var/www/html/kml/slave_$rightScreen.kml");
+      await client.execute("echo '$logoKML' > /var/www/html/kml/slave_$leftScreen.kml");
     } catch (e) {
       print('Could not connect to host LG');
       return Future.error(e);
     }
   }
 
-  Future<void> cleanGraphs() async {
+  Future<void> cleanGraphs(bool first, bool second, bool third) async {
     dynamic credencials = await _getCredentials();
 
     SSHClient client = SSHClient(
@@ -373,7 +429,7 @@ class LGConnection {
 
     try {
       await client.connect();
-      await client.execute("echo '' > /var/www/html/kml/slave_$rightScreen.kml");
+      await infoGraphsUpload(first, second, third);
     } catch (e) {
       print('Could not connect to host LG');
       return Future.error(e);

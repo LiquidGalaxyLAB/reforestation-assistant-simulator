@@ -31,7 +31,12 @@ class ProjectView extends StatefulWidget {
 class _ProjectViewState extends State<ProjectView> {
   bool isOpen = false;
   bool isOrbiting = false;
-  bool graph = true;
+  bool graph1 = false;
+  bool graph2 = false;
+  bool graph3 = false;
+  ScreenshotController screenshotControllerGraph1 = ScreenshotController();
+  ScreenshotController screenshotControllerGraph2 = ScreenshotController();
+  ScreenshotController screenshotControllerGraph3 = ScreenshotController();
   ScreenshotController screenshotControllerGraphs = ScreenshotController();
   ScreenshotController screenshotControllerInfo = ScreenshotController();
 
@@ -150,18 +155,22 @@ class _ProjectViewState extends State<ProjectView> {
     });
   }
 
-  infographs(){
-    LGConnection().infoGraphsUpload().then((value) {
+  infographs(bool first, bool second, bool third){
+    LGConnection().infoGraphsUpload(first, second, third).then((value) {
         setState(() {
-          graph = false;
+          graph1 = first;
+          graph2 = second;
+          graph3 = third;
         });
       });
   }
 
-  cleanGraph() {
-    LGConnection().cleanGraphs().then((value) {
+  cleanGraph(bool first, bool second, bool third) {
+    LGConnection().cleanGraphs(first, second, third).then((value) {
       setState(() {
-        graph = true;
+        graph1 = first;
+        graph2 = second;
+        graph3 = third;
       });
     }).catchError((onError) {
       print('oh no $onError');
@@ -245,7 +254,7 @@ class _ProjectViewState extends State<ProjectView> {
         });
   }
 
-  saveCapturedWidgetGraphs(Uint8List capturedImage) async{
+  saveCapturedWidgetGraphs(Uint8List capturedImage, int number) async{
 
     var status = await Permission.storage.status;
 
@@ -253,7 +262,7 @@ class _ProjectViewState extends State<ProjectView> {
       try {
         final downloadsDirectory = await getApplicationDocumentsDirectory();
         var savePath = downloadsDirectory.path;
-        final file = File("$savePath/graphs.png");
+        final file = File("$savePath/graph$number.png");
         await file.writeAsBytes(capturedImage);
       } catch (e) {
         print('error $e');
@@ -267,7 +276,7 @@ class _ProjectViewState extends State<ProjectView> {
         try {
         final downloadsDirectory = await getApplicationDocumentsDirectory();
         var savePath = downloadsDirectory.path;
-        final file = File("$savePath/graphs.png");
+        final file = File("$savePath/graph$number.png");
         await file.writeAsBytes(capturedImage);
         } catch (e) {
           print('error $e');
@@ -746,16 +755,19 @@ class _ProjectViewState extends State<ProjectView> {
               child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                        graph
+                        !graph1
                             ? ElevatedButton.icon(
                                 style: ElevatedButton.styleFrom(
                                   primary: Colors.green,
                                 ),
                                 onPressed: () {
-                                    screenshotControllerGraphs
+                                    setState(() {
+                                        graph1 = true;
+                                      });
+                                    screenshotControllerGraph1
                                         .capture(delay: Duration(milliseconds: 1))
                                         .then((capturedImage) async {
-                                      await saveCapturedWidgetGraphs(capturedImage!);
+                                      await saveCapturedWidgetGraphs(capturedImage!, 1);
                                     }).catchError((onError) {
                                       print(onError);
                                     }).whenComplete(() => 
@@ -765,20 +777,23 @@ class _ProjectViewState extends State<ProjectView> {
                                       await saveCapturedWidgetInfo(capturedImage!);
                                     }).catchError((onError) {
                                       print(onError);
-                                    }).whenComplete(() => infographs())
+                                    }).whenComplete(() => infographs(graph1, graph2, graph3))
                                     );
                                 },
-                                label: Text('Show Graphs on LG'),
+                                label: Text('Show Graph 1 on LG'),
                                 icon: Icon(Icons.play_circle_fill_outlined),
                               )
                             : SizedBox(),
-                        !graph
+                        graph1
                             ? ElevatedButton.icon(
                                 style: ElevatedButton.styleFrom(
                                   primary: Colors.red,
                                 ),
                                 onPressed: () {
-                                  cleanGraph();
+                                    setState(() {
+                                        graph1 = false;
+                                      });
+                                  cleanGraph(graph1, graph2, graph3);
                                 },
                                 label: Text('Remove Graphs'),
                                 icon: Icon(Icons.play_circle_fill_outlined),
@@ -788,7 +803,7 @@ class _ProjectViewState extends State<ProjectView> {
               ),
               ),
             Screenshot(
-              controller: screenshotControllerGraphs,
+              controller: screenshotControllerGraph1,
               child: Container(
                 padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
                 width: double.maxFinite,
@@ -814,6 +829,77 @@ class _ProjectViewState extends State<ProjectView> {
                             style: TextStyle(color: Colors.grey),
                           ),
                         ),
+                ],
+              ),
+            ),
+            ),
+            Container(
+                padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                width: double.maxFinite,
+                decoration: BoxDecoration(
+                  color: Colors.grey.shade100,
+                ),
+              child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                        !graph2
+                            ? ElevatedButton.icon(
+                                style: ElevatedButton.styleFrom(
+                                  primary: Colors.green,
+                                ),
+                                onPressed: () {
+                                    setState(() {
+                                        graph2 = true;
+                                      });
+                                    screenshotControllerGraph2
+                                        .capture(delay: Duration(milliseconds: 1))
+                                        .then((capturedImage) async {
+                                      await saveCapturedWidgetGraphs(capturedImage!, 2);
+                                    }).catchError((onError) {
+                                      print(onError);
+                                    }).whenComplete(() => 
+                                    screenshotControllerInfo
+                                        .capture(delay: Duration(milliseconds: 1))
+                                        .then((capturedImage) async {
+                                      await saveCapturedWidgetInfo(capturedImage!);
+                                    }).catchError((onError) {
+                                      print(onError);
+                                    }).whenComplete(() => infographs(graph1, graph2, graph3))
+                                    );
+                                },
+                                label: Text('Show Graph 1 on LG'),
+                                icon: Icon(Icons.play_circle_fill_outlined),
+                              )
+                            : SizedBox(),
+                        graph2
+                            ? ElevatedButton.icon(
+                                style: ElevatedButton.styleFrom(
+                                  primary: Colors.red,
+                                ),
+                                onPressed: () {
+                                      setState(() {
+                                        graph2 = false;
+                                      });
+                                  cleanGraph(graph1, graph2, graph3);
+                                },
+                                label: Text('Remove Graphs'),
+                                icon: Icon(Icons.play_circle_fill_outlined),
+                              )
+                            : SizedBox(),
+                 ],
+              ),
+              ),
+            Screenshot(
+              controller: screenshotControllerGraph2,
+              child: Container(
+                padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                width: double.maxFinite,
+                decoration: BoxDecoration(
+                  color: Colors.grey.shade100,
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
                     Padding(
                     padding: const EdgeInsets.symmetric(vertical: 28.0),
                     child: Text(
@@ -830,6 +916,77 @@ class _ProjectViewState extends State<ProjectView> {
                             style: TextStyle(color: Colors.grey),
                           ),
                         ),
+                ],
+              ),
+            ),
+            ),
+            Container(
+                padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                width: double.maxFinite,
+                decoration: BoxDecoration(
+                  color: Colors.grey.shade100,
+                ),
+              child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                        !graph3
+                            ? ElevatedButton.icon(
+                                style: ElevatedButton.styleFrom(
+                                  primary: Colors.green,
+                                ),
+                                onPressed: () {
+                                    setState(() {
+                                        graph3 = true;
+                                      });
+                                    screenshotControllerGraph3
+                                        .capture(delay: Duration(milliseconds: 1))
+                                        .then((capturedImage) async {
+                                      await saveCapturedWidgetGraphs(capturedImage!, 3);
+                                    }).catchError((onError) {
+                                      print(onError);
+                                    }).whenComplete(() => 
+                                    screenshotControllerInfo
+                                        .capture(delay: Duration(milliseconds: 1))
+                                        .then((capturedImage) async {
+                                      await saveCapturedWidgetInfo(capturedImage!);
+                                    }).catchError((onError) {
+                                      print(onError);
+                                    }).whenComplete(() => infographs(graph1, graph2, graph3))
+                                    );
+                                },
+                                label: Text('Show Graph 1 on LG'),
+                                icon: Icon(Icons.play_circle_fill_outlined),
+                              )
+                            : SizedBox(),
+                        graph3
+                            ? ElevatedButton.icon(
+                                style: ElevatedButton.styleFrom(
+                                  primary: Colors.red,
+                                ),
+                                onPressed: () {
+                                    setState(() {
+                                        graph3 = false;
+                                      });
+                                  cleanGraph(graph1, graph2, graph3);
+                                },
+                                label: Text('Remove Graphs'),
+                                icon: Icon(Icons.play_circle_fill_outlined),
+                              )
+                            : SizedBox(),
+                 ],
+              ),
+              ),
+            Screenshot(
+              controller: screenshotControllerGraph3,
+              child: Container(
+                padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                width: double.maxFinite,
+                decoration: BoxDecoration(
+                  color: Colors.grey.shade100,
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 28.0),
                     child: Text(
