@@ -340,7 +340,7 @@ class _SettingsState extends State<Settings> {
                             setRefresh();
                           },
                           label: Text('Set Refresh'),
-                          icon: Icon(Icons.clear_rounded),
+                          icon: Icon(Icons.play_circle_fill_outlined),
                         ),
                         ElevatedButton.icon(
                           style: ElevatedButton.styleFrom(
@@ -351,7 +351,7 @@ class _SettingsState extends State<Settings> {
                             resetRefresh();
                           },
                           label: Text('Reset Refresh'),
-                          icon: Icon(Icons.play_circle_fill_outlined),
+                          icon: Icon(Icons.clear_rounded),
                         ),
                       ],
                     )

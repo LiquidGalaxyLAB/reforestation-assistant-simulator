@@ -51,8 +51,6 @@ class _ProjectViewState extends State<ProjectView> {
             'You can find a KML containing the map data of the project in your Downloads folder');
       } catch (e) {
         print('error $e');
-        showAlertDialog('Oops!',
-            'You have to enable storage managing permissions to download the project KML');
       }
     } else {
       var isGranted = await Permission.storage.request().isGranted;
@@ -64,13 +62,12 @@ class _ProjectViewState extends State<ProjectView> {
               'You can find a KML containing the map data of the project in your Downloads folder');
         } catch (e) {
           print('error $e');
-          showAlertDialog('Oops!',
-              'You have to enable storage managing permissions to download the project KML');
         }
-      } else
+      } else {
         showAlertDialog('Oops!',
             'You have to enable storage managing permissions to download the project KML');
     }
+  }
   }
 
   downloadPdf(Project project) async {
@@ -79,9 +76,6 @@ class _ProjectViewState extends State<ProjectView> {
       PdfGenerator.generatePdf(project).then((value) {
         showAlertDialog('Success!',
             'You can find a PDF containing the summary of the project in your Downloads folder');
-      }).catchError((onError) {
-        showAlertDialog('Sorry',
-            'An error occurred while downloading you PDF summary. Please try again later');
       });
     } else {
       var isGranted = await Permission.storage.request().isGranted;
@@ -89,14 +83,12 @@ class _ProjectViewState extends State<ProjectView> {
         PdfGenerator.generatePdf(project).then((value) {
           showAlertDialog('Success!',
               'You can find a PDF containing the summary of the project in your Downloads folder');
-        }).catchError((onError) {
-          showAlertDialog('Sorry',
-              'An error occurred while downloading you PDF summary. Please try again later');
         });
-      } else
-        showAlertDialog('Ops!',
+      } else{
+        showAlertDialog('Oops!',
             'You have to enable storage managing permissions to download the project summary');
     }
+  }
   }
 
  saveGraphs(Uint8List capturedImage) async{
@@ -115,8 +107,9 @@ class _ProjectViewState extends State<ProjectView> {
             'You have to enable storage managing permissions');
       }
     } else {
-      var isGranted = await Permission.storage.request().isGranted;
-      if (isGranted) {
+      await Permission.storage.request();
+      var status = await Permission.storage.status;
+      if (status.isGranted) {
         try {
         final downloadsDirectory = await getTemporaryDirectory();
         var savePath = downloadsDirectory.path;
@@ -157,16 +150,12 @@ class _ProjectViewState extends State<ProjectView> {
     });
   }
 
-  infographs() async{
-    await LGConnection().infoGraphsUpload().then((value) {
-      setState(() {
-        graph = false;
+  infographs(){
+    LGConnection().infoGraphsUpload().then((value) {
+        setState(() {
+          graph = false;
+        });
       });
-    }).catchError((onError) {
-      print('oh no $onError');
-      showAlertDialog('Error uploading to LG!',
-          'An error occurred while trying to upload graphs to LG');
-    });
   }
 
   cleanGraph() {
@@ -268,11 +257,12 @@ class _ProjectViewState extends State<ProjectView> {
       } catch (e) {
         print('error $e');
         showAlertDialog('Oops!',
-            'You have to enable storage managing permissions');
+            'Error saving the graph for uploading to LG');
       }
     } else {
-      var isGranted = await Permission.storage.request().isGranted;
-      if (isGranted) {
+      await Permission.storage.request();
+      var status = await Permission.storage.status;
+      if (status.isGranted) {
         try {
         final downloadsDirectory = await getApplicationDocumentsDirectory();
         var savePath = downloadsDirectory.path;
@@ -281,7 +271,7 @@ class _ProjectViewState extends State<ProjectView> {
         } catch (e) {
           print('error $e');
           showAlertDialog('Oops!',
-              'You have to enable storage managing permissions');
+              'Error saving the graph for uploading to LG');
         }
       } else
         showAlertDialog('Oops!',
@@ -301,11 +291,12 @@ class _ProjectViewState extends State<ProjectView> {
       } catch (e) {
         print('error $e');
         showAlertDialog('Oops!',
-            'You have to enable storage managing permissions');
+            'Error saving the Info for uploading to LG');
       }
     } else {
-      var isGranted = await Permission.storage.request().isGranted;
-      if (isGranted) {
+      await Permission.storage.request();
+      var status = await Permission.storage.status;
+      if (status.isGranted) {
         try {
         final downloadsDirectory = await getApplicationDocumentsDirectory();
         var savePath = downloadsDirectory.path;
@@ -314,7 +305,7 @@ class _ProjectViewState extends State<ProjectView> {
         } catch (e) {
           print('error $e');
           showAlertDialog('Oops!',
-              'You have to enable storage managing permissions');
+              'Error saving the Info for uploading to LG');
         }
       } else
         showAlertDialog('Oops!',
@@ -597,13 +588,13 @@ class _ProjectViewState extends State<ProjectView> {
                           ),
                           onPressed: () {
                             screenshotControllerGraphs
-                              .capture(delay: Duration(milliseconds: 10))
+                              .capture(delay: Duration(milliseconds: 1))
                               .then((capturedImage) async {
                               saveGraphs(capturedImage!);
                                     }).catchError((onError) {
                                       print(onError);
                                     });
-                            downloadPdf(args.project);
+                                    downloadPdf(args.project);
                           },
                           label: Text('Download PDF'),
                           icon: Icon(Icons.download),
@@ -761,22 +752,22 @@ class _ProjectViewState extends State<ProjectView> {
                                 ),
                                 onPressed: () {
                                     screenshotControllerGraphs
-                                        .capture(delay: Duration(milliseconds: 10))
+                                        .capture(delay: Duration(milliseconds: 1))
                                         .then((capturedImage) async {
-                                      saveCapturedWidgetGraphs(capturedImage!);
+                                      await saveCapturedWidgetGraphs(capturedImage!);
                                     }).catchError((onError) {
                                       print(onError);
-                                    });
+                                    }).whenComplete(() => 
                                     screenshotControllerInfo
-                                        .capture(delay: Duration(milliseconds: 10))
+                                        .capture(delay: Duration(milliseconds: 1))
                                         .then((capturedImage) async {
-                                      saveCapturedWidgetInfo(capturedImage!);
+                                      await saveCapturedWidgetInfo(capturedImage!);
                                     }).catchError((onError) {
                                       print(onError);
-                                    });
-                                  infographs();
+                                    }).whenComplete(() => infographs())
+                                    );
                                 },
-                                label: Text('Add Graphs to LG'),
+                                label: Text('Show Graphs on LG'),
                                 icon: Icon(Icons.play_circle_fill_outlined),
                               )
                             : SizedBox(),

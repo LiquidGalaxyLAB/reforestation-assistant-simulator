@@ -132,10 +132,10 @@ class LGConnection {
     </Document>
   </kml>
     ''';
-    String localPath = await _localPath;
-    String graphPath = '$localPath/graphs.png';
-    String infoPath = '$localPath/info.png';
     try {
+      String localPath = await _localPath;
+      String graphPath = '$localPath/graphs.png';
+      String infoPath = '$localPath/info.png';
       await client.connect();
       await client.connectSFTP();
       await client.sftpUpload(path: graphPath, toPath: '/var/www/html');
