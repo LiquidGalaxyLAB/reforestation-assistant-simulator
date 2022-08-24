@@ -337,7 +337,41 @@ class _SettingsState extends State<Settings> {
                                 color: Colors.blue, width: 1),
                           ),
                           onPressed: () {
-                            setRefresh();
+                            showDialog(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return AlertDialog(
+                                  title: Text('Are you sure?'),
+                                  content: Text('The slaves solo KMLs will start to refresh each 2 seconds and all screens will be rebooted.'),
+                                  actions: <Widget>[
+                                    Padding(
+                                      padding: EdgeInsets.only(right: 20),
+                                      child: TextButton(
+                                        style: TextButton.styleFrom(
+                                          primary: Colors.black,
+                                        ),
+                                        child: Text("NO"),
+                                        onPressed: () {
+                                          Navigator.of(context).pop();
+                                        },
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsets.only(right: 20),
+                                      child: TextButton(
+                                        style: TextButton.styleFrom(
+                                          primary: Colors.black,
+                                        ),
+                                        child: Text("YES"),
+                                        onPressed: () {
+                                          Navigator.of(context).pop();
+                                          setRefresh();
+                                        },
+                                      ),
+                                    ),
+                                  ],
+                                );
+                              });
                           },
                           label: Text('Set Refresh'),
                           icon: Icon(Icons.play_circle_fill_outlined),
@@ -348,7 +382,41 @@ class _SettingsState extends State<Settings> {
                             side: BorderSide(color: Colors.red.shade400, width: 1),
                           ),
                           onPressed: () {
-                            resetRefresh();
+                            showDialog(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return AlertDialog(
+                                  title: Text('Are you sure?'),
+                                  content: Text('The slaves will stop refreshing and all screens will be rebooted.'),
+                                  actions: <Widget>[
+                                    Padding(
+                                      padding: EdgeInsets.only(right: 20),
+                                      child: TextButton(
+                                        style: TextButton.styleFrom(
+                                          primary: Colors.black,
+                                        ),
+                                        child: Text("NO"),
+                                        onPressed: () {
+                                          Navigator.of(context).pop();
+                                        },
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsets.only(right: 20),
+                                      child: TextButton(
+                                        style: TextButton.styleFrom(
+                                          primary: Colors.black,
+                                        ),
+                                        child: Text("YES"),
+                                        onPressed: () {
+                                          Navigator.of(context).pop();
+                                          resetRefresh();
+                                        },
+                                      ),
+                                    ),
+                                  ],
+                                );
+                              });
                           },
                           label: Text('Reset Refresh'),
                           icon: Icon(Icons.clear_rounded),
@@ -367,7 +435,41 @@ class _SettingsState extends State<Settings> {
                                 color: Colors.red.shade400, width: 1),
                           ),
                           onPressed: () {
-                            clearLogos();
+                            showDialog(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return AlertDialog(
+                                  title: Text('Are you sure?'),
+                                  content: Text('You want to clean the logos'),
+                                  actions: <Widget>[
+                                    Padding(
+                                      padding: EdgeInsets.only(right: 20),
+                                      child: TextButton(
+                                        style: TextButton.styleFrom(
+                                          primary: Colors.black,
+                                        ),
+                                        child: Text("NO"),
+                                        onPressed: () {
+                                          Navigator.of(context).pop();
+                                        },
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsets.only(right: 20),
+                                      child: TextButton(
+                                        style: TextButton.styleFrom(
+                                          primary: Colors.black,
+                                        ),
+                                        child: Text("YES"),
+                                        onPressed: () {
+                                          Navigator.of(context).pop();
+                                          clearLogos();
+                                        },
+                                      ),
+                                    ),
+                                  ],
+                                );
+                              });
                           },
                           label: Text('Clean Logos'),
                           icon: Icon(Icons.clear_rounded),
@@ -378,7 +480,41 @@ class _SettingsState extends State<Settings> {
                             side: BorderSide(color: Colors.blue, width: 1),
                           ),
                           onPressed: () {
-                            relaunchLG();
+                            showDialog(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return AlertDialog(
+                                  title: Text('Are you sure?'),
+                                  content: Text('All screens will be relaunched.'),
+                                  actions: <Widget>[
+                                    Padding(
+                                      padding: EdgeInsets.only(right: 20),
+                                      child: TextButton(
+                                        style: TextButton.styleFrom(
+                                          primary: Colors.black,
+                                        ),
+                                        child: Text("NO"),
+                                        onPressed: () {
+                                          Navigator.of(context).pop();
+                                        },
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsets.only(right: 20),
+                                      child: TextButton(
+                                        style: TextButton.styleFrom(
+                                          primary: Colors.black,
+                                        ),
+                                        child: Text("YES"),
+                                        onPressed: () {
+                                          Navigator.of(context).pop();
+                                          relaunchLG();
+                                        },
+                                      ),
+                                    ),
+                                  ],
+                                );
+                              });
                           },
                           label: Text('Relaunch'),
                           icon: Icon(Icons.play_circle_fill_outlined),
@@ -396,7 +532,41 @@ class _SettingsState extends State<Settings> {
                             side: BorderSide(color: Colors.blue, width: 1),
                           ),
                           onPressed: () {
-                            rebootLG();
+                            showDialog(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return AlertDialog(
+                                  title: Text('Are you sure?'),
+                                  content: Text('The system will be fully rebooted.'),
+                                  actions: <Widget>[
+                                    Padding(
+                                      padding: EdgeInsets.only(right: 20),
+                                      child: TextButton(
+                                        style: TextButton.styleFrom(
+                                          primary: Colors.black,
+                                        ),
+                                        child: Text("NO"),
+                                        onPressed: () {
+                                          Navigator.of(context).pop();
+                                        },
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsets.only(right: 20),
+                                      child: TextButton(
+                                        style: TextButton.styleFrom(
+                                          primary: Colors.black,
+                                        ),
+                                        child: Text("YES"),
+                                        onPressed: () {
+                                          Navigator.of(context).pop();
+                                          rebootLG();
+                                        },
+                                      ),
+                                    ),
+                                  ],
+                                );
+                              });
                           },
                           label: Text('Reboot'),
                           icon: Icon(Icons.play_circle_fill_outlined),
@@ -407,7 +577,41 @@ class _SettingsState extends State<Settings> {
                             side: BorderSide(color: Colors.blue, width: 1),
                           ),
                           onPressed: () {
-                            shutdownLG();
+                            showDialog(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return AlertDialog(
+                                  title: Text('Are you sure?'),
+                                  content: Text('The system will shutdown.'),
+                                  actions: <Widget>[
+                                    Padding(
+                                      padding: EdgeInsets.only(right: 20),
+                                      child: TextButton(
+                                        style: TextButton.styleFrom(
+                                          primary: Colors.black,
+                                        ),
+                                        child: Text("NO"),
+                                        onPressed: () {
+                                          Navigator.of(context).pop();
+                                        },
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsets.only(right: 20),
+                                      child: TextButton(
+                                        style: TextButton.styleFrom(
+                                          primary: Colors.black,
+                                        ),
+                                        child: Text("YES"),
+                                        onPressed: () {
+                                          Navigator.of(context).pop();
+                                          shutdownLG();
+                                        },
+                                      ),
+                                    ),
+                                  ],
+                                );
+                              });
                           },
                           label: Text('Power Off'),
                           icon: Icon(Icons.play_circle_fill_outlined),
