@@ -211,6 +211,7 @@ class _ProjectViewState extends State<ProjectView> {
     LGConnection().cleanVisualization().then((value) {
       setState(() {
         isOpen = false;
+        isOrbiting = false;
       });
     }).catchError((onError) {
       print('oh no $onError');
