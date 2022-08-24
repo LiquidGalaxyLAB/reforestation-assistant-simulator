@@ -112,7 +112,7 @@ class PdfGenerator {
     final downloadsDirectory = await DownloadsPathProvider.downloadsDirectory;
     final tempDirectory = await getTemporaryDirectory();
     var savePath = tempDirectory.path;
-    final image = pw.MemoryImage(File("$savePath/graphs.png").readAsBytesSync(),);
+    final image = pw.MemoryImage(await File("$savePath/graphs.png").readAsBytes());
 
     pdf.addPage(
       pw.MultiPage(

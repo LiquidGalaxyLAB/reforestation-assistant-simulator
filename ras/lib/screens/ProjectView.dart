@@ -603,8 +603,7 @@ class _ProjectViewState extends State<ProjectView> {
                               saveGraphs(capturedImage!);
                                     }).catchError((onError) {
                                       print(onError);
-                                    });
-                                    downloadPdf(args.project);
+                                    }).whenComplete(() => downloadPdf(args.project));
                           },
                           label: Text('Download PDF'),
                           icon: Icon(Icons.download),
@@ -795,13 +794,24 @@ class _ProjectViewState extends State<ProjectView> {
                                       });
                                   cleanGraph(graph1, graph2, graph3);
                                 },
-                                label: Text('Remove Graphs'),
+                                label: Text('Remove Graph 1'),
                                 icon: Icon(Icons.play_circle_fill_outlined),
                               )
                             : SizedBox(),
                  ],
               ),
               ),
+            Screenshot(
+              controller: screenshotControllerGraphs,
+              child: Container(
+                padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                width: double.maxFinite,
+                decoration: BoxDecoration(
+                  color: Colors.grey.shade100,
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
             Screenshot(
               controller: screenshotControllerGraph1,
               child: Container(
@@ -867,7 +877,7 @@ class _ProjectViewState extends State<ProjectView> {
                                     }).whenComplete(() => infographs(graph1, graph2, graph3))
                                     );
                                 },
-                                label: Text('Show Graph 1 on LG'),
+                                label: Text('Show Graph 2 on LG'),
                                 icon: Icon(Icons.play_circle_fill_outlined),
                               )
                             : SizedBox(),
@@ -882,7 +892,7 @@ class _ProjectViewState extends State<ProjectView> {
                                       });
                                   cleanGraph(graph1, graph2, graph3);
                                 },
-                                label: Text('Remove Graphs'),
+                                label: Text('Remove Graph 2'),
                                 icon: Icon(Icons.play_circle_fill_outlined),
                               )
                             : SizedBox(),
@@ -954,7 +964,7 @@ class _ProjectViewState extends State<ProjectView> {
                                     }).whenComplete(() => infographs(graph1, graph2, graph3))
                                     );
                                 },
-                                label: Text('Show Graph 1 on LG'),
+                                label: Text('Show Graph 3 on LG'),
                                 icon: Icon(Icons.play_circle_fill_outlined),
                               )
                             : SizedBox(),
@@ -969,7 +979,7 @@ class _ProjectViewState extends State<ProjectView> {
                                       });
                                   cleanGraph(graph1, graph2, graph3);
                                 },
-                                label: Text('Remove Graphs'),
+                                label: Text('Remove Graph 3'),
                                 icon: Icon(Icons.play_circle_fill_outlined),
                               )
                             : SizedBox(),
@@ -1007,6 +1017,10 @@ class _ProjectViewState extends State<ProjectView> {
                           ),
                         ),
                 ],
+              ),
+            ),
+            ),
+                            ],
               ),
             ),
             ),
