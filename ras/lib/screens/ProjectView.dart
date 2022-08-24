@@ -34,7 +34,6 @@ class _ProjectViewState extends State<ProjectView> {
   bool graph = true;
   ScreenshotController screenshotControllerGraphs = ScreenshotController();
   ScreenshotController screenshotControllerInfo = ScreenshotController();
-  
 
   downloadKml(Project project) async {
     // create kml based on geodata attribute
@@ -52,7 +51,7 @@ class _ProjectViewState extends State<ProjectView> {
             'You can find a KML containing the map data of the project in your Downloads folder');
       } catch (e) {
         print('error $e');
-        showAlertDialog('Ops!',
+        showAlertDialog('Oops!',
             'You have to enable storage managing permissions to download the project KML');
       }
     } else {
@@ -65,11 +64,11 @@ class _ProjectViewState extends State<ProjectView> {
               'You can find a KML containing the map data of the project in your Downloads folder');
         } catch (e) {
           print('error $e');
-          showAlertDialog('Ops!',
+          showAlertDialog('Oops!',
               'You have to enable storage managing permissions to download the project KML');
         }
       } else
-        showAlertDialog('Ops!',
+        showAlertDialog('Oops!',
             'You have to enable storage managing permissions to download the project KML');
     }
   }
@@ -100,7 +99,7 @@ class _ProjectViewState extends State<ProjectView> {
     }
   }
 
- SaveGraphs(Uint8List capturedImage) async{
+ saveGraphs(Uint8List capturedImage) async{
 
     var status = await Permission.storage.status;
 
@@ -158,15 +157,15 @@ class _ProjectViewState extends State<ProjectView> {
     });
   }
 
-  infographs() {
-    LGConnection().infoGraphsUpload().then((value) {
+  infographs() async{
+    await LGConnection().infoGraphsUpload().then((value) {
       setState(() {
         graph = false;
       });
     }).catchError((onError) {
       print('oh no $onError');
-      showAlertDialog('Error launching!',
-          'An error occurred while trying to connect to LG');
+      showAlertDialog('Error uploading to LG!',
+          'An error occurred while trying to upload graphs to LG');
     });
   }
 
@@ -256,7 +255,7 @@ class _ProjectViewState extends State<ProjectView> {
         });
   }
 
-  SaveCapturedWidgetGraphs(Uint8List capturedImage) async{
+  saveCapturedWidgetGraphs(Uint8List capturedImage) async{
 
     var status = await Permission.storage.status;
 
@@ -290,8 +289,7 @@ class _ProjectViewState extends State<ProjectView> {
     }
   }
 
-  SaveCapturedWidgetInfo(Uint8List capturedImage) async{
-
+  saveCapturedWidgetInfo(Uint8List capturedImage) async{
     var status = await Permission.storage.status;
 
     if (status.isGranted) {
@@ -568,20 +566,6 @@ class _ProjectViewState extends State<ProjectView> {
                                   primary: Colors.green,
                                 ),
                                 onPressed: () {
-                                  screenshotControllerGraphs
-                                        .capture(delay: Duration(milliseconds: 10))
-                                        .then((capturedImage) async {
-                                      SaveCapturedWidgetGraphs(capturedImage!);
-                                    }).catchError((onError) {
-                                      print(onError);
-                                    });
-                                    screenshotControllerInfo
-                                        .capture(delay: Duration(milliseconds: 10))
-                                        .then((capturedImage) async {
-                                      SaveCapturedWidgetInfo(capturedImage!);
-                                    }).catchError((onError) {
-                                      print(onError);
-                                    });
                                   launchToLG(args);
                                 },
                                 label: Text('Launch to LG'),
@@ -615,7 +599,7 @@ class _ProjectViewState extends State<ProjectView> {
                             screenshotControllerGraphs
                               .capture(delay: Duration(milliseconds: 10))
                               .then((capturedImage) async {
-                              SaveGraphs(capturedImage!);
+                              saveGraphs(capturedImage!);
                                     }).catchError((onError) {
                                       print(onError);
                                     });
@@ -776,6 +760,20 @@ class _ProjectViewState extends State<ProjectView> {
                                   primary: Colors.green,
                                 ),
                                 onPressed: () {
+                                    screenshotControllerGraphs
+                                        .capture(delay: Duration(milliseconds: 10))
+                                        .then((capturedImage) async {
+                                      saveCapturedWidgetGraphs(capturedImage!);
+                                    }).catchError((onError) {
+                                      print(onError);
+                                    });
+                                    screenshotControllerInfo
+                                        .capture(delay: Duration(milliseconds: 10))
+                                        .then((capturedImage) async {
+                                      saveCapturedWidgetInfo(capturedImage!);
+                                    }).catchError((onError) {
+                                      print(onError);
+                                    });
                                   infographs();
                                 },
                                 label: Text('Add Graphs to LG'),
