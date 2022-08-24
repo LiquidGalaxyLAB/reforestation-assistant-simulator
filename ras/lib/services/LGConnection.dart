@@ -167,9 +167,9 @@ class LGConnection {
 
     try {
       await client.connect();
-      stopOrbit();
+      await client.execute('> /var/www/html/kml/slave_$leftScreen.kml');
       await client.execute('> /var/www/html/kml/slave_$rightScreen.kml');
-      return await client.execute('> /var/www/html/kmls.txt');
+      return await client.execute('echo "exittour=true" > /tmp/query.txt && > /var/www/html/kmls.txt');
     } catch (e) {
       print('Could not connect to host LG');
       return Future.error(e);
@@ -273,6 +273,74 @@ class LGConnection {
     }
   }
 
+  Future<void> setRefresh() async {
+    dynamic credencials = await _getCredentials();
+
+    SSHClient client = SSHClient(
+      host: '${credencials['ip']}',
+      port: 22,
+      username: "lg",
+      passwordOrKey: '${credencials['pass']}',
+    );
+
+    const search = '<href>##LG_PHPIFACE##kml\\/slave_{{slave}}.kml<\\/href>';
+    const replace =
+        '<href>##LG_PHPIFACE##kml\\/slave_{{slave}}.kml<\\/href><refreshMode>onInterval<\\/refreshMode><refreshInterval>2<\\/refreshInterval>';
+    final command =
+        'echo ${credencials['pass']} | sudo -S sed -i "s/$search/$replace/" ~/earth/kml/slave/myplaces.kml';
+
+    final clear =
+        'echo ${credencials['pass']} | sudo -S sed -i "s/$replace/$search/" ~/earth/kml/slave/myplaces.kml';
+
+    for (var i = 2; i <= screenAmount; i++) {
+      final clearCmd = clear.replaceAll('{{slave}}', i.toString());
+      final cmd = command.replaceAll('{{slave}}', i.toString());
+      String query = 'sshpass -p ${credencials['pass']} ssh -t lg$i \'{{cmd}}\'';
+
+      try {
+        await client.execute(query.replaceAll('{{cmd}}', clearCmd));
+        await client.execute(query.replaceAll('{{cmd}}', cmd));
+      } catch (e) {
+        // ignore: avoid_print
+        print(e);
+      }
+    }
+
+    await rebootLg();
+  }
+
+  Future<void> resetRefresh() async {
+    dynamic credencials = await _getCredentials();
+
+    SSHClient client = SSHClient(
+      host: '${credencials['ip']}',
+      port: 22,
+      username: "lg",
+      passwordOrKey: '${credencials['pass']}',
+    );
+
+    const search =
+        '<href>##LG_PHPIFACE##kml\\/slave_{{slave}}.kml<\\/href><refreshMode>onInterval<\\/refreshMode><refreshInterval>2<\\/refreshInterval>';
+    const replace = '<href>##LG_PHPIFACE##kml\\/slave_{{slave}}.kml<\\/href>';
+
+    final clear =
+        'echo ${credencials['pass']} | sudo -S sed -i "s/$search/$replace/" ~/earth/kml/slave/myplaces.kml';
+
+    for (var i = 2; i <= screenAmount; i++) {
+      final cmd = clear.replaceAll('{{slave}}', i.toString());
+      String query = 'sshpass -p ${credencials['pass']} ssh -t lg$i \'$cmd\'';
+
+      try {
+        await client.execute(query);
+      } catch (e) {
+        // ignore: avoid_print
+        print(e);
+      }
+    }
+
+    await rebootLg();
+  }
+
   Future<void> cleanLogos() async {
     dynamic credencials = await _getCredentials();
 
@@ -350,19 +418,20 @@ class LGConnection {
     try {
       await client.connect();
       final relaunchCommand = """RELAUNCH_CMD="\\
-if [ -f /etc/init/lxdm.conf ]; then
-  export SERVICE=lxdm
-elif [ -f /etc/init/lightdm.conf ]; then
-  export SERVICE=lightdm
-else
-  exit 1
-fi
-if  [[ \\\$(service \\\$SERVICE status) =~ 'stop' ]]; then
-  service \\\${SERVICE} start
-else
-  echo lq | sudo -S service \\\${SERVICE} restart
-fi
-" && sshpass -p ${credencials['pass']} ssh -x -t lg@lg$i "\$RELAUNCH_CMD\"""";
+      if [ -f /etc/init/lxdm.conf ]; then
+        export SERVICE=lxdm
+      elif [ -f /etc/init/lightdm.conf ]; then
+        export SERVICE=lightdm
+      else
+        exit 1
+      fi
+      if  [[ \\\$(service \\\$SERVICE status) =~ 'stop' ]]; then
+        echo ${credencials['pass']} | sudo -S service \\\${SERVICE} start
+      else
+        echo ${credencials['pass']} | sudo -S service \\\${SERVICE} restart
+      fi
+      " && sshpass -p ${credencials['pass']} ssh -x -t lg@lg$i "\$RELAUNCH_CMD\"""";
+        await client.execute('"/home/lg/bin/lg-relaunch" > /home/lg/log.txt');
         await client.execute(relaunchCommand);
     } catch (e) {
       print('Could not connect to host LG');
