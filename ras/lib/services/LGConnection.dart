@@ -119,7 +119,7 @@ class LGConnection {
         <overlayXY x="1" y="1" xunits="fraction" yunits="fraction"/>
         <screenXY x="0.98" y="0.98" xunits="fraction" yunits="fraction"/>
         <rotationXY x="0" y="0" xunits="fraction" yunits="fraction"/>
-        <size x="0.22" y="0.55" xunits="fraction" yunits="fraction"/>
+        <size x="0.32" y="0.55" xunits="fraction" yunits="fraction"/>
         </ScreenOverlay>
     ''';
     }
@@ -133,7 +133,7 @@ class LGConnection {
         <overlayXY x="1" y="1" xunits="fraction" yunits="fraction"/>
         <screenXY x="0.98" y="0.38" xunits="fraction" yunits="fraction"/>
         <rotationXY x="0" y="0" xunits="fraction" yunits="fraction"/>
-        <size x="0.22" y="0.3" xunits="fraction" yunits="fraction"/>
+        <size x="0.32" y="0.3" xunits="fraction" yunits="fraction"/>
         </ScreenOverlay>
     ''';
     }
@@ -147,7 +147,7 @@ class LGConnection {
         <overlayXY x="1" y="1" xunits="fraction" yunits="fraction"/>
         <screenXY x="0.75" y="0.6" xunits="fraction" yunits="fraction"/>
         <rotationXY x="0" y="0" xunits="fraction" yunits="fraction"/>
-        <size x="0.3" y="0.4" xunits="fraction" yunits="fraction"/>
+        <size x="0.35" y="0.4" xunits="fraction" yunits="fraction"/>
         </ScreenOverlay>
     ''';
     }
@@ -161,7 +161,7 @@ class LGConnection {
         <overlayXY x="1" y="1" xunits="fraction" yunits="fraction"/>
         <screenXY x="0.75" y="0.98" xunits="fraction" yunits="fraction"/>
         <rotationXY x="0" y="0" xunits="fraction" yunits="fraction"/>
-        <size x="0.3" y="0.3" xunits="fraction" yunits="fraction"/>
+        <size x="0.35" y="0.3" xunits="fraction" yunits="fraction"/>
         </ScreenOverlay>
     ''';
     }
