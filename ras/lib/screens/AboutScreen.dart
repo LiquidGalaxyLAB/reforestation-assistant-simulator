@@ -158,7 +158,20 @@ class _AboutScreenState extends State<AboutScreen> {
                               fit: BoxFit.contain,
                             ),
                           ),
-                          width: screenSize.width / 6,
+                          width: screenSize.width / 5,
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.symmetric(
+                            horizontal: screenSize.width * 0.05, vertical: 30),
+                        child: Container(
+                          child: Center(
+                            child: Image.asset(
+                              images[2],
+                              fit: BoxFit.contain,
+                            ),
+                          ),
+                          width: screenSize.width / 5,
                         ),
                       ),
                     ],
@@ -167,22 +180,13 @@ class _AboutScreenState extends State<AboutScreen> {
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       Container(
-                          child: Center(
-                            child: Image.asset(
-                              images[2],
-                              fit: BoxFit.contain,
-                            ),
-                          ),
-                          width: screenSize.width / 6,
-                        ),
-                      Container(
                         child: Center(
                           child: Image.asset(
                             images[4],
                             fit: BoxFit.contain,
                           ),
                         ),
-                        width: screenSize.width / 6,
+                        width: screenSize.width / 5,
                       ),
                       Container(
                         child: Center(
@@ -191,7 +195,7 @@ class _AboutScreenState extends State<AboutScreen> {
                             fit: BoxFit.contain,
                           ),
                         ),
-                        width: screenSize.width / 6,
+                        width: screenSize.width / 5,
                       ),
                       Container(
                         child: Center(
@@ -200,7 +204,7 @@ class _AboutScreenState extends State<AboutScreen> {
                             fit: BoxFit.contain,
                           ),
                         ),
-                        width: screenSize.width / 6,
+                        width: screenSize.width / 5,
                       ),
                       Container(
                         child: Center(
@@ -209,7 +213,7 @@ class _AboutScreenState extends State<AboutScreen> {
                             fit: BoxFit.contain,
                           ),
                         ),
-                        width: screenSize.width / 6,
+                        width: screenSize.width / 5,
                       ),
                     ],
                   ),
