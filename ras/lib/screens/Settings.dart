@@ -252,6 +252,12 @@ class _SettingsState extends State<Settings> {
                             style: TextStyle(
                                 fontSize: 20, fontWeight: FontWeight.bold),
                           ),
+                          Text(
+                            'This permission is required for accessing the files stored in the Google Drive',
+                            textAlign: TextAlign.start,
+                            style: TextStyle(
+                                fontSize: 10, fontWeight: FontWeight.normal, color: Colors.grey),
+                          ),
                           Padding(
                             padding: const EdgeInsets.symmetric(vertical: 8.0),
                             child: ElevatedButton(
