@@ -20,6 +20,7 @@ import 'package:screenshot/screenshot.dart';
 import 'dart:typed_data';
 import 'dart:io';
 import 'package:path_provider/path_provider.dart';
+import 'package:ras/route-args/SeedFormArgs.dart';
 
 class ProjectView extends StatefulWidget {
   const ProjectView({Key? key}) : super(key: key);
@@ -682,8 +683,33 @@ class _ProjectViewState extends State<ProjectView> {
                         padding: const EdgeInsets.only(bottom: 10.0),
                         child: Column(
                           children: [
-                            Item('Common name',
-                                args.project.seeds[i].commonName),
+                                TextButton(
+                                  style: TextButton.styleFrom(
+                                  padding: EdgeInsets.zero),
+                                  child: Row(
+                                        children: [
+                                          Text(
+                                            'Common Name:  ',
+                                            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Colors.black),
+                                            textAlign: TextAlign.start,
+                                          ),
+                                          Text(
+                                            args.project.seeds[i].commonName,
+                                            style: TextStyle(fontSize: 16, color: Colors.black),
+                                            textAlign: TextAlign.start,
+                                          ),
+                                        ],
+                                      ),             
+                                  onPressed: () async {
+                                                    await Navigator.pushNamed(
+                                                  context,
+                                                  '/seed-form',
+                                                  arguments: SeedFormArgs(false,
+                                                      seed: args.project.seeds[i]),
+                                                );
+                                              },
+                                ),
+
                             Item(
                                 'Density',
                                 args.project.seeds[i].density.toString() +
@@ -779,7 +805,7 @@ class _ProjectViewState extends State<ProjectView> {
                                     }).whenComplete(() => infographs(graph1, graph2, graph3))
                                     );
                                 },
-                                label: Text('Show Graph 1 on LG'),
+                                label: Text('Show Graph on LG'),
                                 icon: Icon(Icons.play_circle_fill_outlined),
                               )
                             : SizedBox(),
@@ -794,7 +820,7 @@ class _ProjectViewState extends State<ProjectView> {
                                       });
                                   cleanGraph(graph1, graph2, graph3);
                                 },
-                                label: Text('Remove Graph 1'),
+                                label: Text('Remove Graph'),
                                 icon: Icon(Icons.play_circle_fill_outlined),
                               )
                             : SizedBox(),
@@ -877,7 +903,7 @@ class _ProjectViewState extends State<ProjectView> {
                                     }).whenComplete(() => infographs(graph1, graph2, graph3))
                                     );
                                 },
-                                label: Text('Show Graph 2 on LG'),
+                                label: Text('Show Graph on LG'),
                                 icon: Icon(Icons.play_circle_fill_outlined),
                               )
                             : SizedBox(),
@@ -892,7 +918,7 @@ class _ProjectViewState extends State<ProjectView> {
                                       });
                                   cleanGraph(graph1, graph2, graph3);
                                 },
-                                label: Text('Remove Graph 2'),
+                                label: Text('Remove Graph'),
                                 icon: Icon(Icons.play_circle_fill_outlined),
                               )
                             : SizedBox(),
@@ -964,7 +990,7 @@ class _ProjectViewState extends State<ProjectView> {
                                     }).whenComplete(() => infographs(graph1, graph2, graph3))
                                     );
                                 },
-                                label: Text('Show Graph 3 on LG'),
+                                label: Text('Show Graph on LG'),
                                 icon: Icon(Icons.play_circle_fill_outlined),
                               )
                             : SizedBox(),
@@ -979,7 +1005,7 @@ class _ProjectViewState extends State<ProjectView> {
                                       });
                                   cleanGraph(graph1, graph2, graph3);
                                 },
-                                label: Text('Remove Graph 3'),
+                                label: Text('Remove Graph'),
                                 icon: Icon(Icons.play_circle_fill_outlined),
                               )
                             : SizedBox(),
