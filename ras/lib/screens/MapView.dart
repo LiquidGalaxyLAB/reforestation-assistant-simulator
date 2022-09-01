@@ -66,7 +66,19 @@ class _MapViewState extends State<MapView> {
     return new Scaffold(
         body: Stack(
       children: [
+        args.sata ?
         GoogleMap(
+          mapType: MapType.satellite,
+          initialCameraPosition: initPosition,
+          myLocationEnabled: true,
+          myLocationButtonEnabled: false,
+          onMapCreated: (GoogleMapController controller) {
+            _controller.complete(controller);
+          },
+          markers: markers,
+          polygons: polygons,
+        )
+        :GoogleMap(
           mapType: MapType.terrain,
           initialCameraPosition: initPosition,
           myLocationEnabled: true,
