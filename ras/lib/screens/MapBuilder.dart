@@ -34,6 +34,7 @@ class _MapBuilderState extends State<MapBuilder> {
   // HELPERS
   bool loaded = false;
   bool editing = false;
+  bool perimeter = false;
   String shapeType = 'none';
   String currentMarkerId = '';
   var uuid = Uuid();
@@ -135,6 +136,7 @@ class _MapBuilderState extends State<MapBuilder> {
                                       removeElement();
                                       setState(() {
                                         editing = false;
+                                        perimeter = false;
                                         shapeType = 'none';
                                       });
                                     });
@@ -152,6 +154,7 @@ class _MapBuilderState extends State<MapBuilder> {
                                     // finished editing shape
                                     setState(() {
                                       shapeType = 'none';
+                                      perimeter = false;
                                       editing = false;
                                     });
                                   }),
@@ -161,6 +164,9 @@ class _MapBuilderState extends State<MapBuilder> {
                         shapeType == 'seedMarker'
                             ? GestureDetector(
                                 onTap: () {
+                                  if(args.seeds.length > 0){
+                                    currentSeedMarker = args.seeds[0];
+                                  }
                                   selectSeed();
                                 },
                                 child: Container(
@@ -223,6 +229,9 @@ class _MapBuilderState extends State<MapBuilder> {
                               onPressed: () {
                                 setState(() {
                                   // Shape now is Placemark
+                                  if(args.seeds.length > 0){
+                                    currentSeedMarker = args.seeds[0];
+                                  }
                                   shapeType = 'seedMarker';
                                   editing = true;
                                 });
@@ -240,6 +249,9 @@ class _MapBuilderState extends State<MapBuilder> {
                               ),
                               onPressed: () {
                                 setState(() {
+                                  if(args.seeds.length > 0){
+                                    currentSeedMarker = args.seeds[0];
+                                  }
                                   shapeType = 'seedMarker';
                                   placeSeedInMyPosition();
                                 });
@@ -258,6 +270,7 @@ class _MapBuilderState extends State<MapBuilder> {
                               onPressed: () {
                                 setState(() {
                                   shapeType = "polygon";
+                                  perimeter = true;
                                   editing = true;
                                 });
                               }),
@@ -339,6 +352,9 @@ class _MapBuilderState extends State<MapBuilder> {
     // Listening to volume change events.
     VolumeRegulator.volumeStream.listen((value) {
       setState(() {
+          if(args.seeds.length > 0){
+            currentSeedMarker = args.seeds[0];
+          }
           shapeType = 'seedMarker';
           placeSeedInMyPosition();
       });
@@ -461,6 +477,7 @@ class _MapBuilderState extends State<MapBuilder> {
         },
         onDragEnd: (newValue) {});
     setState(() {
+      perimeter = true;
       polygonVertex.add(vertex.position);
       markers.add(vertex);
       if (polygonVertex.length >= 3) placePolygon();
