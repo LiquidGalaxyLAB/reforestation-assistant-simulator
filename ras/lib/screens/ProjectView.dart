@@ -465,6 +465,47 @@ class _ProjectViewState extends State<ProjectView> {
     return total.ceil().toString();
   }
 
+  showMapDialog(String title, String msg, Project args) {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text('$title'),
+            content: Text('$msg'),
+            actions: <Widget>[
+              Padding(
+                padding: EdgeInsets.only(right: 20),
+                child: TextButton(
+                  style: TextButton.styleFrom(
+                    primary: Colors.black,
+                  ),
+                  child: Text("Satellite"),
+                  onPressed: () {
+                                          Navigator.pop(context);
+                              Navigator.pushNamed(context, '/map-view',
+                                arguments: MapViewArgs(args.geodata, true));
+                  },
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.only(right: 20),
+                child: TextButton(
+                  style: TextButton.styleFrom(
+                    primary: Colors.black,
+                  ),
+                  child: Text("Terrain"),
+                  onPressed: () {
+                      Navigator.pop(context);
+                      Navigator.pushNamed(context, '/map-view',
+                                arguments: MapViewArgs(args.geodata, false));
+                  },
+                ),
+              ),
+            ],
+          );
+        });
+  }
+
   @override
   Widget build(BuildContext context) {
     final args = ModalRoute.of(context)!.settings.arguments as ProjectViewArgs;
@@ -579,8 +620,7 @@ class _ProjectViewState extends State<ProjectView> {
                             primary: Colors.purple,
                           ),
                           onPressed: () {
-                            Navigator.pushNamed(context, '/map-view',
-                                arguments: MapViewArgs(args.project.geodata));
+                            showMapDialog('Choose Map', 'Select the map you would like to choose', args.project);
                           },
                           label: Text('See Map'),
                           icon: Icon(Icons.place),
