@@ -7,12 +7,13 @@ The Reforestation Assistant & Simulator idea is to create an app to help on refo
 This is being started as a Google Summer of Code 2021 project and has been continued in Google Summer of Code 2022 with the Liquid Galaxy Organization alongside the Dronecoria team.
 
 ### App Screenshots
-
-![Screenshot1](./resources/images/screenshot1.png)
-![Screenshot2](./resources/images/screenshot2.png)
-![Screenshot3](./resources/images/screenshot3.png)
-![Screenshot4](./resources/images/screenshot4.png)
-![Screenshot5](./resources/images/screenshot5.png)
+<div>
+<img src="./resources/images/screenshot1.png" height="400">
+<img src="./resources/images/screenshot2.png" height="400">
+<img src="./resources/images/screenshot3.png" height="400">
+<img src="./resources/images/screenshot4.png" height="400">
+<img src="./resources/images/screenshot5.png" height="400">
+</div>
 
 
 ## Running with APK
