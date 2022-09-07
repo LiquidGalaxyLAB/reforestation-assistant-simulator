@@ -16,6 +16,7 @@ class SurvivalEstChart extends StatefulWidget {
 
 class _SurvivalEstChartState extends State<SurvivalEstChart> {
 
+  late SelectionBehavior _selectionBehavior;
   late List<ChartData> chartData;
   final List<Seed> seeds;
   _SurvivalEstChartState(this.seeds);
@@ -57,12 +58,19 @@ class _SurvivalEstChartState extends State<SurvivalEstChart> {
     return total.ceil();
   }
 
+  @override
+  void initState() {
+        _selectionBehavior = SelectionBehavior(enable: true);
+        super.initState();
+    }
+
 @override
     Widget build(BuildContext context) {
          return Container(
           child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [ SfCartesianChart(
+                        selectionType: SelectionType.series,
                         primaryXAxis: CategoryAxis(labelRotation: 45),
                         primaryYAxis: NumericAxis(rangePadding: ChartRangePadding.auto,title: AxisTitle(text: 'Total Plants',
                                 textStyle: TextStyle(color: Colors.black,
@@ -77,6 +85,7 @@ class _SurvivalEstChartState extends State<SurvivalEstChart> {
                             StackedAreaSeries<ChartData, String>(
                                 name:seeds[i].commonName,
                                 dataSource: [ChartData('Initial', 1.0 * getTotal(i)), ChartData('Seeds Sown', 0.9 * getTotal(i)), ChartData('Predation', (100-pred)/100 *(0.9 * getTotal(i))), ChartData('Hydric stress', (100-hydr)/100 *((100-pred)/100 *(0.9 * getTotal(i)))), ChartData('Thermal stress', (100-ther)/100 * ((100-hydr)/100 *((100-pred)/100 *(0.9 * getTotal(i))))), ChartData('Bad location', (100-badl)/100 *((100-ther)/100 * ((100-hydr)/100 *((100-pred)/100 *(0.9 * getTotal(i)))))), ChartData('Establishment', (100-esta)/100 * ((100-badl)/100 *((100-ther)/100 * ((100-hydr)/100 *((100-pred)/100 *(0.9 * getTotal(i))))))), ChartData('Survival', 0.11 * ((100-esta)/100 * ((100-badl)/100 *((100-ther)/100 * ((100-hydr)/100 *((100-pred)/100 *(0.9 * getTotal(i))))))))],
+                                selectionBehavior: _selectionBehavior,
                                 xValueMapper: (ChartData data, _) => data.x,
                                 yValueMapper: (ChartData data, _) => data.y,
                                 dataLabelSettings: DataLabelSettings(
