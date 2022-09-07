@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.galaxy.ras">
+    package="com.galaxy.ras2">
    <!-- Permissions options for the `location` group -->
    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
@@ -19,7 +19,7 @@
         android:requestLegacyExternalStorage="true"
         android:icon="@mipmap/ic_launcher">
         <meta-data android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyDY_1-iGVzpMtmdAWuFqWqHaSQHqZTUoNc"/>
+            android:value="AIzaSyA8EwBsuADFuKGEOaRRvGeGdAY9nZPatQE"/>
         <activity
             android:name=".MainActivity"
             android:exported="true"

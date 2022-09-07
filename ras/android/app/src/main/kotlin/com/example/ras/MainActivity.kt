@@ -1,4 +1,4 @@
-package com.galaxy.ras
+package com.galaxy.ras2
 
 import io.flutter.embedding.android.FlutterActivity
 

@@ -1,102 +1,41 @@
 {
   "project_info": {
-    "project_number": "369651587526",
-    "project_id": "reforestationassistant",
-    "storage_bucket": "reforestationassistant.appspot.com"
+    "project_number": "878607962267",
+    "project_id": "ras2-d5fb6",
+    "storage_bucket": "ras2-d5fb6.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:369651587526:android:13f3544bd3bd45ed4cbac7",
+        "mobilesdk_app_id": "1:878607962267:android:b078500aab6b9e4bcab63e",
         "android_client_info": {
-          "package_name": "com.example.ras"
+          "package_name": "com.galaxy.ras2"
         }
       },
       "oauth_client": [
         {
-          "client_id": "369651587526-u7uovjvt2c72i4ldt6mbqkqjhgvce2gu.apps.googleusercontent.com",
+          "client_id": "878607962267-l9hpcionk8ua2gf2qn3q3n3hogeh0l7c.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.ras",
-            "certificate_hash": "eea2ff13b3255c7b3b62089061ee81cb1aeae729"
+            "package_name": "com.galaxy.ras2",
+            "certificate_hash": "483c13d064859f33e56b277e952effd4960133f3"
           }
         },
         {
-          "client_id": "369651587526-r5g3hp9im3go35afeui84gp2n1gbo6hm.apps.googleusercontent.com",
+          "client_id": "878607962267-p3dcgh0hjbucnoqlqff6md5v13agu8or.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBDP1g3xLald_uJ9WyYjF2FjvrioeAQdgk"
+          "current_key": "AIzaSyDT7Dp6Um8HauUsfRj6KjZsQ8ZNY9Ho0Qc"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "369651587526-r5g3hp9im3go35afeui84gp2n1gbo6hm.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:369651587526:android:1e849d7ce5f95a204cbac7",
-        "android_client_info": {
-          "package_name": "com.galaxy.ras"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "369651587526-dq0djbdeduugp80bdqa0b4qjhctb5j5q.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.galaxy.ras",
-            "certificate_hash": "eea2ff13b3255c7b3b62089061ee81cb1aeae729"
-          }
-        },
-        {
-          "client_id": "369651587526-iqhkkjairt1nkjgnv41bvi7ruhjkoeet.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.galaxy.ras",
-            "certificate_hash": "36d9fd7e6c4a8a58b13306ce995a470aa22dee08"
-          }
-        },
-        {
-          "client_id": "369651587526-knv1teo8chomcpi37n3lcsjet23sl58u.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.galaxy.ras",
-            "certificate_hash": "a4754e75c2eb6c0ba6386cc205cf9f3ae9be5f07"
-          }
-        },
-        {
-          "client_id": "369651587526-u8rgnkmuq4ib7i5c7r6qvq0pdroov9is.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.galaxy.ras",
-            "certificate_hash": "0d071830b090b8c829c589c366f6b50d27a78718"
-          }
-        },
-        {
-          "client_id": "369651587526-r5g3hp9im3go35afeui84gp2n1gbo6hm.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyBDP1g3xLald_uJ9WyYjF2FjvrioeAQdgk"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "369651587526-r5g3hp9im3go35afeui84gp2n1gbo6hm.apps.googleusercontent.com",
+              "client_id": "878607962267-p3dcgh0hjbucnoqlqff6md5v13agu8or.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

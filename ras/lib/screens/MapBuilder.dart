@@ -288,8 +288,10 @@ class _MapBuilderState extends State<MapBuilder> {
                               onPressed: () {
                                 setState(() {
                                   // landing point
+                                  if(!perimeter){
                                   shapeType = 'landingPoint';
                                   editing = true;
+                                  }
                                 });
                               }),
                         ),
@@ -507,8 +509,10 @@ class _MapBuilderState extends State<MapBuilder> {
         icon: landIcon,
         onTap: () {
           setState(() {
+            if(!perimeter){
             editing = true;
             shapeType = 'landingPoint';
+            }
           });
         });
     setState(() {
@@ -538,9 +542,11 @@ class _MapBuilderState extends State<MapBuilder> {
         icon: icon,
         onTap: () {
           setState(() {
+            if(!perimeter){
             currentMarkerId = seedM.id;
             editing = true;
             shapeType = 'seedMarker';
+            }
           });
         });
     setState(() {
@@ -560,9 +566,11 @@ class _MapBuilderState extends State<MapBuilder> {
         icon: currentSeedMarkerIcon,
         onTap: () {
           setState(() {
+            if(!perimeter){
             currentMarkerId = id;
             editing = true;
             shapeType = 'seedMarker';
+            }
           });
         });
 

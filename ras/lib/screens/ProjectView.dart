@@ -97,7 +97,7 @@ class _ProjectViewState extends State<ProjectView> {
   }
   }
 
- saveGraphs(Uint8List capturedImage) async{
+ saveGraphs(Uint8List capturedImage, int number) async{
 
     var status = await Permission.storage.status;
 
@@ -105,7 +105,7 @@ class _ProjectViewState extends State<ProjectView> {
       try {
         final downloadsDirectory = await getTemporaryDirectory();
         var savePath = downloadsDirectory.path;
-        final file = File("$savePath/graphs.png");
+        final file = File("$savePath/graphs${number}.png");
         await file.writeAsBytes(capturedImage);
       } catch (e) {
         print('error $e');
@@ -119,7 +119,7 @@ class _ProjectViewState extends State<ProjectView> {
         try {
         final downloadsDirectory = await getTemporaryDirectory();
         var savePath = downloadsDirectory.path;
-        final file = File("$savePath/graphs.png");
+        final file = File("$savePath/graphs${number}.png");
         await file.writeAsBytes(capturedImage);
         } catch (e) {
           print('error $e');
@@ -638,13 +638,25 @@ class _ProjectViewState extends State<ProjectView> {
                                 color: Colors.red.shade400, width: 1),
                           ),
                           onPressed: () {
-                            screenshotControllerGraphs
-                              .capture(delay: Duration(milliseconds: 1))
-                              .then((capturedImage) async {
-                              saveGraphs(capturedImage!);
+                             screenshotControllerGraph1
+                                        .capture(delay: Duration(milliseconds: 3))
+                                        .then((capturedImage) async {
+                                      saveGraphs(capturedImage!, 1);
                                     }).catchError((onError) {
                                       print(onError);
-                                    }).whenComplete(() => downloadPdf(args.project));
+                                    }).whenComplete(() => 
+                                    screenshotControllerGraph2
+                                        .capture(delay: Duration(milliseconds: 3))
+                                        .then((capturedImage) async {
+                                      saveGraphs(capturedImage!, 2);
+                                      }).whenComplete(() => screenshotControllerGraph3
+                                        .capture(delay: Duration(milliseconds: 3))
+                                        .then((capturedImage) async {
+                                      saveGraphs(capturedImage!, 3);
+                                    }).catchError((onError) {
+                                      print(onError);
+                                    }).whenComplete(() => downloadPdf(args.project)))
+                                    );
                           },
                           label: Text('Download PDF'),
                           icon: Icon(Icons.download),
@@ -830,14 +842,14 @@ class _ProjectViewState extends State<ProjectView> {
                                         graph1 = true;
                                       });
                                     screenshotControllerGraph1
-                                        .capture(delay: Duration(milliseconds: 1))
+                                        .capture(delay: Duration(milliseconds: 3))
                                         .then((capturedImage) async {
                                       await saveCapturedWidgetGraphs(capturedImage!, 1);
                                     }).catchError((onError) {
                                       print(onError);
                                     }).whenComplete(() => 
                                     screenshotControllerInfo
-                                        .capture(delay: Duration(milliseconds: 1))
+                                        .capture(delay: Duration(milliseconds: 3))
                                         .then((capturedImage) async {
                                       await saveCapturedWidgetInfo(capturedImage!);
                                     }).catchError((onError) {
@@ -928,14 +940,14 @@ class _ProjectViewState extends State<ProjectView> {
                                         graph2 = true;
                                       });
                                     screenshotControllerGraph2
-                                        .capture(delay: Duration(milliseconds: 1))
+                                        .capture(delay: Duration(milliseconds: 3))
                                         .then((capturedImage) async {
                                       await saveCapturedWidgetGraphs(capturedImage!, 2);
                                     }).catchError((onError) {
                                       print(onError);
                                     }).whenComplete(() => 
                                     screenshotControllerInfo
-                                        .capture(delay: Duration(milliseconds: 1))
+                                        .capture(delay: Duration(milliseconds: 3))
                                         .then((capturedImage) async {
                                       await saveCapturedWidgetInfo(capturedImage!);
                                     }).catchError((onError) {
@@ -1015,14 +1027,14 @@ class _ProjectViewState extends State<ProjectView> {
                                         graph3 = true;
                                       });
                                     screenshotControllerGraph3
-                                        .capture(delay: Duration(milliseconds: 1))
+                                        .capture(delay: Duration(milliseconds: 3))
                                         .then((capturedImage) async {
                                       await saveCapturedWidgetGraphs(capturedImage!, 3);
                                     }).catchError((onError) {
                                       print(onError);
                                     }).whenComplete(() => 
                                     screenshotControllerInfo
-                                        .capture(delay: Duration(milliseconds: 1))
+                                        .capture(delay: Duration(milliseconds: 3))
                                         .then((capturedImage) async {
                                       await saveCapturedWidgetInfo(capturedImage!);
                                     }).catchError((onError) {
