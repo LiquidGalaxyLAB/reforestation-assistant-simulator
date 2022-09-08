@@ -38,7 +38,6 @@ class _ProjectViewState extends State<ProjectView> {
   ScreenshotController screenshotControllerGraph1 = ScreenshotController();
   ScreenshotController screenshotControllerGraph2 = ScreenshotController();
   ScreenshotController screenshotControllerGraph3 = ScreenshotController();
-  ScreenshotController screenshotControllerGraphs = ScreenshotController();
   ScreenshotController screenshotControllerInfo = ScreenshotController();
 
   downloadKml(Project project) async {
@@ -880,17 +879,6 @@ class _ProjectViewState extends State<ProjectView> {
               ),
               ),
             Screenshot(
-              controller: screenshotControllerGraphs,
-              child: Container(
-                padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-                width: double.maxFinite,
-                decoration: BoxDecoration(
-                  color: Colors.grey.shade100,
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-            Screenshot(
               controller: screenshotControllerGraph1,
               child: Container(
                 padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
@@ -1095,10 +1083,6 @@ class _ProjectViewState extends State<ProjectView> {
                           ),
                         ),
                 ],
-              ),
-            ),
-            ),
-                            ],
               ),
             ),
             ),
