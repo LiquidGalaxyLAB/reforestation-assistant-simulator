@@ -20,11 +20,12 @@ class _SurvivalEstChartState extends State<SurvivalEstChart> {
   late List<ChartData> chartData;
   final List<Seed> seeds;
   _SurvivalEstChartState(this.seeds);
-  double pred = 80;
-  double hydr = 80;
-  double ther = 50;
-  double badl = 50;
-  double esta = 80;
+  late int _value;
+  List<double> pre = [];
+  List<double> hyd = [];
+  List<double> the = [];
+  List<double> bad = [];
+  List<double> est = [];
 
   getArea(ProjectViewArgs args){
     Project? p = args.project;
@@ -61,6 +62,12 @@ class _SurvivalEstChartState extends State<SurvivalEstChart> {
   @override
   void initState() {
         _selectionBehavior = SelectionBehavior(enable: true);
+        _value = 0;
+        seeds.forEach((element) {pre.add(80);});
+        seeds.forEach((element) {hyd.add(80);});
+        seeds.forEach((element) {the.add(50);});
+        seeds.forEach((element) {bad.add(50);});
+        seeds.forEach((element) {est.add(80);});
         super.initState();
     }
 
@@ -80,11 +87,12 @@ class _SurvivalEstChartState extends State<SurvivalEstChart> {
                                     fontWeight: FontWeight.w300))),
                         legend: Legend(isVisible: true,overflowMode: LegendItemOverflowMode.wrap,position: LegendPosition.bottom
                         ),
+                        enableMultiSelection: false,
                         series: <ChartSeries>[
                           for (var i = 0; i < seeds.length; i++)
                             StackedAreaSeries<ChartData, String>(
                                 name:seeds[i].commonName,
-                                dataSource: [ChartData('Initial', 1.0 * getTotal(i)), ChartData('Seeds Sown', 0.9 * getTotal(i)), ChartData('Predation', (100-pred)/100 *(0.9 * getTotal(i))), ChartData('Hydric stress', (100-hydr)/100 *((100-pred)/100 *(0.9 * getTotal(i)))), ChartData('Thermal stress', (100-ther)/100 * ((100-hydr)/100 *((100-pred)/100 *(0.9 * getTotal(i))))), ChartData('Bad location', (100-badl)/100 *((100-ther)/100 * ((100-hydr)/100 *((100-pred)/100 *(0.9 * getTotal(i)))))), ChartData('Establishment', (100-esta)/100 * ((100-badl)/100 *((100-ther)/100 * ((100-hydr)/100 *((100-pred)/100 *(0.9 * getTotal(i))))))), ChartData('Survival', 0.11 * ((100-esta)/100 * ((100-badl)/100 *((100-ther)/100 * ((100-hydr)/100 *((100-pred)/100 *(0.9 * getTotal(i))))))))],
+                                dataSource: [ChartData('Initial', 1.0 * getTotal(i)), ChartData('Seeds Sown', 0.9 * getTotal(i)), ChartData('Predation', (100-pre[i])/100 *(0.9 * getTotal(i))), ChartData('Hydric stress', (100-hyd[i])/100 *((100-pre[i])/100 *(0.9 * getTotal(i)))), ChartData('Thermal stress', (100-the[i])/100 * ((100-hyd[i])/100 *((100-pre[i])/100 *(0.9 * getTotal(i))))), ChartData('Bad location', (100-bad[i])/100 *((100-the[i])/100 * ((100-hyd[i])/100 *((100-pre[i])/100 *(0.9 * getTotal(i)))))), ChartData('Establishment', (100-est[i])/100 * ((100-bad[i])/100 *((100-the[i])/100 * ((100-hyd[i])/100 *((100-pre[i])/100 *(0.9 * getTotal(i))))))), ChartData('Survival', 0.11 * ((100-est[i])/100 * ((100-bad[i])/100 *((100-the[i])/100 * ((100-hyd[i])/100 *((100-pre[i])/100 *(0.9 * getTotal(i))))))))],
                                 selectionBehavior: _selectionBehavior,
                                 xValueMapper: (ChartData data, _) => data.x,
                                 yValueMapper: (ChartData data, _) => data.y,
@@ -96,63 +104,82 @@ class _SurvivalEstChartState extends State<SurvivalEstChart> {
                             ),
                         ]
                     ),
-                    Item('% Die by predation', pred.round().toString()),
+                    DropdownButton(
+              value: _value,
+              items: [
+                for(int i = 0; i < seeds.length; i++)
+                DropdownMenuItem(
+                  child: Text(seeds[i].commonName),
+                  value: i,
+                ),
+                if(seeds.length == 0)
+                  DropdownMenuItem(
+                  child: Text('None'),
+                  value: 0,
+                ),
+              ],
+              onChanged: (int? value) {
+                setState(() {
+                  _value = value!;
+                });
+              }),
+                    Item('% Die by predation', pre[_value].round().toString()),
                     Slider(
                       min: 0.0,
                       max: 100.0,
                       divisions: 100,
-                      value: pred,
+                      value: pre[_value],
                       onChanged: (value) {
                         setState(() {
-                          pred = value;
+                          pre[_value] = value;
                         });
                       },
                     ),
-                    Item('% Die by hydric stress', hydr.round().toString()),
+                    Item('% Die by hydric stress', hyd[_value].round().toString()),
                     Slider(
                       min: 0.0,
                       max: 100.0,
                       divisions: 100,
-                      value: hydr,
+                      value: hyd[_value],
                       onChanged: (value) {
                         setState(() {
-                          hydr = value;
+                          hyd[_value] = value;
                         });
                       },
                     ),
-                    Item('% Die by thermal stress', ther.round().toString()),
+                    Item('% Die by thermal stress', the[_value].round().toString()),
                     Slider(
                       min: 0.0,
                       max: 100.0,
                       divisions: 100,
-                      value: ther,
+                      value: the[_value],
                       onChanged: (value) {
                         setState(() {
-                          ther = value;
+                          the[_value] = value;
                         });
                       },
                     ),
-                    Item('% Die by bad location', badl.round().toString()),
+                    Item('% Die by bad location', bad[_value].round().toString()),
                     Slider(
                       min: 0.0,
                       max: 100.0,
                       divisions: 100,
-                      value: badl,
+                      value: bad[_value],
                       onChanged: (value) {
                         setState(() {
-                          badl = value;
+                          bad[_value] = value;
                         });
                       },
                     ),
-                    Item('% establishment', esta.round().toString()),
+                    Item('% establishment', est[_value].round().toString()),
                     Slider(
                       min: 0.0,
                       max: 100.0,
                       divisions: 100,
-                      value: esta,
+                      value: est[_value],
                       onChanged: (value) {
                         setState(() {
-                          esta = value;
+                          est[_value] = value;
                         });
                       },
                     ),
