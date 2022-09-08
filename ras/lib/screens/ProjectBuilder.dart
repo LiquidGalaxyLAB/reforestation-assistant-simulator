@@ -308,7 +308,7 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
       Future response = ProjectRepository().create(project);
       response.then((value) {
         print('Success!!!! $value');
-        Navigator.of(context).pop();
+        Navigator.of(context).pop({"reload": true});
       });
       response.catchError((onError) => print('Error $onError'));
     } else {
