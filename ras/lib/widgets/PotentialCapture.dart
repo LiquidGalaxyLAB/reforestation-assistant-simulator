@@ -54,7 +54,7 @@ class _PotentialCaptureState extends State<PotentialCapture> {
                           for (var i = 0; i < seeds.length; i++)
                             StackedAreaSeries<ChartData, int>(
                                 name:seeds[i].commonName,
-                                dataSource: [ChartData(getYear(0), getCO2(0, 1)), ChartData(getYear(1), getCO2(seeds[i].co2PerYear, 1)), ChartData(getYear(2), getCO2(seeds[i].co2PerYear, 2)), ChartData(getYear(3), getCO2(seeds[i].co2PerYear, 3)), ChartData(getYear(4), getCO2(seeds[i].co2PerYear, 4)), ChartData(getYear(5), getCO2(seeds[i].co2PerYear, 5)), ChartData(getYear(6), getCO2(seeds[i].co2PerYear, 6)), ChartData(getYear(7), getCO2(seeds[i].co2PerYear, 7)), ChartData(getYear(8), getCO2(seeds[i].co2PerYear, 8))],
+                                dataSource: [ChartData(getYear(0), getCO2(0, 1)), ChartData(getYear(1), getCO2(seeds[i].co2PerYear, 1)), ChartData(getYear(5), getCO2(seeds[i].co2PerYear, 5)),ChartData(getYear(10), getCO2(seeds[i].co2PerYear, 10)),ChartData(getYear(15), getCO2(seeds[i].co2PerYear, 15)),ChartData(getYear(20), getCO2(seeds[i].co2PerYear, 20)),ChartData(getYear(25), getCO2(seeds[i].co2PerYear, 25)),ChartData(getYear(30), getCO2(seeds[i].co2PerYear, 30)),ChartData(getYear(35), getCO2(seeds[i].co2PerYear, 35)),ChartData(getYear(40), getCO2(seeds[i].co2PerYear, 40)),],
                                 xValueMapper: (ChartData data, _) => data.x,
                                 yValueMapper: (ChartData data, _) => data.y,
                             ),
