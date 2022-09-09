@@ -13,6 +13,10 @@ This is being started as a Google Summer of Code 2021 project and has been conti
 <img src="./resources/images/screenshot3.png" height="400">
 <img src="./resources/images/screenshot4.png" height="400">
 <img src="./resources/images/screenshot5.png" height="400">
+<img src="./resources/images/screenshot6.png" height="400">
+<img src="./resources/images/screenshot7.png" height="400">
+<img src="./resources/images/screenshot8.png" height="400">
+<img src="./resources/images/screenshot9.png" height="400">
 </div>
 
 
