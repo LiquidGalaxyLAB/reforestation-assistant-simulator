@@ -27,11 +27,11 @@ This is being started as a Google Summer of Code 2021 project and has been conti
 
 ### Step 1: Download apk
 
-Download the apk file from [this repository](https://github.com/LiquidGalaxyLAB/reforestation-assistant-simulator/releases/download/v2.0.0/app-release.apk) or the [Google Play Store](https://play.google.com/store/apps/details?id=com.galaxy.ras2) and save it to your device
+Download the apk file from [this repository](https://github.com/LiquidGalaxyLAB/reforestation-assistant-simulator/releases/download/v2.0.0/app-release.apk) or the [Google Play Store](https://play.google.com/store/apps/details?id=com.galaxy.ras2)
 
 ### Step 2: Install
 
-Click on the apk and follow the android instructions for installation.
+Follow the instructions for installation on your Android device.
 
 ### Step 3: Connect to Liquid Galaxy
 
