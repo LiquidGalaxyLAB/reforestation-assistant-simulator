@@ -41,6 +41,7 @@ class _AboutScreenState extends State<AboutScreen> {
         preferredSize: const Size.fromHeight(50),
         child: MyAppBar(
           isHome: false,
+          isChanged: false,
         ),
       ),
       body: SingleChildScrollView(

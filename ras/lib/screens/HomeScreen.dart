@@ -19,7 +19,7 @@ class _MyHomePageState extends State<MyHomePage> {
       child: Scaffold(
         appBar: PreferredSize(
           preferredSize: const Size.fromHeight(120),
-          child: MyAppBar(isHome: true),
+          child: MyAppBar(isHome: true, isChanged: false),
         ),
         body: TabBarView(physics: NeverScrollableScrollPhysics(), dragStartBehavior: DragStartBehavior.down, children: [
           Tab(

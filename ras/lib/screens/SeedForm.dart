@@ -15,6 +15,7 @@ class SeedForm extends StatefulWidget {
 class _SeedFormState extends State<SeedForm> {
   final _formKey = GlobalKey<FormState>();
   bool isLoaded = false;
+  bool isChanged = false;
 
   TextEditingController commonName = TextEditingController();
   TextEditingController scientificName = TextEditingController();
@@ -193,6 +194,7 @@ class _SeedFormState extends State<SeedForm> {
         preferredSize: const Size.fromHeight(50),
         child: MyAppBar(
           isHome: false,
+          isChanged: isChanged,
         ),
       ),
       body: SingleChildScrollView(
@@ -233,6 +235,11 @@ class _SeedFormState extends State<SeedForm> {
                         decoration: InputDecoration(
                           filled: true,
                         ),
+                        onChanged: (text) {
+                          setState(() {
+                           isChanged = true;
+                          });
+                        },
                       ),
                     ),
                     IconButton(
@@ -262,6 +269,11 @@ class _SeedFormState extends State<SeedForm> {
                         decoration: InputDecoration(
                           filled: true,
                         ),
+                        onChanged: (text) {
+                          setState(() {
+                          isChanged = true;
+                          });
+                        },
                       ),
                     ),
                     IconButton(
@@ -307,6 +319,9 @@ class _SeedFormState extends State<SeedForm> {
                       ),
                       onPressed: () {
                         _selectSeed();
+                        setState(() {
+                         isChanged = true;
+                        });
                       },
                     ),
                     IconButton(
@@ -337,6 +352,11 @@ class _SeedFormState extends State<SeedForm> {
                         decoration: InputDecoration(
                           filled: true,
                         ),
+                        onChanged: (text) {
+                          setState(() {
+                           isChanged = true;
+                          });
+                        },
                       ),
                     ),
                     IconButton(
@@ -367,6 +387,11 @@ class _SeedFormState extends State<SeedForm> {
                         decoration: InputDecoration(
                           filled: true,
                         ),
+                        onChanged: (text) {
+                          setState(() {
+                            isChanged = true;
+                          });
+                        },
                       ),
                     ),
                     IconButton(
@@ -397,6 +422,11 @@ class _SeedFormState extends State<SeedForm> {
                         decoration: InputDecoration(
                           filled: true,
                         ),
+                        onChanged: (text) {
+                          setState(() {
+                            isChanged = true;
+                          });
+                        },
                       ),
                     ),
                     IconButton(
@@ -427,6 +457,11 @@ class _SeedFormState extends State<SeedForm> {
                         decoration: InputDecoration(
                           filled: true,
                         ),
+                        onChanged: (text) {
+                          setState(() {
+                            isChanged = true;
+                          });
+                        },
                       ),
                     ),
                     IconButton(
@@ -458,6 +493,11 @@ class _SeedFormState extends State<SeedForm> {
                         decoration: InputDecoration(
                           filled: true,
                         ),
+                        onChanged: (text) {
+                          setState(() {
+                            isChanged = true;
+                          });
+                        },
                       ),
                     ),
                     IconButton(
@@ -488,6 +528,11 @@ class _SeedFormState extends State<SeedForm> {
                         decoration: InputDecoration(
                           filled: true,
                         ),
+                        onChanged: (text) {
+                          setState(() {
+                            isChanged = true;
+                          });
+                        },
                       ),
                     ),
                     IconButton(
@@ -519,6 +564,11 @@ class _SeedFormState extends State<SeedForm> {
                         decoration: InputDecoration(
                           filled: true,
                         ),
+                        onChanged: (text) {
+                          setState(() {
+                            isChanged = true;
+                          });
+                        },
                       ),
                     ),
                     IconButton(

@@ -28,6 +28,7 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
 
   int _currentStep = 0;
   bool onEnter = true;
+  bool isChanged = false;
   StepperType stepperType = StepperType.vertical;
   final _formKey = GlobalKey<FormState>();
   // BASIC INFORMATION
@@ -448,6 +449,7 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
         preferredSize: const Size.fromHeight(50),
         child: MyAppBar(
           isHome: false,
+          isChanged: isChanged,
         ),
       ),
       body: SafeArea(
@@ -504,6 +506,11 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                                   decoration: InputDecoration(
                                     filled: true,
                                   ),
+                                  onChanged: (text) {
+                                    setState(() {
+                                      isChanged = true;
+                                    });
+                                  },
                                 ),
                               ),
                               IconButton(
@@ -666,6 +673,11 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                                   decoration: InputDecoration(
                                     filled: true,
                                   ),
+                                  onChanged: (text) {
+                                    setState(() {
+                                      isChanged = true;
+                                    });
+                                  },
                                 ),
                               ),
                               IconButton(
@@ -697,6 +709,11 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                                   decoration: InputDecoration(
                                     filled: true,
                                   ),
+                                  onChanged: (text) {
+                                    setState(() {
+                                      isChanged = true;
+                                    });
+                                  },
                                   validator: (value) {
                                     if (double.parse(value!) < 0) {
                                       return 'Wrong range! Negative values are not allowed';
@@ -734,6 +751,11 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                                   decoration: InputDecoration(
                                     filled: true,
                                   ),
+                                  onChanged: (text) {
+                                    setState(() {
+                                      isChanged = true;
+                                    });
+                                  },
                                   validator: (value) {
                                     if (double.parse(value!) < 0) {
                                       return 'Wrong range! Negative values are not allowed';
@@ -914,6 +936,11 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                                       decoration: InputDecoration(
                                         filled: true,
                                       ),
+                                      onChanged: (text) {
+                                        setState(() {
+                                          isChanged = true;
+                                        });
+                                  },
                                     ),
                                   ],
                                 ),
@@ -939,6 +966,11 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                                       decoration: InputDecoration(
                                         filled: true,
                                       ),
+                                      onChanged: (text) {
+                                        setState(() {
+                                          isChanged = true;
+                                        });
+                                  },
                                     ),
                                   ],
                                 ),
@@ -973,6 +1005,11 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                                   decoration: InputDecoration(
                                     filled: true,
                                   ),
+                                  onChanged: (text) {
+                                    setState(() {
+                                      isChanged = true;
+                                    });
+                                  },
                                 ),
                               ),
                               IconButton(
@@ -1005,6 +1042,11 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                                   decoration: InputDecoration(
                                     filled: true,
                                   ),
+                                  onChanged: (text) {
+                                    setState(() {
+                                      isChanged = true;
+                                    });
+                                  },
                                 ),
                               ),
                               IconButton(
@@ -1075,6 +1117,9 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                                       else
                                         seeds[i].density = 0;
                                     }
+                                    setState(() {
+                                      isChanged = true;
+                                    });
                                   },
                                   decoration: InputDecoration(
                                       filled: true, helperText: 'Density'),
@@ -1126,6 +1171,9 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                                 overflow: TextOverflow.ellipsis,
                               ),
                               onPressed: () async {
+                                    setState(() {
+                                      isChanged = true;
+                                    });
                                 final result = await Navigator.pushNamed(
                                   context,
                                   '/map',
@@ -1206,6 +1254,11 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                                   decoration: InputDecoration(
                                     filled: true,
                                   ),
+                                  onChanged: (text) {
+                                    setState(() {
+                                      isChanged = true;
+                                    });
+                                  },
                                   validator: (value) {
                                     if (double.parse(value!) < 0 ||
                                         double.parse(value) > 100) {
@@ -1245,6 +1298,11 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                                   decoration: InputDecoration(
                                     filled: true,
                                   ),
+                                  onChanged: (text) {
+                                    setState(() {
+                                      isChanged = true;
+                                    });
+                                  },
                                   validator: (value) {
                                     if (double.parse(value!) < 0 ||
                                         double.parse(value) > 100) {
@@ -1284,6 +1342,11 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                                   decoration: InputDecoration(
                                     filled: true,
                                   ),
+                                  onChanged: (text) {
+                                    setState(() {
+                                      isChanged = true;
+                                    });
+                                  },
                                   validator: (value) {
                                     if (double.parse(value!) < 0 ||
                                         double.parse(value) > 100) {
@@ -1400,6 +1463,11 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                                   decoration: InputDecoration(
                                     filled: true,
                                   ),
+                                  onChanged: (text) {
+                                    setState(() {
+                                      isChanged = true;
+                                    });
+                                  },
                                 ),
                               ),
                               IconButton(
@@ -1432,6 +1500,11 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                                   decoration: InputDecoration(
                                     filled: true,
                                   ),
+                                  onChanged: (text) {
+                                    setState(() {
+                                      isChanged = true;
+                                    });
+                                  },
                                 ),
                               ),
                               IconButton(
@@ -1464,6 +1537,11 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                                   decoration: InputDecoration(
                                     filled: true,
                                   ),
+                                  onChanged: (text) {
+                                    setState(() {
+                                      isChanged = true;
+                                    });
+                                  },
                                 ),
                               ),
                               IconButton(
@@ -1496,6 +1574,11 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                                   decoration: InputDecoration(
                                     filled: true,
                                   ),
+                                  onChanged: (text) {
+                                    setState(() {
+                                      isChanged = true;
+                                    });
+                                  },
                                 ),
                               ),
                               IconButton(
@@ -1527,6 +1610,11 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                                   decoration: InputDecoration(
                                     filled: true,
                                   ),
+                                  onChanged: (text) {
+                                    setState(() {
+                                      isChanged = true;
+                                    });
+                                  },
                                   validator: (value) {
                                     if (double.parse(value!) < 0 ||
                                         double.parse(value) > 100) {
@@ -1583,6 +1671,11 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                                   decoration: InputDecoration(
                                     filled: true,
                                   ),
+                                  onChanged: (text) {
+                                    setState(() {
+                                      isChanged = true;
+                                    });
+                                  },
                                 ),
                               ),
                               IconButton(
@@ -1614,6 +1707,11 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                                   decoration: InputDecoration(
                                     filled: true,
                                   ),
+                                  onChanged: (text) {
+                                    setState(() {
+                                      isChanged = true;
+                                    });
+                                  },
                                   validator: (value) {
                                     if (double.parse(value!) < 0 ||
                                         double.parse(value) > 14) {
@@ -1731,6 +1829,11 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                                   decoration: InputDecoration(
                                     filled: true,
                                   ),
+                                  onChanged: (text) {
+                                    setState(() {
+                                      isChanged = true;
+                                    });
+                                  },
                                   validator: (value) {
                                     if (double.parse(value!) < 0 ||
                                         double.parse(value) > 10) {
@@ -1770,6 +1873,11 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                                   decoration: InputDecoration(
                                     filled: true,
                                   ),
+                                  onChanged: (text) {
+                                    setState(() {
+                                      isChanged = true;
+                                    });
+                                  },
                                 ),
                               ),
                               IconButton(

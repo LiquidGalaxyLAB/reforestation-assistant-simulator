@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 
 class MyAppBar extends StatefulWidget {
   final bool isHome;
+  final bool isChanged;
 
-  const MyAppBar({Key? key, required this.isHome}) : super(key: key);
+  const MyAppBar({Key? key, required this.isHome, required this.isChanged}) : super(key: key);
 
   @override
   _MyAppBarState createState() => _MyAppBarState();
@@ -54,12 +55,12 @@ class _MyAppBarState extends State<MyAppBar> {
       leading: !widget.isHome
           ? IconButton(
               onPressed: () {
-                /*if (ModalRoute.of(context)!.settings.name ==
+                if ((ModalRoute.of(context)!.settings.name ==
                         '/project-builder' ||
-                    ModalRoute.of(context)!.settings.name == '/seed-form') {
+                    ModalRoute.of(context)!.settings.name == '/seed-form') && widget.isChanged == true) {
                   showReturnDialog('Are you sure you want to go back?',
                       'All the changes you made will be lost');
-                } else*/
+                } else
                   Navigator.of(context).pop();
               },
               icon: Icon(Icons.chevron_left),
