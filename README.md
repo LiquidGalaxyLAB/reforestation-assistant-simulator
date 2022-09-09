@@ -49,7 +49,6 @@ Follow the instructions for installation on your Android device.
 
 **Obs.:** If prompted with the message of *Host is not reachable*, it means the LG master can't be accessed. So check out if you are in the same network of the Liquid Galaxy and that the master can be accessed via SSH.
 
-![Error connect](./resources/images/doc_error_connect.jpg)
 <img src="./resources/images/screenshot13.png" height="600">
 
 ## Running from source
