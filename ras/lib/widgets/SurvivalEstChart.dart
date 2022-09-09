@@ -98,7 +98,7 @@ class _SurvivalEstChartState extends State<SurvivalEstChart> {
                                 yValueMapper: (ChartData data, _) => data.y,
                                 dataLabelSettings: DataLabelSettings(
                                     isVisible: true,
-                                    showCumulativeValues: true,
+                                    showCumulativeValues: false,
                                     useSeriesColor: true,
                                 ),
                             ),
