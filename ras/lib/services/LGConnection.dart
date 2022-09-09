@@ -73,7 +73,7 @@ class LGConnection {
         <ScreenOverlay>
         <name>Logo</name>
         <Icon>
-        <href>https://i.imgur.com/CAxkBZz.png</href>
+        <href>https://i.imgur.com/XrDlDgN.png</href>
         </Icon>
         <overlayXY x="0" y="1" xunits="fraction" yunits="fraction"/>
         <screenXY x="0.02" y="0.95" xunits="fraction" yunits="fraction"/>

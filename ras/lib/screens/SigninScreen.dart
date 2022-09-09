@@ -35,7 +35,7 @@ class _SignInScreenState extends State<SignInScreen> {
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 25.0),
                       child: Text(
-                        'Reforestation Assistant & Simulator',
+                        'Reforestation Assistant & Simulator 2',
                         textAlign: TextAlign.center,
                         style: TextStyle(
                             fontWeight: FontWeight.bold,

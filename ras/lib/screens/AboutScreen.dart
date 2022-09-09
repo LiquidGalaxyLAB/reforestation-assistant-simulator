@@ -66,7 +66,7 @@ class _AboutScreenState extends State<AboutScreen> {
                 padding:
                     const EdgeInsets.symmetric(horizontal: 20.0, vertical: 15),
                 child: Text(
-                  'Reforestation Assistant & Simulator',
+                  'Reforestation Assistant & Simulator 2',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                       fontWeight: FontWeight.bold,

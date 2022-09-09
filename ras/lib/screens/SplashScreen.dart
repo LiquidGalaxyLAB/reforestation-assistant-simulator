@@ -63,7 +63,7 @@ class _SplashScreenState extends State<SplashScreen> {
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal:20.0),
-                child: Text('Reforestation Assistant & Simulator', textAlign: TextAlign.center, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20, color: Colors.grey.shade700),),
+                child: Text('Reforestation Assistant & Simulator 2', textAlign: TextAlign.center, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20, color: Colors.grey.shade700),),
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
