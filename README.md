@@ -2,7 +2,7 @@
 
 # Reforestation Assistant & Simulator
 
-The Reforestation Assistant & Simulator idea is to create an app to help on reforestation of degraded areas of the planet by drone or manually. The project will consist of an Android App where users can plan the reforesting missions, by defining areas of seeding, specific seed/tree location, drone landing points, fly zones and other helpful metrics. All the gathered information will be dynamically displayed on the Liquid Galaxy cluster using KMLs and also on the app with the help of graphics and text to bring users a great and immersive overview of the mission panorama.
+The Reforestation Assistant & Simulator idea is an app that helps in reforestation of degraded areas by drones or manual human effort. The project consists of an Android App where users can plan the reforesting missions, by defining areas of seeding, specific seed/tree location, drone landing points, fly zones and other helpful metrics. All the gathered information is then dynamically displayed on the Liquid Galaxy cluster using KMLs and also on the app giving users an immersive overview of the reforestation mission.
 
 This is being started as a Google Summer of Code 2021 project and has been continued in Google Summer of Code 2022 with the Liquid Galaxy Organization alongside the Dronecoria team.
 
@@ -27,7 +27,7 @@ This is being started as a Google Summer of Code 2021 project and has been conti
 
 ### Step 1: Download apk
 
-Download the apk file from [this repository](https://github.com/LiquidGalaxyLAB/reforestation-assistant-simulator/tree/main/resources) or the [shared drive folder](https://drive.google.com/drive/folders/16yQr1vyfkY4nVqhDR_kzpLMki1UTQzkL?usp=sharing) and save it to your device
+Download the apk file from [this repository](https://github.com/LiquidGalaxyLAB/reforestation-assistant-simulator/releases/download/v2.0.0/app-release.apk) or the [Google Play Store](https://play.google.com/store/apps/details?id=com.galaxy.ras2) and save it to your device
 
 ### Step 2: Install
 
@@ -137,4 +137,4 @@ If you want to contribute to this project you can open a pull request at time yo
 This software is under the [MIT License](https://en.wikipedia.org/wiki/MIT_License)
 
 
-Copyright 2021 [Karine Aparecida Pistili Rodrigues](https://www.linkedin.com/in/karine-pistili)
+Copyright 2021-2022 [Karine Aparecida Pistili Rodrigues](https://www.linkedin.com/in/karine-pistili)
