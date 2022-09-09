@@ -37,19 +37,20 @@ Follow the instructions for installation on your Android device.
 
 1. On the home page, click on the gear icon to access the settings page
 
-![Home Page](./resources/images/doc_home_page.jpg)
+<img src="./resources/images/screenshot12.png" height="600">
 
 2. On settings, type the ip address and password of the LG master machine
 3. Hit “CONNECT”
 4. If it is connected correctly you will be prompted with a success message and with the status will change to **CONNECTED**.
 
-![Diconnect](./resources/images/doc_disconnected.jpg)
+<img src="./resources/images/screenshot14.png" height="600">
+<img src="./resources/images/screenshot10.png" height="600">
+<img src="./resources/images/screenshot11.png" height="600">
 
-![Connect](./resources/images/doc_connected_lg.jpg)
-
-**Obs.:** If prompted with the message of *Host is not reachable*, it means the LG master can't be accessed. So check out if you are in the same network of the Liquid Galaxt and that the master can be accessed via SSH.
+**Obs.:** If prompted with the message of *Host is not reachable*, it means the LG master can't be accessed. So check out if you are in the same network of the Liquid Galaxy and that the master can be accessed via SSH.
 
 ![Error connect](./resources/images/doc_error_connect.jpg)
+<img src="./resources/images/screenshot13.png" height="600">
 
 ## Running from source
 
