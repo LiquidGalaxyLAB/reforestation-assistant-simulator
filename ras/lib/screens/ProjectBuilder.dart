@@ -538,6 +538,9 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                               Expanded(
                                 child: GestureDetector(
                                   onTap: () {
+                                    setState(() {
+                                      isChanged = true;
+                                    });
                                     _selectDate(context, 0);
                                   },
                                   child: Container(
@@ -593,6 +596,7 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                                 child: GestureDetector(
                                   onTap: () {
                                     setState(() {
+                                      isChanged = true;
                                       sownMode = 'By Drone';
                                     });
                                   },
@@ -621,6 +625,7 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                                 child: GestureDetector(
                                   onTap: () {
                                     setState(() {
+                                      isChanged = true;
                                       sownMode = 'Manually';
                                     });
                                   },
@@ -815,6 +820,9 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                               Expanded(
                                 child: GestureDetector(
                                   onTap: () {
+                                    setState(() {
+                                      isChanged = true;
+                                    });
                                     _selectDate(context, 1);
                                   },
                                   child: Container(
@@ -868,6 +876,9 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                               Expanded(
                                 child: GestureDetector(
                                   onTap: () {
+                                    setState(() {
+                                      isChanged = true;
+                                    });
                                     _selectDate(context, 2);
                                   },
                                   child: Container(
@@ -1080,6 +1091,9 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                             style: ElevatedButton.styleFrom(
                                 primary: Colors.blueGrey),
                             onPressed: () {
+                                    setState(() {
+                                      isChanged = true;
+                                    });
                               _selectSeeds();
                             },
                             icon: Icon(Icons.check_box),
@@ -1130,6 +1144,7 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                               trailing: IconButton(
                                 onPressed: () {
                                   setState(() {
+                                    isChanged = true;
                                     seeds.removeAt(i);
                                   });
                                 },
@@ -1401,6 +1416,7 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                                 value: orientation,
                                 onChanged: (value) {
                                   setState(() {
+                                    isChanged = true;
                                     orientation = value!;
                                   });
                                 },
@@ -1421,6 +1437,9 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                                   flex: 6,
                                   child: ElevatedButton(
                                     onPressed: () {
+                                    setState(() {
+                                      isChanged = true;
+                                    });
                                       calculateAltitudeOfTerrain();
                                     },
                                     child: Padding(
@@ -1748,6 +1767,7 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                                 child: GestureDetector(
                                   onTap: () {
                                     setState(() {
+                                      isChanged = true;
                                       fractured = 'Yes';
                                     });
                                   },
@@ -1776,6 +1796,7 @@ class _ProjectBuilderState extends State<ProjectBuilder> {
                                 child: GestureDetector(
                                   onTap: () {
                                     setState(() {
+                                      isChanged = true;
                                       fractured = 'No';
                                     });
                                   },
