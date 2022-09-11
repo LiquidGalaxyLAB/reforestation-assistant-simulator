@@ -2,7 +2,7 @@
 
 # Reforestation Assistant & Simulator
 
-The Reforestation Assistant & Simulator idea is an app that helps in reforestation of degraded areas by drones or manual human effort. The project consists of an Android App where users can plan the reforesting missions, by defining areas of seeding, specific seed/tree location, drone landing points, fly zones and other helpful metrics. All the gathered information is then dynamically displayed on the Liquid Galaxy cluster using KMLs and also on the app giving users an immersive overview of the reforestation mission.
+The Reforestation Assistant & Simulator is an app that helps in reforestation of degraded areas by drones or manual human effort. The project consists of an Android App where users can plan the reforesting missions, by defining areas of seeding, specific seed/tree location, drone landing points, fly zones and other helpful metrics. All the gathered information is then dynamically displayed on the Liquid Galaxy cluster using KMLs and also on the app giving users an immersive overview of the reforestation mission.
 
 This is being started as a Google Summer of Code 2021 project and has been continued in Google Summer of Code 2022 with the Liquid Galaxy Organization alongside the Dronecoria team.
 
