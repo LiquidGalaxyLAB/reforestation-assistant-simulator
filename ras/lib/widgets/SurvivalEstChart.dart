@@ -90,7 +90,7 @@ class _SurvivalEstChartState extends State<SurvivalEstChart> {
                         enableMultiSelection: false,
                         series: <ChartSeries>[
                           for (var i = 0; i < seeds.length; i++)
-                            StackedAreaSeries<ChartData, String>(
+                            FastLineSeries<ChartData, String>(
                                 name:seeds[i].commonName,
                                 dataSource: [ChartData('Initial', 1.0 * getTotal(i)), ChartData('Seeds Sown', 0.9 * getTotal(i)), ChartData('Predation', (100-pre[i])/100 *(0.9 * getTotal(i))), ChartData('Hydric stress', (100-hyd[i])/100 *((100-pre[i])/100 *(0.9 * getTotal(i)))), ChartData('Thermal stress', (100-the[i])/100 * ((100-hyd[i])/100 *((100-pre[i])/100 *(0.9 * getTotal(i))))), ChartData('Bad location', (100-bad[i])/100 *((100-the[i])/100 * ((100-hyd[i])/100 *((100-pre[i])/100 *(0.9 * getTotal(i)))))), ChartData('Establishment', (100-est[i])/100 * ((100-bad[i])/100 *((100-the[i])/100 * ((100-hyd[i])/100 *((100-pre[i])/100 *(0.9 * getTotal(i))))))), ChartData('Survival', 0.11 * ((100-est[i])/100 * ((100-bad[i])/100 *((100-the[i])/100 * ((100-hyd[i])/100 *((100-pre[i])/100 *(0.9 * getTotal(i))))))))],
                                 selectionBehavior: _selectionBehavior,
@@ -99,7 +99,11 @@ class _SurvivalEstChartState extends State<SurvivalEstChart> {
                                 dataLabelSettings: DataLabelSettings(
                                     isVisible: true,
                                     showCumulativeValues: false,
-                                    useSeriesColor: true,
+                                    useSeriesColor: false,
+                                    labelAlignment: ChartDataLabelAlignment.middle,
+                                    textStyle: TextStyle(
+                                    fontSize: 8
+                                  )
                                 ),
                             ),
                         ]
